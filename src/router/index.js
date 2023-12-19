@@ -40,6 +40,11 @@ const router = createRouter({
       name: 'FrontSignUp',
       component: () => import('../views/FrontEnd/FrontSignUp.vue')
     },
+    {
+      path: '/FrontPersonInfo',
+      name: 'FrontPersonInfo',
+      component: () => import('../views/FrontEnd/FrontPersonInfo.vue')
+    },
 //後台連結
     {
       path: '/BackEntry',

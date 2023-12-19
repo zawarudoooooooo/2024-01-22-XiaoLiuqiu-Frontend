@@ -1,4 +1,5 @@
 <script>
+import Footer from '../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -8,7 +9,13 @@ export default{
     methods:{
         goSignUp(){
             this.$router.push('/FrontSignUp')
+        },
+        goPersonInfo(){
+            this.$router.push('FrontPersonInfo')
         }
+    },
+    components:{
+        Footer
     }
 }
 </script>
@@ -28,16 +35,18 @@ export default{
         </div>
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
-            <button type="button">登錄</button>
+            <button type="button" @click="goPersonInfo()">登錄</button>
         </div>
     </div>
+    <Footer/>
 </template>
 
 <style lang="scss" scoped>
     .content{
         width: 20vw;
+        height: 62vh;
         margin: auto;
-        margin-top: 5vmin;
+        margin-top: 8vmin;
 
         input{
             width: 20vw;

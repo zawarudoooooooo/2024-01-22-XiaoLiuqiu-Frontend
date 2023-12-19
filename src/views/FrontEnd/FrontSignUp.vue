@@ -1,4 +1,5 @@
 <script>
+import Footer from '../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -9,6 +10,9 @@ export default{
         goFrontEntry(){
             this.$router.push('/')
         }
+    },
+    components:{
+        Footer
     }
 }
 </script>
@@ -39,14 +43,15 @@ export default{
             <button type="button">註冊</button>
         </div>
     </div>
+    <Footer />
 </template>
 
 <style lang="scss" scoped>
         .content{
         width: 20vw;
-        height: 50vh;
+        height: 66vh;
         margin: auto;
-        margin-top: 5vmin;
+        margin-top: 4vmin;
 
         input{
             width: 20vw;
@@ -63,6 +68,9 @@ export default{
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
+            p{
+                margin-bottom: 0.5vmin;
+            }
         }
         .account{
             p{
