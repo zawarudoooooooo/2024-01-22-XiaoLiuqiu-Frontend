@@ -6,13 +6,18 @@ export default{
 
         }
     },
+    methods: {
+        goFrontEntry(){
+            this.$router.push('/')
+        }
+    }
 }
 </script>
 
 <template>
     <div class="header">
         <div class="logo">
-            <img src="../../public/seaLifeLogo.png">
+            <img src="../../public/seaLifeLogo.png" @click="goFrontEntry()">
         </div>
         <nav>
             <RouterLink to="/FrontSearch" class="routerItem">訂房</RouterLink>

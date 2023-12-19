@@ -35,6 +35,11 @@ const router = createRouter({
       name: 'FrontLogin',
       component: () => import('../views/FrontEnd/FrontLogin.vue')
     },
+    {
+      path: '/FrontSignUp',
+      name: 'FrontSignUp',
+      component: () => import('../views/FrontEnd/FrontSignUp.vue')
+    },
 //後台連結
     {
       path: '/BackEntry',

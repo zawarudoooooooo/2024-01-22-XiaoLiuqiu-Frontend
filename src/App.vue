@@ -5,23 +5,17 @@ import Footer from './components/Footer.vue';
 </script>
 
 <template>
-  <div class="content">
-    <div class="header">
-      <Header/>
-    </div>
-    <div class="footer">
-      <Footer />
-    </div>
-  </div>
+    <header><Header/></header>
+    <footer><Footer /></footer>
   <RouterView />
 </template>
 
 <style lang="scss" scoped>
-    .content{
-      width: 100vw;
-      height: 200vh;
+    body{
       position: relative;
-      .footer{
+      height: 500vh;
+
+      footer{
         position: absolute;
         bottom: 0;
       }
