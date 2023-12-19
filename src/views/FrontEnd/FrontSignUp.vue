@@ -7,11 +7,8 @@ export default{
         }
     },
     methods:{
-        goSignUp(){
-            this.$router.push('/FrontSignUp')
-        },
-        goPersonInfo(){
-            this.$router.push('FrontPersonInfo')
+        goFrontEntry(){
+            this.$router.push('/')
         }
     },
     components:{
@@ -23,30 +20,38 @@ export default{
 <template>
     <div class="content">
         <div class="title">
-            <p>登錄</p>
+            <p>註冊</p>
         </div>
         <div class="account">
-            <p>帳號</p>
-            <input type="text" placeholder="請輸入帳號">
+            <p>姓名</p>
+            <input type="text" placeholder="請輸入真實姓名">
         </div>
         <div class="password">
             <p>密碼</p>
-            <input type="password" placeholder="請輸入密碼">
+            <input type="password" placeholder="請設定密碼">
+        </div>
+        <div class="phone">
+            <p>電話</p>
+            <input type="number" placeholder="請輸入電話">
+        </div>
+        <div class="email">
+            <p>E-mail</p>
+            <input type="text" placeholder="請輸入email">
         </div>
         <div class="buttonArea">
-            <button type="button" @click="goSignUp()">註冊</button>
-            <button type="button" @click="goPersonInfo()">登錄</button>
+            <button type="button" @click="goFrontEntry()">取消</button>
+            <button type="button">註冊</button>
         </div>
     </div>
-    <Footer/>
+    <Footer />
 </template>
 
 <style lang="scss" scoped>
-    .content{
+        .content{
         width: 20vw;
-        height: 62vh;
+        height: 66vh;
         margin: auto;
-        margin-top: 8vmin;
+        margin-top: 4vmin;
 
         input{
             width: 20vw;
@@ -56,25 +61,42 @@ export default{
             outline: none;
             background-color: #D9D9D9;
             padding-left: 2vmin;
-            margin-bottom: 4vmin;
+            margin-bottom: 2vmin;
         }
         .title{
             font-size: 28pt;
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
+            p{
+                margin-bottom: 0.5vmin;
+            }
         }
         .account{
             p{
                 margin: 0;
-                font-size: 16pt;
+                font-size: 14pt;
                 color: #797A7E;
             }
         }
         .password{
             p{
                 margin: 0;
-                font-size: 16pt;
+                font-size: 14pt;
+                color: #797A7E;
+            }
+        }
+        .phone{
+            p{
+                margin: 0;
+                font-size: 14pt;
+                color: #797A7E;
+            }
+        }
+        .email{
+            p{
+                margin: 0;
+                font-size: 14pt;
                 color: #797A7E;
             }
         }

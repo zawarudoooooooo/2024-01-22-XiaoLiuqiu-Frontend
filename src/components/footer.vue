@@ -25,15 +25,14 @@ export default{
         width: 100vw;
         height: 15vh;
         background-color: #BFEAF5;
-        position: relative;
         .icon{
-            position: absolute;
-            top: 30%;
-            left: 40%;
+            text-align: center;
+
             i{
                 font-size: 26pt;
                 color:#F7F2E7;
                 margin-right: 3vmin;
+                margin-top: 5vmin;
 
                 &:hover{
                     color: #797A7E;
@@ -44,5 +43,4 @@ export default{
             }
         }
     }
-
 </style>
