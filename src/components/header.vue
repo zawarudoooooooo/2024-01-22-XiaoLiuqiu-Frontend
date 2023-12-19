@@ -17,7 +17,7 @@ export default{
         <nav>
             <RouterLink to="/FrontSearch" class="routerItem">訂房</RouterLink>
             <RouterLink to="/FrontTourist" class="routerItem">景點</RouterLink>
-            <RouterLink to="/FrontActivity" class="routerItem">活動</RouterLink>
+            <RouterLink to="/FrontActivity" class="routerItem"> 優惠</RouterLink>
             <RouterLink to="/FrontAbout" class="routerItem">關於 Sea．Life</RouterLink>
             <RouterLink to="/FrontLogin" class="routerItem">登錄</RouterLink>
         </nav>
