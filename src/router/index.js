@@ -47,11 +47,45 @@ const router = createRouter({
     },
 //後台連結
     {
-      path: '/BackEntry',
-      name: 'BackEntry',
-      component: () => import('../views/BackEnd/BackEntry.vue')
+      path: '/BackLogin',
+      name: 'BackLogin',
+      component: () => import('../views/BackEnd/BackLogin.vue')
+    },
+    {
+      path: '/BackManagement',
+      name: 'BackManagement',
+      component: () => import('../views/BackEnd/BackManagement.vue')
+    },
+    {
+      path: '/BackSingle',
+      name: 'BackSingle',
+      component: () => import('../views/BackEnd/BackRoom/BackSingle.vue')
+    },
+    {
+      path: '/BackDouble',
+      name: 'BackDouble',
+      component: () => import('../views/BackEnd/BackRoom/BackDouble.vue')
+    },
+    {
+      path: '/BackFamily',
+      name: 'BackFamily',
+      component: () => import('../views/BackEnd/BackRoom/BackFamily.vue')
+    },
+    {
+      path: '/BackTourist',
+      name: 'BackTourist',
+      component: () => import('../views/BackEnd/BackTourist.vue')
+    },
+    {
+      path: '/BackActivity',
+      name: 'BackActivity',
+      component: () => import('../views/BackEnd/BackActivity.vue')
+    },
+    {
+      path: '/BackAbout',
+      name: 'BackAbout',
+      component: () => import('../views/BackEnd/BackAbout.vue')
     },
   ]
 })
-
 export default router
