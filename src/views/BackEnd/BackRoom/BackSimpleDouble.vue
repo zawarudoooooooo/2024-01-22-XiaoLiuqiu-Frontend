@@ -56,7 +56,7 @@ export default{
             <div class="sdtwo">
                 <img src="../../../../public/SimpleDoubleRoom/sd2.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD2.小資雙人房</span>
+                    <span>SD2.溫馨雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
                         {{ this.sd2t }}
@@ -71,11 +71,11 @@ export default{
             <div class="sdthree">
                 <img src="../../../../public/SimpleDoubleRoom/sd3.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD3.小資雙人房</span>
+                    <span>SD3.簡約雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
                         {{ this.sd3t }}
-                        <select name="sd3" id="" v-model="sd3t">
+                        <select name="" id="" v-model="sd3t">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -86,11 +86,11 @@ export default{
             <div class="sdfour">
                 <img src="../../../../public/SimpleDoubleRoom/sd4.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD4.小資雙人房</span>
+                    <span>SD4.熱情雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
                         {{ this.sd4t }}
-                        <select name="sd4" id="" v-model="sd4t">
+                        <select name="" id="" v-model="sd4t">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -101,11 +101,11 @@ export default{
             <div class="sdfive">
                 <img src="../../../../public/SimpleDoubleRoom/sd5.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD4.小資雙人房</span>
+                    <span>SD5.極簡雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
                         {{ this.sd5t }}
-                        <select name="sd4" id="" v-model="sd5t">
+                        <select name="" id="" v-model="sd5t">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -152,7 +152,6 @@ export default{
             }
         }
         .simpleDouble{
-            //border: 1px solid black;
             width: 70vw;
             height: 80vh;
             position: absolute;
@@ -161,7 +160,6 @@ export default{
             display: flex;
             flex-wrap: wrap;
             gap: 3vmin;
-            // justify-content: space-around;
             .sdone{
                 width: 33vw;
                 height: 30vh;
