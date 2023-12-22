@@ -56,6 +56,7 @@ const router = createRouter({
       name: 'BackManagement',
       component: () => import('../views/BackEnd/BackManagement.vue')
     },
+//後台房間
     {
       path: '/BackSimpleDouble',
       name: 'BackSimpleDouble',
@@ -71,11 +72,29 @@ const router = createRouter({
       name: 'BackFamily',
       component: () => import('../views/BackEnd/BackRoom/BackFamily.vue')
     },
+//後台觀光
     {
       path: '/BackTourist',
       name: 'BackTourist',
       component: () => import('../views/BackEnd/BackTourist.vue')
     },
+//後台租車
+    {
+      path: '/BackBicycle',
+      name: 'BackBicycle',
+      component: () => import('../views/BackEnd/BackRent/BackBicycle.vue')
+    },
+    {
+      path: '/BackScooter',
+      name: 'BackScooter',
+      component: () => import('../views/BackEnd/BackRent/BackScooter.vue')
+    },
+    {
+      path: '/BackCar',
+      name: 'BackCar',
+      component: () => import('../views/BackEnd/BackRent/BackCar.vue')
+    },
+//後台優惠活動
     {
       path: '/BackActivity',
       name: 'BackActivity',

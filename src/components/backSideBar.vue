@@ -9,6 +9,9 @@ export default{
         goBackSimpleDouble(){
             this.$router.push('/BackSimpleDouble')
         },
+        goBackBicycle(){
+            this.$router.push('/BackBicycle')
+        },
         goBackTourist(){
             this.$router.push('/BackTourist')
         },
@@ -26,7 +29,7 @@ export default{
     <div class="sideBar">
         <button type="button" @click="goBackSimpleDouble()">房型管理</button>
         <button type="button" @click="goBackTourist()">景點管理</button>
-        <button type="button">租車管理</button>
+        <button type="button" @click="goBackBicycle()">租車管理</button>
         <button type="button">套票管理</button>
         <button type="button" @click="goBackActivity()">優惠管理</button>
         <button type="button" @click="goBackAbout()">簡介編輯</button>
