@@ -41,7 +41,7 @@ export default{
             <div class="done">
                 <img src="../../../../public/DoubleRoom/d1.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D1.豪華雙人房</span>
+                    <span>D1.輕奢雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
                         {{ this.d1t }}
@@ -56,7 +56,7 @@ export default{
             <div class="dtwo">
                 <img src="../../../../public/DoubleRoom/d2.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D2.溫馨雙人房</span>
+                    <span>D2.景觀雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
                         {{ this.d2t }}
@@ -86,7 +86,7 @@ export default{
             <div class="dfour">
                 <img src="../../../../public/DoubleRoom/d4.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D4.熱情雙人房</span>
+                    <span>D4.溫馨雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
                         {{ this.d4t }}
@@ -101,7 +101,7 @@ export default{
             <div class="dfive">
                 <img src="../../../../public/DoubleRoom/d5.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D5.極簡雙人房</span>
+                    <span>D5.復刻雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
                         {{ this.d5t }}
