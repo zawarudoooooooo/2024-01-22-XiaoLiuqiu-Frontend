@@ -57,9 +57,9 @@ const router = createRouter({
       component: () => import('../views/BackEnd/BackManagement.vue')
     },
     {
-      path: '/BackSingle',
-      name: 'BackSingle',
-      component: () => import('../views/BackEnd/BackRoom/BackSingle.vue')
+      path: '/BackSimpleDouble',
+      name: 'BackSimpleDouble',
+      component: () => import('../views/BackEnd/BackRoom/BackSimpleDouble.vue')
     },
     {
       path: '/BackDouble',

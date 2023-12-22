@@ -6,8 +6,8 @@ export default{
         }
     },
     methods:{
-        goBackSingleRoom(){
-            this.$router.push('/BackSingle')
+        goBackSimpleDouble(){
+            this.$router.push('/BackSimpleDouble')
         },
         goBackTourist(){
             this.$router.push('/BackTourist')
@@ -24,7 +24,7 @@ export default{
 
 <template>
     <div class="sideBar">
-        <button type="button" @click="goBackSingleRoom()">房型管理</button>
+        <button type="button" @click="goBackSimpleDouble()">房型管理</button>
         <button type="button" @click="goBackTourist()">景點管理</button>
         <button type="button">租車管理</button>
         <button type="button">套票管理</button>
@@ -38,7 +38,6 @@ export default{
         width: 15vw;
         gap: 2vmin;
         display: grid;
-        //margin-top: 1vmin;
         margin-left: 4vmin;
 
         button{

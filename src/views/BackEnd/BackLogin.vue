@@ -19,11 +19,11 @@ export default{
 <template>
     <div class="content">
         <div class="title">
-            <p>後台登錄</p>
+            <p>員工登錄</p>
         </div>
         <div class="account">
             <p>帳號</p>
-            <input type="text" placeholder="請輸入帳號">
+            <input type="text" placeholder="請輸入員工帳號">
         </div>
         <div class="password">
             <p>密碼</p>
