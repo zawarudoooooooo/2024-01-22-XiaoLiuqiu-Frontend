@@ -47,11 +47,64 @@ const router = createRouter({
     },
 //後台連結
     {
-      path: '/BackEntry',
-      name: 'BackEntry',
-      component: () => import('../views/BackEnd/BackEntry.vue')
+      path: '/BackLogin',
+      name: 'BackLogin',
+      component: () => import('../views/BackEnd/BackLogin.vue')
+    },
+    {
+      path: '/BackManagement',
+      name: 'BackManagement',
+      component: () => import('../views/BackEnd/BackManagement.vue')
+    },
+//後台房間
+    {
+      path: '/BackSimpleDouble',
+      name: 'BackSimpleDouble',
+      component: () => import('../views/BackEnd/BackRoom/BackSimpleDouble.vue')
+    },
+    {
+      path: '/BackDouble',
+      name: 'BackDouble',
+      component: () => import('../views/BackEnd/BackRoom/BackDouble.vue')
+    },
+    {
+      path: '/BackFamily',
+      name: 'BackFamily',
+      component: () => import('../views/BackEnd/BackRoom/BackFamily.vue')
+    },
+//後台觀光
+    {
+      path: '/BackTourist',
+      name: 'BackTourist',
+      component: () => import('../views/BackEnd/BackTourist.vue')
+    },
+//後台租車
+    {
+      path: '/BackBicycle',
+      name: 'BackBicycle',
+      component: () => import('../views/BackEnd/BackRent/BackBicycle.vue')
+    },
+    {
+      path: '/BackScooter',
+      name: 'BackScooter',
+      component: () => import('../views/BackEnd/BackRent/BackScooter.vue')
+    },
+    {
+      path: '/BackCar',
+      name: 'BackCar',
+      component: () => import('../views/BackEnd/BackRent/BackCar.vue')
+    },
+//後台優惠活動
+    {
+      path: '/BackActivity',
+      name: 'BackActivity',
+      component: () => import('../views/BackEnd/BackActivity.vue')
+    },
+    {
+      path: '/BackAbout',
+      name: 'BackAbout',
+      component: () => import('../views/BackEnd/BackAbout.vue')
     },
   ]
 })
-
 export default router
