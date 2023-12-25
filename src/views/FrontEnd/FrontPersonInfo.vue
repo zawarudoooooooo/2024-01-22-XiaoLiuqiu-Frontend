@@ -17,39 +17,74 @@ export default{
 
 <template>
     <div class="content">
-        <div class="title">
-            <p>會員資訊</p>
+        <div class="personInfo">
+            <div class="title">
+                <p>會員資訊</p>
+            </div>
+            <div class="name">
+                <p>姓名 : 海龜王子</p>
+            </div>
+            <div class="phone">
+                <p>電話 : 09-12345678</p>
+            </div>
+            <div class="email">
+                <p>E-mail : kameprince@gmail.com</p>
+            </div>
+            <div class="password">
+                <p>密碼 : **********</p>
+            </div>
+            <div class="buttonArea">
+                <button type="button">修改資料</button>
+                <button type="button">儲存</button>
+            </div>
         </div>
-        <div class="name">
-            <p>姓名 : 海龜王子</p>
+        <div class="order">
+            <div class="title">
+                <p>我的訂單</p>
+            </div>
+            <div class="show">
+                <p>入住日期 : 2023-12-25</p>
+                <p>退房日期 : 2023-12-31</p>
+                <p>房間類型 : 濃情密意雙人房</p>
+                <p>加購項目 : 早餐、潛水套票</p>
+            </div>
+
+
         </div>
-        <div class="phone">
-            <p>電話 : 09-12345678</p>
-        </div>
-        <div class="email">
-            <p>E-mail : kameprince@gmail.com</p>
-        </div>
-        <div class="buttonArea">
-            <button type="button">修改</button>
-            <button type="button">儲存</button>
-        </div>
+ 
+
     </div>
     <Footer/>
 </template>
 
 <style lang="scss" scoped>
         .content{
-        width: 20vw;
-        height: 66vh;
+        width: 50vw;
+        height: 62vh;
         margin: auto;
-        margin-top: 4vmin;
-        .title{
-            p{
-                font-size: 28pt;
-                font-weight: bold;
-                color: #82AAE3;
-                text-align: center;
-                margin-bottom: 5vmin;
+        margin-top: 8vmin;
+        display: flex;
+        justify-content: space-around;
+        .personInfo{
+            .title{
+                p{
+                    font-size: 28pt;
+                    font-weight: bold;
+                    color: #82AAE3;
+                    text-align: center;
+                    margin-bottom: 3vmin;
+                }
+            }
+        }
+        .order{
+            .title{
+                p{
+                    font-size: 28pt;
+                    font-weight: bold;
+                    color: #82AAE3;
+                    text-align: center;
+                    margin-bottom: 3vmin;
+                }
             }
         }
 
@@ -62,7 +97,7 @@ export default{
             width: 20vw;
             display: flex;
             justify-content: space-around;
-            margin-top: 10vmin;
+            margin-top: 5vmin;
             button{
                 width: 8vw;
                 height: 5vh;
