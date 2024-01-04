@@ -39,9 +39,9 @@ export default{
         </div>
         <div class="double">
             <div class="done">
-                <img src="../../../../public/DoubleRoom/d1.jpg" alt="">
+                <img src="../../../../public/room/double.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D1.輕奢雙人房</span>
+                    <span>D1.溫馨雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
                         {{ this.d1t }}
@@ -54,9 +54,9 @@ export default{
                 </div>
             </div>
             <div class="dtwo">
-                <img src="../../../../public/DoubleRoom/d2.jpg" alt="">
+                <img src="../../../../public/room/double1.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D2.景觀雙人房</span>
+                    <span>D2.簡約雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
                         {{ this.d2t }}
@@ -69,9 +69,9 @@ export default{
                 </div>
             </div>
             <div class="dthree">
-                <img src="../../../../public/DoubleRoom/d3.jpg" alt="">
+                <img src="../../../../public/room/double2.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D3.簡約雙人房</span>
+                    <span>D3.工業雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
                         {{ this.d3t }}
@@ -84,9 +84,9 @@ export default{
                 </div>
             </div>
             <div class="dfour">
-                <img src="../../../../public/DoubleRoom/d4.jpg" alt="">
+                <img src="../../../../public/room/double3.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D4.溫馨雙人房</span>
+                    <span>D4.景觀雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
                         {{ this.d4t }}
@@ -99,7 +99,7 @@ export default{
                 </div>
             </div>
             <div class="dfive">
-                <img src="../../../../public/DoubleRoom/d5.jpg" alt="">
+                <img src="../../../../public/room/double4.jpg" alt="">
                 <div class="roomInfo">
                     <span>D5.復刻雙人房</span>
                     <p>$2500</p>

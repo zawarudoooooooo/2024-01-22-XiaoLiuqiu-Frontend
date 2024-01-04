@@ -11,15 +11,18 @@ export default{
     },
     components:{
         backSideBar
-    }
+    },
 }
 </script>
 
 <template>
     <div class="title">
-        <p>後台總覽</p>
+        <p>套票管理</p>
     </div>
-    <backSideBar />
+
+<backSideBar />
+
+
 </template>
 
 <style lang="scss" scoped>
@@ -30,4 +33,5 @@ export default{
         text-align: center;
         margin-top: 3vmin;
     }
+
 </style>

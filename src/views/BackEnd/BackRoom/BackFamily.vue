@@ -39,7 +39,7 @@ export default{
         </div>
         <div class="family">
             <div class="fone">
-                <img src="../../../../public/FamilyRoom/f1.jpg" alt="">
+                <img src="../../../../public/room/family.jpg" alt="">
                 <div class="roomInfo">
                     <span>F1.海景家庭房</span>
                     <p>$5500</p>
@@ -54,9 +54,9 @@ export default{
                 </div>
             </div>
             <div class="ftwo">
-                <img src="../../../../public/FamilyRoom/f2.jpg" alt="">
+                <img src="../../../../public/room/family1.jpg" alt="">
                 <div class="roomInfo">
-                    <span>F2.工業家庭房</span>
+                    <span>F2.溫馨家庭房</span>
                     <p>$5000</p>
                     <div class="roomStatus">
                         {{ this.f2t }}
@@ -69,9 +69,9 @@ export default{
                 </div>
             </div>
             <div class="fthree">
-                <img src="../../../../public/FamilyRoom/f3.jpg" alt="">
+                <img src="../../../../public/room/family2.jpg" alt="">
                 <div class="roomInfo">
-                    <span>F3.南洋家庭房</span>
+                    <span>F3.復古家庭房</span>
                     <p>$5000</p>
                     <div class="roomStatus">
                         {{ this.f3t }}
@@ -84,7 +84,7 @@ export default{
                 </div>
             </div>
             <div class="ffour">
-                <img src="../../../../public/FamilyRoom/f4.jpg" alt="">
+                <img src="../../../../public/room/family3.jpg" alt="">
                 <div class="roomInfo">
                     <span>F4.頂級家庭房</span>
                     <p>$5000</p>
@@ -99,9 +99,9 @@ export default{
                 </div>
             </div>
             <div class="ffive">
-                <img src="../../../../public/FamilyRoom/f5.jpg" alt="">
+                <img src="../../../../public/room/family4.jpg" alt="">
                 <div class="roomInfo">
-                    <span>F5.復古家庭房</span>
+                    <span>F5.簡約家庭房</span>
                     <p>$5000</p>
                     <div class="roomStatus">
                         {{ this.f5t }}
