@@ -5,8 +5,6 @@ export default {
         return{
             c1t:"",
             c2t:"",
-            suv1t:"",
-            suv2t:"",
         }
     },
     methods:{
@@ -38,7 +36,7 @@ export default {
         </div>
         <div class="car">
             <div class="cone">
-                <img src="../../../../public/Rent/c1.jpg" alt="">
+                <img src="../../../../public/traffic/car.jpg" alt="">
                 <div class="rentInfo">
                     <span>c1.轎車</span>
                     <p>$1500</p>
@@ -53,43 +51,13 @@ export default {
                 </div>
             </div>
             <div class="ctwo">
-                <img src="../../../../public/Rent/c2.jpg" alt="">
+                <img src="../../../../public/traffic/car1.jpg" alt="">
                 <div class="rentInfo">
                     <span>c2.轎車</span>
                     <p>$1500</p>
                     <div class="rentStatus">
                         {{ this.c2t }}
                         <select name="" id="" v-model="c2t">
-                            <option value="">出租狀態</option>
-                            <option value="入住中">出租中</option>
-                            <option value="空房">可租借</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="cthree">
-                <img src="../../../../public/Rent/suv1.jpg" alt="">
-                <div class="rentInfo">
-                    <span>suv1.箱型車</span>
-                    <p>$2500</p>
-                    <div class="rentStatus">
-                        {{ this.suv1t }}
-                        <select name="" id="" v-model="suv1t">
-                            <option value="">出租狀態</option>
-                            <option value="入住中">出租中</option>
-                            <option value="空房">可租借</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="cfour">
-                <img src="../../../../public/Rent/suv2.jpg" alt="">
-                <div class="rentInfo">
-                    <span>suv2.箱型車</span>
-                    <p>$2500</p>
-                    <div class="rentStatus">
-                        {{ this.suv2t }}
-                        <select name="" id="" v-model="suv2t">
                             <option value="">出租狀態</option>
                             <option value="入住中">出租中</option>
                             <option value="空房">可租借</option>
@@ -182,80 +150,6 @@ export default {
                 }
             }
             .ctwo{
-                width: 33vw;
-                height: 30vh;
-                border-radius: 10px;
-                border: 3px solid #D9D9D9;
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                color: #797A7E;
-                font-weight: bold;
-
-                img{
-                        width: 15vw;
-                        height: 25vh;
-                        border-radius: 5px;
-                    }
-                .rentInfo{
-                    span{
-                        font-size: 16pt;
-                    }
-                    p{
-                        text-align: center;
-                        font-size: 14pt;
-                    }
-                    .rentStatus{
-                        select{
-                            width: 6vw;
-                            height: 4vh;
-                            border-radius: 5px;
-                            border-style: none;
-                            outline: none;
-                            color: #797A7E;
-                            text-align: center;
-                        }
-                    }
-                }
-            }
-            .cthree{
-                width: 33vw;
-                height: 30vh;
-                border-radius: 10px;
-                border: 3px solid #D9D9D9;
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                color: #797A7E;
-                font-weight: bold;
-
-                img{
-                        width: 15vw;
-                        height: 25vh;
-                        border-radius: 5px;
-                    }
-                .rentInfo{
-                    span{
-                        font-size: 16pt;
-                    }
-                    p{
-                        text-align: center;
-                        font-size: 14pt;
-                    }
-                    .rentStatus{
-                        select{
-                            width: 6vw;
-                            height: 4vh;
-                            border-radius: 5px;
-                            border-style: none;
-                            outline: none;
-                            color: #797A7E;
-                            text-align: center;
-                        }
-                    }
-                }
-            }
-            .cfour{
                 width: 33vw;
                 height: 30vh;
                 border-radius: 10px;

@@ -5,8 +5,8 @@ export default {
         return{
             s1t:"",
             s2t:"",
-            es1t:"",
-            es2t:"",
+            s3t:"",
+            s4t:"",
         }
     },
     methods:{
@@ -38,9 +38,9 @@ export default {
         </div>
         <div class="scooter">
             <div class="sone">
-                <img src="../../../../public/Rent/s1.jpg" alt="">
+                <img src="../../../../public/traffic/scooter.jpg" alt="">
                 <div class="rentInfo">
-                    <span>s1.一般摩托車</span>
+                    <span>s1.摩托車</span>
                     <p>$200</p>
                     <div class="rentStatus">
                         {{ this.s1t }}
@@ -53,9 +53,9 @@ export default {
                 </div>
             </div>
             <div class="stwo">
-                <img src="../../../../public/Rent/s2.jpg" alt="">
+                <img src="../../../../public/traffic/scooter1.jpg" alt="">
                 <div class="rentInfo">
-                    <span>s2.一般摩托車</span>
+                    <span>s2.摩托車</span>
                     <p>$200</p>
                     <div class="rentStatus">
                         {{ this.s2t }}
@@ -68,13 +68,13 @@ export default {
                 </div>
             </div>
             <div class="sthree">
-                <img src="../../../../public/Rent/es1.jpg" alt="">
+                <img src="../../../../public/traffic/scooter2.jpg" alt="">
                 <div class="rentInfo">
-                    <span>es1.電動摩托車</span>
+                    <span>s3.摩托車</span>
                     <p>$250</p>
                     <div class="rentStatus">
-                        {{ this.es1t }}
-                        <select name="" id="" v-model="es1t">
+                        {{ this.s3t }}
+                        <select name="" id="" v-model="s3t">
                             <option value="">出租狀態</option>
                             <option value="出租中">出租中</option>
                             <option value="可租借">可租借</option>
@@ -83,13 +83,13 @@ export default {
                 </div>
             </div>
             <div class="sfour">
-                <img src="../../../../public/Rent/es2.jpg" alt="">
+                <img src="../../../../public/traffic/scooter3.jpg" alt="">
                 <div class="rentInfo">
-                    <span>es2.電動腳踏車</span>
+                    <span>s4.摩托車</span>
                     <p>$250</p>
                     <div class="rentStatus">
-                        {{ this.es2t }}
-                        <select name="" id="" v-model="es2t">
+                        {{ this.s4t }}
+                        <select name="" id="" v-model="s4t">
                             <option value="">出租狀態</option>
                             <option value="出租中">出租中</option>
                             <option value="可租借">可租借</option>
@@ -230,8 +230,8 @@ export default {
                 font-weight: bold;
 
                 img{
-                        width: 14vw;
-                        height: 27vh;
+                        width: 15vw;
+                        height: 25vh;
                         border-radius: 5px;
                     }
                 .rentInfo{
@@ -267,8 +267,8 @@ export default {
                 font-weight: bold;
 
                 img{
-                        width: 14vw;
-                        height: 27vh;
+                        width: 15vw;
+                        height: 25vh;
                         border-radius: 5px;
                     }
                 .rentInfo{
