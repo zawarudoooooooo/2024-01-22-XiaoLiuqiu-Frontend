@@ -9,8 +9,8 @@ export default{
         goFrontEntry(){
             this.$router.push('/')
         },
-        goBackManagement(){
-            this.$router.push('/BackManagement')
+        goBack(){
+            this.$router.push('/BackSimpleDouble')
         }
     }
 }
@@ -31,7 +31,7 @@ export default{
         </div>
         <div class="buttonArea">
             <button type="button" @click="goFrontEntry()">取消</button>
-            <button type="button" @click="goBackManagement()">登錄</button>
+            <button type="button" @click="goBack()">登錄</button>
         </div>
     </div>
 </template>

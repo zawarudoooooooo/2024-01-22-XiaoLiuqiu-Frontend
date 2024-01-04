@@ -51,11 +51,6 @@ const router = createRouter({
       name: 'BackLogin',
       component: () => import('../views/BackEnd/BackLogin.vue')
     },
-    {
-      path: '/BackManagement',
-      name: 'BackManagement',
-      component: () => import('../views/BackEnd/BackManagement.vue')
-    },
 //後台房間
     {
       path: '/BackSimpleDouble',
@@ -94,16 +89,11 @@ const router = createRouter({
       name: 'BackCar',
       component: () => import('../views/BackEnd/BackRent/BackCar.vue')
     },
-//後台優惠活動
+//後台套票
     {
-      path: '/BackActivity',
-      name: 'BackActivity',
-      component: () => import('../views/BackEnd/BackActivity.vue')
-    },
-    {
-      path: '/BackAbout',
-      name: 'BackAbout',
-      component: () => import('../views/BackEnd/BackAbout.vue')
+      path: '/BackTicket',
+      name: 'BackTicket',
+      component: () => import('../views/BackEnd/BackTicket.vue')
     },
   ]
 })

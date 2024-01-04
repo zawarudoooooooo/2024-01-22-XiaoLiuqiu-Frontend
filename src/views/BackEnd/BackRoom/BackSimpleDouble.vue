@@ -39,7 +39,7 @@ export default{
         </div>
         <div class="simpleDouble">
             <div class="sdone">
-                <img src="../../../../public/SimpleDoubleRoom/sd1.jpg" alt="">
+                <img src="../../../../public/room/simpledouble.jpg" alt="">
                 <div class="roomInfo">
                     <span>SD1.小資雙人房</span>
                     <p>$1500</p>
@@ -54,9 +54,9 @@ export default{
                 </div>
             </div>
             <div class="sdtwo">
-                <img src="../../../../public/SimpleDoubleRoom/sd2.jpg" alt="">
+                <img src="../../../../public/room/simpledouble1.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD2.溫馨雙人房</span>
+                    <span>SD2.現代雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
                         {{ this.sd2t }}
@@ -69,7 +69,7 @@ export default{
                 </div>
             </div>
             <div class="sdthree">
-                <img src="../../../../public/SimpleDoubleRoom/sd3.jpg" alt="">
+                <img src="../../../../public/room/simpledouble2.jpg" alt="">
                 <div class="roomInfo">
                     <span>SD3.簡約雙人房</span>
                     <p>$1500</p>
@@ -84,9 +84,9 @@ export default{
                 </div>
             </div>
             <div class="sdfour">
-                <img src="../../../../public/SimpleDoubleRoom/sd4.jpg" alt="">
+                <img src="../../../../public/room/simpledouble3.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD4.熱情雙人房</span>
+                    <span>SD4.輕奢雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
                         {{ this.sd4t }}
@@ -99,9 +99,9 @@ export default{
                 </div>
             </div>
             <div class="sdfive">
-                <img src="../../../../public/SimpleDoubleRoom/sd5.jpg" alt="">
+                <img src="../../../../public/room/simpledouble4.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD5.極簡雙人房</span>
+                    <span>SD5.溫馨雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
                         {{ this.sd5t }}

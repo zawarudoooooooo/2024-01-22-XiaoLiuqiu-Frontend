@@ -15,12 +15,12 @@ export default{
         goBackTourist(){
             this.$router.push('/BackTourist')
         },
-        goBackActivity(){
-            this.$router.push('/BackActivity')
+        goBackTicket(){
+            this.$router.push('/BackTicket')
         },
-        goBackAbout(){
-            this.$router.push('/BackAbout')
-        }
+        // goBackAbout(){
+        //     this.$router.push('/BackAbout')
+        // }
     }
 }
 </script>
@@ -30,9 +30,9 @@ export default{
         <button type="button" @click="goBackSimpleDouble()">房型管理</button>
         <button type="button" @click="goBackTourist()">景點管理</button>
         <button type="button" @click="goBackBicycle()">租車管理</button>
-        <button type="button">套票管理</button>
-        <button type="button" @click="goBackActivity()">優惠管理</button>
-        <button type="button" @click="goBackAbout()">簡介編輯</button>
+        <button type="button" @click="goBackTicket()">套票管理</button>
+        <!-- <button type="button" @click="goBackActivity()">優惠管理</button> -->
+        <!-- <button type="button" @click="goBackAbout()">簡介編輯</button> -->
     </div>    
 </template>
 
