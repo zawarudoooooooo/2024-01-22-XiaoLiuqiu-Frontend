@@ -16,81 +16,105 @@ export default{
     <div class="content">
         <h4>熱門景點</h4>
         <div class="flip">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+            <div class="front" style="background-image: url(../../../public/tourist/touristmain1.jpg)">
                 <h1 class="text-shadow">MOUNTAIN</h1>
             </div>
             <div class="back">
-                <h2>Angular</h2>
-                <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                <h2>美人洞</h2>
+                <p>小琉球西北角的美人洞背山面海，擁有許多奇岩怪石及天然形成的珊瑚礁岩洞。</p>
             </div>
         </div>
         <div class="flip">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+            <div class="front" style="background-image: url(../../../public/tourist/touristmain2.jpg)">
                 <h1 class="text-shadow">MOUNTAIN</h1>
             </div>
             <div class="back">
-                <h2>Angular</h2>
-                <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                <h2>山豬溝</h2>
+                <p>依山而建，是一座斷崖形成的山溝，沿途可看見許多藏在礁石內的珊瑚礁及貝殼化石。</p>
             </div>
         </div>
         <div class="flip">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+            <div class="front" style="background-image: url(../../../public/tourist/touristmain3.jpg)">
                 <h1 class="text-shadow">MOUNTAIN</h1>
             </div>
             <div class="back">
-                <h2>Angular</h2>
-                <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                <h2>烏鬼洞</h2>
+                <p>名字為「烏鬼洞（又稱鬼界厝）」，是一座天然的珊瑚礁岩洞。是座自然與歷史故事結合的觀光景點。</p>
             </div>
         </div>
         <div class="allSpot">
             <h4>所有景點</h4>
             <div class="cardArea">
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/tourist4.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">龍蝦洞</h5>
+                        <p class="card-text">龍蝦洞顧名思義就是有很多龍蝦存在，不過現在的龍蝦洞已經不可見太多龍蝦，反而是一座座被海水侵蝕後所形成的珊瑚洞穴。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/tourist5.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">白燈塔</h5>
+                        <p class="card-text">與鵝鑾鼻燈塔共同負責台灣海峽與巴士海峽船隻通行的安全，擁有相當重要的地位。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/tourist6.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">花瓶岩</h5>
+                        <p class="card-text">花瓶岩是一大塊隆起的珊瑚礁岩，是小琉球島上的重要地標。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/tourist7.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">落日亭</h5>
+                        <p class="card-text">是島上看夕陽最棒的地點。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/tourist8.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">鹿粼梅花鹿園區</h5>
+                        <p class="card-text">2020年全新開幕的一間讓旅客可以近距離與梅花鹿互動、拍照的「鹿粼梅花鹿園區」。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/tourist9.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">小琉球海洋館</h5>
+                        <p class="card-text">館中展示了許多相當珍稀的海洋生物。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/tourist10.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">中澳沙灘</h5>
+                        <p class="card-text">擁有潔白的沙灘、蔚藍的海水少有遊客前往，是一座鬧中取靜的小小秘境。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/tourist11.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">美人沙灘</h5>
+                        <p class="card-text">位於美人洞附近的「美人沙灘」擁有潔白的海灣和碧藍的海水，因為純淨無污染，是很棒的浮潛地點。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/tourist12.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">蛤板灣</h5>
+                        <p class="card-text">小琉球西南側，面向台灣海峽的一個「蛤板灣」因為沙灘潔淨無比、海水蔚藍，素有「威尼斯沙灘」的美名。</p>
+                        <a href="#" class="btn btn-light">詳細</a>
                     </div>
                 </div>
             </div>
@@ -105,7 +129,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 100vw;
-        height: 200vh;
+        height: 240vh;
         text-align: center;
         margin-top: 6vmin;
         h4{
