@@ -21,6 +21,16 @@ const router = createRouter({
       component: () => import('../views/FrontEnd/FrontTourist.vue')
     },
     {
+      path: '/FrontTraffic',
+      name: 'FrontTraffic',
+      component: () => import('../views/FrontEnd/FrontTraffic.vue')
+    },
+    {
+      path: '/FrontMeal',
+      name: 'FrontMeal',
+      component: () => import('../views/FrontEnd/FrontMeal.vue')
+    },
+    {
       path: '/FrontActivity',
       name: 'FrontActivity',
       component: () => import('../views/FrontEnd/FrontActivity.vue')

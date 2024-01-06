@@ -35,9 +35,9 @@ export default{
                         <li class="nav-item dropdown">
                             <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-location-dot"></i>導覽</p>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-ferry"></i>交通</a></li>
+                                <li><RouterLink to="/FrontTraffic" class="dropdown-item"><i class="fa-solid fa-ferry"></i>交通</RouterLink></li>
                                 <li><RouterLink to="/FrontTourist" class="dropdown-item"><i class="fa-solid fa-camera"></i>景點</RouterLink></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-utensils"></i>美食</a></li>
+                                <li><RouterLink to="/FrontMeal" class="dropdown-item"><i class="fa-solid fa-utensils"></i>美食</RouterLink></li>
                             </ul>
                         </li>
                         <li class="nav-item">
