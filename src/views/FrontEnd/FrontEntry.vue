@@ -263,14 +263,12 @@ export default{
                 }
             }
         }
-
-
         #back{
             font-size: 16pt;
             color:#F7F2E7;
             position: absolute;
             right: 1%;
-            bottom: 0;
+            bottom: -2%;
             &:hover{
                 color: #797A7E;
             }

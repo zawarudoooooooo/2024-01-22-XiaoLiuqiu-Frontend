@@ -3,11 +3,11 @@ import backSideBar from '../../../components/backSideBar.vue';
 export default{
     data(){
         return{
-            sd1t:"",
-            sd2t:"",
-            sd3t:"",
-            sd4t:"",
-            sd5t:"",
+            sd1:"",
+            sd2:"",
+            sd3:"",
+            sd4:"",
+            sd5:"",
         }
     },
     methods:{
@@ -44,8 +44,8 @@ export default{
                     <span>SD1.小資雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd1t }}
-                        <select name="" id="" v-model="sd1t">
+                        {{ this.sd1 }}
+                        <select name="" id="" v-model="sd1">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -59,8 +59,8 @@ export default{
                     <span>SD2.現代雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd2t }}
-                        <select name="" id="" v-model="sd2t">
+                        {{ this.sd2 }}
+                        <select name="" id="" v-model="sd2">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -74,8 +74,8 @@ export default{
                     <span>SD3.簡約雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd3t }}
-                        <select name="" id="" v-model="sd3t">
+                        {{ this.sd3 }}
+                        <select name="" id="" v-model="sd3">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -89,8 +89,8 @@ export default{
                     <span>SD4.輕奢雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd4t }}
-                        <select name="" id="" v-model="sd4t">
+                        {{ this.sd4 }}
+                        <select name="" id="" v-model="sd4">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -104,8 +104,8 @@ export default{
                     <span>SD5.溫馨雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd5t }}
-                        <select name="" id="" v-model="sd5t">
+                        {{ this.sd5 }}
+                        <select name="" id="" v-model="sd5">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>

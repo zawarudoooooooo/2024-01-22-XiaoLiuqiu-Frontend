@@ -3,8 +3,8 @@ import backSideBar from '../../../components/backSideBar.vue';
 export default {
     data(){
         return{
-            c1t:"",
-            c2t:"",
+            c1:"",
+            c2:"",
         }
     },
     methods:{
@@ -41,8 +41,8 @@ export default {
                     <span>c1.轎車</span>
                     <p>$1500</p>
                     <div class="rentStatus">
-                        {{ this.c1t }}
-                        <select name="" id="" v-model="c1t">
+                        {{ this.c1 }}
+                        <select name="" id="" v-model="c1">
                             <option value="">出租狀態</option>
                             <option value="入住中">出租中</option>
                             <option value="空房">可租借</option>
@@ -56,8 +56,8 @@ export default {
                     <span>c2.轎車</span>
                     <p>$1500</p>
                     <div class="rentStatus">
-                        {{ this.c2t }}
-                        <select name="" id="" v-model="c2t">
+                        {{ this.c2 }}
+                        <select name="" id="" v-model="c2">
                             <option value="">出租狀態</option>
                             <option value="入住中">出租中</option>
                             <option value="空房">可租借</option>

@@ -3,10 +3,10 @@ import backSideBar from '../../../components/backSideBar.vue';
 export default {
     data(){
         return{
-            s1t:"",
-            s2t:"",
-            s3t:"",
-            s4t:"",
+            s1:"",
+            s2:"",
+            s3:"",
+            s4:"",
         }
     },
     methods:{
@@ -43,8 +43,8 @@ export default {
                     <span>s1.摩托車</span>
                     <p>$200</p>
                     <div class="rentStatus">
-                        {{ this.s1t }}
-                        <select name="" id="" v-model="s1t">
+                        {{ this.s1 }}
+                        <select name="" id="" v-model="s1">
                             <option value="">出租狀態</option>
                             <option value="出租中">出租中</option>
                             <option value="可租借">可租借</option>
@@ -58,8 +58,8 @@ export default {
                     <span>s2.摩托車</span>
                     <p>$200</p>
                     <div class="rentStatus">
-                        {{ this.s2t }}
-                        <select name="" id="" v-model="s2t">
+                        {{ this.s2 }}
+                        <select name="" id="" v-model="s2">
                             <option value="">出租狀態</option>
                             <option value="出租中">出租中</option>
                             <option value="可租借">可租借</option>
@@ -71,10 +71,10 @@ export default {
                 <img src="../../../../public/traffic/scooter2.jpg" alt="">
                 <div class="rentInfo">
                     <span>s3.摩托車</span>
-                    <p>$250</p>
+                    <p>$200</p>
                     <div class="rentStatus">
-                        {{ this.s3t }}
-                        <select name="" id="" v-model="s3t">
+                        {{ this.s3 }}
+                        <select name="" id="" v-model="s3">
                             <option value="">出租狀態</option>
                             <option value="出租中">出租中</option>
                             <option value="可租借">可租借</option>
@@ -86,10 +86,10 @@ export default {
                 <img src="../../../../public/traffic/scooter3.jpg" alt="">
                 <div class="rentInfo">
                     <span>s4.摩托車</span>
-                    <p>$250</p>
+                    <p>$200</p>
                     <div class="rentStatus">
-                        {{ this.s4t }}
-                        <select name="" id="" v-model="s4t">
+                        {{ this.s4 }}
+                        <select name="" id="" v-model="s4">
                             <option value="">出租狀態</option>
                             <option value="出租中">出租中</option>
                             <option value="可租借">可租借</option>

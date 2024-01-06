@@ -3,11 +3,11 @@ import backSideBar from '../../../components/backSideBar.vue';
 export default{
     data(){
         return{
-            f1t:"",
-            f2t:"",
-            f3t:"",
-            f4t:"",
-            f5t:"",
+            f1:"",
+            f2:"",
+            f3:"",
+            f4:"",
+            f5:"",
         }
     },
     methods:{
@@ -42,10 +42,10 @@ export default{
                 <img src="../../../../public/room/family.jpg" alt="">
                 <div class="roomInfo">
                     <span>F1.海景家庭房</span>
-                    <p>$5500</p>
+                    <p>$5000</p>
                     <div class="roomStatus">
-                        {{ this.f1t }}
-                        <select name="" id="" v-model="f1t">
+                        {{ this.f1 }}
+                        <select name="" id="" v-model="f1">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -59,8 +59,8 @@ export default{
                     <span>F2.溫馨家庭房</span>
                     <p>$5000</p>
                     <div class="roomStatus">
-                        {{ this.f2t }}
-                        <select name="" id="" v-model="f2t">
+                        {{ this.f2 }}
+                        <select name="" id="" v-model="f2">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -74,8 +74,8 @@ export default{
                     <span>F3.復古家庭房</span>
                     <p>$5000</p>
                     <div class="roomStatus">
-                        {{ this.f3t }}
-                        <select name="" id="" v-model="f3t">
+                        {{ this.f3 }}
+                        <select name="" id="" v-model="f3">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -89,8 +89,8 @@ export default{
                     <span>F4.頂級家庭房</span>
                     <p>$5000</p>
                     <div class="roomStatus">
-                        {{ this.f4t }}
-                        <select name="" id="" v-model="f4t">
+                        {{ this.f4 }}
+                        <select name="" id="" v-model="f4">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -104,8 +104,8 @@ export default{
                     <span>F5.簡約家庭房</span>
                     <p>$5000</p>
                     <div class="roomStatus">
-                        {{ this.f5t }}
-                        <select name="" id="" v-model="f5t">
+                        {{ this.f5 }}
+                        <select name="" id="" v-model="f5">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
