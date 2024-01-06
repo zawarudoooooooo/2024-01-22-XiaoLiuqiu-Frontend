@@ -24,24 +24,24 @@ export default{
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <RouterLink to="/FrontAbout" class="routerItem">關於 Sea．Life</RouterLink>
+                            <RouterLink to="/FrontAbout" class="routerItem"><i class="fa-solid fa-umbrella-beach"></i>關於 Sea．Life</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="/FrontSearch" class="routerItem">訂房</RouterLink>
+                            <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>訂房</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="/FrontActivity" class="routerItem"> 優惠</RouterLink>
+                            <RouterLink to="/FrontActivity" class="routerItem"><i class="fa-solid fa-comments-dollar"></i>優惠</RouterLink>
                         </li>
                         <li class="nav-item dropdown">
-                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">導覽</p>
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-location-dot"></i>導覽</p>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-ferry"></i>交通</a></li>
+                                <li><RouterLink to="/FrontTourist" class="dropdown-item"><i class="fa-solid fa-camera"></i>景點</RouterLink></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-utensils"></i>美食</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="/FrontLogin" class="routerItem">登錄</RouterLink>
+                            <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user-check"></i>登錄</RouterLink>
                         </li>
                     </ul>
                 </div>
@@ -75,6 +75,13 @@ export default{
                 text-decoration: none;
                 color: #797A7E;
                 margin-right: 5vmin;
+            }
+            .dropdown-item{
+                font-size: 16pt;
+                color: #797A7E;
+            }
+            i{
+                margin-right: 1vmin;
             }
         }
     }
