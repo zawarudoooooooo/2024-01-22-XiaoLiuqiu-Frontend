@@ -19,12 +19,33 @@ export default{
         <div class="logo">
             <img src="../../public/seaLifeLogo.png" @click="goFrontEntry()">
         </div>
-        <nav>
-            <RouterLink to="/FrontSearch" class="routerItem">訂房</RouterLink>
-            <RouterLink to="/FrontTourist" class="routerItem">景點</RouterLink>
-            <RouterLink to="/FrontActivity" class="routerItem"> 優惠</RouterLink>
-            <RouterLink to="/FrontAbout" class="routerItem">關於 Sea．Life</RouterLink>
-            <RouterLink to="/FrontLogin" class="routerItem">登錄</RouterLink>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <RouterLink to="/FrontAbout" class="routerItem">關於 Sea．Life</RouterLink>
+                        </li>
+                        <li class="nav-item">
+                            <RouterLink to="/FrontSearch" class="routerItem">訂房</RouterLink>
+                        </li>
+                        <li class="nav-item">
+                            <RouterLink to="/FrontActivity" class="routerItem"> 優惠</RouterLink>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">導覽</p>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <RouterLink to="/FrontLogin" class="routerItem">登錄</RouterLink>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </div>
 </template>
@@ -32,20 +53,19 @@ export default{
 <style lang="scss" scoped>
     .header{
         width: 100vw;
-        height: 15vh;
+        height: 14vh;
         background-color: #BFEAF5;
         display: flex;
         position: relative;
         .logo{
             img{
                 width: 13vw;
-                height: 21vh;
+                height: 22vh;
                 position: absolute;
-                top: -5%;
                 left: 1%;
+                top: -26%;
             }
         }
-
         nav{
             position: absolute;
             bottom: 5%;
