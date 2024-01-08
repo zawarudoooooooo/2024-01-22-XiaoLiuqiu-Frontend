@@ -20,6 +20,23 @@ const router = createRouter({
       name: 'FrontTourist',
       component: () => import('../views/FrontEnd/FrontTourist.vue')
     },
+//景點個別頁面
+    {
+      path: '/FrontT01',
+      name: 'FrontT01',
+      component: () => import('../views/FrontEnd/T/T01.vue')
+    },
+    {
+      path: '/FrontT02',
+      name: 'FrontT02',
+      component: () => import('../views/FrontEnd/T/T02.vue')
+    },
+    {
+      path: '/FrontT03',
+      name: 'FrontT03',
+      component: () => import('../views/FrontEnd/T/T03.vue')
+    },
+
     {
       path: '/FrontTraffic',
       name: 'FrontTraffic',

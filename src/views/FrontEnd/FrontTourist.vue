@@ -1,5 +1,6 @@
 <script>
 import Footer from '../../components/Footer.vue';
+import { RouterLink, RouterView } from 'vue-router'
 export default{
     data(){
         return{
@@ -20,7 +21,7 @@ export default{
                 <h1 class="text-shadow">Beauty Cave</h1>
             </div>
             <div class="back">
-                <h2>美人洞</h2>
+                <RouterLink to="/FrontT01" class="routerItem">美人洞</RouterLink>
                 <p>小琉球西北角的美人洞背山面海，擁有許多奇岩怪石及天然形成的珊瑚礁岩洞。</p>
             </div>
         </div>
@@ -29,7 +30,7 @@ export default{
                 <h1 class="text-shadow">Wild Boar Ditch</h1>
             </div>
             <div class="back">
-                <h2>山豬溝</h2>
+                <RouterLink to="/FrontT02" class="routerItem">山豬溝</RouterLink>
                 <p>依山而建，是一座斷崖形成的山溝，沿途可看見許多藏在礁石內的珊瑚礁及貝殼化石。</p>
             </div>
         </div>
@@ -38,7 +39,7 @@ export default{
                 <h1 class="text-shadow">Black Devil Cave</h1>
             </div>
             <div class="back">
-                <h2>烏鬼洞</h2>
+                <RouterLink to="/FrontT03" class="routerItem">烏鬼洞</RouterLink>
                 <p>名字為「烏鬼洞（又稱鬼界厝）」，是一座天然的珊瑚礁岩洞。是座自然與歷史故事結合的觀光景點。</p>
             </div>
         </div>
@@ -154,6 +155,11 @@ export default{
         * {
             box-sizing: border-box;
             font-weight: normal;
+        }
+        .routerItem{
+            text-decoration: none;
+            color: white;
+            font-size: 24pt;
         }
         .flip {
             position: relative;
