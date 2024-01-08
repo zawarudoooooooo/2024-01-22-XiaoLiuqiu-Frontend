@@ -14,9 +14,6 @@ export default {
         goBackScooter(){
             this.$router.push('/BackScooter')
         },
-        goBackCar(){
-            this.$router.push('/BackCar')
-        }
     },
     components:{
         backSideBar
@@ -32,7 +29,6 @@ export default {
         <div class="rentType">
             <button type="button" @click="goBackBicycle()">腳踏車</button>
             <button type="button" @click="goBackScooter()">摩托車</button>
-            <button type="button" @click="goBackCar()">轎車</button>
         </div>
         <div class="bicycle">
             <div class="bone">

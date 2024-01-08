@@ -83,6 +83,9 @@ export default{
             <div class="end">
                 <p>退房時間 : 2024/02/15</p>
             </div>
+            <div class="pay">
+                <p>付款期限 : </p>
+            </div>
         </div>
         <div class="message" v-if="messagePage">
             <div class="title">

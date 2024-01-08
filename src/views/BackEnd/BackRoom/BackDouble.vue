@@ -3,11 +3,11 @@ import backSideBar from '../../../components/backSideBar.vue';
 export default{
     data(){
         return{
-            d1:"",
-            d2:"",
-            d3:"",
-            d4:"",
-            d5:"",
+            b01:"",
+            b02:"",
+            b03:"",
+            b04:"",
+            b05:"",
         }
     },
     methods:{
@@ -41,11 +41,11 @@ export default{
             <div class="done">
                 <img src="../../../../public/room/double.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D1.溫馨雙人房</span>
+                    <span>b01.溫馨雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
-                        {{ this.d1 }}
-                        <select name="" id="" v-model="d1">
+                        {{ this.b01 }}
+                        <select name="" id="" v-model="b01">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -56,11 +56,11 @@ export default{
             <div class="dtwo">
                 <img src="../../../../public/room/double1.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D2.簡約雙人房</span>
+                    <span>b02.簡約雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
-                        {{ this.d2 }}
-                        <select name="" id="" v-model="d2">
+                        {{ this.b02 }}
+                        <select name="" id="" v-model="b02">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -71,11 +71,11 @@ export default{
             <div class="dthree">
                 <img src="../../../../public/room/double2.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D3.工業雙人房</span>
+                    <span>b03.工業雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
-                        {{ this.d3 }}
-                        <select name="" id="" v-model="d3">
+                        {{ this.b03 }}
+                        <select name="" id="" v-model="b03">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -86,11 +86,11 @@ export default{
             <div class="dfour">
                 <img src="../../../../public/room/double3.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D4.景觀雙人房</span>
+                    <span>b04.景觀雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
-                        {{ this.d4 }}
-                        <select name="" id="" v-model="d4">
+                        {{ this.b04 }}
+                        <select name="" id="" v-model="b04">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -101,11 +101,11 @@ export default{
             <div class="dfive">
                 <img src="../../../../public/room/double4.jpg" alt="">
                 <div class="roomInfo">
-                    <span>D5.復刻雙人房</span>
+                    <span>b05.復刻雙人房</span>
                     <p>$2500</p>
                     <div class="roomStatus">
-                        {{ this.d5 }}
-                        <select name="" id="" v-model="d5">
+                        {{ this.b05 }}
+                        <select name="" id="" v-model="b05">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>

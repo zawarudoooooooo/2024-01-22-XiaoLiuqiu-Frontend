@@ -94,11 +94,6 @@ const router = createRouter({
       name: 'BackScooter',
       component: () => import('../views/BackEnd/BackRent/BackScooter.vue')
     },
-    {
-      path: '/BackCar',
-      name: 'BackCar',
-      component: () => import('../views/BackEnd/BackRent/BackCar.vue')
-    },
 //後台套票
     {
       path: '/BackTicket',
