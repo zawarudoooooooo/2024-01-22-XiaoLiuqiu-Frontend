@@ -18,17 +18,17 @@ export default{
             <p>租車</p>
         </div>
         <div class="rentCar">
-            <img src="../../../public/Rent/b1.jpg" alt="">
-            <img src="../../../public/Rent/s1.jpg" alt="">
-            <img src="../../../public/Rent/c1.jpg" alt="">
+            <img src="../../../public/traffic/bicycle.jpg" alt="">
+            <img src="../../../public/traffic/scooter3.jpg" alt="">
+            <img src="../../../public/traffic/car1.jpg" alt="">
         </div>
         <div class="title">
             <p>套票</p>
         </div>
         <div class="tickect">
-            <img src="../../../public/Activity/s1.jpg" alt="">
-            <img src="../../../public/Activity/sc1.jpg" alt="">
-            <img src="../../../public/Activity/d1.jpg" alt="">
+            <img src="../../../public/activity/surfing-main.jpg" alt="">
+            <img src="../../../public/activity/diving-main.jpg" alt="">
+            <img src="../../../public/activity/sup-main.jpg" alt="">
         </div>
         <div class="title">
             <p>優惠消息</p>
@@ -49,7 +49,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 100vw;
-        height: 150vh;
+        height: 140vh;
         margin: auto;
         margin-top: 6vmin;
         position: relative;

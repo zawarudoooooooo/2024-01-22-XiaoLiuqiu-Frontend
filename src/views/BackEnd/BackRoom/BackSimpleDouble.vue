@@ -3,11 +3,11 @@ import backSideBar from '../../../components/backSideBar.vue';
 export default{
     data(){
         return{
-            sd1t:"",
-            sd2t:"",
-            sd3t:"",
-            sd4t:"",
-            sd5t:"",
+            a01:"",
+            a02:"",
+            a03:"",
+            a04:"",
+            a05:"",
         }
     },
     methods:{
@@ -41,11 +41,11 @@ export default{
             <div class="sdone">
                 <img src="../../../../public/room/simpledouble.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD1.小資雙人房</span>
+                    <span>a01.小資雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd1t }}
-                        <select name="" id="" v-model="sd1t">
+                        {{ this.a01 }}
+                        <select name="" id="" v-model="a01">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -56,11 +56,11 @@ export default{
             <div class="sdtwo">
                 <img src="../../../../public/room/simpledouble1.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD2.現代雙人房</span>
+                    <span>a02.現代雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd2t }}
-                        <select name="" id="" v-model="sd2t">
+                        {{ this.a02 }}
+                        <select name="" id="" v-model="a02">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -71,11 +71,11 @@ export default{
             <div class="sdthree">
                 <img src="../../../../public/room/simpledouble2.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD3.簡約雙人房</span>
+                    <span>a03.簡約雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd3t }}
-                        <select name="" id="" v-model="sd3t">
+                        {{ this.a03 }}
+                        <select name="" id="" v-model="a03">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -86,11 +86,11 @@ export default{
             <div class="sdfour">
                 <img src="../../../../public/room/simpledouble3.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD4.輕奢雙人房</span>
+                    <span>a04.輕奢雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd4t }}
-                        <select name="" id="" v-model="sd4t">
+                        {{ this.a04 }}
+                        <select name="" id="" v-model="a04">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -101,11 +101,11 @@ export default{
             <div class="sdfive">
                 <img src="../../../../public/room/simpledouble4.jpg" alt="">
                 <div class="roomInfo">
-                    <span>SD5.溫馨雙人房</span>
+                    <span>a05.溫馨雙人房</span>
                     <p>$1500</p>
                     <div class="roomStatus">
-                        {{ this.sd5t }}
-                        <select name="" id="" v-model="sd5t">
+                        {{ this.a05 }}
+                        <select name="" id="" v-model="a05">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>

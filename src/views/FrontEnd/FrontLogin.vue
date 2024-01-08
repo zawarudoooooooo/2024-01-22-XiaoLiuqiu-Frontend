@@ -44,7 +44,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 20vw;
-        height: 62vh;
+        height: 63vh;
         margin: auto;
         margin-top: 8vmin;
 

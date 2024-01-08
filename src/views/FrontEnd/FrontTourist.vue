@@ -1,5 +1,6 @@
 <script>
 import Footer from '../../components/Footer.vue';
+import { RouterLink, RouterView } from 'vue-router'
 export default{
     data(){
         return{
@@ -16,88 +17,132 @@ export default{
     <div class="content">
         <h4>熱門景點</h4>
         <div class="flip">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-                <h1 class="text-shadow">MOUNTAIN</h1>
+            <div class="front" style="background-image: url(../../../public/tourist/t01/tm1.jpg)">
+                <!-- <h1 class="text-shadow">Beauty Cave</h1> -->
             </div>
             <div class="back">
-                <h2>Angular</h2>
-                <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                <RouterLink to="/FrontT01" class="routerItem">美人洞</RouterLink>
+                <p>小琉球西北角的美人洞背山面海，擁有許多奇岩怪石及天然形成的珊瑚礁岩洞。</p>
             </div>
         </div>
         <div class="flip">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-                <h1 class="text-shadow">MOUNTAIN</h1>
+            <div class="front" style="background-image: url(../../../public/tourist/t03/tm3.JPG)">
+                <!-- <h1 class="text-shadow">Wild Boar Ditch</h1> -->
             </div>
             <div class="back">
-                <h2>Angular</h2>
-                <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                <RouterLink to="/FrontT02" class="routerItem">山豬溝</RouterLink>
+                <p>依山而建，是一座斷崖形成的山溝，沿途可看見許多藏在礁石內的珊瑚礁及貝殼化石。</p>
             </div>
         </div>
         <div class="flip">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-                <h1 class="text-shadow">MOUNTAIN</h1>
+            <div class="front" style="background-image: url(../../../public/tourist/t02/tm2.JPG)">
+                <!-- <h1 class="text-shadow">Black Devil Cave</h1> -->
             </div>
             <div class="back">
-                <h2>Angular</h2>
-                <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                <RouterLink to="/FrontT03" class="routerItem">烏鬼洞</RouterLink>
+                <p>名字為「烏鬼洞（又稱鬼界厝）」，是一座天然的珊瑚礁岩洞。是座自然與歷史故事結合的觀光景點。</p>
             </div>
         </div>
         <div class="allSpot">
             <h4>所有景點</h4>
             <div class="cardArea">
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/t04/t4.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <RouterLink to="/FrontT04" class="routerItemCard">龍蝦洞</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            被海水侵蝕後，<br>所形成的珊瑚洞穴。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/t05/t5.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <RouterLink to="/FrontT05" class="routerItemCard">白燈塔</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            與鵝鑾鼻燈塔共同負責船隻通行的安全，<br>擁有相當重要的地位。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/t06/t6-1.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <RouterLink to="/FrontT06" class="routerItemCard">花瓶岩</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            為小琉球最顯眼、最著名的地標。<br>成為觀光客必遊與攝影留念的景點。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/t07/t7.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <RouterLink to="/FrontT07" class="routerItemCard">落日亭</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            海景第一排，無任何遮蔽物，<br>是賞夕陽的最佳景點。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/t08/t8.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <RouterLink to="/FrontT08" class="routerItemCard">鹿粼梅花鹿園區</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            能與梅花鹿拍照、餵食、玩樂，<br>並盡情的享受與鹿零距離的互動。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../../public/DoubleRoom/d1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/t10/t10.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <RouterLink to="/FrontT10" class="routerItemCard">中澳沙灘</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            少有遊客前往，<br>是一座鬧中取靜的小小秘境。
+                        </p>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/t11/t11.JPG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <RouterLink to="/FrontT11" class="routerItemCard">美人沙灘</RouterLink>
+                        <p class="card-text">純淨無污染，<br>是很棒的浮潛地點。</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/t12/t12.JPG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <RouterLink to="/FrontT12" class="routerItemCard">蛤板灣</RouterLink>
+                        <p class="card-text">沙灘潔淨無比、海水蔚藍，<br>素有「威尼斯沙灘」的美名。</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/t14/t14.JPG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <RouterLink to="/FrontT14" class="routerItemCard">厚石澳神秘沙灘</RouterLink>
+                        <p class="card-text">珊瑚礁岩延伸海岸上，<br>在沿岸出現一個缺口形成白色的小港灣沙灘。</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/t15/t15.JPG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <RouterLink to="/FrontT15" class="routerItemCard">厚石裙礁</RouterLink>
+                        <p class="card-text">因礁岩長年受到海水侵蝕作用，<br>呈現一條一條的海溝狀。</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/t17/t17.JPG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <RouterLink to="/FrontT17" class="routerItemCard">肚仔坪潮間帶</RouterLink>
+                        <p class="card-text">平坦的珊瑚礁海蝕平台佈滿了大大小小的潮池，退潮後成為潮間帶生物展示區。</p>
                     </div>
                 </div>
             </div>
-
-
         </div>
-        
 </div>
 <Footer />
 </template>
@@ -105,7 +150,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 100vw;
-        height: 200vh;
+        height: 280vh;
         text-align: center;
         margin-top: 6vmin;
         h4{
@@ -117,6 +162,16 @@ export default{
         * {
             box-sizing: border-box;
             font-weight: normal;
+        }
+        .routerItem{
+            text-decoration: none;
+            color: white;
+            font-size: 24pt;
+        }
+        .routerItemCard{
+            text-decoration: none;
+            color: black;
+            font-size: 18pt;
         }
         .flip {
             position: relative;

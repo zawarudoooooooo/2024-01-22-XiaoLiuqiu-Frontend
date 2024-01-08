@@ -20,6 +20,88 @@ const router = createRouter({
       name: 'FrontTourist',
       component: () => import('../views/FrontEnd/FrontTourist.vue')
     },
+//景點個別頁面
+    {
+      path: '/FrontT01',
+      name: 'FrontT01',
+      component: () => import('../views/FrontEnd/T/T01.vue')
+    },
+    {
+      path: '/FrontT02',
+      name: 'FrontT02',
+      component: () => import('../views/FrontEnd/T/T02.vue')
+    },
+    {
+      path: '/FrontT03',
+      name: 'FrontT03',
+      component: () => import('../views/FrontEnd/T/T03.vue')
+    },
+    {
+      path: '/FrontT04',
+      name: 'FrontT04',
+      component: () => import('../views/FrontEnd/T/T04.vue')
+    },
+    {
+      path: '/FrontT05',
+      name: 'FrontT05',
+      component: () => import('../views/FrontEnd/T/T05.vue')
+    },
+    {
+      path: '/FrontT06',
+      name: 'FrontT06',
+      component: () => import('../views/FrontEnd/T/T06.vue')
+    },
+    {
+      path: '/FrontT07',
+      name: 'FrontT07',
+      component: () => import('../views/FrontEnd/T/T07.vue')
+    },
+    {
+      path: '/FrontT08',
+      name: 'FrontT08',
+      component: () => import('../views/FrontEnd/T/T08.vue')
+    },
+    {
+      path: '/FrontT10',
+      name: 'FrontT10',
+      component: () => import('../views/FrontEnd/T/T10.vue')
+    },
+    {
+      path: '/FrontT11',
+      name: 'FrontT11',
+      component: () => import('../views/FrontEnd/T/T11.vue')
+    },
+    {
+      path: '/FrontT12',
+      name: 'FrontT12',
+      component: () => import('../views/FrontEnd/T/T12.vue')
+    },
+    {
+      path: '/FrontT14',
+      name: 'FrontT14',
+      component: () => import('../views/FrontEnd/T/T14.vue')
+    },
+    {
+      path: '/FrontT15',
+      name: 'FrontT15',
+      component: () => import('../views/FrontEnd/T/T15.vue')
+    },
+    {
+      path: '/FrontT17',
+      name: 'FrontT17',
+      component: () => import('../views/FrontEnd/T/T17.vue')
+    },
+
+    {
+      path: '/FrontTraffic',
+      name: 'FrontTraffic',
+      component: () => import('../views/FrontEnd/FrontTraffic.vue')
+    },
+    {
+      path: '/FrontMeal',
+      name: 'FrontMeal',
+      component: () => import('../views/FrontEnd/FrontMeal.vue')
+    },
     {
       path: '/FrontActivity',
       name: 'FrontActivity',
@@ -83,11 +165,6 @@ const router = createRouter({
       path: '/BackScooter',
       name: 'BackScooter',
       component: () => import('../views/BackEnd/BackRent/BackScooter.vue')
-    },
-    {
-      path: '/BackCar',
-      name: 'BackCar',
-      component: () => import('../views/BackEnd/BackRent/BackCar.vue')
     },
 //後台套票
     {

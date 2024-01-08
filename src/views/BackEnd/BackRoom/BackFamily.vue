@@ -3,11 +3,11 @@ import backSideBar from '../../../components/backSideBar.vue';
 export default{
     data(){
         return{
-            f1t:"",
-            f2t:"",
-            f3t:"",
-            f4t:"",
-            f5t:"",
+            c01:"",
+            c02:"",
+            c03:"",
+            c04:"",
+            c05:"",
         }
     },
     methods:{
@@ -41,11 +41,11 @@ export default{
             <div class="fone">
                 <img src="../../../../public/room/family.jpg" alt="">
                 <div class="roomInfo">
-                    <span>F1.海景家庭房</span>
-                    <p>$5500</p>
+                    <span>c01.海景家庭房</span>
+                    <p>$4000</p>
                     <div class="roomStatus">
-                        {{ this.f1t }}
-                        <select name="" id="" v-model="f1t">
+                        {{ this.c01 }}
+                        <select name="" id="" v-model="c01">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -56,11 +56,11 @@ export default{
             <div class="ftwo">
                 <img src="../../../../public/room/family1.jpg" alt="">
                 <div class="roomInfo">
-                    <span>F2.溫馨家庭房</span>
-                    <p>$5000</p>
+                    <span>c02.溫馨家庭房</span>
+                    <p>$4000</p>
                     <div class="roomStatus">
-                        {{ this.f2t }}
-                        <select name="" id="" v-model="f2t">
+                        {{ this.c02 }}
+                        <select name="" id="" v-model="c02">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -71,11 +71,11 @@ export default{
             <div class="fthree">
                 <img src="../../../../public/room/family2.jpg" alt="">
                 <div class="roomInfo">
-                    <span>F3.復古家庭房</span>
-                    <p>$5000</p>
+                    <span>c03.復古家庭房</span>
+                    <p>$4000</p>
                     <div class="roomStatus">
-                        {{ this.f3t }}
-                        <select name="" id="" v-model="f3t">
+                        {{ this.c03 }}
+                        <select name="" id="" v-model="c03">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -86,11 +86,11 @@ export default{
             <div class="ffour">
                 <img src="../../../../public/room/family3.jpg" alt="">
                 <div class="roomInfo">
-                    <span>F4.頂級家庭房</span>
-                    <p>$5000</p>
+                    <span>c04.頂級家庭房</span>
+                    <p>$4000</p>
                     <div class="roomStatus">
-                        {{ this.f4t }}
-                        <select name="" id="" v-model="f4t">
+                        {{ this.c04 }}
+                        <select name="" id="" v-model="c04">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
@@ -101,11 +101,11 @@ export default{
             <div class="ffive">
                 <img src="../../../../public/room/family4.jpg" alt="">
                 <div class="roomInfo">
-                    <span>F5.簡約家庭房</span>
-                    <p>$5000</p>
+                    <span>c05.簡約家庭房</span>
+                    <p>$4000</p>
                     <div class="roomStatus">
-                        {{ this.f5t }}
-                        <select name="" id="" v-model="f5t">
+                        {{ this.c05 }}
+                        <select name="" id="" v-model="c05">
                             <option value="">房間狀態</option>
                             <option value="入住中">入住中</option>
                             <option value="空房">空房</option>
