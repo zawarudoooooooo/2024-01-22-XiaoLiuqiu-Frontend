@@ -3,7 +3,6 @@ import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
-
         }
     },
     components:{
@@ -14,33 +13,23 @@ export default{
 
 <template>
     <div class="content">
-        <div class="content">
         <div class="pictureArea">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../../../../public/tourist/t02/t2.jpg" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t08/t8.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-1.JPG" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t08/t8-1.JPG" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-2.JPG" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t08/t8-2.JPG" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-3.JPG" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t08/t8-3.JPG" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-4.JPG" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-5.JPG" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-6.JPG" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-7.JPG" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t08/t8-4.JPG" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -54,32 +43,22 @@ export default{
             </div>
         </div>
         <div class="introduce">
-            <span>烏鬼洞</span>
+            <span>鹿粼梅花鹿園區</span>
             <hr>
-            <h4>開放時間 : 08:00-18:00</h4>
+            <h4>開放時間 : 09:00-17:00</h4>
             <p>
-                烏鬼洞步道，是一座天然的珊瑚礁岩洞。
+                2020年全新開幕的一間讓旅客可以近距離與梅花鹿互動、拍照的「鹿粼梅花鹿園區」。
                 <br>
-                穿越石洞、高低起伏之間，烏鬼洞有一段歷史故事。
+                園區佔地1260坪，三個互動區，養殖台灣梅花鹿，還有很罕見的的白鹿及水鹿。
                 <br>
-                西元1636年拉美島事件中，是小琉球社人的躲藏處，
-                <br>
-                曾發現石床、石桌、石鑼、石鼓、銀器、珠寶等等。
-                <br>
-                傳言當年躲藏於洞穴中的是荷蘭帶來的黑人奴隸，才得名烏鬼洞，是座自然與歷史故事結合的觀光景點。
+                園區中的梅花鹿都是館方自己繁殖的，因此每一隻都有自己的名字、也都非常親近人。
             </p>
         </div>
     </div>
-
-    </div>
-    
-
     <Footer />
 </template>
 
-
 <style lang="scss" scoped>
-    
     .content{
         width: 90vw;
         height: 69vh;

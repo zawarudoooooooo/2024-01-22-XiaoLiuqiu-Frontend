@@ -53,14 +53,16 @@ export default{
             <span>山豬溝</span>
             <hr>
             <h4>開放時間 : 08:00-18:00</h4>
-            <p>一座斷崖形成的山溝，步道全程走完約三十分鐘。
+            <p>
+                一座斷崖形成的山溝，步道全程走完約三十分鐘。
                 <br>
                 地名之由來其一，為早期養豬人家認為豬隻腳蹄若為「五爪蹄」代表不吉祥，
                 因此會將「五爪蹄」豬隻野放山上，因而得名山豬溝。
                 <br>
                 沿途可看見許多藏在礁石內的珊瑚礁及貝殼化石，
                 <br>
-                也有指標引導旅客前往尋覓園區中的小景點。</p>
+                也有指標引導旅客前往尋覓園區中的小景點。
+            </p>
         </div>
     </div>
     <Footer />
@@ -79,6 +81,9 @@ export default{
         .pictureArea{
             width: 35vw;
             border-radius: 10px;
+            .carousel-inner{
+                border-radius: 10px;
+            }
             img{
                 border-radius: 10px;
             }

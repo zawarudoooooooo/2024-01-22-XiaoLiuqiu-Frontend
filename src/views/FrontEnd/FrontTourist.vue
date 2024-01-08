@@ -18,7 +18,7 @@ export default{
         <h4>熱門景點</h4>
         <div class="flip">
             <div class="front" style="background-image: url(../../../public/tourist/t01/tm1.jpg)">
-                <h1 class="text-shadow">Beauty Cave</h1>
+                <!-- <h1 class="text-shadow">Beauty Cave</h1> -->
             </div>
             <div class="back">
                 <RouterLink to="/FrontT01" class="routerItem">美人洞</RouterLink>
@@ -27,7 +27,7 @@ export default{
         </div>
         <div class="flip">
             <div class="front" style="background-image: url(../../../public/tourist/t03/tm3.JPG)">
-                <h1 class="text-shadow">Wild Boar Ditch</h1>
+                <!-- <h1 class="text-shadow">Wild Boar Ditch</h1> -->
             </div>
             <div class="back">
                 <RouterLink to="/FrontT02" class="routerItem">山豬溝</RouterLink>
@@ -36,7 +36,7 @@ export default{
         </div>
         <div class="flip">
             <div class="front" style="background-image: url(../../../public/tourist/t02/tm2.JPG)">
-                <h1 class="text-shadow">Black Devil Cave</h1>
+                <!-- <h1 class="text-shadow">Black Devil Cave</h1> -->
             </div>
             <div class="back">
                 <RouterLink to="/FrontT03" class="routerItem">烏鬼洞</RouterLink>
@@ -49,89 +49,96 @@ export default{
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t04/t4.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">龍蝦洞</h5>
-                        <p class="card-text">龍蝦洞顧名思義就是有很多龍蝦存在，不過現在的龍蝦洞已經不可見太多龍蝦，反而是一座座被海水侵蝕後所形成的珊瑚洞穴。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT04" class="routerItemCard">龍蝦洞</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            被海水侵蝕後，<br>所形成的珊瑚洞穴。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t05/t5.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">白燈塔</h5>
-                        <p class="card-text">與鵝鑾鼻燈塔共同負責台灣海峽與巴士海峽船隻通行的安全，擁有相當重要的地位。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT05" class="routerItemCard">白燈塔</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            與鵝鑾鼻燈塔共同負責船隻通行的安全，<br>擁有相當重要的地位。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../public/tourist/t06/t6.JPG" class="card-img-top" alt="...">
+                    <img src="../../../public/tourist/t06/t6-1.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">花瓶岩</h5>
-                        <p class="card-text">花瓶岩是一大塊隆起的珊瑚礁岩，是小琉球島上的重要地標。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT06" class="routerItemCard">花瓶岩</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            為小琉球最顯眼、最著名的地標。<br>成為觀光客必遊與攝影留念的景點。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t07/t7.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">落日亭</h5>
-                        <p class="card-text">島上看夕陽最棒的地點。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT07" class="routerItemCard">落日亭</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            海景第一排，無任何遮蔽物，<br>是賞夕陽的最佳景點。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t08/t8.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">鹿粼梅花鹿園區</h5>
-                        <p class="card-text">2020年全新開幕的一間讓旅客可以近距離與梅花鹿互動、拍照的「鹿粼梅花鹿園區」。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT08" class="routerItemCard">鹿粼梅花鹿園區</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            能與梅花鹿拍照、餵食、玩樂，<br>並盡情的享受與鹿零距離的互動。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t10/t10.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">中澳沙灘</h5>
-                        <p class="card-text">擁有潔白的沙灘、蔚藍的海水少有遊客前往，是一座鬧中取靜的小小秘境。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT10" class="routerItemCard">中澳沙灘</RouterLink>
+                        <p class="card-text">
+                            <br>
+                            少有遊客前往，<br>是一座鬧中取靜的小小秘境。
+                        </p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t11/t11.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">美人沙灘</h5>
-                        <p class="card-text">位於美人洞附近的「美人沙灘」擁有潔白的海灣和碧藍的海水，因為純淨無污染，是很棒的浮潛地點。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT11" class="routerItemCard">美人沙灘</RouterLink>
+                        <p class="card-text">純淨無污染，<br>是很棒的浮潛地點。</p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t12/t12.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">蛤板灣</h5>
-                        <p class="card-text">小琉球西南側，面向台灣海峽的一個「蛤板灣」因為沙灘潔淨無比、海水蔚藍，素有「威尼斯沙灘」的美名。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 23rem;">
-                    <img src="../../../public/tourist/t14/t14-4.JPG" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">厚石裙礁</h5>
-                        <p class="card-text">主要分布於小琉球東南沿海一帶。因礁岩長年受到海水侵蝕作用，呈現一條一條的海溝狀。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT12" class="routerItemCard">蛤板灣</RouterLink>
+                        <p class="card-text">沙灘潔淨無比、海水蔚藍，<br>素有「威尼斯沙灘」的美名。</p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t14/t14.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">厚石澳神秘沙灘</h5>
-                        <p class="card-text">厚石群礁的珊瑚礁岩延伸在小琉球的東南海岸上，在沿岸剛好出現一個小缺口形成了白色的小港灣沙灘。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT14" class="routerItemCard">厚石澳神秘沙灘</RouterLink>
+                        <p class="card-text">珊瑚礁岩延伸海岸上，<br>在沿岸出現一個缺口形成白色的小港灣沙灘。</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <img src="../../../public/tourist/t15/t15.JPG" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <RouterLink to="/FrontT15" class="routerItemCard">厚石裙礁</RouterLink>
+                        <p class="card-text">因礁岩長年受到海水侵蝕作用，<br>呈現一條一條的海溝狀。</p>
                     </div>
                 </div>
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t17/t17.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">肚仔坪潮間帶</h5>
-                        <p class="card-text">平坦的珊瑚礁海蝕平台中佈滿了大大小小的潮池，退潮後成為潮間帶生物展示區。</p>
-                        <a href="#" class="btn btn-light">詳細</a>
+                        <RouterLink to="/FrontT17" class="routerItemCard">肚仔坪潮間帶</RouterLink>
+                        <p class="card-text">平坦的珊瑚礁海蝕平台佈滿了大大小小的潮池，退潮後成為潮間帶生物展示區。</p>
                     </div>
                 </div>
             </div>
@@ -143,7 +150,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 100vw;
-        height: 300vh;
+        height: 280vh;
         text-align: center;
         margin-top: 6vmin;
         h4{
@@ -160,6 +167,11 @@ export default{
             text-decoration: none;
             color: white;
             font-size: 24pt;
+        }
+        .routerItemCard{
+            text-decoration: none;
+            color: black;
+            font-size: 18pt;
         }
         .flip {
             position: relative;

@@ -3,7 +3,6 @@ import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
-
         }
     },
     components:{
@@ -14,33 +13,20 @@ export default{
 
 <template>
     <div class="content">
-        <div class="content">
         <div class="pictureArea">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../../../../public/tourist/t02/t2.jpg" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t04/t4.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-1.JPG" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t04/t4-1.JPG" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-2.JPG" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t04/t4-2.JPG" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-3.JPG" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-4.JPG" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-5.JPG" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-6.JPG" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/tourist/t02/t2-7.JPG" class="d-block w-100" alt="...">
+                        <img src="../../../../public/tourist/t04/t4-3.JPG" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -54,32 +40,23 @@ export default{
             </div>
         </div>
         <div class="introduce">
-            <span>烏鬼洞</span>
+            <span>龍蝦洞</span>
             <hr>
-            <h4>開放時間 : 08:00-18:00</h4>
             <p>
-                烏鬼洞步道，是一座天然的珊瑚礁岩洞。
+                龍蝦洞顧名思義就是有很多龍蝦存在。
                 <br>
-                穿越石洞、高低起伏之間，烏鬼洞有一段歷史故事。
+                不過現在的龍蝦洞已經不可見太多龍蝦，反而是一座座被海水侵蝕後所形成的珊瑚洞穴。
                 <br>
-                西元1636年拉美島事件中，是小琉球社人的躲藏處，
+                位於東北邊的龍蝦洞，距離碼頭約五分鐘車程。
                 <br>
-                曾發現石床、石桌、石鑼、石鼓、銀器、珠寶等等。
-                <br>
-                傳言當年躲藏於洞穴中的是荷蘭帶來的黑人奴隸，才得名烏鬼洞，是座自然與歷史故事結合的觀光景點。
-            </p>
+                停車在入口處，步行五分鐘即可看見一片蔚藍海岸。
+            </p>    
         </div>
     </div>
-
-    </div>
-    
-
     <Footer />
 </template>
 
-
 <style lang="scss" scoped>
-    
     .content{
         width: 90vw;
         height: 69vh;
@@ -103,11 +80,7 @@ export default{
                 font-size: 28pt;
                 color: #797A7E;
                 font-weight: bold;
-            }
-            h4{
-                color: #797A7E;
-                font-weight: bold;
-            }            
+            }         
             p{
                 width: 30vw;
                 color: #797A7E;
