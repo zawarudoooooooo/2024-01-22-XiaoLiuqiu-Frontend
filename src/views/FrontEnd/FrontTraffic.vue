@@ -50,6 +50,76 @@ export default{
             <p>渡輪航班</p>
         </div>
         <hr>
+        <div class="ferry">
+            <div class="time">
+                <p id="ferrytime">航班時刻表-東琉聯營航運</p>
+                <!-- <p>東琉聯營航運</p> -->
+                <div class="schedule">
+                    <div class="come">
+                        <p>東港->小琉球</p>
+                        <p>
+                            07:00
+                            <br>
+                            07:30 (經鹽埔)
+                            <br>
+                            08:00
+                            <br>
+                            09:00
+                            <br>
+                            10:00
+                            <br>
+                            10:45
+                            <br>
+                            11:30
+                            <br>
+                            12:36
+                            <br>
+                            14:00
+                            <br>
+                            15:00
+                            <br>
+                            16:30
+                        </p>
+                    </div>
+                    <div class="back">
+                        <p>小琉球->東港</p>
+                        <p>
+                            07:40
+                            <br>
+                            09:00
+                            <br>
+                            10:30
+                            <br>
+                            12:00
+                            <br>
+                            13:00
+                            <br>
+                            14:00
+                            <br>
+                            15:00
+                            <br>
+                            16:00
+                            <br>
+                            16:30 (經鹽埔)
+                            <br>
+                            17:00
+                            <br>
+                            17:20
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="imgArea">
+                <img src="../../../public/ferry/IMG_1430.JPG" alt="">
+                <img src="../../../public/ferry/IMG_1413.JPG" alt="">
+                <img src="../../../public/ferry/IMG_1150.JPG" alt="">
+                <img src="../../../public/ferry/IMG_1143.JPG" alt="">
+            </div>
+        </div>
+
+
         
 
     </div>
@@ -59,7 +129,7 @@ export default{
 <style lang="scss" scoped>
     .content{
             width: 90vw;
-            height: 200vh;
+            height: 160vh;
             margin: auto;
             margin-top: 4vmin;
         hr{
@@ -91,7 +161,43 @@ export default{
                     font-size: 14.5pt;
                     color: #797A7E;
                 }
-
+            }
+        }
+        .ferry{
+            width: 90vw;
+            display: flex;
+            justify-content: space-around;
+            .time{
+                width: 30vw;
+                border: 1px solid lightgray;
+                box-shadow: 1px 1px 1px gray;
+                border-radius: 5px;
+                #ferrytime{
+                    color: #797A7E;
+                    font-size: 18pt;
+                    font-weight: bold;
+                    text-align: center;
+                }
+                .schedule{
+                    display: flex;
+                    justify-content: space-around;
+                    p{
+                        color: #797A7E;
+                        font-size: 16pt;
+                        text-align: center;
+                    }
+                }
+            }
+            .imgArea{
+                width: 45vw;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2vmin;
+                img{
+                    width: 22vw;
+                    height: 27vh;
+                    border-radius: 5px;
+                }
             }
         }
     }
