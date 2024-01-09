@@ -247,6 +247,7 @@ export default{
                 flex-wrap: wrap;
                 .card{
                     margin-bottom: 6vmin;
+                    border-radius: 6px;
                 }
             }
         }
