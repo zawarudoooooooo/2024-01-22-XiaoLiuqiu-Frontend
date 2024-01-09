@@ -150,7 +150,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 100vw;
-        height: 280vh;
+        height: 275vh;
         text-align: center;
         margin-top: 6vmin;
         h4{
@@ -247,6 +247,8 @@ export default{
                 flex-wrap: wrap;
                 .card{
                     margin-bottom: 6vmin;
+                    border-radius: 6px;
+                    box-shadow: 1px 1px 1px lightgray;
                 }
             }
         }
