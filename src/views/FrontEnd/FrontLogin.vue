@@ -1,9 +1,12 @@
 <script>
 import Footer from '../../components/Footer.vue';
+import axios from 'axios';
+
 export default{
     data(){
         return{
-
+            account:"",
+            password:""
         }
     },
     methods:{
@@ -11,7 +14,20 @@ export default{
             this.$router.push('/FrontSignUp')
         },
         goPersonInfo(){
+            axios({
+            url:'http://localhost:8080/member/login',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            data:{
+                account:this.account,
+                password:this.password
+            },
+          }).then(res=>{
+            console.log(res.data);
             this.$router.push('FrontPersonInfo')
+            })
         }
     },
     components:{
@@ -27,11 +43,11 @@ export default{
         </div>
         <div class="account">
             <p>帳號</p>
-            <input type="text" placeholder="請輸入帳號">
+            <input type="text" v-model="this.account" placeholder="請輸入帳號">
         </div>
         <div class="password">
             <p>密碼</p>
-            <input type="password" placeholder="請輸入密碼">
+            <input type="password" v-model="this.password" placeholder="請輸入密碼">
         </div>
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
