@@ -128,20 +128,29 @@ const router = createRouter({
       name: 'FrontTraffic',
       component: () => import('../views/FrontEnd/FrontTraffic.vue')
     },
+//前台美食
     {
       path: '/FrontMeal',
       name: 'FrontMeal',
       component: () => import('../views/FrontEnd/FrontMeal.vue')
     },
+//前台活動
     {
       path: '/FrontActivity',
       name: 'FrontActivity',
       component: () => import('../views/FrontEnd/FrontActivity.vue')
     },
+//前台關於
     {
       path: '/FrontAbout',
       name: 'FrontAbout',
       component: () => import('../views/FrontEnd/FrontAbout.vue')
+    },
+//前台留言板
+    {
+      path: '/FrontMessage',
+      name: 'FrontMessage',
+      component: () => import('../views/FrontEnd/FrontMessage.vue')
     },
     {
       path: '/FrontLogin',
