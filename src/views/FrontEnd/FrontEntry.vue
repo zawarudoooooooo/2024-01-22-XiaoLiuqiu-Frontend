@@ -171,7 +171,7 @@ export default{
                     background-color: #BFEAF5;
                     border-radius: 10px;
                     padding: 4vmin;
-                    box-shadow: 2px 2px 2px gray;
+                    box-shadow: 1px 1px 1px gray;
                     &:hover{
                         opacity: 0.6;
                     }
@@ -211,7 +211,7 @@ export default{
                     justify-content: space-around;
                     .card{
                         border-radius: 10px;
-                        box-shadow: 2px 2px 2px gray;
+                        box-shadow: 1px 1px 1px gray;
                         &:hover{
                             opacity: 0.6;
                         }

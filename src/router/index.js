@@ -10,17 +10,48 @@ const router = createRouter({
       name: 'FrontEntry',
       component: FrontEntry
     },
+//前台booking
     {
       path: '/FrontSearch',
       name: 'FrontSearch',
-      component: () => import('../views/FrontEnd/FrontSearch.vue')
+      component: () => import('../views/FrontEnd/FrontBooking/FrontSearch.vue')
     },
+    {
+      path: '/FrontSimpleDouble',
+      name: 'FrontSimpleDouble',
+      component: () => import('../views/FrontEnd/FrontBooking/FrontSimpleDouble.vue')
+    },
+    {
+      path: '/FrontDouble',
+      name: 'FrontDouble',
+      component: () => import('../views/FrontEnd/FrontBooking/FrontDouble.vue')
+    },
+    {
+      path: '/FrontFamily',
+      name: 'FrontFamily',
+      component: () => import('../views/FrontEnd/FrontBooking/FrontFamily.vue')
+    },
+    {
+      path: '/SimpleDoubleBooking',
+      name: 'SimpleDoubleBooking',
+      component: () => import('../views/FrontEnd/FrontBooking/SimpleDoubleBooking.vue')
+    },
+    {
+      path: '/DoubleBooking',
+      name: 'DoubleBooking',
+      component: () => import('../views/FrontEnd/FrontBooking/DoubleBooking.vue')
+    },
+    {
+      path: '/FamilyBooking',
+      name: 'FamilyBooking',
+      component: () => import('../views/FrontEnd/FrontBooking/FamilyBooking.vue')
+    },
+//前台景點
     {
       path: '/FrontTourist',
       name: 'FrontTourist',
       component: () => import('../views/FrontEnd/FrontTourist.vue')
     },
-//景點個別頁面
     {
       path: '/FrontT01',
       name: 'FrontT01',
@@ -91,7 +122,7 @@ const router = createRouter({
       name: 'FrontT17',
       component: () => import('../views/FrontEnd/T/T17.vue')
     },
-
+//前台交通
     {
       path: '/FrontTraffic',
       name: 'FrontTraffic',

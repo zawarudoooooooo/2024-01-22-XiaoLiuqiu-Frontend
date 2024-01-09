@@ -17,10 +17,9 @@ export default{
         <div class="title">
             <p>租車</p>
         </div>
-        <div class="rentCar">
+        <div class="rent">
             <img src="../../../public/traffic/bicycle.jpg" alt="">
             <img src="../../../public/traffic/scooter3.jpg" alt="">
-            <img src="../../../public/traffic/car1.jpg" alt="">
         </div>
         <div class="title">
             <p>套票</p>
@@ -62,8 +61,8 @@ export default{
                 margin-bottom: 3vmin;
             }
         }
-        .rentCar{
-            width: 60vw;
+        .rent{
+            width: 40vw;
             display: flex;
             justify-content: space-around;
             margin: auto;
