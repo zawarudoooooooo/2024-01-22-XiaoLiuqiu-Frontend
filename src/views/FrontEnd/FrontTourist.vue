@@ -45,6 +45,7 @@ export default{
         </div>
         <div class="allSpot">
             <h4>所有景點</h4>
+            <hr>
             <div class="cardArea">
                 <div class="card" style="width: 23rem;">
                     <img src="../../../public/tourist/t04/t4.jpg" class="card-img-top" alt="...">
@@ -234,6 +235,9 @@ export default{
         .allSpot{
             width: 80vw;
             margin: auto;
+            hr{
+                margin-bottom: 3vmin;
+            }
 
             h4{
                 color: #82AAE3;

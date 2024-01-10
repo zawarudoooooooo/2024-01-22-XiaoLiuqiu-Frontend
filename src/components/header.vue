@@ -41,6 +41,9 @@ export default{
                             </ul>
                         </li>
                         <li class="nav-item">
+                            <RouterLink to="/FrontMessage" class="routerItem"><i class="fa-solid fa-note-sticky"></i>留言板</RouterLink>
+                        </li>
+                        <li class="nav-item">
                             <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user-check"></i>登錄</RouterLink>
                         </li>
                     </ul>
