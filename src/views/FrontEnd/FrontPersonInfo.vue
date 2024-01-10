@@ -28,7 +28,7 @@ export default{
             this.messagePage=true
             this.personInfoPage=false,
             this.orderPage=false
-        }
+        },
     },
     components:{
         Footer
@@ -47,6 +47,7 @@ export default{
             <div class="title">
                 <p><i class="fa-solid fa-map-pin"></i>會員資訊</p>
             </div>
+            <hr>
             <div class="name">
                 <p>姓名 : 海龜王子</p>
             </div>
@@ -60,14 +61,80 @@ export default{
                 <p>密碼 : **********</p>
             </div>
             <div class="personInfoBtn">
-                <button type="button">修改資料</button>
+                <button type="button"  data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal">修改資料
+                </button>
+                <button type="button"  data-bs-toggle="modal" 
+                        data-bs-target="#exampleModalPwd">修改密碼
+                </button>
                 <button type="button">儲存</button>
+            </div>
+        </div>
+        <!-- 更改資料modal視窗 -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">更改資料</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">更改姓名 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">更改電話 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">更改e-mail :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認更改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 更改密碼modal視窗 -->
+                <div class="modal fade" id="exampleModalPwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">更改密碼</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">請輸入舊密碼 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">請輸入新密碼 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">請確認新密碼 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認更改</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="order" v-if="orderPage">
             <div class="title">
                 <p><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
             </div>
+            <hr>
             <div class="orderNum">
                 <p>訂單編號 : A01</p>
             </div>
@@ -91,6 +158,7 @@ export default{
             <div class="title">
                 <p><i class="fa-solid fa-map-pin"></i>貼文</p>
             </div>
+            <hr>
             <div class="topic">
                 <p>標題</p>
                 <input type="text" placeholder="請輸入標題">
@@ -112,7 +180,7 @@ export default{
 <style lang="scss" scoped>
         .content{
         width: 65vw;
-        height: 64vh;
+        height: 65vh;
         margin: auto;
         margin-top: 6vmin;
         display: flex;
@@ -139,7 +207,6 @@ export default{
                 border-radius: 5px;
                 color: #797A7E;
                 font-size: 16pt;
-
                 &:hover{
                     background-color: #797A7E;
                     color: white;
@@ -152,15 +219,14 @@ export default{
         }
         .personInfo{
             width: 30vw;
-            height: 40vh;
+            height: 55vh;
             //border: 1px solid black;
+            position: relative;
             .title{
                 p{
                     font-size: 28pt;
                     font-weight: bold;
                     color: #82AAE3;
-                    margin-bottom: 3vmin;
-                    margin-left: 11vmin;
                 }
             }
             p{
@@ -169,17 +235,17 @@ export default{
                 margin-bottom: 3vmin;
             }
             .personInfoBtn{
-                width: 25vw;
+                width: 20vw;
                 height: 5vh;
                 display: flex;
                 justify-content: space-around;
                 position: absolute;
                 right: 0;
-                bottom: 10%;
+                bottom: 3%;
                 //border: 1px solid black;
                 button{
-                    width: 10vw;
-                    height: 5vh;
+                    width: 6vw;
+                    height: 4.5vh;
                     border: none;
                     border-radius: 5px;
                     color: #797A7E;
@@ -204,8 +270,6 @@ export default{
                     font-size: 28pt;
                     font-weight: bold;
                     color: #82AAE3;
-                    margin-bottom: 3vmin;
-                    margin-left: 15vmin;
                 }
             }
             p{
@@ -216,14 +280,14 @@ export default{
         }
         .message{
             width: 30vw;
-            height: 40vh;
+            height: 58vh;
             //border: 1px solid black;
+            position: relative;
             .title{
                 p{
                     font-size: 28pt;
                     font-weight: bold;
                     color: #82AAE3;
-                    margin-left: 13vmin;
                 }
             }
             .topic{
@@ -265,15 +329,14 @@ export default{
                 }
             }
             button{
-                width: 10vw;
-                height: 5vh;
+                width: 6vw;
+                height: 4.5vh;
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
                 font-size: 13pt;
                 position: absolute;
-                right: 15%;
-                bottom: 10%;
+                right: 0;
                 &:hover{
                     background-color: #797A7E;
                     color: white;
