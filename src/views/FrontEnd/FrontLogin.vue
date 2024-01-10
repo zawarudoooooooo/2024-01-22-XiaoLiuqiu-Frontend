@@ -67,7 +67,7 @@ export default {
         </div>
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
-            <button type="button" @click="goPersonInfo()">登錄</button>
+            <button type="button" @click="login()">登錄</button>
         </div>
     </div>
     <Footer />

@@ -76,11 +76,15 @@ export default {
         </div>
         <div class="name">
             <p>姓名</p>
-            <input type="text" v-model="this.memberName" placeholder="請輸入真實姓名">
+            <input type="text" v-model="this.memberName" placeholder="請輸入姓名">
         </div>
         <div class="password">
             <p>密碼</p>
             <input type="password" v-model="this.pwd" placeholder="請設定密碼">
+        </div>
+        <div class="password">
+            <p>確認密碼</p>
+            <input type="password" placeholder="請再次輸入密碼">
         </div>
         <div class="phone">
             <p>電話</p>
@@ -101,7 +105,7 @@ export default {
 <style lang="scss" scoped>
 .content {
     width: 20vw;
-    height: 68vh;
+    height: 77vh;
     margin: auto;
     margin-top: 3vmin;
     input {
