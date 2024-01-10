@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import Footer from '../../components/Footer.vue';
+import swal from 'sweetalert';
 export default {
     data() {
         return {
@@ -12,7 +13,10 @@ export default {
         goSignUp() {
             this.$router.push('/FrontSignUp')
         },
-        goPersonInfo() {
+        goPersonInfo(){
+            this.$router.push('/FrontPersonInfo')
+        },
+        login() {
             axios({
                 url: 'http://localhost:8080/member/login',
                 method: 'POST',
@@ -26,9 +30,10 @@ export default {
             }).then(res => {
                 console.log(res.data)
                 if(res.data.message=="Successful!!"){
+                swal("登錄成功", "歡迎回來", "success");
                 this.$router.push('FrontPersonInfo')
             }else{
-                window.alert("帳號或密碼錯誤")
+                swal("帳號或密碼", "錯誤", "error");
             }
             }).catch(error => {
                 if (error.response) {
@@ -39,7 +44,6 @@ export default {
                 }
                 console.error('Error:', error);
             });
-            
         }
     },
     components: {
@@ -63,7 +67,7 @@ export default {
         </div>
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
-            <button type="button" @click="goPersonInfo()">登錄</button>
+            <button type="button" @click="login()">登錄</button>
         </div>
     </div>
     <Footer />
@@ -75,7 +79,6 @@ export default {
     height: 63vh;
     margin: auto;
     margin-top: 8vmin;
-
     input {
         width: 20vw;
         height: 5vh;
@@ -86,14 +89,12 @@ export default {
         padding-left: 2vmin;
         margin-bottom: 4vmin;
     }
-
     .title {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
         text-align: center;
     }
-
     .account {
         p {
             margin: 0;
@@ -101,7 +102,6 @@ export default {
             color: #797A7E;
         }
     }
-
     .password {
         p {
             margin: 0;
@@ -109,13 +109,11 @@ export default {
             color: #797A7E;
         }
     }
-
     .buttonArea {
         width: 20vw;
         display: flex;
         justify-content: space-around;
         margin-top: 3vmin;
-
         button {
             width: 8vw;
             height: 5vh;
@@ -134,4 +132,5 @@ export default {
             }
         }
     }
-}</style>
+}
+</style>
