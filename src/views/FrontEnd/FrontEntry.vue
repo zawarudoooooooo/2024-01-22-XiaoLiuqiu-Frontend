@@ -69,6 +69,7 @@ export default{
                 <div class="title">
                     <p>Special Offer</p>
                 </div>
+                <!-- <hr> -->
                 <div class="offer">
                     <div class="card" style="width: 18rem;">
                         <img src="../../../public/other/breakfast.jpg" class="card-img-top" alt="...">
@@ -95,6 +96,7 @@ export default{
             <div class="title">
                 <p>Precious Moment</p>
             </div>
+            <!-- <hr> -->
             <div class="new">
                 <div class="card bg-dark text-white">
                     <img src="../../../public/other/other4.jpg" class="card-img" alt="...">
