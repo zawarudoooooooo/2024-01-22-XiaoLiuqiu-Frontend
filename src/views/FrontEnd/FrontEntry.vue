@@ -49,16 +49,16 @@ export default{
         <div class="about">
             <div class="iconArea">
                 <div class="icon">
-                    <i class="fa-solid fa-seedling"></i>
-                    <p>環保再生</p>
+                    <i class="fa-solid fa-leaf"></i>
+                    <p>永續經營</p>
                 </div>
                 <div class="icon">
-                    <i class="fa-regular fa-clock"></i>
-                    <p>24小時櫃台</p>
+                    <i class="fa-regular fa-lightbulb"></i>
+                    <p>節能設備</p>
                 </div>
                 <div class="icon">
-                    <i class="fa-solid fa-ticket"></i>
-                    <p>超值套票</p>
+                    <i class="fa-solid fa-wheat-awn"></i>
+                    <p>有機食材</p>
                 </div>
                 <div class="icon">
                     <i class="fa-solid fa-paw"></i>

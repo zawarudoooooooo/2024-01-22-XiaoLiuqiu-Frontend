@@ -77,15 +77,21 @@ export default{
             }
             .roomType{
                 width: 70vw;
-                //border: 1px solid black;
                 display: flex;
                 justify-content: space-around;
-                //margin-top: 6vmin;
                 margin: auto;
             }
             .card{
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px lightgray;
+                img{
+                    &:hover{
+                        opacity: 0.6;
+                    }
+                    &:active{
+                        opacity: 1.0;
+                    }
+                }
                 button{
                     width: 4vw;
                     height: 4.5vh;

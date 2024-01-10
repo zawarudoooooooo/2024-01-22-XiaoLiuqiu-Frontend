@@ -15,7 +15,7 @@ export default{
 <template>
     <div class="content">
         <div class="title">
-            <p>交通套票</p>
+            <p>交通</p>
         </div>
         <hr>
         <div class="traffic">
@@ -32,16 +32,6 @@ export default{
                     <li class="list-group-item">半票 $200 (未滿12歲)</li>
                 </ul>
             </div>
-            <!-- <div class="card" style="width: 23rem;">
-                <img src="../../../public/ticket/bicycle.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">腳踏車</h5>
-                    <p class="card-text"></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">全天 $150</li>
-                </ul>
-            </div> -->
             <div class="card" style="width: 23rem;">
                 <img src="../../../public/ticket/scooter.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -103,7 +93,7 @@ export default{
             </div>
         </div>
         <div class="title">
-            <p>景點套票</p>
+            <p>景點</p>
         </div>
         <hr>
         <div class="ticket">
@@ -134,18 +124,6 @@ export default{
                 </ul>
             </div>
         </div>
-        <!-- <div class="title">
-            <p>優惠消息</p>
-        </div>
-        <div class="news">
-            <ul>
-                <li>國旅 85 折起</li>
-                <li>出示外國護照，即享精美小禮物一份</li>
-                <li>平日住宿 8 折起，再贈送下午茶</li>
-                <li>使用 Line Pay 回饋 50%</li>
-                <li>當日壽星我最大 ! 兩人同行，壽星免費</li>
-            </ul>
-        </div> -->
     </div>
 <Footer />
 </template>
@@ -163,7 +141,6 @@ export default{
                 font-weight: bold;
                 color: #82AAE3;
                 text-align: center;
-                //margin-bottom: 3vmin;
             }
         }
         hr{
@@ -193,14 +170,12 @@ export default{
         .card{
             border-radius: 6px;
             box-shadow: 1px 1px 1px lightgray;
-        }
-        .news{
-            position: absolute;
-            left: 20%;
-            ul{
-                li{
-                    font-size: 16pt;
-                    color: #797A7E;
+            img{
+                &:hover{
+                    opacity: 0.6;
+                }
+                &:active{
+                    opacity: 1.0;
                 }
             }
         }

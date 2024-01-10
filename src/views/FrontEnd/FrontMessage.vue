@@ -43,7 +43,6 @@
                 font-weight: bold;
                 color: #82AAE3;
                 text-align: center;
-                margin-bottom: 3vmin;
             }
         }
         hr{
