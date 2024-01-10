@@ -33,7 +33,7 @@
 
 <style lang="scss" scoped>
     .content{
-        width: 90vw;
+        width: 80vw;
         height: 67vh;
         margin: auto;
         margin-top: 5vmin;
