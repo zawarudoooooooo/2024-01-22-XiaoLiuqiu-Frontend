@@ -69,7 +69,6 @@ export default{
                 <div class="title">
                     <p>Special Offer</p>
                 </div>
-                <!-- <hr> -->
                 <div class="offer">
                     <div class="card" style="width: 18rem;">
                         <img src="../../../public/other/breakfast.jpg" class="card-img-top" alt="...">
@@ -94,32 +93,26 @@ export default{
         </div>
         <div class="activity">
             <div class="title">
-                <p>Precious Moment</p>
+                <p>Liuqiu</p>
             </div>
-            <!-- <hr> -->
             <div class="new">
                 <div class="card bg-dark text-white">
-                    <img src="../../../public/other/other4.jpg" class="card-img" alt="...">
-                    <!-- <img src="../../../public/other/meal.jpg" class="card-img" alt="..."> -->
+                    <img src="../../../public/other/other3.jpg" class="card-img" alt="...">
                     <div class="card-img-overlay">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text">Last updated 5 mins ago</p>
+                        <h5 class="card-title">綠蠵龜</h5>
+                        <p class="card-text">由於小琉球海溫較為平穩，海龜們常駐小琉球。
+                            <br>即使沒有從事水上活動，也能在岸邊看到海龜抬頭換氣的模樣。</p>
                     </div>
                 </div>
                 <div class="card bg-dark text-white">
-                    <img src="../../../public/other/other2.jpg" class="card-img" alt="...">
+                    <img src="../../../public/tourist/t02/t2-7.JPG" class="card-img" alt="...">
                     <div class="card-img-overlay">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text">Last updated 20 mins ago</p>
+                        <h5 class="card-title">烏鬼洞</h5>
+                        <p class="card-text">島上石灰岩洞穴遍布最出名的區域，<br>內部結構錯綜複雜，宛如迷宮陣一般。</p>
                     </div>
                 </div>
-
             </div>
-                
         </div>
-
         <i class="fa-solid fa-gear" @click="goBackLogin()" id="back"></i>
     </div>
     
@@ -131,7 +124,6 @@ export default{
         width: 100vw;
         height: 215vh;
         position: relative;
-
         .slideShow{
             width: 90vw;
             height: 80.5vh;
@@ -139,11 +131,11 @@ export default{
             margin: auto;
             margin-top: 5vmin;
             .carousel-inner{
-                //width: 90vw;
                 .carousel-item{
                     img{
                         height: 80vh;
                         border-radius: 10px;
+                        transition: all linear 0.3s;
                         &:hover{
                             opacity: 0.8;
                         }
@@ -174,8 +166,10 @@ export default{
                     border-radius: 10px;
                     padding: 4vmin;
                     box-shadow: 1px 1px 1px gray;
+                    transition: all linear 0.3s;
                     &:hover{
                         opacity: 0.6;
+                        box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
                     }
                     &:active{
                         opacity: 1.0;
@@ -253,8 +247,10 @@ export default{
                     width: 40vw;
                     border-style: none;
                     box-shadow: 2px 2px 2px gray;
+                    transition: all linear 0.3s;
                     &:hover{
                         opacity: 0.6;
+                        box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
                     }
                     &:active{
                         opacity: 1.0;
