@@ -198,12 +198,6 @@ const router = createRouter({
       name: 'BackFamily',
       component: () => import('../views/BackEnd/BackRoom/BackFamily.vue')
     },
-//後台租車
-    {
-      path: '/BackRent',
-      name: 'BackRent',
-      component: () => import('../views/BackEnd/BackRent.vue')
-    },
 //後台員工
     {
       path: '/BackStaff',

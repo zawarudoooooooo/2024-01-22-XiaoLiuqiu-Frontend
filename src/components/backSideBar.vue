@@ -12,9 +12,6 @@ export default{
         room(){
             this.$router.push('/BackSimpleDouble')
         },
-        rent(){
-            this.$router.push('/BackRent')
-        },
         staff(){
             this.$router.push('/BackStaff')
         }
@@ -29,9 +26,6 @@ export default{
         </button>
         <button @click="room()">
             <i class="fa-solid fa-bed"></i>房型管理
-        </button>
-        <button @click="rent()">
-            <i class="fa-solid fa-motorcycle"></i>租車管理
         </button>
         <button @click="staff()">
             <i class="fa-solid fa-users"></i>員工管理

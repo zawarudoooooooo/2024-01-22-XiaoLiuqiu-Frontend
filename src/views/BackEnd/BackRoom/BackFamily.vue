@@ -6,17 +6,6 @@ export default{
         }
     },
     methods:{
-        goBackSimpleDouble(){
-            this.$router.push('/BackSimpleDouble')
-        },
-        goBackDouble(){
-            this.$router.push('/BackDouble')
-        },
-        goBackFamily(){
-            this.$router.push('/BackFamily')
-        }
-    },
-    methods:{
         simpleDouble(){
             this.$router.push('/BackSimpleDouble')
         },
@@ -70,7 +59,6 @@ export default{
                     </div>
                     <div class="status">
                         <p>狀態 : 空房</p>
-                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
                     </div>
                 </div>
             </div>
@@ -90,11 +78,11 @@ export default{
                                 <input type="number" class="form-control" id="recipient-name">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房機名稱 :</label>
+                                <label for="recipient-name" class="col-form-label">房間名稱 :</label>
                                 <input type="text" class="form-control" id="recipient-name">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房機價格 :</label>
+                                <label for="recipient-name" class="col-form-label">房間價格 :</label>
                                 <input type="number" class="form-control" id="recipient-name">
                             </div>
                             <div class="mb-3">
@@ -235,42 +223,9 @@ export default{
                             font-size: 16pt;
                             width: 35vw;
                         }
-                        input[type=checkbox]{
-                            height: 0;
-                            width: 0;
-                            visibility: hidden;
-                        }
-                        label {
-                            cursor: pointer;
-                            text-indent: -9999px;
-                            width: 4vw;
-                            height: 4vh;
-                            background: grey;
-                            display: block;
-                            border-radius: 30px;
-                            position: relative;
-                            margin-top: 1vmin;
-                        }
-                        label:after {
-                            content: '';
-                            position: absolute;
-                            top: 5px;
-                            left: 5px;
-                            width: 1.5vw;
-                            height: 2.8vh;
-                            background: #fff;
-                            border-radius: 30px;
-                            transition: 0.5s;
-                        }
-                        input:checked + label {
-                            background: #bada55;
-                        }
-                        input:checked + label:after {
-                            left: calc(100% - 5px);
-                            transform: translateX(-100%);
-                        }
-                        label:active:after { 
-                            width: 130px;
+                        i{
+                            color: #797A7E;
+                            font-size: 25pt;
                         }
                     }
                 }
