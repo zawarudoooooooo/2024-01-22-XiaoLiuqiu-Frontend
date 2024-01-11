@@ -214,8 +214,10 @@ export default{
                     .card{
                         border-radius: 10px;
                         box-shadow: 1px 1px 1px gray;
+                        transition: all linear 0.3s;
                         &:hover{
                             opacity: 0.6;
+                            box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
                         }
                         &:active{
                             opacity: 1.0;
