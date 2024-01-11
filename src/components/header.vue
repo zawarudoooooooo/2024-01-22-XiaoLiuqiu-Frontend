@@ -30,7 +30,7 @@ export default{
                             <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>訂房</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="/FrontActivity" class="routerItem"><i class="fa-solid fa-comments-dollar"></i>優惠</RouterLink>
+                            <RouterLink to="/FrontActivity" class="routerItem"><i class="fa-solid fa-ticket"></i>套票</RouterLink>
                         </li>
                         <li class="nav-item dropdown">
                             <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-location-dot"></i>導覽</p>

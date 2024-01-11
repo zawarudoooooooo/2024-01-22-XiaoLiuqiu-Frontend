@@ -253,6 +253,14 @@ export default{
                     margin-bottom: 6vmin;
                     border-radius: 6px;
                     box-shadow: 1px 1px 1px lightgray;
+                    img{
+                        &:hover{
+                            opacity: 0.6;
+                        }
+                        &:active{
+                            opacity: 1.0;
+                        }
+                    }
                 }
             }
         }
