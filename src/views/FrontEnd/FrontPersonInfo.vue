@@ -58,6 +58,7 @@ export default{
             </div>
             <div class="password">
                 <p>密碼 : **********</p>
+            
             </div>
             <div class="personInfoBtn">
                 <button type="button">修改資料</button>
