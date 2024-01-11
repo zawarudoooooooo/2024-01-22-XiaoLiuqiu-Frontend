@@ -14,71 +14,144 @@ export default{
 
 <template>
     <div class="content">
-        <div class="introduce">
-            <div class="card">
-                <img src="../../../public/about.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">關於 Sea.Life</h5>
-                    <p class="card-text">2023 年底新成立，全小琉球最靠近海的飯店，步行5分鐘即可抵達海邊。步行3分鐘就有便利商店和餐廳，十分熱鬧。</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <!-- <div class="title">
-                <p>關於 Sea.Life</p>
-            </div>
-            <div class="about">
-                <img src="../../../public/about.jpeg" alt="">
-                <p>2023 年底新成立，全小琉球最靠近海的飯店，步行5分鐘即可抵達海邊。步行3分鐘就有便利商店和餐廳，十分熱鬧。</p>
-            </div> -->
-
+        <div class="title">
+            <p>關於 Sea．Life</p>
         </div>
-
-
+        <hr>
+        <div class="introduce">
+            <div class="text">
+                <p>由一群熱愛小琉球的年輕人所建，主要提倡環保和永續。</p>
+                <ul>
+                    <li>
+                        全館採用節能設備和省水設施
+                    </li>
+                    <li>
+                        配有飲水機，不提供瓶裝水
+                    </li>
+                    <li>
+                        提供環保容器和餐具租借
+                    </li>
+                    <li>
+                        續住不提供床單和毛巾更換
+                    </li>
+                    <li>
+                        寵物友善，毛小孩也是一家人
+                    </li>
+                    <li>
+                        使用天然分解產品，及友善環境沐浴用品
+                    </li>
+                </ul>
+            </div>
+            <div class="img">
+                <img src="../../../public/about.jpeg" alt="">
+            </div>
+        </div>
+        <div class="title">
+            <p>消息</p>
+        </div>
+        <hr>
+        <div class="event">
+            <div class="img">
+                <img src="../../../public/activity/activity.jpg" alt="">
+                <img src="../../../public/activity/activity1.jpg" alt="">
+                <img src="../../../public/activity/activity2.jpg" alt="">
+                <img src="../../../public/activity/activity3.jpg" alt="">
+                <img src="../../../public/activity/activity4.jpg" alt="">
+            </div>
+            <ul>
+                <li>
+                    不定期免費手作體驗活動，多種類型，大人小孩都適合
+                </li>
+                <li>
+                    出示外國護照，即享精美小禮物一份
+                </li>
+                <li>
+                    當日壽星我最大 ! 兩人同行，壽星免費
+                </li>
+                <li>
+                    使用 Line Pay 回饋 8%
+                </li>
+                <li>
+                    特約美食店家，凡出示Sea．Life房卡，即享有用餐折扣
+                </li>
+            </ul>
+        </div>
     </div>
-
 <Footer />
 </template>
 
 <style lang="scss" scoped>
     .content{
-        width: 90vw;
-        height: 85vh;
+        width: 80vw;
+        height: 130vh;
         margin: auto;
-        .introduce{
-            margin-top: 5vmin;
-            .card{
-                width: 25vw;
-                height: 60vh;
-            }
-        }
-        
+        margin-top: 4vmin;
         .title{
             p{
                 font-size: 28pt;
                 font-weight: bold;
                 color: #82AAE3;
                 text-align: center;
-                margin-bottom: 3vmin;
             }
         }
-        .about{
-            width: 40vw;
-            position: absolute;
-            left: 30%;
-            img{
+        .introduce{
+            height: 48vh;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3vmin;
+            .text{
                 width: 40vw;
-                height: 45vh;
-                border-radius: 5px;
-                margin-bottom: 3vmin;
-                &:hover{
-                    opacity: 0.5;
+                p{
+                    color: #797A7E;
+                    font-size: 19pt;
                 }
-                &:active{
-                    opacity: 1.0;
+                ul{
+                    li{
+                        color: #797A7E;
+                        font-size: 19pt;
+                    }
                 }
             }
-            p{
-                font-size: 18pt
+            .img{
+                width: 35vw;
+                img{
+                    width: 35vw;
+                    height: 40vh;
+                    border-radius: 5px;
+                    &:hover{
+                        opacity: 0.6;
+                    }
+                    &:active{
+                        opacity: 1.0;
+                    }
+                }
+            }
+        }
+        .event{
+            margin-top: 3vmin;
+            .img{
+                display: flex;
+                justify-content: space-around;
+                gap: 1vmin;
+                margin: auto;
+                margin-bottom: 2vmin;
+                img{
+                    width: 15vw;
+                    height: 21vh;
+                    border-radius: 5px;
+                    &:hover{
+                        opacity: 0.6;
+                    }
+                    &:active{
+                        opacity: 1.0;
+                    }
+                }
+            }
+            ul{
+                li{
+                    color: #797A7E;
+                    font-size: 19pt;
+                }
             }
         }
     }

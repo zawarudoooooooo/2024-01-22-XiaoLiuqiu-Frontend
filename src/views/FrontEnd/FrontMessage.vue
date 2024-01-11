@@ -33,7 +33,7 @@
 
 <style lang="scss" scoped>
     .content{
-        width: 90vw;
+        width: 80vw;
         height: 67vh;
         margin: auto;
         margin-top: 5vmin;
@@ -43,7 +43,6 @@
                 font-weight: bold;
                 color: #82AAE3;
                 text-align: center;
-                margin-bottom: 3vmin;
             }
         }
         hr{
@@ -54,6 +53,14 @@
             height: 50vh;
             border-radius: 6px;
             box-shadow: 1px 1px 1px lightgray;
+            img{
+                &:hover{
+                    opacity: 0.6;
+                }
+                &:active{
+                    opacity: 1.0;
+                }
+            }
         }
     }
 </style>
