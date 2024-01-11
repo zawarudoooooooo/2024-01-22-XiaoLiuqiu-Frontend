@@ -44,7 +44,7 @@ export default{
         width: 15vw;
         gap: 2vmin;
         display: grid;
-        margin-left: 4vmin;
+        //margin-left: 4vmin;
         button{
             width: 15vw;
             height: 10vh;
