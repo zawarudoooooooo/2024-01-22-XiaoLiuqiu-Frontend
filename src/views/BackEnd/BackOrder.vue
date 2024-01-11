@@ -1,6 +1,6 @@
 <script>
 import backSideBar from '../../components/backSideBar.vue';
-export default{
+export default {
     data(){
         return{
 
@@ -11,18 +11,23 @@ export default{
     },
     components:{
         backSideBar
-    },
+    }
 }
 </script>
 
 <template>
     <div class="title">
-        <p>套票管理</p>
+        <p>訂單管理</p>
     </div>
+    <div class="content">
+        <div class="side">
+            <backSideBar />
+        </div>
+        <div class="list">
 
-<backSideBar />
+        </div>
 
-
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -33,5 +38,12 @@ export default{
         text-align: center;
         margin-top: 3vmin;
     }
-
+    .content{
+        width: 95vw;
+        height: 50vh;
+        margin: auto;
+        display: flex;
+        margin-top: 5vmin;
+        //border: 1px solid black;
+    }
 </style>
