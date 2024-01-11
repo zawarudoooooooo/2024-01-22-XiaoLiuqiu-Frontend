@@ -101,6 +101,12 @@ export default{
                 height: 28vh;
                 border-radius: 5px;
                 margin-right: 5vmin;
+                &:hover{
+                    opacity: 0.6;
+                }
+                &:active{
+                    opacity: 1.0;
+                }
             }
             .text{
                 height: 23vh;
