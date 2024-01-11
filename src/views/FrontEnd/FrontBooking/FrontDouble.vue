@@ -30,7 +30,7 @@ export default{
             </div>
         </div>
         <div class="show">
-            <img src="../../../../room/double.jpg" alt="">
+            <img src="../../../../public/room/double.jpg" alt="">
             <div class="text">
                 <div class="name">
                     <p>舒適雙人房</p>

@@ -6,6 +6,12 @@ export default{
 
         }
     },
+    methods:{
+        booking(){
+            this.$router.push('/FamilyBooking')
+        }
+
+    },
     components:{
         Footer
     }
@@ -25,7 +31,7 @@ export default{
             </div>
         </div>
         <div class="show">
-            <img src="../../../../room/family.jpg" alt="">
+            <img src="../../../../public/room/family.jpg" alt="">
             <div class="text">
                 <div class="name">
                     <p>豪華家庭房</p>
@@ -36,7 +42,7 @@ export default{
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam magnam sint quo sapiente? Libero quis, esse suscipit quia magnam molestiae.
                     </p>
                 </div>
-                <button type="button">訂購</button>
+                <button type="button" @click="booking()">訂購</button>
             </div>
         </div>
     </div>

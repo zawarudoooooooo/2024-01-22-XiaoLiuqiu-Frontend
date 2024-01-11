@@ -15,7 +15,7 @@ export default{
 <template>
     <div class="content">
         <div class="show">
-            <img src="../../../..room/simpledouble.jpg" alt="">
+            <img src="../../../../public/room/simpledouble.jpg" alt="">
             <div class="text">
                 <div class="name">
                     <p>小資雙人房</p>
@@ -31,7 +31,6 @@ export default{
                     <button type="button">早餐(+200/人)</button>
                     <button type="button">來回船票(+400/全票)</button>
                     <button type="button">來回船票(+200/半票)</button>
-                    <button type="button">腳踏車(+150/天)</button>
                     <button type="button">摩托車(+300/天)</button>
                     <button type="button">三大風景區門票(+100/人)</button>
                     <button type="button">鹿粼梅花鹿園區門票(+220/全票)</button>
