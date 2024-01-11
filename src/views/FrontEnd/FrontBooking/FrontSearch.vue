@@ -84,14 +84,16 @@ export default{
             .card{
                 border-radius: 10px;
                 box-shadow: 1px 1px 1px lightgray;
-                img{
-                    &:hover{
-                        opacity: 0.6;
-                    }
-                    &:active{
-                        opacity: 1.0;
-                    }
+                transition: all linear 0.3s;
+                &:hover{
+                    opacity: 0.6;
+                    //box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
+                    box-shadow: 10px -10px rgba(6, 67, 147, 0.5);
                 }
+                &:active{
+                    opacity: 1.0;
+                }
+            }
                 button{
                     width: 4vw;
                     height: 4.5vh;
@@ -109,5 +111,4 @@ export default{
                 }
             }
         }
-    }
 </style>
