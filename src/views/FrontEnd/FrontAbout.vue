@@ -52,11 +52,11 @@ export default{
         <hr>
         <div class="event">
             <div class="img">
+                <img src="../../../public/activity/activity4.jpg" alt="">
+                <img src="../../../public/activity/activity2.jpg" alt="">
                 <img src="../../../public/activity/activity.jpg" alt="">
                 <img src="../../../public/activity/activity1.jpg" alt="">
-                <img src="../../../public/activity/activity2.jpg" alt="">
                 <img src="../../../public/activity/activity3.jpg" alt="">
-                <img src="../../../public/activity/activity4.jpg" alt="">
             </div>
             <ul>
                 <li>
@@ -118,8 +118,11 @@ export default{
                     width: 35vw;
                     height: 40vh;
                     border-radius: 5px;
+                    box-shadow: 1px 1px 1px gray;
+                    transition: all linear 0.3s;
                     &:hover{
                         opacity: 0.6;
+                        box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
                     }
                     &:active{
                         opacity: 1.0;
@@ -139,8 +142,11 @@ export default{
                     width: 15vw;
                     height: 21vh;
                     border-radius: 5px;
+                    box-shadow: 1px 1px 1px gray;
+                    transition: all linear 0.3s;
                     &:hover{
                         opacity: 0.6;
+                        box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
                     }
                     &:active{
                         opacity: 1.0;
