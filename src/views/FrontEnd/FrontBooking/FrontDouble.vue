@@ -101,8 +101,10 @@ export default{
                 height: 28vh;
                 border-radius: 5px;
                 margin-right: 5vmin;
+                transition: all linear 0.3s;
                 &:hover{
-                    opacity: 0.6;
+                    opacity: 0.7;
+                    box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
                 }
                 &:active{
                     opacity: 1.0;
