@@ -7,7 +7,7 @@ export default {
         return {
             account: "",
             pwd: "",
-            pwdd:"",
+            repwd:"",
             memberName: "",
             memberPhone: "",
             memberEmail: "",
@@ -16,6 +16,17 @@ export default {
     },
     methods: {
         login() {
+            if(this.account==""|| this.memberName==""||this.memberPhone==""||this.memberEmail==""){
+                    swal("資料有誤", "不得為空白", "error");
+                    return;
+                }
+            if(this.repwd!=this.pwd){
+                swal("資料有誤", "請確認密碼是否相同", "error");
+                this.pwd="",
+                this.repwd=""
+                return;
+            }
+
             axios({
                 url: 'http://localhost:8080/member/signUp',
                 method: 'POST',
@@ -31,12 +42,8 @@ export default {
                 },
             }).then(res => {
                 console.log(res.data)
-                if(this.account&&this.pwd&& this.memberName&&this.memberPhone&&this.memberEmail==""){
-                    swal("必填欄位", "不得為空白", "error");
-                }else{
                     swal("註冊成功", "請重新登入", "success");
                     this.$router.push('/FrontLogin')
-                }
                 
             }).catch(error => {
                 if (error.response) {
@@ -82,11 +89,11 @@ export default {
         </div>
         <div class="password">
             <p>密碼</p>
-            <input type="password" v-model="this.pwdd" placeholder="請設定密碼">
+            <input type="password" v-model="this.repwd" placeholder="請設定密碼">
         </div>
         <div class="password">
             <p >確認密碼</p>
-            <p  id=checkpwd v-if="this.pwdd!=this.pwd">請輸入相同密碼</p>
+            <p  id=checkpwd v-if="this.repwd!=this.pwd">請輸入相同密碼</p>
             <input type="password" v-model="this.pwd" placeholder="請再次輸入密碼">
         </div>
         <div class="phone">

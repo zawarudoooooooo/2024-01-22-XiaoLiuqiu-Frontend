@@ -33,7 +33,7 @@ export default {
                 swal("登錄成功", "歡迎回來", "success");
                 this.$router.push('FrontPersonInfo')
             }else{
-                swal("帳號或密碼", "錯誤", "error");
+                swal("錯誤", "請輸入帳號或密碼", "error");
             }
             }).catch(error => {
                 if (error.response) {
