@@ -91,7 +91,7 @@ export default{
                     <button type="button" @click="clicked10()" :class="{check10:ischecked10}">SUP立槳(+1000/兩人一板)</button>
                     <button type="button" @click="clicked11()" :class="{check11:ischecked11}">SUP立槳(+1200/一人一板)</button>
                 </div>
-                <button type="button" id="buyBtn" @click="booking()">訂購</button>
+                <button type="button" id="buyBtn" @click="booking()">確認</button>
             </div>
         </div>
     </div>
@@ -101,7 +101,7 @@ export default{
 <style lang="scss" scoped> 
     .content{
         width: 90vw;
-        height: 70vh;
+        height: 65vh;
         margin: auto;
         margin-top: 6vmin;
         .check{
@@ -233,8 +233,8 @@ export default{
             border-radius: 5px;
             color: #797A7E;
             position: absolute;
-            right: 5%;
-            bottom: 7%;
+            right: 4%;
+            bottom: 15%;
             &:hover{
                 background-color: #797A7E;
                 color: white;
