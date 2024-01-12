@@ -7,9 +7,11 @@ export default {
         return {
             account: "",
             pwd: "",
+            pwdd:"",
             memberName: "",
             memberPhone: "",
             memberEmail: "",
+            aaa:"",
         }
     },
     methods: {
@@ -80,11 +82,12 @@ export default {
         </div>
         <div class="password">
             <p>密碼</p>
-            <input type="password" v-model="this.pwd" placeholder="請設定密碼">
+            <input type="password" v-model="this.pwdd" placeholder="請設定密碼">
         </div>
         <div class="password">
-            <p>確認密碼</p>
-            <input type="password" placeholder="請再次輸入密碼">
+            <p >確認密碼</p>
+            <p  id=checkpwd v-if="this.pwdd!=this.pwd">請輸入相同密碼</p>
+            <input type="password" v-model="this.pwd" placeholder="請再次輸入密碼">
         </div>
         <div class="phone">
             <p>電話</p>
@@ -146,6 +149,10 @@ export default {
             margin: 0;
             font-size: 14pt;
             color: #797A7E;
+        }
+        #checkpwd{
+            font-weight: bold;
+            color: brown;
         }
     }
     .phone {
