@@ -74,6 +74,14 @@ export default{
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">房間類型 :</label>
+                                <select>
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間編號 :</label>
                                 <input type="number" class="form-control" id="recipient-name">
                             </div>
@@ -230,6 +238,13 @@ export default{
                     }
                 }
             }
+        }
+        select{
+            margin-left: 2vmin;
+            width: 5vw;
+            height: 4vh;
+            border-radius: 5px;
+            text-align: center;
         }
     }
 </style>
