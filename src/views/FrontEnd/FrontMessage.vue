@@ -54,6 +54,7 @@
             border-radius: 6px;
             box-shadow: 1px 1px 1px lightgray;
             img{
+                transition: all ease 0.5s;
                 &:hover{
                     opacity: 0.6;
                 }

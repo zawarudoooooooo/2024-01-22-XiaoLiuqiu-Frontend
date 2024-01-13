@@ -72,6 +72,7 @@ export default{
             border-radius: 10px;
             .carousel-inner{
                 border-radius: 10px;
+                box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
             }
             img{
                 border-radius: 10px;
