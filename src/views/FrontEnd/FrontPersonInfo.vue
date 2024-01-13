@@ -7,6 +7,9 @@ export default{
             phone:"",
             email:"",
 
+
+            userImg:"",
+            useravatar:"",
             //頁面切換
             personInfoPage:true,
             orderPage:false,
@@ -14,6 +17,24 @@ export default{
         }
     },
     methods:{
+        onfile(event){
+            this.file=event.target.files[0]
+            let filereader=new FileReader();
+            filereader.readAsDataURL(this.file)
+            filereader.addEventListener("load",()=>{
+                this.useravatar=filereader.result;
+                console.warn(this.useravatar)
+            })
+        },
+        test(){
+            let arr = document.querySelectorAll(".img");
+            Promise.all(Array.from(arr).map((item)=>{
+                if(item.files[0] != undefined ){
+                    this.imgConvert((item.className.split("")[0], (item.files[0])))
+                }
+                return Promise.resolve();
+            }))
+        },
 //圖片轉換
         imgConvert(key, data){
             return new Promise((resolve) =>{
@@ -65,10 +86,15 @@ export default{
             <p id="location"><i class="fa-solid fa-map-pin"></i>會員資訊</p>
             <hr>
             <div class="user">
-                <label class="upload_cover">
-                    <input id="upload_input" type="file">       
-                    <i class="fa-regular fa-circle-user" id="usericon"></i>
-                    <img id="demo"/>
+                <label>
+                    <input id="upload_input" type="file" @change="onfile">
+                        <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
+                        <img :src="useravatar" class="upload_cover" alt="">
+                        <!-- <v-avatar>
+                            <img :src="useravatar" alt="" 
+                            style="width: 17.5vmin;height: 17.5vmin;border-radius: 50%;
+                            position: absolute;top: 2%;left: 2%;">
+                        </v-avatar> -->
                 </label>
             </div>
             <div class="name">
@@ -252,20 +278,17 @@ export default{
             }           
             .user{
                 .upload_cover{
-                    width: 17vmin;
-                    height: 17vmin;
+                    width: 20vmin;
+                    height: 20vmin;
                     cursor: pointer;
                     border-radius: 50%;
                     position: absolute;
-                    right: 10%;
+                    right: 6%;
                     top: -3%;
+                    border: 1px solid#797A7E;
                 }
                 #upload_input{
                     display: none;
-                }
-                #usericon{
-                    font-size: 105pt;
-                    color: #BFEAF5;
                 }
             }
             p{
