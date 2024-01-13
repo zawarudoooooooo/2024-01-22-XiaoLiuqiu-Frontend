@@ -267,8 +267,8 @@ export default{
             font-size: 16pt;
             color:#F7F2E7;
             position: absolute;
-            right: 1%;
-            bottom: -2%;
+            right: 1.1%;
+            bottom: -6%;
             &:hover{
                 color: #797A7E;
             }
