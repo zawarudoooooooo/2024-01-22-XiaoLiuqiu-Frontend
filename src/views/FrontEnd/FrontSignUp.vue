@@ -77,7 +77,7 @@ export default {
 <template>
     <div class="content">
         <div class="title">
-            <p>註冊</p>
+            <p>註冊<i class="fa-solid fa-user-plus"></i></p>
         </div>
         <div class="account">
             <p>帳號</p>
@@ -91,9 +91,11 @@ export default {
             <p>密碼</p>
             <input type="password" v-model="this.repwd" placeholder="請設定密碼">
         </div>
-        <div class="password">
-            <p >確認密碼</p>
-            <p  id=checkpwd v-if="this.repwd!=this.pwd">請輸入相同密碼</p>
+        <div class="repassword">
+            <div class="notice">
+                <p >確認密碼</p>
+                <p id=checkpwd v-if="this.repwd!=this.pwd">*請輸入相同密碼</p>
+            </div>
             <input type="password" v-model="this.pwd" placeholder="請再次輸入密碼">
         </div>
         <div class="phone">
@@ -118,6 +120,9 @@ export default {
     height: 77vh;
     margin: auto;
     margin-top: 3vmin;
+    i{
+        margin-left: 2vmin;
+    }
     input {
         width: 20vw;
         height: 5vh;
@@ -157,9 +162,21 @@ export default {
             font-size: 14pt;
             color: #797A7E;
         }
+    }
+    .repassword {
+        .notice{
+            width: 20vw;
+            justify-content: space-between;
+            display: flex;
+        }
+        p {
+            margin: 0;
+            font-size: 14pt;
+            color: #797A7E;
+        }
         #checkpwd{
             font-weight: bold;
-            color: brown;
+            color: #d65d6b;
         }
     }
     .phone {

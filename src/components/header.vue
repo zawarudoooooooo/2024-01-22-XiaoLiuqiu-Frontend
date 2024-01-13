@@ -82,6 +82,9 @@ export default{
             .dropdown-item{
                 font-size: 16pt;
                 color: #797A7E;
+                &:active{
+                    background-color: #BFEAF5;
+                }
             }
             i{
                 margin-right: 1vmin;

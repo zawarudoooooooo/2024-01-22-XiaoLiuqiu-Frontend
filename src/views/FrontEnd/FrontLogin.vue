@@ -55,7 +55,7 @@ export default {
 <template>
     <div class="content">
         <div class="title">
-            <p>登錄</p>
+            <p>登錄<i class="fa-solid fa-user-lock"></i></p>
         </div>
         <div class="account">
             <p>帳號</p>
@@ -79,6 +79,9 @@ export default {
     height: 63vh;
     margin: auto;
     margin-top: 8vmin;
+    i{
+        margin-left: 2vmin;
+    }
     input {
         width: 20vw;
         height: 5vh;
@@ -120,12 +123,10 @@ export default {
             border: none;
             border-radius: 5px;
             color: #797A7E;
-
             &:hover {
                 background-color: #797A7E;
                 color: white;
             }
-
             &:active {
                 background-color: #F7F2E7;
                 color: #797A7E;

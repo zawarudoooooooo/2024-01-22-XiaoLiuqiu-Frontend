@@ -14,6 +14,23 @@ export default{
         }
     },
     methods:{
+//圖片轉換
+        imgConvert(key, data){
+            return new Promise((resolve) =>{
+                imageConversion.compressAccurately(data, 80).then((res) =>{
+                    let reader = new FileReader();
+                    if(res){
+                        reader.readAsDataURL(res)
+                    }
+                    reader.onload = () =>{
+                        let base64 = reader.result;
+                        this.map.set(key, base64);
+                        resolve(base64);
+                    }
+                })
+            })
+        },
+//頁面切換
         personInfoShow(){
             this.personInfoPage=true
             this.orderPage=false,
@@ -43,11 +60,17 @@ export default{
             <button type=button @click="orderPageShow()"><i class="fa-solid fa-list"></i>訂單資訊</button>
             <button type=button @click="messagePageShow()"><i class="fa-solid fa-message"></i>發表回饋</button>
         </div>
+<!-- 會員資料頁面 -->
         <div class="personInfo" v-if="personInfoPage">
-            <div class="title">
-                <p><i class="fa-solid fa-map-pin"></i>會員資訊</p>
-            </div>
+            <p id="location"><i class="fa-solid fa-map-pin"></i>會員資訊</p>
             <hr>
+            <div class="user">
+                <label class="upload_cover">
+                    <input id="upload_input" type="file">       
+                    <i class="fa-regular fa-circle-user" id="usericon"></i>
+                    <img id="demo"/>
+                </label>
+            </div>
             <div class="name">
                 <p>姓名 : 海龜王子</p>
             </div>
@@ -131,10 +154,9 @@ export default{
                 </div>
             </div>
         </div>
+<!-- 訂單資訊頁面 -->
         <div class="order" v-if="orderPage">
-            <div class="title">
-                <p><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
-            </div>
+            <p id="location"><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
             <hr>
             <div class="orderNum">
                 <p>訂單編號 : A01</p>
@@ -155,10 +177,9 @@ export default{
                 <p>付款期限 : </p>
             </div>
         </div>
+<!-- 發表回饋頁面 -->
         <div class="message" v-if="messagePage">
-            <div class="title">
-                <p><i class="fa-solid fa-map-pin"></i>貼文</p>
-            </div>
+            <p id="location"><i class="fa-solid fa-map-pin"></i>貼文</p>
             <hr>
             <div class="topic">
                 <p>標題</p>
@@ -180,10 +201,10 @@ export default{
 
 <style lang="scss" scoped>
         .content{
-        width: 65vw;
-        height: 65vh;
+        width: 63vw;
+        height: 63vh;
         margin: auto;
-        margin-top: 6vmin;
+        margin-top: 8vmin;
         display: flex;
         //border: 1px solid black;
         padding-top: 2vmin;
@@ -219,15 +240,32 @@ export default{
             }
         }
         .personInfo{
-            width: 30vw;
-            height: 55vh;
+            width: 25vw;
+            height: 35vh;
             //border: 1px solid black;
-            position: relative;
-            .title{
-                p{
-                    font-size: 28pt;
-                    font-weight: bold;
-                    color: #82AAE3;
+            margin-top: 1%;
+            #location{
+                font-size: 24pt;
+                font-weight: bold;
+                color: #82AAE3;
+                margin: 0;
+            }           
+            .user{
+                .upload_cover{
+                    width: 17vmin;
+                    height: 17vmin;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    position: absolute;
+                    right: 10%;
+                    top: -3%;
+                }
+                #upload_input{
+                    display: none;
+                }
+                #usericon{
+                    font-size: 105pt;
+                    color: #BFEAF5;
                 }
             }
             p{
@@ -241,8 +279,8 @@ export default{
                 display: flex;
                 justify-content: space-around;
                 position: absolute;
-                right: 0;
-                bottom: 3%;
+                right: 6%;
+                bottom: 10%;
                 //border: 1px solid black;
                 button{
                     width: 6vw;
@@ -266,13 +304,12 @@ export default{
             width: 30vw;
             height: 40vh;
             //border: 1px solid black;
-            .title{
-                p{
-                    font-size: 28pt;
-                    font-weight: bold;
-                    color: #82AAE3;
-                }
-            }
+            #location{
+                font-size: 24pt;
+                font-weight: bold;
+                color: #82AAE3;
+                margin: 0;
+            } 
             p{
                 font-size: 16pt;
                 color: #797A7E;
@@ -284,13 +321,12 @@ export default{
             height: 58vh;
             //border: 1px solid black;
             position: relative;
-            .title{
-                p{
-                    font-size: 28pt;
-                    font-weight: bold;
-                    color: #82AAE3;
-                }
-            }
+            #location{
+                font-size: 24pt;
+                font-weight: bold;
+                color: #82AAE3;
+                margin: 0;
+            } 
             .topic{
                 p{
                     margin: 0;
@@ -298,7 +334,7 @@ export default{
                     color: #797A7E;
                 }
                 input{
-                    width: 20vw;
+                    width: 30vw;
                     height: 5vh;
                     border-radius: 10px;
                     border-style: none;
@@ -315,7 +351,7 @@ export default{
                     color: #797A7E;
                 }
                 textarea{
-                    width: 20vw;
+                    width: 30vw;
                     height: 15vh;
                     border-radius: 5px;
                     outline: none;
