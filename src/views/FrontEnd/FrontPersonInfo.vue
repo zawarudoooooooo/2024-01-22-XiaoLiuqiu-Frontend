@@ -8,8 +8,8 @@ export default{
             email:"",
 
 
-            userImg:"",
             useravatar:"",
+            msgavatar:"",
             //頁面切換
             personInfoPage:true,
             orderPage:false,
@@ -17,13 +17,24 @@ export default{
         }
     },
     methods:{
-        onfile(event){
+//使用者照片上傳
+        onfileuser(event){
             this.file=event.target.files[0]
             let filereader=new FileReader();
             filereader.readAsDataURL(this.file)
             filereader.addEventListener("load",()=>{
                 this.useravatar=filereader.result;
                 console.warn(this.useravatar)
+            })
+        },
+//貼文照片上傳
+        onfilemsg(event){
+            this.file=event.target.files[0]
+            let filereader=new FileReader();
+            filereader.readAsDataURL(this.file)
+            filereader.addEventListener("load",()=>{
+                this.msgavatar=filereader.result;
+                console.warn(this.msgavatar)
             })
         },
         test(){
@@ -79,7 +90,7 @@ export default{
         <div class="buttonArea">
             <button type=button @click="personInfoShow()"><i class="fa-solid fa-user"></i>會員資料</button>
             <button type=button @click="orderPageShow()"><i class="fa-solid fa-list"></i>訂單資訊</button>
-            <button type=button @click="messagePageShow()"><i class="fa-solid fa-message"></i>發表回饋</button>
+            <button type=button @click="messagePageShow()"><i class="fa-solid fa-message"></i>發表貼文</button>
         </div>
 <!-- 會員資料頁面 -->
         <div class="personInfo" v-if="personInfoPage">
@@ -87,7 +98,7 @@ export default{
             <hr>
             <div class="user">
                 <label>
-                    <input id="upload_input" type="file" @change="onfile">
+                    <input id="upload_input" type="file" @change="onfileuser">
                         <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
                         <img :src="useravatar" class="upload_cover" alt="">
                         <!-- <v-avatar>
@@ -122,7 +133,7 @@ export default{
         </div>
         <!-- 更改資料modal視窗 -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">更改資料</h5>
@@ -151,8 +162,8 @@ export default{
             </div>
         </div>
         <!-- 更改密碼modal視窗 -->
-                <div class="modal fade" id="exampleModalPwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="exampleModalPwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">更改密碼</h5>
@@ -216,10 +227,51 @@ export default{
                 <textarea placeholder="請輸入內容"></textarea>
             </div>
             <div class="img">
-                <p>相片</p>
-                <input type="file">
+                <p>新增相片</p>
+                <label>
+                    <i class="fa-solid fa-images" id="addicon"></i>
+                    <input type="file" multiple="multiple" class="addimg" @change="onfilemsg">
+                </label>
             </div>
-            <button type="button">發布</button>
+            <div class="msgBtnArea">
+                <button type="button"  data-bs-toggle="modal" 
+                        data-bs-target="#exampleModalmsg">預覽
+                </button>
+                <button type="button">發布</button>
+            </div>
+        </div>
+<!-- 貼文預覽視窗 -->
+        <div class="modal fade" id="exampleModalmsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">貼文預覽</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">標題 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">內容 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">照片 :</label>
+                                <br>
+                                <div class="imgArea">
+                                    <img :src="msgavatar" class="msgimg" alt="">
+                                </div>                
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <Footer/>
@@ -228,9 +280,9 @@ export default{
 <style lang="scss" scoped>
         .content{
         width: 63vw;
-        height: 63vh;
+        height: 65vh;
         margin: auto;
-        margin-top: 8vmin;
+        margin-top: 6vmin;
         display: flex;
         //border: 1px solid black;
         padding-top: 2vmin;
@@ -379,31 +431,66 @@ export default{
                     border-radius: 5px;
                     outline: none;
                     margin-bottom: 1vmin;
+                    padding: 1vmin;
                 }
             }
             .img{
+                display: flex;
                 p{
                     margin: 0;
                     font-size: 16pt;
                     color: #797A7E;
                 }
+                #addicon{
+                    font-size: 22pt;
+                    color: #797A7E;
+                    margin-left: 1vmin;
+                }
+                .addimg{
+                    display: none;
+                }
             }
-            button{
-                width: 6vw;
-                height: 4.5vh;
-                border: none;
-                border-radius: 5px;
-                color: #797A7E;
-                font-size: 13pt;
+            .msgBtnArea{
+                width: 15vw;
+                height: 10vh;
+                //border: 1px solid black;
+                display: flex;
+                justify-content: space-around;
                 position: absolute;
                 right: 0;
-                &:hover{
-                    background-color: #797A7E;
-                    color: white;
-                }
-                &:active{
-                    background-color: #F7F2E7;
+                //top: 3%;
+                bottom: -7%;
+                button{
+                    width: 6vw;
+                    height: 4.5vh;
+                    border: none;
+                    border-radius: 5px;
                     color: #797A7E;
+                    font-size: 13pt;
+                    &:hover{
+                        background-color: #797A7E;
+                        color: white;
+                    }
+                    &:active{
+                        background-color: #F7F2E7;
+                        color: #797A7E;
+                    }   
+                }
+            }
+        }
+        .modal-content{
+            .modal-body{
+                .mb-3{
+                    .imgArea{
+                        width: 25vw;
+                        border: 1px solid black;
+                        display: flex;
+                        flex-wrap: wrap;
+                        .msgimg{
+                            width: 10vw;
+                            height: 15vh;
+                        }
+                    }
                 }
             }
         }
