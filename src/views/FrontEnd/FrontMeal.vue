@@ -287,9 +287,11 @@ export default{
             .card{
                 box-shadow: 1px 1px 1px lightgray;
                 img{
-                    transition: all ease 0.3s;
+                    transition: all ease 0.4s;
                     &:hover{
                         opacity: 0.7;
+                        border-radius: 50%;
+                        scale: 0.9;
                     }
                     &:active{
                         opacity: 1;
