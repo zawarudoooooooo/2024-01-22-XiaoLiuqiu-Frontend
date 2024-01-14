@@ -254,8 +254,12 @@ export default{
                     border-radius: 6px;
                     box-shadow: 1px 1px 1px lightgray;
                     img{
+                        transition: all ease 0.5s;
+                        border-radius: 6px;
                         &:hover{
                             opacity: 0.6;
+                            scale: 0.9;
+
                         }
                         &:active{
                             opacity: 1.0;

@@ -56,7 +56,6 @@ export default{
         margin-top: 6vmin;
         .date{
             width: 60vw;
-            //border: 1px solid black;
             display: flex;
             justify-content: space-around;
             align-content: center;
@@ -112,7 +111,6 @@ export default{
             }
             .text{
                 height: 23vh;
-                //border: 1px solid black;
                 hr{
                     margin: 0;
                 }
@@ -147,7 +145,6 @@ export default{
             position: absolute;
             right: 5%;
             bottom: 11%;
-
             &:hover{
                 background-color: #797A7E;
                 color: white;
