@@ -1,15 +1,40 @@
 <script>
+import axios from 'axios';
 import { RouterLink, RouterView } from 'vue-router'
 export default{
     data(){
         return{
-
+            cookie:""
         }
     },
     methods: {
         goFrontEntry(){
             this.$router.push('/')
-        }
+        },
+        logout(){
+            axios({
+            url:'http://localhost:8080/member/logout',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            withCredentials:true,
+            params:{
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            console.log(res.data);
+            this.$router.push('/')
+            })
+        },
+        
+    },
+    mounted(){
+        this.cookie=document.cookie;
+        // console.log(this.cookie);
+        // console.log(this.cookie.split("=")[1]);
     }
 }
 </script>
@@ -43,8 +68,11 @@ export default{
                         <li class="nav-item">
                             <RouterLink to="/FrontMessage" class="routerItem"><i class="fa-solid fa-note-sticky"></i>留言板</RouterLink>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" v-if="this.cookie==''">
                             <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user-check"></i>登錄</RouterLink>
+                        </li>
+                        <li class="nav-item" v-if="this.cookie!=''">
+                            <button @click="logout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>登出</button>
                         </li>
                     </ul>
                 </div>
