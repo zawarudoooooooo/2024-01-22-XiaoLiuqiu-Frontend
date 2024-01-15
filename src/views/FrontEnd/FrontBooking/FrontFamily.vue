@@ -12,7 +12,32 @@ export default{
     methods:{
         booking(){
             this.$router.push('/FamilyBooking')
-        }
+        },
+        search(){
+            this.roomList = []
+
+            axios({
+                url:'http://localhost:8080/room/search',
+                method: "POST",
+                headers:{"Content-Type": "application/json",},
+                data: ({
+                    room_id: this.roomId,
+                    room_type_id: this.roomTypeId,
+                    room_introduce: this.roomIntroduce,
+                    room_name: this.roomName,
+                    room_price: this.roomPrice
+                })
+                
+            })
+            .then(res => {
+                this.roomList = res.data.roomList
+                console.log(this.roomList);
+
+                this.roomList = this.roomList.filter(item => item.roomName.includes('家庭房'))
+            })
+            .catch(error => console.error(error))
+            
+        },
     },
     components:{
         Footer
