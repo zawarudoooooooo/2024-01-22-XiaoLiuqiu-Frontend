@@ -4,13 +4,6 @@ import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
-            roomList:[],
-            roomId:"",
-            roomTypeId: "",
-            roomIntroduce:"",
-            roomTypeId2:"",
-            roomName:"",
-            roomPrice:"",
         }
     },
     mounted() {
@@ -18,33 +11,8 @@ export default{
     },
     methods:{
         booking(){
-            this.$router.push('/DoubleBooking')
-        },
-        search(){
-            this.roomList = []
-
-            axios({
-                url:'http://localhost:8080/room/search',
-                method: "POST",
-                headers:{"Content-Type": "application/json",},
-                data: ({
-                    room_id: this.roomId,
-                    room_type_id: this.roomTypeId,
-                    room_introduce: this.roomIntroduce,
-                    room_name: this.roomName,
-                    room_price: this.roomPrice
-                })
-                
-            })
-            .then(res => {
-                this.roomList = res.data.roomList
-                console.log(this.roomList);
-
-                this.roomList = this.roomList.filter(item => item.roomName.includes('家庭房'))
-            })
-            .catch(error => console.error(error))
-            
-        },
+            this.$router.push('/FamilyBooking')
+        }
     },
     components:{
         Footer
@@ -90,7 +58,6 @@ export default{
         margin-top: 6vmin;
         .date{
             width: 60vw;
-            //border: 1px solid black;
             display: flex;
             justify-content: space-around;
             align-content: center;
@@ -135,8 +102,10 @@ export default{
                 height: 28vh;
                 border-radius: 5px;
                 margin-right: 5vmin;
+                transition: all linear 0.3s;
                 &:hover{
-                    opacity: 0.6;
+                    opacity: 0.7;
+                    box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
                 }
                 &:active{
                     opacity: 1.0;
@@ -144,7 +113,6 @@ export default{
             }
             .text{
                 height: 23vh;
-                //border: 1px solid black;
                 hr{
                     margin: 0;
                 }

@@ -6,9 +6,6 @@ export default{
 
         }
     },
-    methods:{
-
-    },
     components:{
         Footer
     }
@@ -159,6 +156,7 @@ export default{
                 width: 55vw;
                 height: 53vh;
                 border-radius: 10px;
+                transition: all ease 0.5s;
                 &:hover{
                     opacity: 0.6;
                 }
@@ -214,6 +212,7 @@ export default{
                     width: 22vw;
                     height: 27vh;
                     border-radius: 5px;
+                    transition: all ease 0.5s;
                     &:hover{
                         opacity: 0.6;
                     }

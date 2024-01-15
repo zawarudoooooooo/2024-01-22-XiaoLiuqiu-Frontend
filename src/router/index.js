@@ -152,16 +152,19 @@ const router = createRouter({
       name: 'FrontMessage',
       component: () => import('../views/FrontEnd/FrontMessage.vue')
     },
+  //前台登錄
     {
       path: '/FrontLogin',
       name: 'FrontLogin',
       component: () => import('../views/FrontEnd/FrontLogin.vue')
     },
+//前台註冊
     {
       path: '/FrontSignUp',
       name: 'FrontSignUp',
       component: () => import('../views/FrontEnd/FrontSignUp.vue')
     },
+//前台使用者頁面
     {
       path: '/FrontPersonInfo',
       name: 'FrontPersonInfo',
@@ -173,44 +176,23 @@ const router = createRouter({
       name: 'BackLogin',
       component: () => import('../views/BackEnd/BackLogin.vue')
     },
+  //後台訂單
+    {
+      path: '/BackOrder',
+      name: 'BackOrder',
+      component: () => import('../views/BackEnd/BackOrder.vue')
+    },
 //後台房間
     {
-      path: '/BackSimpleDouble',
-      name: 'BackSimpleDouble',
-      component: () => import('../views/BackEnd/BackRoom/BackSimpleDouble.vue')
+      path: '/BackRoom',
+      name: 'BackSRoom',
+      component: () => import('../views/BackEnd/BackRoom.vue')
     },
+//後台員工
     {
-      path: '/BackDouble',
-      name: 'BackDouble',
-      component: () => import('../views/BackEnd/BackRoom/BackDouble.vue')
-    },
-    {
-      path: '/BackFamily',
-      name: 'BackFamily',
-      component: () => import('../views/BackEnd/BackRoom/BackFamily.vue')
-    },
-//後台觀光
-    {
-      path: '/BackTourist',
-      name: 'BackTourist',
-      component: () => import('../views/BackEnd/BackTourist.vue')
-    },
-//後台租車
-    {
-      path: '/BackBicycle',
-      name: 'BackBicycle',
-      component: () => import('../views/BackEnd/BackRent/BackBicycle.vue')
-    },
-    {
-      path: '/BackScooter',
-      name: 'BackScooter',
-      component: () => import('../views/BackEnd/BackRent/BackScooter.vue')
-    },
-//後台套票
-    {
-      path: '/BackTicket',
-      name: 'BackTicket',
-      component: () => import('../views/BackEnd/BackTicket.vue')
+      path: '/BackStaff',
+      name: 'BackStaff',
+      component: () => import('../views/BackEnd/BackStaff.vue')
     },
   ]
 })

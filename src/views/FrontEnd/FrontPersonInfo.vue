@@ -1,5 +1,6 @@
 <script>
 import Footer from '../../components/Footer.vue';
+import axios from 'axios';
 export default{
     data(){
         return{
@@ -7,13 +8,65 @@ export default{
             phone:"",
             email:"",
 
+
+            useravatar:"",
+            msgavatar:"",
             //頁面切換
             personInfoPage:true,
             orderPage:false,
-            messagePage:false
+            messagePage:false,
+
+            cookie:"",
+            memberInfo:""
         }
     },
     methods:{
+//使用者照片上傳
+        onfileuser(event){
+            this.file=event.target.files[0]
+            let filereader=new FileReader();
+            filereader.readAsDataURL(this.file)
+            filereader.addEventListener("load",()=>{
+                this.useravatar=filereader.result;
+                console.warn(this.useravatar)
+            })
+        },
+//貼文照片上傳
+        onfilemsg(event){
+            this.file=event.target.files[0]
+            let filereader=new FileReader();
+            filereader.readAsDataURL(this.file)
+            filereader.addEventListener("load",()=>{
+                this.msgavatar=filereader.result;
+                console.warn(this.msgavatar)
+            })
+        },
+        test(){
+            let arr = document.querySelectorAll(".img");
+            Promise.all(Array.from(arr).map((item)=>{
+                if(item.files[0] != undefined ){
+                    this.imgConvert((item.className.split("")[0], (item.files[0])))
+                }
+                return Promise.resolve();
+            }))
+        },
+//圖片轉換
+        imgConvert(key, data){
+            return new Promise((resolve) =>{
+                imageConversion.compressAccurately(data, 80).then((res) =>{
+                    let reader = new FileReader();
+                    if(res){
+                        reader.readAsDataURL(res)
+                    }
+                    reader.onload = () =>{
+                        let base64 = reader.result;
+                        this.map.set(key, base64);
+                        resolve(base64);
+                    }
+                })
+            })
+        },
+//頁面切換
         personInfoShow(){
             this.personInfoPage=true
             this.orderPage=false,
@@ -30,6 +83,33 @@ export default{
             this.orderPage=false
         },
     },
+    mounted(){
+        this.cookie=document.cookie.split("=")[1];
+
+        // console.log(this.cookie);
+
+        axios({
+            url:'http://localhost:8080/member/member',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+                account:this.cookie
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            res.data.memberList.forEach(element => {
+                this.memberInfo=element
+                // console.log(this.memberInfo);
+
+            });
+            // this.memberInfo=
+            // console.log(this.memberInfo);
+            })
+    },
     components:{
         Footer
     }
@@ -41,25 +121,32 @@ export default{
         <div class="buttonArea">
             <button type=button @click="personInfoShow()"><i class="fa-solid fa-user"></i>會員資料</button>
             <button type=button @click="orderPageShow()"><i class="fa-solid fa-list"></i>訂單資訊</button>
-            <button type=button @click="messagePageShow()"><i class="fa-solid fa-message"></i>發表回饋</button>
+            <button type=button @click="messagePageShow()"><i class="fa-solid fa-message"></i>發表貼文</button>
         </div>
+<!-- 會員資料頁面 -->
         <div class="personInfo" v-if="personInfoPage">
-            <div class="title">
-                <p><i class="fa-solid fa-map-pin"></i>會員資訊</p>
-            </div>
+            <p id="location"><i class="fa-solid fa-map-pin"></i>會員資訊</p>
             <hr>
+            <div class="user">
+                <label>
+                    <input id="upload_input" type="file" @change="onfileuser">
+                        <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
+                        <img :src="useravatar" class="upload_cover" alt="">
+                        <!-- <v-avatar>
+                            <img :src="useravatar" alt="" 
+                            style="width: 17.5vmin;height: 17.5vmin;border-radius: 50%;
+                            position: absolute;top: 2%;left: 2%;">
+                        </v-avatar> -->
+                </label>
+            </div>
             <div class="name">
-                <p>姓名 : 海龜王子</p>
+                <p>姓名 : {{this.memberInfo.memberName}}</p>
             </div>
             <div class="phone">
-                <p>電話 : 09-12345678</p>
+                <p>電話 : 0{{this.memberInfo.memberPhone}}</p>
             </div>
             <div class="email">
-                <p>E-mail : kameprince@gmail.com</p>
-            </div>
-            <div class="password">
-                <p>密碼 : **********</p>
-            
+                <p>E-mail : {{this.memberInfo.memberEmail}}</p>
             </div>
             <div class="personInfoBtn">
                 <button type="button"  data-bs-toggle="modal" 
@@ -68,12 +155,12 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
-                <button type="button">儲存</button>
+                <!-- <button type="button">儲存</button> -->
             </div>
         </div>
         <!-- 更改資料modal視窗 -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">更改資料</h5>
@@ -102,8 +189,8 @@ export default{
             </div>
         </div>
         <!-- 更改密碼modal視窗 -->
-                <div class="modal fade" id="exampleModalPwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="exampleModalPwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">更改密碼</h5>
@@ -131,10 +218,9 @@ export default{
                 </div>
             </div>
         </div>
+<!-- 訂單資訊頁面 -->
         <div class="order" v-if="orderPage">
-            <div class="title">
-                <p><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
-            </div>
+            <p id="location"><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
             <hr>
             <div class="orderNum">
                 <p>訂單編號 : A01</p>
@@ -155,10 +241,9 @@ export default{
                 <p>付款期限 : </p>
             </div>
         </div>
+<!-- 發表回饋頁面 -->
         <div class="message" v-if="messagePage">
-            <div class="title">
-                <p><i class="fa-solid fa-map-pin"></i>貼文</p>
-            </div>
+            <p id="location"><i class="fa-solid fa-map-pin"></i>貼文</p>
             <hr>
             <div class="topic">
                 <p>標題</p>
@@ -169,10 +254,51 @@ export default{
                 <textarea placeholder="請輸入內容"></textarea>
             </div>
             <div class="img">
-                <p>相片</p>
-                <input type="file">
+                <p>新增相片</p>
+                <label>
+                    <i class="fa-solid fa-images" id="addicon"></i>
+                    <input type="file" multiple="multiple" class="addimg" @change="onfilemsg">
+                </label>
             </div>
-            <button type="button">發布</button>
+            <div class="msgBtnArea">
+                <button type="button"  data-bs-toggle="modal" 
+                        data-bs-target="#exampleModalmsg">預覽
+                </button>
+                <button type="button">發布</button>
+            </div>
+        </div>
+<!-- 貼文預覽視窗 -->
+        <div class="modal fade" id="exampleModalmsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">貼文預覽</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">標題 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">內容 :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">照片 :</label>
+                                <br>
+                                <div class="imgArea">
+                                    <img :src="msgavatar" class="msgimg" alt="">
+                                </div>                
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <Footer/>
@@ -180,7 +306,7 @@ export default{
 
 <style lang="scss" scoped>
         .content{
-        width: 65vw;
+        width: 63vw;
         height: 65vh;
         margin: auto;
         margin-top: 6vmin;
@@ -219,15 +345,29 @@ export default{
             }
         }
         .personInfo{
-            width: 30vw;
-            height: 55vh;
+            width: 25vw;
+            height: 35vh;
             //border: 1px solid black;
-            position: relative;
-            .title{
-                p{
-                    font-size: 28pt;
-                    font-weight: bold;
-                    color: #82AAE3;
+            margin-top: 1%;
+            #location{
+                font-size: 24pt;
+                font-weight: bold;
+                color: #82AAE3;
+                margin: 0;
+            }           
+            .user{
+                .upload_cover{
+                    width: 20vmin;
+                    height: 20vmin;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    position: absolute;
+                    right: 6%;
+                    top: -3%;
+                    border: 1px solid#797A7E;
+                }
+                #upload_input{
+                    display: none;
                 }
             }
             p{
@@ -241,8 +381,8 @@ export default{
                 display: flex;
                 justify-content: space-around;
                 position: absolute;
-                right: 0;
-                bottom: 3%;
+                right: 6%;
+                bottom: 10%;
                 //border: 1px solid black;
                 button{
                     width: 6vw;
@@ -266,13 +406,12 @@ export default{
             width: 30vw;
             height: 40vh;
             //border: 1px solid black;
-            .title{
-                p{
-                    font-size: 28pt;
-                    font-weight: bold;
-                    color: #82AAE3;
-                }
-            }
+            #location{
+                font-size: 24pt;
+                font-weight: bold;
+                color: #82AAE3;
+                margin: 0;
+            } 
             p{
                 font-size: 16pt;
                 color: #797A7E;
@@ -284,13 +423,12 @@ export default{
             height: 58vh;
             //border: 1px solid black;
             position: relative;
-            .title{
-                p{
-                    font-size: 28pt;
-                    font-weight: bold;
-                    color: #82AAE3;
-                }
-            }
+            #location{
+                font-size: 24pt;
+                font-weight: bold;
+                color: #82AAE3;
+                margin: 0;
+            } 
             .topic{
                 p{
                     margin: 0;
@@ -298,7 +436,7 @@ export default{
                     color: #797A7E;
                 }
                 input{
-                    width: 20vw;
+                    width: 30vw;
                     height: 5vh;
                     border-radius: 10px;
                     border-style: none;
@@ -315,36 +453,71 @@ export default{
                     color: #797A7E;
                 }
                 textarea{
-                    width: 20vw;
+                    width: 30vw;
                     height: 15vh;
                     border-radius: 5px;
                     outline: none;
                     margin-bottom: 1vmin;
+                    padding: 1vmin;
                 }
             }
             .img{
+                display: flex;
                 p{
                     margin: 0;
                     font-size: 16pt;
                     color: #797A7E;
                 }
+                #addicon{
+                    font-size: 22pt;
+                    color: #797A7E;
+                    margin-left: 1vmin;
+                }
+                .addimg{
+                    display: none;
+                }
             }
-            button{
-                width: 6vw;
-                height: 4.5vh;
-                border: none;
-                border-radius: 5px;
-                color: #797A7E;
-                font-size: 13pt;
+            .msgBtnArea{
+                width: 15vw;
+                height: 10vh;
+                //border: 1px solid black;
+                display: flex;
+                justify-content: space-around;
                 position: absolute;
                 right: 0;
-                &:hover{
-                    background-color: #797A7E;
-                    color: white;
-                }
-                &:active{
-                    background-color: #F7F2E7;
+                //top: 3%;
+                bottom: -7%;
+                button{
+                    width: 6vw;
+                    height: 4.5vh;
+                    border: none;
+                    border-radius: 5px;
                     color: #797A7E;
+                    font-size: 13pt;
+                    &:hover{
+                        background-color: #797A7E;
+                        color: white;
+                    }
+                    &:active{
+                        background-color: #F7F2E7;
+                        color: #797A7E;
+                    }   
+                }
+            }
+        }
+        .modal-content{
+            .modal-body{
+                .mb-3{
+                    .imgArea{
+                        width: 25vw;
+                        border: 1px solid black;
+                        display: flex;
+                        flex-wrap: wrap;
+                        .msgimg{
+                            width: 10vw;
+                            height: 15vh;
+                        }
+                    }
                 }
             }
         }

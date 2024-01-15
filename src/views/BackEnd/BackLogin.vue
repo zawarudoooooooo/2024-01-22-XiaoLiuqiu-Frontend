@@ -10,7 +10,7 @@ export default{
             this.$router.push('/')
         },
         goBack(){
-            this.$router.push('/BackSimpleDouble')
+            this.$router.push('/BackOrder')
         }
     }
 }
@@ -19,7 +19,7 @@ export default{
 <template>
     <div class="content">
         <div class="title">
-            <p>員工登錄</p>
+            <p>員工登錄<i class="fa-solid fa-user-gear"></i></p>
         </div>
         <div class="account">
             <p>帳號</p>
@@ -41,7 +41,9 @@ export default{
         width: 20vw;
         margin: auto;
         margin-top: 8vmin;
-
+        i{
+            margin-left: 2vmin;
+        }
         input{
             width: 20vw;
             height: 5vh;
@@ -83,7 +85,6 @@ export default{
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
-
                 &:hover{
                     background-color: #797A7E;
                     color: white;
