@@ -87,7 +87,7 @@ export default{
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
             <div class="room">
-                <img src="../../../../public/room/simpledouble.jpg" alt="">
+                <img src="../../../../public/room/simpledouble.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
                         <p>小資雙人房</p>
@@ -114,7 +114,7 @@ export default{
                 <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
             </div>
             <div class="room">
-                <img src="../../../../public/room/double.jpg" alt="">
+                <img src="../../../../public/room/double.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
                         <p>舒適雙人房</p>
@@ -141,7 +141,7 @@ export default{
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
             <div class="room">
-                <img src="../../../../public/room/family.jpg" alt="">
+                <img src="../../../../public/room/family.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
                         <p>豪華家庭房</p>
