@@ -10,7 +10,7 @@ export default{
             this.$router.push('/BackOrder')
         },
         room(){
-            this.$router.push('/BackSimpleDouble')
+            this.$router.push('/BackRoom')
         },
         staff(){
             this.$router.push('/BackStaff')
