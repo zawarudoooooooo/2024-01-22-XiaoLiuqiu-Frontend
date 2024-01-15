@@ -68,7 +68,7 @@ export default{
 
 <template>
     <div class="title">
-        <p>房型管理</p>
+        <p>房型管理<i class="fa-solid fa-bed"></i></p>
     </div>
     <div class="content">
         <div class="side">
@@ -217,13 +217,16 @@ export default{
         color: #82AAE3;
         text-align: center;
         margin-top: 3vmin;
+        i{
+            margin-left: 1vmin;
+        }
     }
     .content{
-        width: 90vw;
+        width: 80vw;
         height: 50vh;
         margin: auto;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         margin-top: 5vmin;
         position: relative;
         //border: 1px solid black;

@@ -10,7 +10,7 @@ export default{
             this.$router.push('/')
         },
         goBack(){
-            this.$router.push('/BackRoom')
+            this.$router.push('/BackOrder')
         }
     }
 }

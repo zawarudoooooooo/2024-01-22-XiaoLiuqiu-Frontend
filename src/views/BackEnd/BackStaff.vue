@@ -16,14 +16,14 @@ export default {
             url:'http://localhost:8080/employee/createMaster',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             data:{
                 account:this.account,
                 password:this.pwd,
                 access:false
             },
-          }).then(res=>{
+            }).then(res=>{
             swal("新增帳號", "新增成功", "success");
             this.account=""
             console.log(res.data);
@@ -35,14 +35,14 @@ export default {
             url:'http://localhost:8080/employee/search',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             data:{
                 account:"",
                 password:"",
                 access:false
             },
-          }).then(res=>{
+            }).then(res=>{
             this.employee = res.data.employeeList;
             console.log(this.employee);
             })
@@ -55,39 +55,42 @@ export default {
 
 <template>
     <div class="title">
-        <p>員工管理</p>
+        <p>員工管理<i class="fa-solid fa-users"></i></p>
     </div>
     <div class="content">
-        <div class="side">
-            <backSideBar />
-        </div>
         <div class="list">
-            <div class="buttonArea">
-                <button type="button" data-bs-toggle="modal" 
+            <div class="side">
+                <backSideBar />
+            </div>
+            <div class="show">
+                <div class="buttonArea">
+                    <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增人員
-                </button>
-                <button type="button" data-bs-toggle="modal" 
+                    </button>
+                    <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModalpwd">修改密碼
-                </button>
+                    </button>
+                </div>
+                <div class="employee">
+                    <table>
+                        <thead>
+                            <td>員工編號</td>
+                            <td>員工帳號</td>
+                            <td>職位</td>
+                        </thead>
+                        <tbody>
+                            <tr v-for=" (item) in employee">
+                                <td>{{ item.employeeId }}</td>
+                                <td>{{ item.account }}</td>
+                                <td v-if="item.access">主管</td>
+                                <td v-if="!item.access">員工</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="employee">
-            <table>
-                    <thead>
-                        <td>員工編號</td>
-                        <td>員工帳號</td>
-                        <td>職位</td>
-                    </thead>
-                    <tbody>
-                        <tr v-for=" (item) in employee">
-                        <td>{{ item.employeeId }}</td>
-                        <td>{{ item.account }}</td>
-                        <td v-if="item.access">主管</td>
-                        <td v-if="!item.access">員工</td>
-                        </tr>
-                    </tbody>
-            </table>
-        </div>
+
 <!-- 新增人員modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -153,45 +156,69 @@ export default {
         color: #82AAE3;
         text-align: center;
         margin-top: 3vmin;
+        i{
+            margin-left: 1vmin;
+        }
     }
     .content{
         width: 90vw;
         height: 50vh;
         margin: auto;
-        display: flex;
         margin-top: 5vmin;
-        justify-content: space-around;
-        //border: 1px solid black;
         .list{
-            width: 60vw;
-            position: relative;
+            width: 80vw;
+            height: 50vh;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
             //border: 1px solid black;
-            .buttonArea{
-                width: 20vw;
-                //border: 1px solid black;
-                display: flex;
-                justify-content: space-between;
-                position: absolute;
-                right: 20%;
-                button {
-                    width: 8vw;
-                    height: 5vh;
-                    border: none;
-                    border-radius: 5px;
-                    color: #797A7E;
-                    &:hover {
-                        background-color: #797A7E;
-                        color: white;
-                    }
-                    &:active {
-                        background-color: #F7F2E7;
+            position: relative;
+            .show{
+                .buttonArea{
+                    width: 20vw;
+                    display: flex;
+                    justify-content: space-between;
+                    //border: 1px solid black;
+                    button {
+                        width: 8vw;
+                        height: 5vh;
+                        border: none;
+                        border-radius: 5px;
                         color: #797A7E;
+                        &:hover {
+                            background-color: #797A7E;
+                            color: white;
+                        }
+                        &:active {
+                            background-color: #F7F2E7;
+                            color: #797A7E;
+                        }
+                    }
+                }
+                .employee{
+                    font-size: 20pt;
+                    color: #797A7E;
+                    table{
+                        width: 60vw;
+                        text-align: center;
+                        position: absolute;
+                        left: 25%;
+                        top: 15%;
+                        thead{
+                            td{
+                                border: 2px solid #797A7E;
+                            }
+                        }
+                        tbody{
+                            tr{
+                                td{
+                                    border: 2px solid #797A7E;
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-        table{
-            border: 1px solid black;
         }
     }
 </style>
