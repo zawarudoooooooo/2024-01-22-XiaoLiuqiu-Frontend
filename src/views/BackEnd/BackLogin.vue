@@ -1,8 +1,11 @@
 <script>
+import axios from 'axios';
+import swal from 'sweetalert';
 export default{
     data(){
         return{
-
+            account:"",
+            pwd:"",
         }
     },
     methods:{
@@ -10,7 +13,38 @@ export default{
             this.$router.push('/')
         },
         goBack(){
-            this.$router.push('/BackSimpleDouble')
+            axios({
+                url: 'http://localhost:8080/employee/login',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials:true,
+                data: {
+                    account:this.account,
+                    password:this.pwd,
+                },
+            }).then(res => {
+
+                swal({
+                        title: '登錄成功',
+                        text: '歡迎回來',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            this.$router.push('/BackSimpleDouble')
+                          // 在这里可以执行页面刷新的操作
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
+                console.log(res.data);
+                
+            });
         }
     }
 }
@@ -23,11 +57,11 @@ export default{
         </div>
         <div class="account">
             <p>帳號</p>
-            <input type="text" placeholder="請輸入員工帳號">
+            <input type="text" v-model="this.account" placeholder="請輸入員工帳號">
         </div>
         <div class="password">
             <p>密碼</p>
-            <input type="password" placeholder="請輸入密碼">
+            <input type="password" v-model="this.pwd" placeholder="請輸入密碼">
         </div>
         <div class="buttonArea">
             <button type="button" @click="goFrontEntry()">取消</button>

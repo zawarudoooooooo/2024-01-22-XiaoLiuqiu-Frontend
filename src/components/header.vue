@@ -1,10 +1,12 @@
 <script>
 import axios from 'axios';
+import swal from 'sweetalert';
 import { RouterLink, RouterView } from 'vue-router'
 export default{
     data(){
         return{
-            cookie:""
+            cookie:"",
+            cookieTest:""
         }
     },
     methods: {
@@ -26,7 +28,58 @@ export default{
             },
           }).then(res=>{
             console.log(res.data);
-            this.$router.push('/')
+
+            swal({
+                        title: '登出成功',
+                        text: '以登出',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            this.$router.push('/')
+                          // 在这里可以执行页面刷新的操作
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
+            })
+        },
+        employeeLogout(){
+            axios({
+            url:'http://localhost:8080/employee/logout',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            withCredentials:true,
+            params:{
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            console.log(res.data);
+
+            swal({
+                        title: '登出成功',
+                        text: '以登出',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            this.$router.push('/')
+                          // 在这里可以执行页面刷新的操作
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
+            
             })
         },
         
@@ -34,7 +87,8 @@ export default{
     mounted(){
         this.cookie=document.cookie;
         // console.log(this.cookie);
-        // console.log(this.cookie.split("=")[1]);
+        this.cookieTest=this.cookie.split("=")[0]
+        // console.log(this.cookieTest);
     }
 }
 </script>
@@ -71,8 +125,11 @@ export default{
                         <li class="nav-item" v-if="this.cookie==''">
                             <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user-check"></i>登錄</RouterLink>
                         </li>
-                        <li class="nav-item" v-if="this.cookie!=''">
-                            <button @click="logout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>登出</button>
+                        <li class="nav-item" v-if="this.cookie!=''&&this.cookieTest!='employee'">
+                            <button @click="logout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>會員登出</button>
+                        </li>
+                        <li class="nav-item" v-if="this.cookie!=''&&this.cookieTest=='employee'">
+                            <button @click="employeeLogout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>員工登出</button>
                         </li>
                     </ul>
                 </div>
