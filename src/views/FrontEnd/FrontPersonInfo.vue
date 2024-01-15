@@ -1,5 +1,6 @@
 <script>
 import Footer from '../../components/Footer.vue';
+import axios from 'axios';
 export default{
     data(){
         return{
@@ -13,7 +14,10 @@ export default{
             //頁面切換
             personInfoPage:true,
             orderPage:false,
-            messagePage:false
+            messagePage:false,
+
+            cookie:"",
+            memberInfo:""
         }
     },
     methods:{
@@ -79,6 +83,33 @@ export default{
             this.orderPage=false
         },
     },
+    mounted(){
+        this.cookie=document.cookie.split("=")[1];
+
+        // console.log(this.cookie);
+
+        axios({
+            url:'http://localhost:8080/member/member',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+                account:this.cookie
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            res.data.memberList.forEach(element => {
+                this.memberInfo=element
+                // console.log(this.memberInfo);
+
+            });
+            // this.memberInfo=
+            // console.log(this.memberInfo);
+            })
+    },
     components:{
         Footer
     }
@@ -109,17 +140,13 @@ export default{
                 </label>
             </div>
             <div class="name">
-                <p>姓名 : 海龜王子</p>
+                <p>姓名 : {{this.memberInfo.memberName}}</p>
             </div>
             <div class="phone">
-                <p>電話 : 09-12345678</p>
+                <p>電話 : 0{{this.memberInfo.memberPhone}}</p>
             </div>
             <div class="email">
-                <p>E-mail : kameprince@gmail.com</p>
-            </div>
-            <div class="password">
-                <p>密碼 : **********</p>
-            
+                <p>E-mail : {{this.memberInfo.memberEmail}}</p>
             </div>
             <div class="personInfoBtn">
                 <button type="button"  data-bs-toggle="modal" 
@@ -128,7 +155,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
-                <button type="button">儲存</button>
+                <!-- <button type="button">儲存</button> -->
             </div>
         </div>
         <!-- 更改資料modal視窗 -->

@@ -1,13 +1,51 @@
 <script>
+import axios from 'axios';
+import swal from 'sweetalert';
 import backSideBar from '../../components/backSideBar.vue';
 export default {
     data(){
         return{
-
+            employee:"",
+            account:"",
+            pwd:"qaz159",
         }
     },
     methods:{
-
+        employeeAdd(){
+            axios({
+            url:'http://localhost:8080/employee/createMaster',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            data:{
+                account:this.account,
+                password:this.pwd,
+                access:false
+            },
+          }).then(res=>{
+            swal("新增帳號", "新增成功", "success");
+            this.account=""
+            console.log(res.data);
+            })
+        }
+    },
+    mounted(){
+        axios({
+            url:'http://localhost:8080/employee/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            data:{
+                account:"",
+                password:"",
+                access:false
+            },
+          }).then(res=>{
+            this.employee = res.data.employeeList;
+            console.log(this.employee);
+            })
     },
     components:{
         backSideBar
@@ -33,6 +71,23 @@ export default {
                 </button>
             </div>
         </div>
+        <div class="employee">
+            <table>
+                    <thead>
+                        <td>員工編號</td>
+                        <td>員工帳號</td>
+                        <td>職位</td>
+                    </thead>
+                    <tbody>
+                        <tr v-for=" (item) in employee">
+                        <td>{{ item.employeeId }}</td>
+                        <td>{{ item.account }}</td>
+                        <td v-if="item.access">主管</td>
+                        <td v-if="!item.access">員工</td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
 <!-- 新增人員modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -44,17 +99,13 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">人員編號 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">人員名稱 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">人員帳號 :</label>
+                                <input type="text" class="form-control" v-model="this.account" id="recipient-name">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認新增</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeAdd()">確認新增</button>
                     </div>
                 </div>
             </div>
@@ -70,7 +121,7 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">人員編號 :</label>
+                                <label for="recipient-name" class="col-form-label">舊密碼 :</label>
                                 <input type="text" class="form-control" id="recipient-name">
                             </div>
                             <div class="mb-3">
@@ -92,6 +143,7 @@ export default {
 
     </div>
 
+    
 </template>
 
 <style lang="scss" scoped>
@@ -137,6 +189,9 @@ export default {
                     }
                 }
             }
+        }
+        table{
+            border: 1px solid black;
         }
     }
 </style>
