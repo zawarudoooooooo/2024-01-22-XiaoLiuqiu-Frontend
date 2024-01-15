@@ -10,7 +10,7 @@ export default{
             this.$router.push('/')
         },
         goBack(){
-            this.$router.push('/BackSimpleDouble')
+            this.$router.push('/BackOrder')
         }
     }
 }
