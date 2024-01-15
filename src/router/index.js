@@ -184,19 +184,9 @@ const router = createRouter({
     },
 //後台房間
     {
-      path: '/BackSimpleDouble',
-      name: 'BackSimpleDouble',
-      component: () => import('../views/BackEnd/BackRoom/BackSimpleDouble.vue')
-    },
-    {
-      path: '/BackDouble',
-      name: 'BackDouble',
-      component: () => import('../views/BackEnd/BackRoom/BackDouble.vue')
-    },
-    {
-      path: '/BackFamily',
-      name: 'BackFamily',
-      component: () => import('../views/BackEnd/BackRoom/BackFamily.vue')
+      path: '/BackRoom',
+      name: 'BackSRoom',
+      component: () => import('../views/BackEnd/BackRoom.vue')
     },
 //後台員工
     {
