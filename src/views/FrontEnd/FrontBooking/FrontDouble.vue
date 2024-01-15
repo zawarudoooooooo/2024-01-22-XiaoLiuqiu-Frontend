@@ -1,15 +1,52 @@
 <script>
+import axios from 'axios';
 import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
-
+            roomList:[],
+            roomId:"",
+            roomTypeId: "",
+            roomIntroduce:"",
+            roomTypeId2:"",
+            roomName:"",
+            roomPrice:"",
         }
+    },
+    mounted() {
+        this.search();
     },
     methods:{
         booking(){
             this.$router.push('/DoubleBooking')
-        }
+        },
+        search(){
+            this.roomList = []
+
+            axios({
+                url:'http://localhost:8080/room/search',
+                method: "POST",
+                headers:{"Content-Type": "application/json",},
+                data: ({
+                    room_id: this.roomId,
+                    room_type_id: this.roomTypeId,
+                    room_introduce: this.roomIntroduce,
+                    room_name: this.roomName,
+                    room_price: this.roomPrice
+                })
+                
+            })
+            .then(res => {
+                this.roomList = res.data.roomList
+                console.log(this.roomList);
+
+                this.roomList = this.roomList.filter(item => item.roomName.includes('雙人房'))
+
+                this.roomList = this.roomList.filter(item => item.roomPrice >= 2000);
+            })
+            .catch(error => console.error(error))
+            
+        },
     },
     components:{
         Footer
@@ -29,17 +66,16 @@ export default{
                 <input type="date">
             </div>
         </div>
-        <div class="show">
+        <div class="show" v-for="item in roomList" >
             <img src="../../../../room/double.jpg" alt="">
             <div class="text">
-                <div class="name">
-                    <p>舒適雙人房</p>
-                    <p>$2500</p>
+                <div class="name" >
+                    <p>{{ item.roomName }}</p>
+                    <p>$ {{ item.roomPrice }}</p>
                 </div>
                 <hr>
-                <div class="description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam magnam sint quo sapiente? Libero quis, esse suscipit quia magnam molestiae.
-                    </p>
+                <div class="description" >
+                    <p>{{ item.roomIntroduce }}</p>
                 </div>
                 <button type="button" @click="booking()">訂購</button>
             </div>
