@@ -29,10 +29,25 @@ export default {
                     password:this.pwd,
                 },
             }).then(res => {
+                
                 console.log(res.data)
                 if(res.data.message=="Successful!!"){
-                swal("登錄成功", "歡迎回來", "success");
-                this.$router.push('FrontPersonInfo')
+                    swal({
+                        title: '登錄成功',
+                        text: '歡迎回來',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            this.$router.push('/')
+                          // 在这里可以执行页面刷新的操作
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
             }else{
                 swal("錯誤", "請輸入帳號或密碼", "error");
             }

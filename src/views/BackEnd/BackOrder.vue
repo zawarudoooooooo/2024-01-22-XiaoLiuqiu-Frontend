@@ -1,13 +1,58 @@
 <script>
+import axios from 'axios';
 import backSideBar from '../../components/backSideBar.vue';
 export default {
     data(){
         return{
-
+            orders:[],
+            roomId:"",
+            orderItem:"",
         }
     },
     methods:{
-
+        roomIdF(index){
+            this.roomId=""
+            this.orders.forEach((item,ordersIndex)=>{
+                if(ordersIndex!=index){
+                    return
+                }
+                this.roomId= item.roomId
+                console.log(this.roomId);
+            })
+        },
+        orderItemF(index){
+            this.roomId=""
+            this.orders.forEach((item,ordersIndex)=>{
+                if(ordersIndex!=index){
+                    return
+                }
+                this.orderItem= item.orderItem
+                console.log(this.orderItem);
+            })
+        }
+    },
+    mounted(){
+        axios({
+            url:'http://localhost:8080/order/search',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            data:{
+                
+            },
+            }).then(res=>{
+            // console.log(res.data.orderList);
+            res.data.orderList.forEach(element => {
+                let dayTime=new Date(element.orderDateTime)
+                console.log(element.orderDateTime);
+                
+                element.orderDateTime=dayTime.getFullYear()+"年"+(dayTime.getMonth()+1)+"月"+dayTime.getDate()+"日"+" "+dayTime.getHours()+":"+dayTime.getMinutes()+":"+dayTime.getSeconds()
+                this.orders.push({orderId:element.orderId,memberName:element.memberName,orderItem:JSON.parse(element.orderItem),
+                    roomId:JSON.parse(element.roomId),startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime})
+                });
+                console.log(this.orders);
+            })
     },
     components:{
         backSideBar
@@ -27,23 +72,110 @@ export default {
         </div>
         <div class="show">
             <table>
+                <thead>
                 <tr>
                     <td>訂單編號</td>
-                    <td>開始時間</td>
-                    <td>結束時間</td>
+                    <td>會員名稱</td>
+                    <td>入住時間</td>
+                    <td>退房時間</td>
+                    <td>訂購項目</td>
                     <td>加購項目</td>
+                    <td>訂單時間</td>
                     <td>訂單狀態</td>
                 </tr>
-                <th>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in orders">
+                    <td>{{ item.orderId }}</td>
+                    <td>{{ item.memberName }}</td>
+                    <td>{{ item.startDate }}</td>
+                    <td>{{ item.endDate }}</td>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderItem" @click="roomIdF(index)" data-bs-whatever="@mdo">查看</button></td>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#roomId" @click="orderItemF(index)" data-bs-whatever="@mdo">查看</button></td>
+                    <td>{{ item.orderDateTime }}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </th>
+                </tr>
+            </tbody>
             </table>
         </div>
     </div>
+    <!-- 訂購項目model -->
+    <div class="modal fade" id="orderItem" tabindex="-1" aria-labelledby="orderItem" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderItem">訂購項目</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <table>
+                <thead>
+                <tr>
+                    <td>訂單編號</td>
+                    <td>會員名稱</td>
+                    <td>入住時間</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in roomId">
+                    <td>{{ item.roomId }}</td>
+                    <td>{{ item.roomIntroduce }}</td>
+                    <td>{{ item.roomTypeId }}</td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- 加購項目model -->
+    <div class="modal fade" id="roomId" tabindex="-1" aria-labelledby="roomId" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="roomId">加購項目</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <table>
+                <thead>
+                <tr>
+                    <td>加購項目</td>
+                    <td>加購價格</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in orderItem">
+                    <td>{{ item.extraName }}</td>
+                    <td>{{ item.extraPrice }}</td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </template>
 
 <style lang="scss" scoped>
@@ -76,7 +208,7 @@ export default {
         .show{
             table{
                 width:55vw;
-                font-size: 20pt;
+                font-size: 12pt;
                 color: #797A7E;
                 position: absolute;
                 text-align: center;
