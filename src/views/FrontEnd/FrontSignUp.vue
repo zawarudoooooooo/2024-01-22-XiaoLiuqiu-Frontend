@@ -59,14 +59,6 @@ export default {
         goEntry(){
             this.$router.push('/')
         },
-        // test(){
-        //     console.log(this.account);
-        //     console.log(this.pwd);
-        //     console.log(this.memberName);
-        //     console.log(this.memberPhone);
-        //     console.log(this.memberEmail);
-        //     this.$router.push('/')
-        // }
     },
     components: {
         Footer

@@ -36,7 +36,7 @@ export default {
                 console.log(res.data)
                 if(res.data.message=="Successful!!"){
                     swal({
-                        title: '登錄成功',
+                        title: '登入成功',
                         text: '歡迎回來',
                         icon: 'success',
                         buttons: '確認',
@@ -74,7 +74,7 @@ export default {
 <template>
     <div class="content">
         <div class="title">
-            <p>登錄<i class="fa-solid fa-user-lock"></i></p>
+            <p>登入<i class="fa-solid fa-user-lock"></i></p>
         </div>
         <div class="account">
             <p>帳號</p>
@@ -86,7 +86,7 @@ export default {
         </div>
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
-            <button type="button" @click="login()">登錄</button>
+            <button type="button" @click="login()">登入</button>
         </div>
     </div>
     <i class="fa-solid fa-gear" @click="goBackLogin()" id="back"></i>
