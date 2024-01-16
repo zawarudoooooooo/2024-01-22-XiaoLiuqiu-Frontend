@@ -79,7 +79,7 @@ export default{
                         </div>
                     </div>
                     <div class="card" style="width: 18rem;">
-                        <img src="../../../public/other/welcomedrink.jpg" style="height: 24vh;" class="card-img-top" alt="...">
+                        <img src="../../../public/other/welcomedrink.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text">WelcomeDrink<br/>入住即享有<br/>讓您體驗離島微醺假期</p>
                         </div>
@@ -214,6 +214,10 @@ export default{
                                 text-align: center;
                             }
                         }
+                        .card-img-top{
+                            height: 25vh;
+                        }
+
                     }
                 }
             }
@@ -253,6 +257,65 @@ export default{
                     width: 40vw;
                     height: 55vh;
                     border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    @media(max-width:1200px){
+        .content{
+            height: 85vh;
+            .slideShow{
+                height: 30vh;
+                .carousel-inner{
+                    .carousel-item{
+                        img{
+                            height: 30vh;
+                        }
+                    }
+                }
+            }
+            .about{
+                height: 20vh;
+                margin-top: 3vmin;
+                .iconArea{
+                    height: 18vh;
+                    margin-top: 5.5vmin;
+                    .icon{
+                        height: 7vh;
+                        padding: 2vmin;
+                        i{
+                            font-size: 26pt;
+                        }
+                        p{
+                            font-size: 11pt;
+                            margin-top: 0.5vmin;
+                        }
+                    }
+                }
+                .news{
+                    .title{
+                        p{
+                            font-size: 26pt;
+                            margin-bottom: 1vmin;
+                        }
+                    }
+                    .offer{
+                        .card{
+                            height: 17.5vh;
+                        }
+                    }
+                }
+            }
+            .activity{
+                height: 25vh;
+                .new{
+                    .card{
+                        height: 20vh;
+                    }
+                    img{
+                        height: 20vh;
+                    }
                 }
             }
         }

@@ -185,4 +185,27 @@ export default{
             }
         }
     }
+
+    @media(max-width:1200px){
+        .header{
+            height: 10vh;
+            position: relative;
+            .logo{
+                img{
+                    width: 16vw;
+                    height: 12vh;
+                    position: absolute;
+                    top: 2%;
+                }
+            }
+            nav{
+                position: absolute;
+                bottom: 1%;
+                .routerItem{
+                    font-size: 16pt;
+                    margin-right: 2vmin;
+                }
+            }
+        }
+    }
 </style>
