@@ -1,8 +1,13 @@
 <script>
+import axios from 'axios';
+
 import backSideBar from '../../../components/backSideBar.vue';
 export default{
     data(){
         return{
+            roomId:"",
+            roomTypeId:"",
+            roomIdtro:"",
         }
     },
     methods:{
@@ -15,11 +20,42 @@ export default{
         family(){
             this.$router.push('/BackFamily')
         },
-    },
+        createRoom() {
+            axios({
+                url: 'http://localhost:8080/room/create',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    room_id:this.roomId,
+                    room_type_id:this.roomTypeId,
+                    room_introduce:this.roomIdtro
+                },
+            }).then(res => {
+                console.log(res.data)
+                if(res.data.message=="Successful!!"){
+                swal("成功", "success");
+                
+            }else{
+                swal( "錯誤", "error");
+            }
+            }).catch(error => {
+                if (error.response) {
+                    // 這裡可以取得伺服器回應的詳細信息
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                }
+                console.error('Error:', error);
+            });
+        },
+        },
+    }
     components:{
         backSideBar
     }
-}
+
 </script>
 
 <template>
@@ -73,21 +109,19 @@ export default{
                     </div>
                     <div class="modal-body">
                         <form>
+                            <!-- <div class="radio">
+                                <input type="radio" v-model="this.roomTypeId">
+                                <label >{{ }}</label>
+                                <label >{{ }}</label>
+                                <label >{{ }}</label>
+                            </div> -->
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間類型 :</label>
-                                <select>
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
-                                </select>
+                                <label for="recipient-name" class="col-form-label">房間 :</label>
+                                <input type="number" class="form-control" id="recipient-name" v-model="this.roomTypeId">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間編號 :</label>
-                                <input type="number" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間名稱 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">房間編號 :(小資雙人房=A、舒適雙人房=B、豪華家庭房=C，格式:A01)</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.roomId">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間價格 :</label>
@@ -95,7 +129,7 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間說明 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.roomIdtro">
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間圖片 :</label>

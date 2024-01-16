@@ -35,7 +35,7 @@ export default{
                 console.log(res.data)
                 if(res.data.message=="Successful!!"){
                 swal("成功", "success");
-                // this.$router.push('FrontPersonInfo')
+                
             }else{
                 swal( "錯誤", "error");
             }
