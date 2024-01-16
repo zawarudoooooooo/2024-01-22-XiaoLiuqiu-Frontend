@@ -8,6 +8,10 @@ export default {
             employee:"",
             account:"",
             pwd:"qaz159",
+            password:"",
+            newpassword:"",
+            confirmpassword:"",
+
         }
     },
     methods:{
@@ -28,6 +32,41 @@ export default {
             this.account=""
             console.log(res.data);
             })
+        },
+        employeeChange() {
+            axios({
+                url: 'http://localhost:8080/employee/update',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                params:{
+                    employeeId:item.employeeId
+                },
+                data: {
+                    password:this.password,
+                    new_password:this.newpassword,
+                    confirm_password:this.confirmpassword,
+                    
+                },
+            }).then(res => {
+                console.log(res.data)
+                if(res.data.message=="Successful!!"){
+                
+                    swal("新增帳號", "新增成功", "success");
+                // this.$router.push('FrontPersonInfo')
+            }else{
+                swal("密碼", "錯誤", "error");
+            }
+            }).catch(error => {
+                if (error.response) {
+                    // 這裡可以取得伺服器回應的詳細信息
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                }
+                console.error('Error:', error);
+            });
         }
     },
     mounted(){
@@ -125,20 +164,20 @@ export default {
                         <form>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">舊密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.password">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">新密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newpassword">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">確認密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="confirmpassword">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認更改</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeChange()">確認更改</button>
                     </div>
                 </div>
             </div>
