@@ -13,6 +13,10 @@ export default{
             this.$router.push('/')
         },
         goBack(){
+        if(this.account==""||this.pwd==""){
+            swal("資料有誤", "帳號或密碼不能為空", "error");
+            return
+        }
             axios({
                 url: 'http://localhost:8080/employee/login',
                 method: 'POST',
@@ -26,6 +30,11 @@ export default{
                 },
             }).then(res => {
 
+                if(res.data.rtncode!= "SUCCESSFUL"){
+                    swal("資料有誤", "帳號或密碼有誤請再次確認", "error");
+                    return
+                }
+                
                 swal({
                         title: '登錄成功',
                         text: '歡迎回來',
@@ -35,14 +44,14 @@ export default{
                     })
                     .then((willRefresh) => {
                         if (willRefresh) {
-                            this.$router.push('/BackSimpleDouble')
+                            this.$router.push('/BackOrder')
                           // 在这里可以执行页面刷新的操作
                             setTimeout(function() {
                                 window.location.reload();
                             },100)
                         } 
                     });
-                console.log(res.data);
+                console.log(res.data.rtncode);
                 
             });
         }

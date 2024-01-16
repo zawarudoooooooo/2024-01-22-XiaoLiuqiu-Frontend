@@ -41,7 +41,7 @@ export default {
                     })
                     .then((willRefresh) => {
                         if (willRefresh) {
-                            this.$router.push('FrontPersonInfo')
+                            this.$router.push('/')
                           // 在这里可以执行页面刷新的操作
                             setTimeout(function() {
                                 window.location.reload();
