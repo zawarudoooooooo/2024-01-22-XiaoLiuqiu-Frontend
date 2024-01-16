@@ -16,6 +16,9 @@ export default {
         goPersonInfo(){
             this.$router.push('/FrontPersonInfo')
         },
+        goBackLogin(){
+            this.$router.push('/BackLogin')
+        },
         login() {
             axios({
                 url: 'http://localhost:8080/member/login',
@@ -86,6 +89,7 @@ export default {
             <button type="button" @click="login()">登錄</button>
         </div>
     </div>
+    <i class="fa-solid fa-gear" @click="goBackLogin()" id="back"></i>
     <Footer />
 </template>
 
@@ -95,6 +99,7 @@ export default {
     height: 63vh;
     margin: auto;
     margin-top: 8vmin;
+    position: relative;
     i{
         margin-left: 2vmin;
     }
@@ -148,6 +153,19 @@ export default {
                 color: #797A7E;
             }
         }
+    }
+}
+#back{
+    font-size: 16pt;
+    color:#F7F2E7;
+    position: absolute;
+    right: 1%;
+    bottom: 2%;
+    &:hover{
+        color: #797A7E;
+    }
+    &:active{
+        color:#F7F2E7;
     }
 }
 </style>

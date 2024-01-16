@@ -1,13 +1,13 @@
 <script>
 import Footer from '../../components/Footer.vue';
 import axios from 'axios';
+import * as imageConversion from 'image-conversion';
 export default{
     data(){
         return{
             name:"",
             phone:"",
             email:"",
-
 
             useravatar:"",
             msgavatar:"",
@@ -17,14 +17,89 @@ export default{
             messagePage:false,
 
             cookie:"",
-            memberInfo:""
+            memberInfo:"",
         }
     },
     methods:{
+        uploadImg(e) {
+        let files = e.target.files || e.dataTransfer.files
+        let id = e.target.id
+        if (!files.length) return
+        this.picavalue = files[0]
+        console.log(this.picavalue.size / 1024)
+        if (this.picavalue.size / 1024 > 10240) {
+            this.$vux.alert.show({
+            title: '溫馨提示',
+            content: '圖片過大，請重新上傳'
+            })
+        } else {
+            this.text1 = '正在獲取圖片'
+            this.imgPreview(this.picavalue, id)
+
+            this.file=event.target.files[0]
+            let filereader=new FileReader();
+            filereader.readAsDataURL(this.file)
+            filereader.addEventListener("load",()=>{
+                this.useravatar=filereader.result;
+                console.warn(this.useravatar)
+            })
+            }
+        },
+      //獲取圖片
+        imgPreview(file, id) {
+        let self = this
+        //判斷支不支持FileReader
+        if (!file || !window.FileReader) return false
+        if (/^image/.test(file.type)) {
+          //創建一個reader
+            let reader = new FileReader()
+          //將圖片轉成base64格式
+            reader.readAsDataURL(file)
+          //讀取成功後的回調
+            reader.onloadend = function() {
+            let result = this.result
+            let img = new Image()
+            img.src = result
+            console.log('********未壓縮前的圖片大小********')
+            console.log(result.length / 1024)
+            img.onload = function() {
+                let data = self.compress(img, 0.3)
+                self.uploadImg(data, id)
+            } 
+            }
+        }
+        },
+      // 壓縮圖片
+        compress(img, size) {
+        let canvas = document.createElement('canvas')
+        let ctx = canvas.getContext('2d')
+        let initSize = img.src.length
+        let width = img.width
+        let height = img.height
+        canvas.width = width
+        canvas.height = height
+        // 鋪底色
+        ctx.fillStyle = '#fff'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img, 0, 0, width, height)
+        //進行最小壓縮
+        let ndata = canvas.toDataURL('image/jpeg', size)
+        console.log('*******壓縮後的圖片大小*******')
+        // console.log(ndata)
+        console.log(ndata.length / 1024)
+        return ndata
+        },
+    //   uploadImg(base64, id) {
+    //   		console.log('得到壓縮後的base64傳入後臺') 
+    //   },
 //使用者照片上傳
         onfileuser(event){
             this.file=event.target.files[0]
             let filereader=new FileReader();
+            // imageConversion.compress(filereader,0.3).then(res=>{
+            //     resolve(res);
+            //     console.log("壓縮成功")
+            // })
             filereader.readAsDataURL(this.file)
             filereader.addEventListener("load",()=>{
                 this.useravatar=filereader.result;
@@ -92,15 +167,15 @@ export default{
             url:'http://localhost:8080/member/member',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
-            },
+                'Content-Type':'application/json'
+            },  
             params:{
                 account:this.cookie
             },
             data:{
 
             },
-          }).then(res=>{
+        }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
                 // console.log(this.memberInfo);
@@ -129,14 +204,13 @@ export default{
             <hr>
             <div class="user">
                 <label>
-                    <input id="upload_input" type="file" @change="onfileuser">
-                        <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
-                        <img :src="useravatar" class="upload_cover" alt="">
-                        <!-- <v-avatar>
-                            <img :src="useravatar" alt="" 
-                            style="width: 17.5vmin;height: 17.5vmin;border-radius: 50%;
-                            position: absolute;top: 2%;left: 2%;">
-                        </v-avatar> -->
+                    <!-- <input id="upload_input" type="file" @change="onfileuser">
+                    <img :src="useravatar" class="upload_cover" alt=""> -->
+                    <!-- <img :src="IDc1" alt="" class="upload_cover">
+                    <input class="upload_cover" id="IDc1" name="IDc1" type="file"
+                    @change="uploadIMG"> -->
+                    <input id="upload_input" type="file" @change="uploadImg($event)">
+                    <img :src="useravatar" class="upload_cover" alt="">
                 </label>
             </div>
             <div class="name">
@@ -155,7 +229,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
-                <!-- <button type="button">儲存</button> -->
+                <button type="button">儲存</button>
             </div>
         </div>
         <!-- 更改資料modal視窗 -->
