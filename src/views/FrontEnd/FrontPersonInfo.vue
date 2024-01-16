@@ -209,15 +209,8 @@ export default{
                     <!-- <img :src="IDc1" alt="" class="upload_cover">
                     <input class="upload_cover" id="IDc1" name="IDc1" type="file"
                     @change="uploadIMG"> -->
-
                     <input id="upload_input" type="file" @change="uploadImg($event)">
                     <img :src="useravatar" class="upload_cover" alt="">
-
-
-
-
-
-
                 </label>
             </div>
             <div class="name">
@@ -236,7 +229,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
-                <!-- <button type="button">儲存</button> -->
+                <button type="button">儲存</button>
             </div>
         </div>
         <!-- 更改資料modal視窗 -->
