@@ -9,8 +9,13 @@ export default{
             phone:"",
             email:"",
 
+            //貼文
+            topic:"",
+            text:"",
+            
             useravatar:"",
             msgavatar:"",
+
             //頁面切換
             personInfoPage:true,
             orderPage:false,
@@ -140,6 +145,11 @@ export default{
                     }
                 })
             })
+        },
+//貼文取消清除輸入
+        cancle(){
+            this.topic="",
+            this.text=""
         },
 //頁面切換
         personInfoShow(){
@@ -321,24 +331,24 @@ export default{
             <hr>
             <div class="topic">
                 <p>標題</p>
-                <input type="text" placeholder="請輸入標題">
+                <input type="text" placeholder="請輸入標題" v-model="this.topic">
             </div>
             <div class="text">
                 <p>內容</p>
-                <textarea placeholder="請輸入內容"></textarea>
+                <textarea placeholder="請輸入內容" v-model="this.text"></textarea>
             </div>
             <div class="img">
                 <p>新增相片</p>
                 <label>
                     <i class="fa-solid fa-images" id="addicon"></i>
-                    <input type="file" multiple="multiple" class="addimg" @change="onfilemsg">
+                    <input type="file" class="addimg" @change="onfilemsg">
                 </label>
             </div>
             <div class="msgBtnArea">
+                <button type="button" @click="cancle()">取消</button>
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalmsg">預覽
                 </button>
-                <button type="button">發布</button>
             </div>
         </div>
 <!-- 貼文預覽視窗 -->
@@ -369,7 +379,7 @@ export default{
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">發佈</button>
                     </div>
                 </div>
             </div>
@@ -582,15 +592,10 @@ export default{
         .modal-content{
             .modal-body{
                 .mb-3{
-                    .imgArea{
-                        width: 25vw;
-                        border: 1px solid black;
-                        display: flex;
-                        flex-wrap: wrap;
-                        .msgimg{
-                            width: 10vw;
-                            height: 15vh;
-                        }
+                    .msgimg{
+                        width: 15vw;
+                        height: 25vh;
+                        border-radius: 5px;
                     }
                 }
             }
