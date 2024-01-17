@@ -198,8 +198,14 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        text-align: center;
-        margin-top: 3vmin;
+        //text-align: center;
+        margin-top: 4vmin;
+        height: 8vh;
+        position: relative;
+        p{
+            position: absolute;
+            right: 35%;
+        }
         i{
             margin-left: 1vmin;
         }
