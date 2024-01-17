@@ -76,15 +76,19 @@ export default{
             }
         }
         .introduce{
+            width: 35vw;
             span{
-                font-size: 28pt;
+                font-size: 27pt;
                 color: #797A7E;
                 font-weight: bold;
-            }          
+            }
+            hr{
+                margin-top: 0;
+            }        
             p{
-                width: 30vw;
+                width: 35vw;
                 color: #797A7E;
-                font-size: 16pt;
+                font-size: 15pt;
             }
         }
     }

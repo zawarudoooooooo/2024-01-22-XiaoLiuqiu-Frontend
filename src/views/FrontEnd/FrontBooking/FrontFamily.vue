@@ -96,6 +96,7 @@ export default{
                 background-color: #D9D9D9;
                 padding-left: 2vmin;
                 padding-right: 2vmin;
+                color: #797A7E;
             }
             p{
                 margin: 0;

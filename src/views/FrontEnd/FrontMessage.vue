@@ -49,7 +49,7 @@
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 80vh;
+        height: 85vh;
         margin: auto;
         margin-top: 5vmin;
         .title{
@@ -65,7 +65,6 @@
         }
         ul{
             list-style: none;
-            position: relative;
             display: flex;
             flex-wrap: wrap;
             li{
@@ -74,6 +73,11 @@
                 background-color: white;
                 border-radius: 5px;
                 padding: 2vmin;
+                box-shadow: 1px 1px 1px gray;
+                transition: all linear 0.3s;
+                &:hover{
+                    box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                }
                 .info{
                     width: 23vw;
                     display: flex;
@@ -103,17 +107,20 @@
                 }
                 .message{
                     .text{
+                        height: 14vh;
+                        //border: 1px solid black;
                         p{
                             font-size: 14pt;
                             color: #797A7E;
                         }
                     }
                     .photo{
-                        position: absolute;
-                        bottom: 5%;
+                        position: relative;
                         img{
                             width: 20vw;
                             height: 28vh;
+                            position: absolute;
+                            left: 5%;
                             transition: all ease 0.5s;
                             border-radius: 5px;
                             &:hover{
@@ -127,102 +134,5 @@
                 }
             }
         }
-        
-//         ul {
-//             //display: block;
-//             position: absolute;
-//             width: 75vw;
-//             //top: 10%;
-//             left: 50%;
-//             transform: translateX(-50%);
-//             //margin-bottom: 10%;
-//             margin: auto;
-//             display: flex;
-//             flex-wrap: wrap;
-//             gap: 2vmin;
-//             li {
-//                 display: inline-block;
-//                 border: 2px dotted transparent;
-//                 width: 47%;
-//                 height: 350px;
-//                 position: relative;
-//                 transition: all .4s ease;
-//                 margin: 1%;
-//     a {
-//       display: block;
-//       content: "";
-//       position: absolute;
-//       width: 100%;
-//       height: 100%;
-//       background: #fff;
-//       transition: all .25s ease-in-out;
-//       padding: 30px;
-//       border: 2px solid transparent;
-//       color: #444;
-//       text-decoration: none;
-//       i {
-//         font-size: 2.5em;
-//       }
-//       h2 {
-//         font-size: 1.4em;
-//         font-weight: 700;
-//         margin-bottom: .5em;
-//       }
-//     }
-    
-//     &.active {
-//       border-color: #CCC;
-//         a {
-//           border-color: orange;
-//           transform: translate(-4%, -4%);
-//         }
-//       }
-//     &:hover {
-//       border-color: #CCC;
-//       a {
-//         border-color: #82AAE3;;
-//         transform: translate(-4%, -4%);
-//       }
-//     }
-//   }
-//         .list{
-//             width: 70vw;
-//             margin: auto;
-//             display: flex;
-//             justify-content: space-between;
-//             position: relative;
-//             .topic{
-//                 h1{
-//                     color: #797A7E;
-//                 }
-//             }
-//             .message{
-//                 p{
-//                     color: #797A7E;
-//                     font-size: 20pt;
-//                 }
-//             }
-//             .photo{
-//                 img{
-//                     width: 15vw;
-//                     height: 25vh;
-//                     transition: all ease 0.5s;
-//                     border-radius: 5px;
-//                     &:hover{
-//                         opacity: 0.6;
-//                     }
-//                     &:active{
-//                         opacity: 1.0;
-//                     }
-//                 }
-//             }
-//         }
-//         h5{ 
-//             color: #797A7E;
-//             position: absolute;
-//             left: -7%;
-//             bottom: 0;
-//         }
-//     }
-}
+    }
 </style>

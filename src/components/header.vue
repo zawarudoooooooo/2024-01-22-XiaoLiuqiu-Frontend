@@ -156,7 +156,7 @@ export default{
                 height: 22vh;
                 position: absolute;
                 left: 1%;
-                top: -26%;
+                top: -30%;
             }
         }
         nav{
@@ -164,7 +164,7 @@ export default{
             bottom: 5%;
             right: 2%;
             .routerItem{
-                font-size: 18pt;
+                font-size: 17pt;
                 text-decoration: none;
                 color: #797A7E;
                 margin-right: 5vmin;

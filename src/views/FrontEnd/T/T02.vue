@@ -50,9 +50,11 @@ export default{
             </div>
         </div>
         <div class="introduce">
-            <span>山豬溝</span>
+            <div class="info">
+                <span>山豬溝</span>
+                <span id="time">開放時間 : 08:00-18:00</span>
+            </div>
             <hr>
-            <h4>開放時間 : 08:00-18:00</h4>
             <p>
                 一座斷崖形成的山溝，步道全程走完約三十分鐘。
                 <br>
@@ -90,19 +92,31 @@ export default{
             }
         }
         .introduce{
-            span{
-                font-size: 28pt;
-                color: #797A7E;
-                font-weight: bold;
+            width: 45vw;
+            .info{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                span{
+                    font-size: 27pt;
+                    color: #797A7E;
+                    font-weight: bold;
+                }
+                #time{
+                    color: #797A7E;
+                    font-weight: bold;
+                    font-size: 18pt;
+                    margin-top: 2vmin;
+                }  
             }
-            h4{
-                color: #797A7E;
-                font-weight: bold;
-            }            
+            hr{
+                margin-top: 0;
+            }
             p{
-                width: 30vw;
+                width: 40vw;
                 color: #797A7E;
-                font-size: 16pt;
+                font-size: 15pt;
+                margin: auto;
             }
         }
     }

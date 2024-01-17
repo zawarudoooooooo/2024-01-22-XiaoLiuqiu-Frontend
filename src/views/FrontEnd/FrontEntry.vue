@@ -151,7 +151,7 @@ export default{
                 display: flex;
                 justify-content: space-around;
                 flex-wrap: wrap;
-                margin-top: 3vmin;
+                margin-top: 5.5vmin;
                 .icon{
                     width: 10vw;
                     height: 20vh;
@@ -188,7 +188,7 @@ export default{
                 //border: 1px solid black;
                 .title{
                     p{
-                        font-size: 28pt;
+                        font-size: 27pt;
                         font-weight: bold;
                         color: #82AAE3;
                         text-align: center;

@@ -70,13 +70,13 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 67vh;
+        height: 69vh;
         margin: auto;
         margin-top: 4vmin;
         .search{
             .title{
                 p{
-                    font-size: 28pt;
+                    font-size: 27pt;
                     font-weight: bold;
                     color: #82AAE3;
                     text-align: center;

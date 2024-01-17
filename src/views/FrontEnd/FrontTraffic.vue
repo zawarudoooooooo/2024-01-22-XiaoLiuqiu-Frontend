@@ -133,7 +133,7 @@ export default{
 <style lang="scss" scoped>
     .content{
             width: 90vw;
-            height: 150vh;
+            height: 152vh;
             margin: auto;
             margin-top: 4vmin;
         hr{
@@ -141,7 +141,7 @@ export default{
         }
         .title{
             p{
-                font-size: 28pt;
+                font-size: 27pt;
                 font-weight: bold;
                 color: #82AAE3;
                 text-align: center;
@@ -166,14 +166,10 @@ export default{
             }
             .traffic{
                 margin-left: 2vmin;
-                p{
-                    font-size: 16pt;
-                    color: #797A7E;
-                }
                 ul{
                     li{
                         color: #797A7E;
-                        font-size: 16pt;
+                        font-size: 15pt;
                     }
                 }
             }
@@ -183,31 +179,33 @@ export default{
             display: flex;
             justify-content: space-around;
             .time{
-                width: 30vw;
+                width: 28vw;
                 border: 1px solid lightgray;
                 box-shadow: 1px 1px 1px gray;
                 border-radius: 5px;
                 #ferrytime{
                     color: #797A7E;
-                    font-size: 18pt;
+                    font-size: 17pt;
                     font-weight: bold;
                     text-align: center;
+                    margin-bottom: 1vmin;
                 }
                 .schedule{
                     display: flex;
                     justify-content: space-around;
                     p{
                         color: #797A7E;
-                        font-size: 16pt;
+                        font-size: 14pt;
                         text-align: center;
                     }
                 }
             }
             .imgArea{
                 width: 45vw;
+                height: 57vh;
                 display: flex;
                 flex-wrap: wrap;
-                gap: 2vmin;
+                gap: 1vmin;
                 img{
                     width: 22vw;
                     height: 27vh;
