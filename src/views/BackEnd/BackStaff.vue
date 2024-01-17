@@ -8,6 +8,8 @@ export default {
             employee:"",
             account:"",
             pwd:"qaz159",
+            cookie:"",
+            access:"",
         }
     },
     methods:{
@@ -46,6 +48,29 @@ export default {
             this.employee = res.data.employeeList;
             console.log(this.employee);
             })
+
+            this.cookie=document.cookie.split("=")[1];
+
+            console.log(this.cookie);
+
+            axios({
+            url:'http://localhost:8080/employee/employeeSearch',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                account:this.cookie
+            },
+            data:{
+
+            },
+            }).then(res=>{
+                res.data.employeeList.forEach(element => {
+                    this.access=element.access
+                    console.log(this.access);
+                });
+            })
     },
     components:{
         backSideBar
@@ -64,14 +89,14 @@ export default {
             </div>
             <div class="show">
                 <div class="buttonArea">
-                    <button type="button" data-bs-toggle="modal" 
+                    <button type="button" v-if="this.access" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增人員
                     </button>
                     <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModalpwd">修改密碼
                     </button>
                 </div>
-                <div class="employee">
+                <div class="employee" v-if="this.access">
                     <table>
                         <thead>
                             <td>員工編號</td>

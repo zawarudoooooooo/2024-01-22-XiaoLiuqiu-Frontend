@@ -103,7 +103,7 @@ export default{
           }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
-                // console.log(this.memberInfo);
+                console.log(this.memberInfo);
 
             });
             // this.memberInfo=
