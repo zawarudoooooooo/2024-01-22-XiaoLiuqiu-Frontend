@@ -7,10 +7,6 @@ export default{
         }
     },
     methods:{
-        goBackLogin(){
-            this.$router.push('/BackLogin')
-        }
-
     },
     components:{
         Footer
@@ -113,9 +109,7 @@ export default{
                 </div>
             </div>
         </div>
-        <i class="fa-solid fa-gear" @click="goBackLogin()" id="back"></i>
     </div>
-    
 <Footer />
 </template>
 
@@ -123,7 +117,6 @@ export default{
     .content{
         width: 100vw;
         height: 215vh;
-        position: relative;
         .slideShow{
             width: 90vw;
             height: 80.5vh;
@@ -261,19 +254,6 @@ export default{
                     height: 55vh;
                     border-radius: 5px;
                 }
-            }
-        }
-        #back{
-            font-size: 16pt;
-            color:#F7F2E7;
-            position: absolute;
-            right: 1.1%;
-            bottom: -6%;
-            &:hover{
-                color: #797A7E;
-            }
-            &:active{
-                color:#F7F2E7;
             }
         }
     }
