@@ -2,6 +2,7 @@
 import axios from 'axios';
 import Footer from '../../components/Footer.vue';
 import swal from 'sweetalert';
+import { RouterLink, RouterView } from 'vue-router'
 export default {
     data() {
         return {
@@ -90,6 +91,7 @@ export default {
             <button type="button"  data-bs-toggle="modal" 
                     data-bs-target="#exampleModal">忘記密碼
             </button>
+            <RouterLink to="/reset" class="routerItem">重設密碼</RouterLink>
         </div>
     </div>
 <!-- 忘記密碼modal視窗 -->
