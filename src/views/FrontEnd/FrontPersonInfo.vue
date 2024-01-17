@@ -150,6 +150,7 @@ export default{
         cancle(){
             this.topic="",
             this.text=""
+            
         },
 //頁面切換
         personInfoShow(){
@@ -167,6 +168,39 @@ export default{
             this.personInfoPage=false,
             this.orderPage=false
         },
+        messageCreate(){
+            axios({
+            url:'http://localhost:8080/message/messageCreate',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },  
+            
+            data:{
+                memberName:this.memberInfo.memberName,
+                roomId:this.topic,
+                roomMessageBoardDescription:this.text,
+            },
+        }).then(res => {
+                
+                console.log(res.data)
+                if(res.data.message=="Successful!!"){
+                    swal({
+                        title: '成功',
+                        
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            
+                          // 在这里可以执行页面刷新的操作
+                            
+                        } 
+                    });
+            }else{
+                swal("錯誤", "error");
+            }
+            })
+        }
     },
     mounted(){
         this.cookie=document.cookie.split("=")[1];
@@ -363,11 +397,11 @@ export default{
                         <form>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">標題 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.topic">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">內容 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.text">
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">照片 :</label>
@@ -379,7 +413,7 @@ export default{
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">發佈</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="messageCreate()">發佈</button>
                     </div>
                 </div>
             </div>
