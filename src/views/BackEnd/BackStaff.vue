@@ -11,6 +11,7 @@ export default {
             password:"",
             newpassword:"",
             confirmpassword:"",
+            employeeId:"",
 
         }
     },
@@ -41,7 +42,7 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 params:{
-                    employeeId:item.employeeId
+                    employeeId:this.employeeId
                 },
                 data: {
                     password:this.password,
@@ -51,9 +52,9 @@ export default {
                 },
             }).then(res => {
                 console.log(res.data)
-                if(res.data.message=="Successful!!"){
+                if(res.data.rtncode=="SUCCESSFUL"){
                 
-                    swal("新增帳號", "新增成功", "success");
+                    swal("新增成功", "success");
                 // this.$router.push('FrontPersonInfo')
             }else{
                 swal("密碼", "錯誤", "error");
@@ -162,6 +163,10 @@ export default {
                     </div>
                     <div class="modal-body">
                         <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">員工編號 :</label>
+                                <input type="number" class="form-control" id="recipient-name" v-model="employeeId">
+                            </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">舊密碼 :</label>
                                 <input type="text" class="form-control" id="recipient-name" v-model="this.password">
