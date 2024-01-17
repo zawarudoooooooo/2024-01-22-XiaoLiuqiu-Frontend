@@ -9,7 +9,9 @@ export default{
             roomIdtro:"",
             simple:true,
             double:false,
-            family:false
+            family:false,
+
+            roomavatar:"",
         }
     },
     methods:{
@@ -58,7 +60,17 @@ export default{
             this.simple=false,
             this.double=false,
             this.family=true
-        }
+        },
+//房間照片上傳
+        onfileroom(event){
+            this.file=event.target.files[0]
+            let filereader=new FileReader();
+            filereader.readAsDataURL(this.file)
+            filereader.addEventListener("load",()=>{
+                this.roomavatar=filereader.result;
+                console.warn(this.roomavatar)
+            })
+        },
     },
     components:{
         backSideBar
@@ -197,7 +209,14 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間圖片 :</label>
-                                <input type="file" class="form-control" id="recipient-name">
+                                <input type="file" class="form-control" id="recipient-name" @change="onfileroom">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">圖片預覽 :</label>
+                                <br>
+                                <div class="imgArea">
+                                    <img :src="roomavatar" class="roomimg" alt="">
+                                </div>                
                             </div>
                         </form>
                     </div>
@@ -346,5 +365,16 @@ export default{
     label{
         margin-right: 1vmin;
         margin-left: 1vmin;
+    }
+    .modal-content{
+        .modal-body{
+            .mb-3{
+                .roomimg{
+                    width: 15vw;
+                    height: 25vh;
+                    border-radius: 5px;
+                }
+            }
+        }
     }
 </style>
