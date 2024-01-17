@@ -109,7 +109,7 @@ export default {
 <style lang="scss" scoped>
 .content {
     width: 20vw;
-    height: 77vh;
+    height: 80vh;
     margin: auto;
     margin-top: 3vmin;
     i{

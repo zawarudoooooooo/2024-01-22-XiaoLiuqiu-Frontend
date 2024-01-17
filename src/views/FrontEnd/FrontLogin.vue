@@ -87,8 +87,33 @@ export default {
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
             <button type="button" @click="login()">登入</button>
+            <button type="button"  data-bs-toggle="modal" 
+                    data-bs-target="#exampleModal">忘記密碼
+            </button>
         </div>
     </div>
+<!-- 忘記密碼modal視窗 -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">忘記密碼</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">請輸入 E-mail :</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <i class="fa-solid fa-gear" @click="goBackLogin()" id="back"></i>
     <Footer />
 </template>
@@ -139,7 +164,7 @@ export default {
         justify-content: space-around;
         margin-top: 3vmin;
         button {
-            width: 8vw;
+            width: 6vw;
             height: 5vh;
             border: none;
             border-radius: 5px;
