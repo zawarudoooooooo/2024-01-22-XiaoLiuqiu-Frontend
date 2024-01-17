@@ -45,9 +45,9 @@ export default{
             <p>
                 位於美人洞風景區第二售票亭旁邊，屬於免費景點。
                 <br>
-                擁有潔白的海灣和碧藍的海水，因為純淨無污染，是很棒的浮潛地點。
+                擁有潔白的海灣和碧藍的海水，因為純淨無污染，
+                <br>是很棒的浮潛地點。
                 很容易可以看到海膽、海參、海星。
-                <br>
             </p>
         </div>
     </div>
@@ -75,15 +75,19 @@ export default{
             }
         }
         .introduce{
+            width: 35vw;
             span{
-                font-size: 28pt;
+                font-size: 27pt;
                 color: #797A7E;
                 font-weight: bold;
+            }
+            hr{
+                margin-top: 0;
             }        
             p{
-                width: 30vw;
+                width: 35vw;
                 color: #797A7E;
-                font-size: 16pt;
+                font-size: 15pt;
             }
         }
     }

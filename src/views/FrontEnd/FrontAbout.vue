@@ -83,12 +83,12 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 127vh;
+        height: 128vh;
         margin: auto;
         margin-top: 4vmin;
         .title{
             p{
-                font-size: 28pt;
+                font-size: 27pt;
                 font-weight: bold;
                 color: #82AAE3;
                 text-align: center;
@@ -103,12 +103,12 @@ export default{
                 width: 40vw;
                 p{
                     color: #797A7E;
-                    font-size: 19pt;
+                    font-size: 18pt;
                 }
                 ul{
                     li{
                         color: #797A7E;
-                        font-size: 19pt;
+                        font-size: 18pt;
                     }
                 }
             }
@@ -156,7 +156,7 @@ export default{
             ul{
                 li{
                     color: #797A7E;
-                    font-size: 19pt;
+                    font-size: 17pt;
                 }
             }
         }

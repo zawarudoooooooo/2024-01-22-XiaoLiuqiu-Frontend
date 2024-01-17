@@ -45,7 +45,7 @@ export default{
             <p>
                 位在小琉球西南方，眺望的是台灣海峽，因為他朝向西方，所以成為欣賞夕陽的最佳景點，
                 <br>
-                無任何遮蔽物，前方就是斷崖，也有設置圍欄，所以相當的安全。
+                無任何遮蔽物，前方就是斷崖，有設置圍欄，相當的安全。
                 <br>
                 據說「落日亭」本來是小琉球的垃圾掩埋場，後來經過整地改良，成為了觀光景點。
             </p>
@@ -75,15 +75,19 @@ export default{
             }
         }
         .introduce{
+            width: 35vw;
             span{
-                font-size: 28pt;
+                font-size: 27pt;
                 color: #797A7E;
                 font-weight: bold;
-            }         
+            }
+            hr{
+                margin-top: 0;
+            }        
             p{
-                width: 30vw;
+                width: 35vw;
                 color: #797A7E;
-                font-size: 16pt;
+                font-size: 15pt;
             }
         }
     }

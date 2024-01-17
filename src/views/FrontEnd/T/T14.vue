@@ -47,7 +47,9 @@ export default{
                 <br>
                 在沿岸剛好出現一個小缺口形成白色的小港灣沙灘。
                 <br>
-                但據說這個缺口，是古時候居民為了方便拿取漁獲而炸出來的。
+                但據說這個缺口，
+                <br>
+                是古時候居民為了方便拿取漁獲而炸出來的。
                 <br>
                 經年累月的海浪拍打之後，礁石與礁沙的堆積，形成天然小泳池適合浮潛。
             </p>
@@ -77,15 +79,19 @@ export default{
             }
         }
         .introduce{
+            width: 35vw;
             span{
-                font-size: 28pt;
+                font-size: 27pt;
                 color: #797A7E;
                 font-weight: bold;
+            }
+            hr{
+                margin-top: 0;
             }        
             p{
-                width: 30vw;
+                width: 35vw;
                 color: #797A7E;
-                font-size: 16pt;
+                font-size: 15pt;
             }
         }
     }

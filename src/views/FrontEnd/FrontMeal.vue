@@ -22,10 +22,10 @@ export default{
         </div>
         <hr>
         <div class="meal">
-            <div class="card mb-3" style="max-width: 46%;">
+            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/turtle.jpg" style="width: 100%;height: 100%;" alt="...">
+                        <img src="../../../public/meal/turtle.jpg"  style="width: 100%;height: 93%;" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -54,10 +54,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 46%;">
+            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/cheese.jpg" style="width: 100%;height: 100%;" alt="...">
+                        <img src="../../../public/meal/cheese.jpg" style="width: 100%;height: 93%;" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -83,10 +83,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 46%;">
+            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/ice.jpg" style="width: 100%;height: 100%;" alt="...">
+                        <img src="../../../public/meal/ice.jpg" style="width: 100%;height: 102%;" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -112,10 +112,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 46%;">
+            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/donut.jpg" style="width: 100%;height: 100%;" alt="...">
+                        <img src="../../../public/meal/donut.jpg" style="width: 100%;height: 93%;" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -141,7 +141,7 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 46%;">
+            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="../../../public/meal/smallcheese.jpg" style="width: 100%;height: 101%;" alt="...">
@@ -170,7 +170,7 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 46%;">
+            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="../../../public/meal/mr.jpg" style="width: 100%;height: 100%;" alt="...">
@@ -199,10 +199,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 46%;">
+            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/banto.jpg" style="width: 100%;height: 110%;" alt="...">
+                        <img src="../../../public/meal/banto.jpg" style="width: 100%;height: 103%;" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -228,7 +228,7 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 46%;">
+            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="../../../public/meal/bula.jpg" style="width: 100%;height: 100%;" alt="...">
@@ -264,7 +264,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 138vh;
+        height: 140vh;
         margin: auto;
         margin-top: 4vmin;
         .title{
@@ -288,15 +288,21 @@ export default{
                 box-shadow: 1px 1px 1px lightgray;
                 img{
                     transition: all ease 0.4s;
+                    border-radius: 50%;
+                    scale: 0.85;
                     &:hover{
                         opacity: 0.7;
                         border-radius: 50%;
-                        scale: 0.9;
+                        scale: 1.0;
+                        border-radius: 0;
                     }
                     &:active{
                         opacity: 1;
                     } 
                 }
+            }
+            li{
+                font-size: 12pt;
             }
         }
     }
