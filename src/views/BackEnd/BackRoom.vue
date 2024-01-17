@@ -13,12 +13,17 @@ export default{
             roomName:"",
             roomPrice:"",
             roomIntroduce:"",
-            roomSearch:""
+            roomSearch:"",
+            orderRoomIdList:"",
+            orderRoomId:[],
+            today:new Date(),
+            startDate:"",
+            endDate:"",
+            forRoomId:""
         }
     },
     methods:{
         createRoom() {
-
             console.log(this.roomPrice);
             const roomtype=document.querySelectorAll(".roomtype")
 
@@ -123,13 +128,75 @@ export default{
             this.roomSearch=""
             this.roomSearch=res.data.roomList
             })
+        },
+        roomIsoren(open,roomId){
+            // console.log(roomId);    
+            let date=this.today.getUTCFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate()
+            // console.log(date);   
+            this.forRoomId=""
+            this.startDate="" 
+                
+            // console.log(this.orderRoomId);
+            this.orderRoomId.forEach(item=>{
+                // console.log(item);
+                if(roomId!=item.roomId){
+                    return
+                }
+                this.forRoomId=item.roomId
+                let sDate=new Date(item.startDate)
+                let eDate=new Date(item.endDate)
+                this.startDate=sDate.getUTCFullYear()+'-'+(sDate.getMonth()+1)+'-'+sDate.getDate()
+                this.endDate=eDate.getUTCFullYear()+'-'+(eDate.getMonth()+1)+'-'+eDate.getDate()
+
+                // console.log(item.roomId);
+                // console.log(startDate);
+                // console.log(startDate==date);
+                // console.log(endDate>date);
+            })
+            if(this.startDate>=date){
+                return'已有人訂房';
+            }
+            if(open){
+                return "開放中"
+            }
+            return "整修中"
         }
     },
     components:{
         backSideBar
     },
     mounted(){
-
+        axios({
+            url:'http://localhost:8080/order/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+            },
+            data:{
+                
+            },
+          }).then(res=>{
+            //   console.log(res.data.orderList);
+            //   console.log("查看陣列-------");
+            res.data.orderList.forEach(item=>{
+                this.orderRoomIdList=JSON.parse(item.roomId);
+                this.orderRoomIdList.forEach(roomId=>{
+                    this.orderRoomId.push({roomId:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
+                    // if(roomId.roomId.charAt(0) === 'A'){
+                    // }
+                    // if(roomId.roomId.charAt(0) === 'B'){
+                    //     this.orderRoomId.push({舒適雙人房:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
+                    // }
+                    // if(roomId.roomId.charAt(0) === 'C'){
+                    //     this.orderRoomId.push({豪華家庭房:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
+                    // }
+                })
+                
+            })
+            // console.log(this.orderRoomId);
+            })
     }
 }
 </script>
@@ -171,7 +238,7 @@ export default{
                         <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 :{{ roomIsoren(item.open,item.roomId) }}</p>
                     </div>
                 </div>
             </div>
@@ -198,7 +265,7 @@ export default{
                         <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
                     </div>
                 </div>
             </div>
@@ -225,7 +292,7 @@ export default{
                         <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 :{{ roomIsoren(item.open,item.roomId) }}</p>
                     </div>
                 </div>
             </div>
