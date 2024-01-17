@@ -59,14 +59,6 @@ export default {
         goEntry(){
             this.$router.push('/')
         },
-        // test(){
-        //     console.log(this.account);
-        //     console.log(this.pwd);
-        //     console.log(this.memberName);
-        //     console.log(this.memberPhone);
-        //     console.log(this.memberEmail);
-        //     this.$router.push('/')
-        // }
     },
     components: {
         Footer
@@ -117,7 +109,7 @@ export default {
 <style lang="scss" scoped>
 .content {
     width: 20vw;
-    height: 77vh;
+    height: 80vh;
     margin: auto;
     margin-top: 3vmin;
     i{

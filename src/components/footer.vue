@@ -43,4 +43,16 @@ export default{
             }
         }
     }
+    @media(max-width:1200px){
+        .footer{
+            height: 8vh;
+            .icon{
+                i{
+                    font-size: 30pt;
+                    margin-top: 3.5vmin;
+                }
+
+            }
+        }
+    }
 </style>

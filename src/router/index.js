@@ -164,6 +164,12 @@ const router = createRouter({
       name: 'FrontSignUp',
       component: () => import('../views/FrontEnd/FrontSignUp.vue')
     },
+//前台忘記密碼
+    {
+      path: '/reset',
+      name: 'PwdReset',
+      component: () => import('../views/FrontEnd/PwdReset.vue')
+    },
 //前台使用者頁面
     {
       path: '/FrontPersonInfo',

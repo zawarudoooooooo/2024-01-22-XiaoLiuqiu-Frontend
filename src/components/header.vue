@@ -13,12 +13,15 @@ export default{
         goFrontEntry(){
             this.$router.push('/')
         },
+        goUserInfo(){
+            this.$router.push('/FrontPersonInfo')
+        },
         logout(){
             axios({
             url:'http://localhost:8080/member/logout',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             withCredentials:true,
             params:{
@@ -26,12 +29,11 @@ export default{
             data:{
 
             },
-          }).then(res=>{
+            }).then(res=>{
             console.log(res.data);
-
             swal({
                         title: '登出成功',
-                        text: '以登出',
+                        text: '已登出',
                         icon: 'success',
                         buttons: '確認',
                         dangerMode: true,
@@ -52,7 +54,7 @@ export default{
             url:'http://localhost:8080/employee/logout',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             withCredentials:true,
             params:{
@@ -60,12 +62,11 @@ export default{
             data:{
 
             },
-          }).then(res=>{
+            }).then(res=>{
             console.log(res.data);
-
             swal({
                         title: '登出成功',
-                        text: '以登出',
+                        text: '已登出',
                         icon: 'success',
                         buttons: '確認',
                         dangerMode: true,
@@ -123,10 +124,14 @@ export default{
                             <RouterLink to="/FrontMessage" class="routerItem"><i class="fa-solid fa-note-sticky"></i>留言板</RouterLink>
                         </li>
                         <li class="nav-item" v-if="this.cookie==''">
-                            <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user-check"></i>登錄</RouterLink>
+                            <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user"></i>登入</RouterLink>
                         </li>
-                        <li class="nav-item" v-if="this.cookie!=''&&this.cookieTest!='employee'">
-                            <button @click="logout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>會員登出</button>
+                        <li class="nav-item dropdown"  v-if="this.cookie!=''&&this.cookieTest!='employee'">
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>會員名稱</p>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li class="dropdown-item" @click="goUserInfo()"><i class="fa-solid fa-user-check"></i>會員中心</li>
+                                <li class="dropdown-item" @click="logout()"><i class="fa-solid fa-right-from-bracket"></i>登出</li>
+                            </ul>
                         </li>
                         <li class="nav-item" v-if="this.cookie!=''&&this.cookieTest=='employee'">
                             <button @click="employeeLogout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>員工登出</button>
@@ -151,7 +156,7 @@ export default{
                 height: 22vh;
                 position: absolute;
                 left: 1%;
-                top: -26%;
+                top: -30%;
             }
         }
         nav{
@@ -159,7 +164,7 @@ export default{
             bottom: 5%;
             right: 2%;
             .routerItem{
-                font-size: 18pt;
+                font-size: 17pt;
                 text-decoration: none;
                 color: #797A7E;
                 margin-right: 5vmin;
@@ -173,6 +178,33 @@ export default{
             }
             i{
                 margin-right: 1vmin;
+            }
+            button{
+                border: none;
+                background-color: transparent;
+            }
+        }
+    }
+
+    @media(max-width:1200px){
+        .header{
+            height: 10vh;
+            position: relative;
+            .logo{
+                img{
+                    width: 16vw;
+                    height: 12vh;
+                    position: absolute;
+                    top: 2%;
+                }
+            }
+            nav{
+                position: absolute;
+                bottom: 1%;
+                .routerItem{
+                    font-size: 16pt;
+                    margin-right: 2vmin;
+                }
             }
         }
     }

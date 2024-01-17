@@ -58,13 +58,19 @@ export default{
             </div>
         </div>
         <div class="introduce">
-            <span>美人洞</span>
+            <div class="info">
+                <span>美人洞</span>
+                <span id="time">開放時間 : 07:30-17:00</span>
+            </div>
             <hr>
-            <h4>開放時間 : 07:30-17:00</h4>
             <p>
-                小琉球西北角的美人洞背山面海，擁有許多奇岩怪石及天然形成的珊瑚礁岩洞。
+                小琉球西北角的美人洞背山面海，
                 <br>
-                琉球鄉公所在西元1975年以公共造產方式闢建成美人洞步道，並在沿途打造美人洞十三景。
+                擁有許多奇岩怪石及天然形成的珊瑚礁岩洞。
+                <br>
+                琉球鄉公所在西元1975年以公共造產方式闢建成美人洞步道，
+                <br>
+                並在沿途打造美人洞十三景。
                 <br>
                 時而看見海景、時而看見巨大怪石，每一景都是大自然用成千上萬年時間慢慢雕刻出來，充滿驚奇！
                 <br>
@@ -96,19 +102,31 @@ export default{
             }
         }
         .introduce{
-            span{
-                font-size: 28pt;
-                color: #797A7E;
-                font-weight: bold;
+            width: 45vw;
+            .info{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                span{
+                    font-size: 27pt;
+                    color: #797A7E;
+                    font-weight: bold;
+                }
+                #time{
+                    color: #797A7E;
+                    font-weight: bold;
+                    font-size: 18pt;
+                    margin-top: 2vmin;
+                }  
             }
-            h4{
-                color: #797A7E;
-                font-weight: bold;
-            }            
+            hr{
+                margin-top: 0;
+            }         
             p{
-                width: 30vw;
+                width: 40vw;
                 color: #797A7E;
-                font-size: 16pt;
+                font-size: 14.5pt;
+                margin: auto;
             }
         }
     }

@@ -33,7 +33,9 @@ export default{
                     <img src="../../../../room/simpledouble3.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">小資雙人房</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">經濟實惠的最佳選擇。
+                            <br>超值價格，舒適感受。
+                        </p>
                         <button type="button" @click="goSimpleDouble()">搜尋</button>
                     </div>
                 </div>
@@ -41,7 +43,10 @@ export default{
                     <img src="../../../../room/double4.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">舒適雙人房</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">
+                            好好犒賞自己的小假期。
+                            <br>盡情享受，離島時光。
+                        </p>
                         <button type="button" @click="goDouble()">搜尋</button>
                     </div>
                 </div>
@@ -49,7 +54,10 @@ export default{
                     <img src="../../../../room/family4.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">豪華家庭房</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">
+                            多人出遊的第一首選。
+                            <br>超大空間，宛如第二個家。
+                        </p>
                         <button type="button" @click="goFaimly()">搜尋</button>
                     </div>
                 </div>
@@ -62,13 +70,13 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 67vh;
+        height: 69vh;
         margin: auto;
         margin-top: 4vmin;
         .search{
             .title{
                 p{
-                    font-size: 28pt;
+                    font-size: 27pt;
                     font-weight: bold;
                     color: #82AAE3;
                     text-align: center;
