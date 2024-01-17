@@ -4,49 +4,86 @@ import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
-            roomList:[],
-            roomId:"",
-            roomTypeId: "",
-            roomIntroduce:"",
-            roomTypeId2:"",
+            roomList:"",
+            // roomId:"",
+            // roomTypeId: "",
+            // roomIntroduce:"",
+            // roomTypeId2:"",
             roomName:"",
             roomPrice:"",
+            orderRoomId:[]
         }
     },
     mounted() {
-        this.search();
+        // this.search();
+        this.List.forEach(element => {
+                this.roomName=element.roomName
+            });
+            console.log(this.roomName);
+
+        axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+                roomName:this.roomName
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            this.roomList=res.data.roomList
+            console.log(this.roomList);
+            
+            })
+
+            axios({
+            url:'http://localhost:8080/order/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+            },
+            data:{
+                
+            },
+          }).then(res=>{
+            //   console.log(res.data.orderList);
+            //   console.log("查看陣列-------");
+            res.data.orderList.forEach(item=>{
+                this.orderRoomIdList=JSON.parse(item.roomId);
+                this.orderRoomIdList.forEach(roomId=>{
+                    this.orderRoomId.push({roomId:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
+                })
+                
+            })
+            // console.log(this.orderRoomId);
+            })
+           
+        // console.log(this.List);
     },
+    props:[
+        "List"
+    ],
     methods:{
         booking(){
             this.$router.push('/DoubleBooking')
         },
-        search(){
-            this.roomList = []
-
-            axios({
-                url:'http://localhost:8080/room/search',
-                method: "POST",
-                headers:{"Content-Type": "application/json",},
-                data: ({
-                    room_id: this.roomId,
-                    room_type_id: this.roomTypeId,
-                    room_introduce: this.roomIntroduce,
-                    room_name: this.roomName,
-                    room_price: this.roomPrice
-                })
-                
-            })
-            .then(res => {
-                this.roomList = res.data.roomList
-                console.log(this.roomList);
-
-                this.roomList = this.roomList.filter(item => item.roomName.includes('雙人房'))
-
-                this.roomList = this.roomList.filter(item => item.roomPrice >= 2000);
-            })
-            .catch(error => console.error(error))
+        roomIsopren(open,roomId){
+            console.log(open);
+            console.log(roomId);
+            this.orderRoomId.forEach(item=>{
             
-        },
+            })
+            if(open){
+                return "空房"
+            }
+            return "整修中"
+        }
+
     },
     components:{
         Footer
@@ -55,8 +92,11 @@ export default{
 </script>
 
 <template>
+    
+    
     <div class="content">
         <div class="date">
+            
             <div class="checkin">
                 <p>入住日期</p>
                 <input type="date">
@@ -65,8 +105,12 @@ export default{
                 <p>退房日期</p>
                 <input type="date">
             </div>
+            <div>
+            </div>
+            <button type="button">回上頁</button>
+            <button type="button" >搜尋</button>
         </div>
-        <div class="show" v-for="item in roomList" >
+        <div class="show" v-for="item in this.roomList" >
             <img src="../../../../room/double.jpg" alt="">
             <div class="text">
                 <div class="name" >
@@ -77,11 +121,13 @@ export default{
                 <div class="description" >
                     <p>{{ item.roomIntroduce }}</p>
                 </div>
+                <div class="description" >
+                    <p>{{ roomIsopren(item.open,item.roomId) }}</p>
+                </div>
                 <button type="button" @click="booking()">訂購</button>
             </div>
         </div>
     </div>
-    <Footer />
 </template>
 
 <style lang="scss" scoped> 

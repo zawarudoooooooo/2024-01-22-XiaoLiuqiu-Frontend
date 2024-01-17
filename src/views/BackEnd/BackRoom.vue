@@ -153,8 +153,10 @@ export default{
                 // console.log(startDate==date);
                 // console.log(endDate>date);
             })
-            if(this.startDate>=date){
-                return'已有人訂房';
+            if(this.forRoomId==roomId){
+                if(this.endDate>date||this.startDate<=date){
+                    return'已有人訂房';
+                }
             }
             if(open){
                 return "開放中"
@@ -184,14 +186,6 @@ export default{
                 this.orderRoomIdList=JSON.parse(item.roomId);
                 this.orderRoomIdList.forEach(roomId=>{
                     this.orderRoomId.push({roomId:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
-                    // if(roomId.roomId.charAt(0) === 'A'){
-                    // }
-                    // if(roomId.roomId.charAt(0) === 'B'){
-                    //     this.orderRoomId.push({舒適雙人房:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
-                    // }
-                    // if(roomId.roomId.charAt(0) === 'C'){
-                    //     this.orderRoomId.push({豪華家庭房:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
-                    // }
                 })
                 
             })
