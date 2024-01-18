@@ -82,7 +82,6 @@ export default{
                 border-radius: 10px;
             }
         }
-        
         .introduce{
             width: 35vw;
             span{
@@ -97,6 +96,65 @@ export default{
                 width: 35vw;
                 color: #797A7E;
                 font-size: 15pt;
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 75vh;
+            margin-top: 10vmin;
+            display: block;
+            .pictureArea{
+                width: 70vw;
+                height: 42vh;
+                margin: auto;
+            }
+            .introduce{
+                width: 75vw;
+                margin: auto;
+                span{
+                    font-size: 35pt;
+                }
+                p{
+                    width: 75vw;
+                    font-size: 22pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 75vh;
+            .introduce{
+                p{
+                    font-size: 17pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 75vh;
+            margin-top: 15vmin;
+            .pictureArea{
+                height: 32vh;
+            }
+            .introduce{
+                span{
+                    font-size: 23pt;
+                }
+                p{
+                    font-size: 17pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .introduce{
+                p{
+                    font-size: 15.5pt;
+                }
             }
         }
     }

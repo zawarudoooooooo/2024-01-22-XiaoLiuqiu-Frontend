@@ -22,10 +22,10 @@ export default{
         </div>
         <hr>
         <div class="meal">
-            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/turtle.jpg"  style="width: 100%;height: 93%;" alt="...">
+                        <img src="../../../public/meal/turtle.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -54,10 +54,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/cheese.jpg" style="width: 100%;height: 93%;" alt="...">
+                        <img src="../../../public/meal/cheese.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -83,10 +83,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/ice.jpg" style="width: 100%;height: 102%;" alt="...">
+                        <img src="../../../public/meal/ice.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -112,10 +112,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/donut.jpg" style="width: 100%;height: 93%;" alt="...">
+                        <img src="../../../public/meal/donut.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -141,10 +141,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/smallcheese.jpg" style="width: 100%;height: 101%;" alt="...">
+                        <img src="../../../public/meal/smallcheese.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -170,10 +170,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/mr.jpg" style="width: 100%;height: 100%;" alt="...">
+                        <img src="../../../public/meal/mr.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -199,10 +199,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/banto.jpg" style="width: 100%;height: 103%;" alt="...">
+                        <img src="../../../public/meal/banto.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -228,10 +228,10 @@ export default{
                 </div>
             </div>
 
-            <div class="card mb-3" style="max-width: 38vw; max-height: 28vh;">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/bula.jpg" style="width: 100%;height: 100%;" alt="...">
+                        <img src="../../../public/meal/bula.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -285,15 +285,19 @@ export default{
             flex-wrap: wrap;
             gap: 1vmin;
             .card{
+                width: 38vw;
+                height: 27.5vh;
                 box-shadow: 1px 1px 1px lightgray;
                 img{
+                    width: 13vw;
+                    height: 27vh;
                     transition: all ease 0.4s;
                     border-radius: 50%;
                     scale: 0.85;
                     &:hover{
                         opacity: 0.7;
                         border-radius: 50%;
-                        scale: 1.0;
+                        scale: 1.01;
                         border-radius: 0;
                     }
                     &:active{
@@ -303,6 +307,88 @@ export default{
             }
             li{
                 font-size: 12pt;
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            width: 85vw;
+            height: 79vh;
+            .meal{
+                width: 85vw;
+                height: 70vh;
+                .card{
+                    height: 13.5vh;
+                    img{
+                        width: 16vw;
+                        height: 13vh;
+                    }
+                }
+                li{
+                    font-size: 10pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 80vh;
+            .meal{
+                li{
+                    font-size: 8pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 120vh;
+            .title{
+                p{
+                    font-size: 23pt;
+                    margin-bottom: 1vmin;
+                }
+            }
+            hr{
+                margin-top: 0;
+            }
+            .meal{
+                height: 112vh;
+                .card{
+                    width: 40vw;
+                    height: 26vh;
+                    img{
+                        width: 30vw;
+                        margin-left: 4vmin;
+                    }
+                    .card-title{
+                        font-size: 12pt;
+                    }
+                    ul{
+                        padding-left: 0.5rem;
+                        li{
+                            font-size: 5.5pt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            height: 118vh;
+            .meal{
+                height: 109vh;
+                .card{
+                    height: 25vh;
+                    .card-title{
+                        margin: 0;
+                    }
+                    .card-body{
+                        padding:0;
+                        padding-left: 2vmin;
+                    }
+                }
             }
         }
     }
