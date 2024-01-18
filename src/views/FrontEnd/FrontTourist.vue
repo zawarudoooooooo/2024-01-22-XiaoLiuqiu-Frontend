@@ -48,7 +48,7 @@ export default{
             </div>
             <hr>
             <div class="cardArea">
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t04/t4.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT04" class="routerItemCard">龍蝦洞</RouterLink>
@@ -58,7 +58,7 @@ export default{
                         </p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t05/t5.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT05" class="routerItemCard">白燈塔</RouterLink>
@@ -68,7 +68,7 @@ export default{
                         </p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t06/t6-1.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT06" class="routerItemCard">花瓶岩</RouterLink>
@@ -78,7 +78,7 @@ export default{
                         </p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t07/t7.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT07" class="routerItemCard">落日亭</RouterLink>
@@ -88,7 +88,7 @@ export default{
                         </p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t08/t8.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT08" class="routerItemCard">鹿粼梅花鹿園區</RouterLink>
@@ -98,7 +98,7 @@ export default{
                         </p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t10/t10.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT10" class="routerItemCard">中澳沙灘</RouterLink>
@@ -108,7 +108,7 @@ export default{
                         </p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t11/t11.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT11" class="routerItemCard">美人沙灘</RouterLink>
@@ -117,7 +117,7 @@ export default{
                             純淨無污染，<br>是很棒的浮潛地點。</p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t12/t12.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT12" class="routerItemCard">蛤板灣</RouterLink>
@@ -126,7 +126,7 @@ export default{
                             沙灘潔淨無比、海水蔚藍，<br>素有「威尼斯沙灘」的美名。</p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t14/t14.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT14" class="routerItemCard">厚石澳神秘沙灘</RouterLink>
@@ -135,7 +135,7 @@ export default{
                             珊瑚礁岩延伸海岸上，在沿岸出現一個缺口形成白色的小港灣沙灘。</p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t15/t15.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT15" class="routerItemCard">厚石裙礁</RouterLink>
@@ -144,7 +144,7 @@ export default{
                             因礁岩長年受到海水侵蝕作用，<br>呈現一條一條的海溝狀。</p>
                     </div>
                 </div>
-                <div class="card" style="width: 21rem; height: 23rem;">
+                <div class="card">
                     <img src="../../../public/tourist/t17/t17.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT17" class="routerItemCard">肚仔坪潮間帶</RouterLink>
@@ -170,7 +170,6 @@ export default{
                 color: #82AAE3;
                 font-size: 27pt;
                 font-weight: bold;
-                //margin-bottom: 3vmin;
             }
         }
         * {
@@ -256,6 +255,8 @@ export default{
                 justify-content: space-around;
                 flex-wrap: wrap;
                 .card{
+                    width: 21rem; 
+                    height: 23rem;
                     margin-bottom: 6vmin;
                     border-radius: 6px;
                     box-shadow: 1px 1px 1px lightgray;
@@ -269,6 +270,91 @@ export default{
                         }
                         &:active{
                             opacity: 1.0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 242vh;
+            .allSpot{
+                width: 85vw;
+                height: 195vh;
+                .cardArea{
+                    .card{
+                        width: 24rem;
+                        height: 25rem;
+                        margin-bottom: 3vmin;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 260vh;
+            .allSpot{
+                width: 85vw;
+                height: 207vh;
+                .cardArea{
+                    .card{
+                        width: 21rem;
+                        height: 23rem;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 249vh;
+            .title{
+                p{
+                    font-size: 24pt;
+                }
+            }
+            .allSpot{
+                height: 153vh;
+                .cardArea{
+                    .card{
+                        width: 10rem;
+                        height: 13rem;
+                        margin-bottom: 4vmin;
+                        .routerItemCard{
+                            font-size: 13pt;
+                        }
+                        .card-text{
+                            font-size: 6pt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            height: 248vh;
+            .title{
+                p{
+                    font-size: 20pt;
+                }
+            }
+            .flip{
+                width: 80vw;
+                height: 23vh;
+            }
+            .allSpot{
+                .cardArea{
+                    .card{
+                        height: 12rem;
+                        margin-bottom: 3vmin;
+                        .routerItemCard{
+                            font-size: 11pt;
+                        }
+                        .card-text{
+                            font-size: 5pt;
                         }
                     }
                 }

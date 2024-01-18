@@ -161,4 +161,160 @@ export default{
             }
         }
     }
+    @media(max-width:1200px){
+        .content{
+            height: 79vh;
+            .title{
+                p{
+                    margin: 0;
+                }
+            }
+            hr{
+                margin-top: 0;
+            }
+            .introduce{
+                height: 24vh;
+                margin-top: 0;
+                .text{
+                    p{
+                        font-size: 20pt;
+                    }
+                    ul{
+                        li{
+                            font-size: 15pt;
+                        }
+                    }
+                }
+                .img{
+                    img{
+                        height: 20vh;
+                    }
+                }
+            }
+            .event{
+                margin-top: 0;
+                .img{
+                    width: 78vw;
+                    height: 26vh;
+                    flex-wrap: wrap;
+                    img{
+                        width: 25vw;
+                        height: 12vh;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 79.5vh;
+            .title{
+                p{
+                    font-size: 24pt;
+                }
+            }
+            .introduce{
+                height: 22vh;
+                .text{
+                    p{
+                        font-size: 16pt;
+                    }
+                    ul{
+                        li{
+                            font-size: 13.5pt;
+                        }
+                    }
+                }
+                .img{
+                    img{
+                        height: 17vh;
+                        margin-top: 2vmin;
+                    }
+                }
+            }
+            .event{
+                .img{
+                    height: 27vh;
+                    margin-top: 3vmin;
+                }
+            }
+            ul{
+                margin-top: 3vmin;
+
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 80.5vh;
+            .title{
+                p{
+                    font-size: 18pt;
+                }
+            }
+            .introduce{
+                width: 80vw;
+                height: 29vh;
+                .text{
+                    width: 60vw;
+                    p{
+                        font-size: 15pt;
+                    }
+                    ul{
+                        padding: 2%;
+                        li{
+                            font-size: 9.5pt;
+                        }
+                    }
+                }
+                .img{
+                    img{
+                        height: 13vh;
+                        margin-top: 6vmin;
+                    }
+                }
+            }
+            .event{
+                .img{
+                    height: 20vh;
+                    margin-bottom: 5vmin;
+                    margin-top: 6vmin;
+                    img{
+                        width: 25vw;
+                        height: 9vh;
+                    }
+                }
+                ul{
+                    li{
+                        font-size: 9pt;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .title{
+                p{
+                    font-size: 16pt;
+                }
+            }
+            .introduce{
+                height: 25vh;
+                .text{
+                    p{
+                        font-size: 9pt;
+                    }
+                }
+            }
+            .event{
+                ul{
+                    padding-left: 2vmin;
+                    li{
+                        font-size: 11pt;
+                    }
+                }
+            }
+        }
+    }
 </style>

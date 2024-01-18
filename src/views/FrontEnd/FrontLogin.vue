@@ -121,78 +121,146 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.content {
-    width: 20vw;
-    height: 63vh;
-    margin: auto;
-    margin-top: 8vmin;
-    position: relative;
-    i{
-        margin-left: 2vmin;
-    }
-    input {
+    .content {
         width: 20vw;
-        height: 5vh;
-        border-radius: 10px;
-        border-style: none;
-        outline: none;
-        background-color: #D9D9D9;
-        padding-left: 2vmin;
-        margin-bottom: 4vmin;
-    }
-    .title {
-        font-size: 28pt;
-        font-weight: bold;
-        color: #82AAE3;
-        text-align: center;
-    }
-    .account {
-        p {
-            margin: 0;
-            font-size: 16pt;
-            color: #797A7E;
+        height: 63vh;
+        margin: auto;
+        margin-top: 8vmin;
+        position: relative;
+        i{
+            margin-left: 2vmin;
         }
-    }
-    .password {
-        p {
-            margin: 0;
-            font-size: 16pt;
-            color: #797A7E;
-        }
-    }
-    .buttonArea {
-        width: 20vw;
-        display: flex;
-        justify-content: space-around;
-        margin-top: 3vmin;
-        button {
-            width: 6vw;
+        input {
+            width: 20vw;
             height: 5vh;
-            border: none;
-            border-radius: 5px;
-            color: #797A7E;
-            &:hover {
-                background-color: #797A7E;
-                color: white;
-            }
-            &:active {
-                background-color: #F7F2E7;
+            border-radius: 10px;
+            border-style: none;
+            outline: none;
+            background-color: #D9D9D9;
+            padding-left: 2vmin;
+            margin-bottom: 4vmin;
+        }
+        .title {
+            font-size: 28pt;
+            font-weight: bold;
+            color: #82AAE3;
+            text-align: center;
+        }
+        .account {
+            p {
+                margin: 0;
+                font-size: 16pt;
                 color: #797A7E;
             }
         }
+        .password {
+            p {
+                margin: 0;
+                font-size: 16pt;
+                color: #797A7E;
+            }
+        }
+        .buttonArea {
+            width: 20vw;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 3vmin;
+            button {
+                width: 6vw;
+                height: 5vh;
+                border: none;
+                border-radius: 5px;
+                color: #797A7E;
+                &:hover {
+                    background-color: #797A7E;
+                    color: white;
+                }
+                &:active {
+                    background-color: #F7F2E7;
+                    color: #797A7E;
+                }
+            }
+        }
     }
-}
-#back{
-    font-size: 16pt;
-    color:#F7F2E7;
-    position: absolute;
-    right: 1%;
-    bottom: 2%;
-    &:hover{
-        color: #797A7E;
-    }
-    &:active{
+    #back{
+        font-size: 16pt;
         color:#F7F2E7;
+        position: absolute;
+        right: 1%;
+        bottom: 2%;
+        &:hover{
+            color: #797A7E;
+        }
+        &:active{
+            color:#F7F2E7;
+        }
     }
-}
+    @media(max-width:1200px){
+        .content{
+            width: 50vw;
+            height: 76vh;
+            input{
+                width: 50vw;
+                height: 4vh;
+                margin-bottom: 8vmin;
+            }
+            .title{
+                font-size: 35pt;
+                margin-bottom: 5vmin;
+            }
+            .account{
+                p{
+                    font-size: 25pt;
+                }
+            }
+            .password{
+                p{
+                    font-size: 25pt;
+                }
+            }
+            .buttonArea{
+                width: 50vw;
+                button{
+                    width: 15vw;
+                    height: 4vh;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 77vh;
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            width: 60vw;
+            height: 79vh;
+            input{
+                width: 60vw;
+                margin-bottom: 12vmin;
+            }
+            .title{
+                font-size: 28pt;
+                margin-bottom: 10vmin;
+            }
+            .account{
+                p{
+                    font-size: 19pt;
+                }
+            }
+            .password{
+                p{
+                    font-size: 19pt;
+                }
+            }
+            .buttonArea{
+                width: 60vw;
+                button{
+                    width: 35vw;
+                    height: 5vh;
+                }
+            }
+        }
+    }
 </style>
