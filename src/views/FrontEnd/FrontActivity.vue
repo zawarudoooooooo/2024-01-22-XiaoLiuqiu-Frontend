@@ -131,7 +131,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 75vw;
-        height: 222vh;
+        height: 240vh;
         margin: auto;
         margin-top: 4vmin;
         position: relative;
@@ -144,7 +144,7 @@ export default{
             }
         }
         .card{
-            width: 22rem;
+            width: 20rem;
         }
         hr{
             margin-bottom: 4vmin;
@@ -194,7 +194,7 @@ export default{
     @media(max-width:1200px){
         .content{
             width: 90vw;
-            height: 106vh;
+            height: 113vh;
             margin-top: 2vmin;
             hr{
                 margin-bottom: 2vmin;
@@ -214,7 +214,7 @@ export default{
                 width: 90vw;
                 margin-bottom: 2vmin;          
                 .card{
-                    width: 19rem;
+                    width: 18rem;
                 }
             }
             .ticket{
@@ -224,16 +224,13 @@ export default{
     }
     @media(max-width:992px){
         .content{
-            height: 119vh;
-            .traffic{
-                .card{
-                    width: 19rem;
-                    height: 25rem;
-                }
+            height: 126vh;
+            .card{
+                width: 18rem;
             }
             .activity{
                 .card{
-                    width: 15rem;
+                    width: 14rem;
                     height: 25.5rem;
                 }
             }
@@ -278,7 +275,7 @@ export default{
     }
     @media(max-width:414px){
         .content{
-            height: 105vh;
+            height: 103vh;
             .title{
                 p{
                     font-size: 15pt;

@@ -11,8 +11,7 @@ export default {
             memberName: "",
             memberPhone: "",
             memberEmail: "",
-            memberPhoto:"222222",
-            aaa:"",
+            memberPhoto:"",
         }
     },
     methods: {
@@ -27,7 +26,6 @@ export default {
                 this.repwd=""
                 return;
             }
-            
 
             axios({
                 url: 'http://localhost:8080/member/signUp',
@@ -41,7 +39,7 @@ export default {
                     memberName: this.memberName,
                     memberPhone: this.memberPhone,
                     memberEmail: this.memberEmail,
-                    memberPhoto:this.memberPhoto,
+                    memberPhoto : this.memberPhoto,
                 },
             }).then(res => {
                 console.log(res.data)
@@ -57,7 +55,6 @@ export default {
                 }
                 console.error('Error:', error);
             });
-
         },
         goEntry(){
             this.$router.push('/')
@@ -112,7 +109,7 @@ export default {
 <style lang="scss" scoped>
     .content {
         width: 20vw;
-        height: 80vh;
+        height: 85vh;
         margin: auto;
         margin-top: 3vmin;
         i{
@@ -133,7 +130,6 @@ export default {
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
-            margin-bottom: 0.5vmin;
         }
         .account {
             p {
