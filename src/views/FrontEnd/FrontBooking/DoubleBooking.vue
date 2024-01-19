@@ -15,11 +15,16 @@ export default{
             ischecked9:false,
             ischecked10:false,
             ischecked11:false,
+            exxtra:[],
+            test:""
         }
     },
     methods:{
         clicked(){
             this.ischecked=!this.ischecked
+            // this.exxtra.push(this.value)
+            // showExtra.innerText=this.exxtra
+
         },
         clicked1(){
             this.ischecked1=!this.ischecked1
@@ -63,9 +68,12 @@ export default{
 
 <template>
     <div class="content">
+        <p id="showExtra">{{ this.exxtra }}</p>
         <div class="show">
+            
             <img src="../../../../public/room/double.jpg" alt="">
             <div class="text">
+                
                 <div class="name">
                     <p>舒適雙人房</p>
                     <p>$2500</p>
@@ -73,7 +81,7 @@ export default{
                 <hr>
                 <div class="extra">
                     <p>加購項目</p>
-                    <button type="button" @click="clicked()" :class="{check:ischecked}">早餐(+200/人)</button>
+                    <!-- <button type="button" @click="clicked()" :class="{check:ischecked}" >早餐(+200/人)</button>
                     <br>
                     <button type="button" @click="clicked1()" :class="{check1:ischecked1}">來回船票(+400/全票)</button>
                     <button type="button" @click="clicked2()" :class="{check2:ischecked2}">來回船票(+200/半票)</button>
@@ -86,7 +94,18 @@ export default{
                     <button type="button" @click="clicked8()" :class="{check8:ischecked8}">獨木舟(+600/人)</button>
                     <button type="button" @click="clicked9()" :class="{check9:ischecked9}">透明獨木舟(+800/人)</button>
                     <button type="button" @click="clicked10()" :class="{check10:ischecked10}">SUP立槳(+1000/兩人一板)</button>
-                    <button type="button" @click="clicked11()" :class="{check11:ischecked11}">SUP立槳(+1200/一人一板)</button>
+                    <button type="button" @click="clicked11()" :class="{check11:ischecked11}">SUP立槳(+1200/一人一板)</button> -->
+                    <input type="checkbox" id="pp" value="早餐(+200/人)" v-model="exxtra">
+                    <label for="pp">早餐(+200/人)</label>
+                    <input type="checkbox" id="aa" value="來回船票(+400/全票)" v-model="exxtra">
+                    <label for="aa">來回船票(+400/全票)</label>
+                    <input type="checkbox" id="an" value="來回船票(+200/半票)" v-model="exxtra">
+                    <label for="an">來回船票(+200/半票)</label>
+                    <input type="checkbox" id="anb" value="摩托車(+300/天)" v-model="exxtra">
+                    <label for="anb">摩托車(+300/天)</label>
+                    <input type="checkbox" id="anb" value="摩托車(+300/天)" v-model="exxtra">
+                    <label for="anb">摩托車(+300/天)</label>
+                    
                 </div>
                 <button type="button" id="buyBtn">確認</button>
             </div>
