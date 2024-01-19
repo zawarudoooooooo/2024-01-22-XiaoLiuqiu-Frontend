@@ -111,4 +111,92 @@ export default{
             }
         }
     }
+    @media(max-width:1200px){
+        .content{
+            height: 76vh;
+            margin-top: 8vmin;
+            display: block;
+            .pictureArea{
+                width: 70vw;
+                height: 43vh;
+                margin: auto;
+            }
+            .introduce{
+                width: 75vw;
+                margin: auto;
+                .info{
+                    span{
+                        font-size: 30pt;
+                    }
+                    #time{
+                        font-size: 20pt;
+                    }
+                }
+                p{
+                    width: 75vw;
+                    font-size: 22pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 77vh;
+            .pictureArea{
+                height: 42vh;
+            }
+            .introduce{
+                .info{
+                    span{
+                        font-size: 27pt;
+                    }
+                    #time{
+                        font-size: 19pt;
+                    }
+                }
+                p{
+                    font-size: 19pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 75vh;
+            margin-top: 15vmin;
+            .pictureArea{
+                height: 30vh;
+            }
+            .introduce{
+                .info{
+                    span{
+                        font-size: 16pt;
+                    }
+                    #time{
+                        font-size: 10pt;
+                    }
+                }
+                p{
+                    font-size: 16pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .pictureArea{
+                height: 32vh;
+            }
+            .introduce{
+                .info{
+                    #time{
+                        font-size: 9pt;
+                    }
+                }
+                p{
+                    font-size: 11.5pt;
+                }
+            }
+        }
+    }
 </style>
