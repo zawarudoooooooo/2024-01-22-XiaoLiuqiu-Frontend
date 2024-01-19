@@ -158,6 +158,7 @@ export default{
                 position: absolute;
                 left: 1%;
                 top: -30%;
+                cursor: pointer;
             }
         }
         nav{

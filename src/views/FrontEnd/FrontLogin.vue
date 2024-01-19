@@ -64,7 +64,22 @@ export default {
                 }
                 console.error('Error:', error);
             });
-        }
+        },
+        forgotPassword(){
+
+            axios({
+                url:'http://localhost:8080/member/send_email',
+                method: "POST",
+                headers:{"Content-Type": "application/json",},
+                data: {
+                   account: this.account
+                }
+                
+            })
+            .then(res => console.log(res))
+            
+            .catch(error => console.error(error))
+        },
     },
     components: {
         Footer
@@ -91,7 +106,7 @@ export default {
             <button type="button"  data-bs-toggle="modal" 
                     data-bs-target="#exampleModal">忘記密碼
             </button>
-            <RouterLink to="/reset" class="routerItem">重設密碼</RouterLink>
+            <!-- <RouterLink to="/reset" class="routerItem">重設密碼</RouterLink> -->
         </div>
     </div>
 <!-- 忘記密碼modal視窗 -->
@@ -105,13 +120,13 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">請輸入 E-mail :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">請輸入帳號名稱 :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="account">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">送出</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="forgotPassword">送出</button>
                     </div>
                 </div>
             </div>
