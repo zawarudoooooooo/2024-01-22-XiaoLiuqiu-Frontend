@@ -57,7 +57,7 @@ export default{
             })
             }
         },
-      //獲取圖片
+//獲取圖片
         imgPreview(file, id) {
         let self = this
         //判斷支不支持FileReader
@@ -81,7 +81,7 @@ export default{
             }
         }
         },
-      // 壓縮圖片
+// 壓縮圖片
         compress(img, size) {
         let canvas = document.createElement('canvas')
         let ctx = canvas.getContext('2d')
@@ -101,9 +101,9 @@ export default{
         console.log(ndata.length / 1024)
         return ndata
         },
-    //   uploadImg(base64, id) {
-    //   		console.log('得到壓縮後的base64傳入後臺') 
-    //   },
+        // uploadImg(base64, id) {   
+        //     console.log('得到壓縮後的base64傳入後臺') 
+        // },
 //使用者照片上傳
         onfileuser(event){
             this.file=event.target.files[0]
@@ -347,7 +347,7 @@ export default{
                 <button type="button" @click="updateMemberInfo()">儲存</button>
             </div>
         </div>
-        <!-- 更改資料modal視窗 -->
+<!-- 更改資料modal視窗 -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -377,7 +377,7 @@ export default{
                 </div>
             </div>
         </div>
-        <!-- 更改密碼modal視窗 -->
+<!-- 更改密碼modal視窗 -->
         <div class="modal fade" id="exampleModalPwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">

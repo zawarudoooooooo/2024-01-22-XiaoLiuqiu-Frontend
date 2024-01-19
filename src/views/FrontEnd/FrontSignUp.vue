@@ -11,8 +11,7 @@ export default {
             memberName: "",
             memberPhone: "",
             memberEmail: "",
-            memberPhoto:"123",
-            aaa:"",
+            memberPhoto:"",
         }
     },
     methods: {
@@ -27,7 +26,6 @@ export default {
                 this.repwd=""
                 return;
             }
-
             axios({
                 url: 'http://localhost:8080/member/signUp',
                 method: 'POST',
@@ -56,7 +54,6 @@ export default {
                 }
                 console.error('Error:', error);
             });
-
         },
         goEntry(){
             this.$router.push('/')
