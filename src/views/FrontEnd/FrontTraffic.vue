@@ -133,7 +133,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 146vh;
+        height: 155vh;
         margin: auto;
         margin-top: 4vmin;
         hr{
@@ -176,6 +176,7 @@ export default{
         }
         .ferry{
             width: 90vw;
+            height: 63vh;
             display: flex;
             justify-content: space-around;
             .time{
@@ -224,18 +225,19 @@ export default{
     }
     @media(max-width:1200px){
         .content{
-            height: 81vh;
+            height: 87vh;
             margin-top: 2vmin;
             hr{
                 margin-bottom: 2vmin;
                 margin-top: 0;
             }
             .location{
-                height: 30vh;
+                height: 39vh;
+                margin-bottom: 1vmin;
                 img{
                     width: 40vw;
                     height: 20vh;
-                    margin-top: 5vmin;
+                    margin-top: 8vmin;
                 }
                 .traffic{
                     ul{
@@ -246,23 +248,26 @@ export default{
                 }
             }
             .ferry{
-                height: 30vh;
+                height: 32vh;
                 .imgArea{
                     height: 25vh;
+                    margin-top: 3vmin;
                     img{
                         height: 14vh;
                     }
                 }
-
             }
         }
     }
     @media(max-width:992px){
         .content{
-            height: 81vh;
+            height: 90vh;
             margin-top: 2vmin;
             .location{
                 margin-bottom: 3vmin;
+                img{
+                    margin-top: 10vmin;
+                }
                 .traffic{
                     ul{
                         li{
@@ -285,7 +290,7 @@ export default{
                     }
                 }
                 .imgArea{
-                    margin-top: 4vmin;
+                    margin-top: 6vmin;
                     img{
                         height: 12vh;
                     }

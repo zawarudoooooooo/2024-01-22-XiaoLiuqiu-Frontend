@@ -318,7 +318,8 @@ export default{
                 width: 85vw;
                 height: 70vh;
                 .card{
-                    height: 13.5vh;
+                    width: 41vw;
+                    height: 14.5vh;
                     img{
                         width: 16vw;
                         height: 13vh;
@@ -334,6 +335,9 @@ export default{
         .content{
             height: 80vh;
             .meal{
+                .card{
+                    width: 41.5vw;
+                }
                 li{
                     font-size: 8pt;
                 }

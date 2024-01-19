@@ -88,12 +88,11 @@ export default {
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
             <button type="button" @click="login()">登入</button>
-            <button type="button"  data-bs-toggle="modal" 
+            <button type="button"  data-bs-toggle="modal" id="forget"
                     data-bs-target="#exampleModal">忘記密碼
             </button>
-            <RouterLink to="/reset" class="routerItem">重設密碼</RouterLink>
         </div>
-    </div>
+    </div>  
 <!-- 忘記密碼modal視窗 -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -162,11 +161,13 @@ export default {
         }
         .buttonArea {
             width: 20vw;
+            height: 15vh;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-around;
-            margin-top: 3vmin;
+            margin-top: 2vmin;
             button {
-                width: 6vw;
+                width: 9vw;
                 height: 5vh;
                 border: none;
                 border-radius: 5px;
@@ -179,6 +180,11 @@ export default {
                     background-color: #F7F2E7;
                     color: #797A7E;
                 }
+            }
+            #forget{
+                width: 7vw;
+                height: 4.5vh;
+                font-size: 10pt;
             }
         }
     }

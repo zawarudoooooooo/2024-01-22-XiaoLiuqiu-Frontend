@@ -23,8 +23,8 @@
             <li>
                 <div class="info">
                     <div class="user">
-                        <img src="../../../public/userimg.png" alt="">
-                        <p>杏仁茶加油條</p>
+                        <img src="../../../public/user1.png" alt="">
+                        <p>金萱紅茶</p>
                     </div>
                     <div class="time">
                         <small>2024/01/06 15:20</small>

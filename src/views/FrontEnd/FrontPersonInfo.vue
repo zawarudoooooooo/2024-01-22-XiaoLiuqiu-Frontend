@@ -254,6 +254,7 @@ export default{
                     <input class="upload_cover" id="IDc1" name="IDc1" type="file"
                     @change="uploadIMG"> -->
                     <input id="upload_input" type="file" @change="uploadImg($event)">
+                    <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
                     <img :src="useravatar" class="upload_cover" alt="">
                 </label>
             </div>
@@ -423,13 +424,12 @@ export default{
 </template>
 
 <style lang="scss" scoped>
-        .content{
+    .content{
         width: 63vw;
         height: 65vh;
         margin: auto;
         margin-top: 6vmin;
         display: flex;
-        //border: 1px solid black;
         padding-top: 2vmin;
         position: relative;
         i{
@@ -442,7 +442,6 @@ export default{
             justify-content: space-around;
             align-items: center;
             flex-direction: column;
-            //border: 1px solid black;
             margin-top: 8vmin;
             margin-right: 18vmin;
             button{
@@ -463,9 +462,8 @@ export default{
             }
         }
         .personInfo{
-            width: 25vw;
+            width: 38vw;
             height: 35vh;
-            //border: 1px solid black;
             margin-top: 1%;
             #location{
                 font-size: 24pt;
@@ -483,6 +481,8 @@ export default{
                     right: 6%;
                     top: -3%;
                     border: 1px solid#797A7E;
+                    background-image: url('../../../public/userimg.png');
+                    background-size: contain;
                 }
                 #upload_input{
                     display: none;
@@ -494,17 +494,16 @@ export default{
                 margin-bottom: 3vmin;
             }
             .personInfoBtn{
-                width: 20vw;
+                width: 30vw;
                 height: 5vh;
                 display: flex;
                 justify-content: space-around;
                 position: absolute;
                 right: 6%;
                 bottom: 10%;
-                //border: 1px solid black;
                 button{
-                    width: 6vw;
-                    height: 4.5vh;
+                    width: 8vw;
+                    height: 5vh;
                     border: none;
                     border-radius: 5px;
                     color: #797A7E;
@@ -522,8 +521,6 @@ export default{
         }
         .order{
             width: 30vw;
-            height: 40vh;
-            //border: 1px solid black;
             #location{
                 font-size: 24pt;
                 font-weight: bold;
@@ -538,8 +535,7 @@ export default{
         }
         .message{
             width: 30vw;
-            height: 58vh;
-            //border: 1px solid black;
+            height: 57vh;
             position: relative;
             #location{
                 font-size: 24pt;
@@ -596,18 +592,16 @@ export default{
                 }
             }
             .msgBtnArea{
-                width: 15vw;
-                height: 10vh;
-                //border: 1px solid black;
+                width: 20vw;
+                height: 6vh;
                 display: flex;
                 justify-content: space-around;
                 position: absolute;
                 right: 0;
-                //top: 3%;
                 bottom: -7%;
                 button{
-                    width: 6vw;
-                    height: 4.5vh;
+                    width: 8vw;
+                    height: 5vh;
                     border: none;
                     border-radius: 5px;
                     color: #797A7E;
@@ -628,8 +622,279 @@ export default{
                 .mb-3{
                     .msgimg{
                         width: 15vw;
-                        height: 25vh;
+                        height: 20vh;
                         border-radius: 5px;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            width: 80vw;
+            height: 78vh;
+            display: block;
+            .buttonArea{
+                width: 80vw;
+                height: 10vh;
+                margin-top: 0;
+                margin-bottom: 12vmin;
+                flex-direction: row;
+                button{
+                    width: 20vw;
+                    height: 5vh;
+                    font-size: 18pt;
+                }
+            }
+            .personInfo{
+                width: 75vw;
+                margin: auto;
+                #location{
+                    font-size: 30pt;
+                }
+                .user{
+                    .upload_cover{
+                        width: 17vmin;
+                        height: 17vmin;
+                        right: 4%;
+                        top: 20%;
+                    }
+                }
+                p{
+                    font-size: 25pt;
+                }
+                .personInfoBtn{
+                    width: 60vw;
+                    button{
+                        width: 18vw;
+                        height: 5vh;
+                        font-size: 18pt;
+                    }
+                }
+            }
+            .order{
+                width: 75vw;
+                margin: auto;
+                #location{
+                    font-size: 30pt;
+                }
+                p{
+                    font-size: 24pt;
+                }
+            }
+            .message{
+                width: 75vw;
+                height: 50vh;
+                margin: auto;
+                #location{
+                    font-size: 30pt;
+                }
+                .topic{
+                    p{
+                        font-size: 25pt;
+                    }
+                    input{
+                        width: 75vw;
+                        height: 4vh;
+                        margin-bottom: 3vmin;
+                    }
+                }
+                .text{
+                    p{
+                        font-size: 25pt;
+                    }
+                    textarea{
+                        width: 75vw;
+                        height: 13vh;
+                        margin-bottom: 3vmin;
+                    }
+                }
+                .img{
+                    p{
+                        font-size: 25pt;
+                    }
+                    #addicon{
+                        margin-top: 1vmin;
+                        font-size: 26pt;
+                    }
+                }
+                .msgBtnArea{
+                    width: 40vw;
+                    button{
+                        width: 18vw;
+                        height: 4vh;
+                        font-size: 20pt;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            .personInfo{
+                .user{
+                    .upload_cover{
+                        width: 20vmin;
+                        height: 20vmin;
+                    }
+                }
+            }
+            .order{
+                p{
+                    font-size: 22pt;
+                }
+            }
+            .message{
+                .msgBtnArea{
+                    button{
+                        font-size: 18pt;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 79.5vh;
+            .buttonArea{
+                margin-bottom: 17vmin;
+                button{
+                    width: 24vw;
+                    font-size: 12pt;
+                }
+            }
+            .personInfo{
+                #location{
+                    font-size: 22pt;
+                }
+                .user{
+                    height: 1vmin;
+                    .upload_cover{
+                        width: 23vmin;
+                        height: 23vmin;
+                        top: 20%;
+                    }
+                }
+                p{
+                    font-size: 20pt;
+                }
+                .personInfoBtn{
+                    width: 75vw;
+                    right: 3%;
+                    bottom: 9%;
+                    button{
+                        width: 20vw;
+                        font-size: 13pt;
+                    }
+                }
+            }
+            .order{
+                #location{
+                    font-size: 22pt;
+                }
+                p{
+                    font-size: 17pt;
+                }
+            }
+            .message{
+                #location{
+                    font-size: 22pt;
+                }
+                .topic{
+                    p{
+                        font-size: 17pt;
+                    }
+                    input{
+                        margin-bottom: 5vmin;
+                    }
+                }
+                .text{
+                    p{
+                        font-size: 17pt;
+                    }
+                    textarea{
+                        margin-bottom: 5vmin;
+                    }
+                }
+                .img{
+                    p{
+                        font-size: 17pt;
+                    }
+                    #addicon{
+                        font-size: 24pt;
+                    }
+                }
+                .msgBtnArea{
+                    button{
+                        bottom: -9%;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .buttonArea{
+                button{
+                    font-size: 11pt;
+                }
+            }
+            .personInfo{
+                #location{
+                    font-size: 20pt;
+                }
+                .user{
+                    .upload_cover{
+                        width: 25vmin;
+                        height: 25vmin;
+                        top: 18%;
+                    }
+                }
+                p{
+                    font-size: 16pt;
+                }
+                .personInfoBtn{
+                    button{
+                        font-size: 12pt;
+                    }
+                }
+            }
+            .order{
+                #location{
+                    font-size: 20pt;
+                }
+                p{
+                    font-size: 16pt;
+                }
+            }
+            .message{
+                #location{
+                    font-size: 20pt;
+                }
+                .topic{
+                    p{
+                        font-size: 16pt;
+                    }
+                }
+                .text{
+                    p{
+                        font-size: 16pt;
+                    }
+                }
+                .img{
+                    p{
+                        font-size: 16pt;
+                    }
+                    #addicon{
+                        font-size: 22pt;
+                    }
+                }
+                .msgBtnArea{
+                    width: 50vw;
+                    bottom: -12%;
+                    button{
+                        width: 22vw;
+                        font-size: 14pt;
                     }
                 }
             }
