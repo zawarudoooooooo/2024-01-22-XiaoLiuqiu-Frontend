@@ -5,15 +5,22 @@ import * as imageConversion from 'image-conversion';
 export default{
     data(){
         return{
-            name:"",
-            phone:"",
-            email:"",
+            //更新會員資訊
+            newName:"",
+            newPhone:"",
+            newEmail:"",
+            //會員圖片
+            useravatar:"",
+
+            //更改密碼
+            oldPwd:"",
+            newPwd:"",
+            checkNewPwd:"",
 
             //貼文
             topic:"",
             text:"",
-            
-            useravatar:"",
+
             msgavatar:"",
 
             //頁面切換
@@ -168,6 +175,7 @@ export default{
             this.personInfoPage=false,
             this.orderPage=false
         },
+//留言板
         messageCreate(){
             axios({
             url:'http://localhost:8080/message/messageCreate',
@@ -182,24 +190,87 @@ export default{
                 roomMessageBoardDescription:this.text,
             },
         }).then(res => {
-                
-                console.log(res.data)
-                if(res.data.message=="Successful!!"){
-                    swal({
-                        title: '成功',
-                        
-                    })
-                    .then((willRefresh) => {
-                        if (willRefresh) {
-                            
-                          // 在这里可以执行页面刷新的操作
+            console.log(res.data)
+            if(res.data.message=="Successful!!"){
+                swal("成功","更新完成","success")
+                .then((willRefresh) => {
+                    if (willRefresh) {
+                        // 在这里可以执行页面刷新的操作
                             
                         } 
                     });
-            }else{
-                swal("錯誤", "error");
-            }
+                }else{
+                    swal("失敗","發生未知錯誤","error");
+                }
             })
+        },
+//更新會員資訊
+        updateMemberInfo(){
+            axios({
+            url:'http://localhost:8080/member/upDate',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                memberId:this.memberInfo.memberId
+            },             
+            data:{
+                memberName:this.newName,
+                memberPhone:this.newPhone,
+                memberEmail:this.newEmail,
+                memberPhoto:this.useravatar
+            },
+        }).then(res => {     
+            console.log(res.data)
+            if(res.data.message=="Successful!!"){
+                swal("成功","更新完成","success")
+                .then((willRefresh) => {
+                    if (willRefresh) {  
+                        // 在这里可以执行页面刷新的操作
+                        } 
+                    });
+                }else{
+                    swal("失敗","發生未知錯誤","error");
+                }
+            })
+            this.newName="",
+            this.newPhone="",
+            this.newEmail=""
+        },
+//變更密碼
+        updatePwd(){
+            axios({
+            url:'http://localhost:8080/member/pwdUpDate',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                memberId:this.memberInfo.memberId
+            },             
+            data:{
+                pwd:this.oldPwd,
+                newPwd:this.newPwd,
+                confirmPwd:this.checkNewPwd
+            },
+        }).then(res => { 
+            console.log(res)
+            console.log(res.data)
+            if(res.data.message=="Successful!!"){
+                swal("成功","變更完成","success")
+                .then((willRefresh) => {
+                    if (willRefresh) {  
+                        // 在这里可以执行页面刷新的操作
+                        } 
+                    });
+                }else{
+                    swal("失敗","發生未知錯誤","error");
+                }
+            })
+            this.oldPwd="",
+            this.newPwd="",
+            this.checkNewPwd=""
         }
     },
     mounted(){
@@ -222,8 +293,7 @@ export default{
         }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
-                // console.log(this.memberInfo);
-
+                console.log(this.memberInfo);
             });
             // this.memberInfo=
             // console.log(this.memberInfo);
@@ -274,7 +344,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
-                <button type="button">儲存</button>
+                <button type="button" @click="updateMemberInfo()">儲存</button>
             </div>
         </div>
         <!-- 更改資料modal視窗 -->
@@ -289,20 +359,20 @@ export default{
                         <form>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">更改姓名 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newName">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">更改電話 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newPhone">
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">更改e-mail :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newEmail">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認更改</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="updateMemberInfo()">確認更改</button>
                     </div>
                 </div>
             </div>
@@ -319,20 +389,20 @@ export default{
                         <form>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">請輸入舊密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.oldPwd">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">請輸入新密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newPwd">
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">請確認新密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.checkNewPwd">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">確認更改</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="updatePwd()">確認更改</button>
                     </div>
                 </div>
             </div>
