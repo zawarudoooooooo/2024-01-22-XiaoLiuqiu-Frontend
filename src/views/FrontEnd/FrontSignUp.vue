@@ -11,6 +11,7 @@ export default {
             memberName: "",
             memberPhone: "",
             memberEmail: "",
+            memberPhoto:"222222",
             aaa:"",
         }
     },
@@ -40,6 +41,7 @@ export default {
                     memberName: this.memberName,
                     memberPhone: this.memberPhone,
                     memberEmail: this.memberEmail,
+                    memberPhoto:this.memberPhoto,
                 },
             }).then(res => {
                 console.log(res.data)
