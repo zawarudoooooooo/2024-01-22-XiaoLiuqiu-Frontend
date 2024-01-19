@@ -5,13 +5,42 @@ import swal from 'sweetalert';
 export default {
     data() {
         return {
-            account:"",
-            pwd:"",
-            repwd:""
+            account: "",
+            newPassword: "",
+            confirmPassword: ""    
         }
     },
-    methods: {
+    mounted(){
+    },
+    methods:{
+        resetPassword(){
+            const account = this.$route.query.account
+            const resetCode = this.$route.query.resetCode
 
+            console.log(account);
+            console.log(resetCode);
+
+            axios({
+                url:'http://localhost:8080/member/reset_password',
+                method: "POST",
+                headers:{"Content-Type": "application/json",},
+                params:{
+                    account: account,
+                    resetCode: resetCode,
+                },
+                data: {
+                    new_password: this.newPassword,
+                    confirm_password: this.confirmPassword
+                }
+            })
+            .then(res => {
+                console.log(res)
+                setTimeout(() =>{
+                    this.$router.push('/')
+                }, 2000)
+            })
+           . catch(error => console.error(error))
+        }
     },
     components: {
         Footer
@@ -24,24 +53,20 @@ export default {
         <div class="title">
             <p>重設密碼<i class="fa-solid fa-unlock-keyhole"></i></p>
         </div>
-        <div class="account">
-            <p>帳號</p>
-            <input type="text" v-model="this.account" placeholder="請輸入帳號">
-        </div>
         <div class="password">
             <p>新密碼</p>
-            <input type="password" v-model="this.pwd" placeholder="請設定新密碼">
+            <input type="password" v-model="this.newPassword" placeholder="請設定新密碼">
         </div>
         <div class="repassword">
             <div class="notice">
                 <p >確認密碼</p>
-                <p id=checkpwd v-if="this.repwd!=this.pwd">*請輸入相同密碼</p>
+                <p id=checkpwd v-if="this.confirmPassword != this.newPassword">*請輸入相同密碼</p>
             </div>
-            <input type="password" v-model="this.repwd" placeholder="請再次輸入密碼">
+            <input type="password" v-model="this.confirmPassword" placeholder="請再次輸入密碼">
         </div>
         <div class="buttonArea">
             <button type="button">取消</button>
-            <button type="button">確認</button>
+            <button type="button" @click="resetPassword">確認</button>
         </div>
     </div>
     <Footer />

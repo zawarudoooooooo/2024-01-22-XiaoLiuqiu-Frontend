@@ -26,6 +26,7 @@ export default {
                 this.repwd=""
                 return;
             }
+            
 
             axios({
                 url: 'http://localhost:8080/member/signUp',
