@@ -13,12 +13,15 @@ export default{
         goFrontEntry(){
             this.$router.push('/')
         },
+        goUserInfo(){
+            this.$router.push('/FrontPersonInfo')
+        },
         logout(){
             axios({
             url:'http://localhost:8080/member/logout',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             withCredentials:true,
             params:{
@@ -26,12 +29,11 @@ export default{
             data:{
 
             },
-          }).then(res=>{
+            }).then(res=>{
             console.log(res.data);
-
             swal({
                         title: '登出成功',
-                        text: '以登出',
+                        text: '已登出',
                         icon: 'success',
                         buttons: '確認',
                         dangerMode: true,
@@ -52,7 +54,7 @@ export default{
             url:'http://localhost:8080/employee/logout',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             withCredentials:true,
             params:{
@@ -60,12 +62,11 @@ export default{
             data:{
 
             },
-          }).then(res=>{
+            }).then(res=>{
             console.log(res.data);
-
             swal({
                         title: '登出成功',
-                        text: '以登出',
+                        text: '已登出',
                         icon: 'success',
                         buttons: '確認',
                         dangerMode: true,
@@ -98,13 +99,14 @@ export default{
         <div class="logo">
             <img src="../../public/seaLifeLogo.png" @click="goFrontEntry()">
         </div>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <RouterLink to="/FrontAbout" class="routerItem" id="about"><i class="fa-solid fa-umbrella-beach"></i>關於 Sea．Life</RouterLink>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <RouterLink to="/FrontAbout" class="routerItem"><i class="fa-solid fa-umbrella-beach"></i>關於 Sea．Life</RouterLink>
-                        </li>
                         <li class="nav-item">
                             <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>訂房</RouterLink>
                         </li>
@@ -123,10 +125,14 @@ export default{
                             <RouterLink to="/FrontMessage" class="routerItem"><i class="fa-solid fa-note-sticky"></i>留言板</RouterLink>
                         </li>
                         <li class="nav-item" v-if="this.cookie==''">
-                            <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user-check"></i>登錄</RouterLink>
+                            <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user"></i>登入</RouterLink>
                         </li>
-                        <li class="nav-item" v-if="this.cookie!=''&&this.cookieTest!='employee'">
-                            <button @click="logout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>會員登出</button>
+                        <li class="nav-item dropdown"  v-if="this.cookie!=''&&this.cookieTest!='employee'">
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>會員名稱</p>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li class="dropdown-item" @click="goUserInfo()"><i class="fa-solid fa-user-check"></i>會員中心</li>
+                                <li class="dropdown-item" @click="logout()"><i class="fa-solid fa-right-from-bracket"></i>登出</li>
+                            </ul>
                         </li>
                         <li class="nav-item" v-if="this.cookie!=''&&this.cookieTest=='employee'">
                             <button @click="employeeLogout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>員工登出</button>
@@ -151,15 +157,19 @@ export default{
                 height: 22vh;
                 position: absolute;
                 left: 1%;
-                top: -26%;
+                top: -30%;
+                cursor: pointer;
             }
         }
         nav{
             position: absolute;
-            bottom: 5%;
+            bottom: -23%;
             right: 2%;
+            #about{
+                margin-bottom: 2vmin;
+            }
             .routerItem{
-                font-size: 18pt;
+                font-size: 17pt;
                 text-decoration: none;
                 color: #797A7E;
                 margin-right: 5vmin;
@@ -173,6 +183,90 @@ export default{
             }
             i{
                 margin-right: 1vmin;
+            }
+            button{
+                border: none;
+                background-color: transparent;
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .header{
+            height: 10vh;
+            position: relative;
+            .logo{
+                img{
+                    width: 16vw;
+                    height: 12vh;
+                    position: absolute;
+                    top: 2%;
+                }
+            }
+            nav{
+                position: absolute;
+                bottom: -30%;
+                .routerItem{
+                    font-size: 16pt;
+                    margin-right: 2vmin;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .header{
+            .logo{
+                img{
+                    width: 15vw;
+                    height: 12vh;
+                }
+            }
+            nav{
+                .container-fluid{
+                    width: 33vw;
+                    .navbar-collapse{
+                        background-color: aliceblue;
+                        border-radius: 5px;
+                        text-align: center;
+                        p{
+                            margin-bottom: 0.5vmin;
+                        }
+                    }
+                }
+                #about{
+                    margin-top: 1.5vmin;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .header{
+            position: relative;
+            .logo{
+                img{
+                    width: 30vw;
+                    height: 14vh;
+                    position: absolute;
+                    top: -10%;
+                }
+            }
+            nav{
+                .container-fluid{
+                    width: 52vw;
+                    #about{
+                        font-size: 13pt;
+                        margin-top: 1.5vmin;
+                    }
+                }
+
+            }
+        }
+    }
+    @media(max-width:414px){
+        .header{
+            nav{
+                .container-fluid{
+                    width: 57vw;
+                }
             }
         }
     }

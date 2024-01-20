@@ -75,15 +75,78 @@ export default{
             }
         }
         .introduce{
+            width: 35vw;
             span{
-                font-size: 28pt;
+                font-size: 27pt;
                 color: #797A7E;
                 font-weight: bold;
-            }           
+            }
+            hr{
+                margin-top: 0;
+            }        
             p{
-                width: 30vw;
+                width: 35vw;
                 color: #797A7E;
                 font-size: 16pt;
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 76vh;
+            margin-top: 8vmin;
+            display: block;
+            .pictureArea{
+                width: 70vw;
+                height: 42vh;
+                margin: auto;
+            }
+            .introduce{
+                width: 75vw;
+                margin: auto;
+                span{
+                    font-size: 35pt;
+                }
+                p{
+                    width: 75vw;
+                    font-size: 25pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 77vh;
+            .introduce{
+                p{
+                    font-size: 20pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 75vh;
+            margin-top: 15vmin;
+            .pictureArea{
+                height: 30vh;
+            }
+            .introduce{
+                span{
+                    font-size: 23pt;
+                }
+                p{
+                    font-size: 18pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .introduce{
+                p{
+                    font-size: 14.5pt;
+                }
             }
         }
     }

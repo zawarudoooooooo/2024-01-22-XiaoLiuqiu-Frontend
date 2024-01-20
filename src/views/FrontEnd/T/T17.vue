@@ -52,7 +52,9 @@ export default{
                 <br>
                 退潮後便成為潮間帶生物展示區。
                 <br>
-                為兼顧觀光發展與生態保育， 小琉球的幾個潮間帶都屬於管制區。
+                為兼顧觀光發展與生態保育， 
+                <br>
+                小琉球的幾個潮間帶都屬於管制區。
                 <br>
                 每年只在4月1日到11月30日開放， 且必須在領有許可證的解說員帶領下遊客方能進入。
             </p>
@@ -82,15 +84,91 @@ export default{
             }
         }
         .introduce{
+            width: 35vw;
             span{
-                font-size: 28pt;
+                font-size: 27pt;
                 color: #797A7E;
                 font-weight: bold;
+            }
+            hr{
+                margin-top: 0;
             }        
             p{
-                width: 30vw;
+                width: 35vw;
                 color: #797A7E;
-                font-size: 16pt;
+                font-size: 15pt;
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 75vh;
+            margin-top: 10vmin;
+            display: block;
+            .pictureArea{
+                width: 70vw;
+                height: 42vh;
+                margin: auto;
+            }
+            .introduce{
+                width: 75vw;
+                margin: auto;
+                span{
+                    font-size: 33pt;
+                }
+                p{
+                    width: 75vw;
+                    font-size: 21pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 75vh;
+            .pictureArea{
+                height: 41vh;
+            }
+            .introduce{
+                span{
+                    font-size: 30pt;
+                }
+                p{
+                    font-size: 17pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 75vh;
+            margin-top: 15vmin;
+            .pictureArea{
+                height: 31vh;
+            }
+            .introduce{
+                span{
+                    font-size: 21pt;
+                }
+                p{
+                    font-size: 15pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .pictureArea{
+                height: 32vh;
+            }
+            .introduce{
+                span{
+                    font-size: 17pt;
+
+                }
+                p{
+                    font-size: 13.5pt;
+                }
             }
         }
     }

@@ -49,7 +49,7 @@ export default {
                 
                 element.orderDateTime=dayTime.getFullYear()+"年"+(dayTime.getMonth()+1)+"月"+dayTime.getDate()+"日"+" "+dayTime.getHours()+":"+dayTime.getMinutes()+":"+dayTime.getSeconds()
                 this.orders.push({orderId:element.orderId,memberName:element.memberName,orderItem:JSON.parse(element.orderItem),
-                    roomId:JSON.parse(element.roomId),startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime})
+                    roomId:JSON.parse(element.roomId),startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime,orderPayment:element.orderPayment,payOrNot:element.payOrNot})
                 });
                 console.log(this.orders);
             })
@@ -81,6 +81,7 @@ export default {
                     <td>訂購項目</td>
                     <td>加購項目</td>
                     <td>訂單時間</td>
+                    <td>付款方式</td>
                     <td>訂單狀態</td>
                 </tr>
             </thead>
@@ -93,7 +94,10 @@ export default {
                     <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderItem" @click="roomIdF(index)" data-bs-whatever="@mdo">查看</button></td>
                     <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#roomId" @click="orderItemF(index)" data-bs-whatever="@mdo">查看</button></td>
                     <td>{{ item.orderDateTime }}</td>
-                    <td></td>
+                    <td v-if="item.orderPayment">到場支付</td>
+                    <td v-if="!item.orderPayment">線上支付</td>
+                    <td v-if="!item.payOrNot">未支付</td>
+                    <td v-if="item.payOrNot">以支付</td>
                 </tr>
             </tbody>
             </table>
@@ -113,16 +117,16 @@ export default {
             <table>
                 <thead>
                 <tr>
-                    <td>訂單編號</td>
-                    <td>會員名稱</td>
-                    <td>入住時間</td>
+                    <td>房間ID</td>
+                    <td>房間名稱</td>
+                    <td>房間介紹</td>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="item in roomId">
                     <td>{{ item.roomId }}</td>
+                    <td>{{ item.roomName }}</td>
                     <td>{{ item.roomIntroduce }}</td>
-                    <td>{{ item.roomTypeId }}</td>
                 </tr>
             </tbody>
             </table>

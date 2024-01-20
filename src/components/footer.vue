@@ -27,18 +27,48 @@ export default{
         background-color: #BFEAF5;
         .icon{
             text-align: center;
-
             i{
                 font-size: 26pt;
                 color:#F7F2E7;
                 margin-right: 3vmin;
                 margin-top: 5vmin;
-
                 &:hover{
                     color: #797A7E;
                 }
                 &:active{
                     color:#F7F2E7;
+                }
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .footer{
+            height: 8vh;
+            .icon{
+                i{
+                    font-size: 30pt;
+                    margin-top: 3.5vmin;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .footer{
+            height: 8vh;
+            .icon{
+                i{
+                    font-size: 22pt;
+                    margin-top: 4vmin;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .footer{
+            .icon{
+                i{
+                    font-size: 19pt;
+                    margin-top: 5vmin;
                 }
             }
         }

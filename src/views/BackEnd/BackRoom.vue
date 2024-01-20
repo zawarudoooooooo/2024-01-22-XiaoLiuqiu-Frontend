@@ -1,67 +1,196 @@
 <script>
 import axios from 'axios';
+import swal from 'sweetalert';
 import backSideBar from '../../components/backSideBar.vue';
 export default{
     data(){
         return{
             roomId:"",
             roomTypeId:"",
-            roomIdtro:"",
-            simple:true,
+            simple:false,
             double:false,
-            family:false
+            family:false,
+            roomName:"",
+            roomPrice:"",
+            roomIntroduce:"",
+            roomSearch:"",
+            orderRoomIdList:"",
+            orderRoomId:[],
+            today:new Date(),
+            startDate:"",
+            endDate:"",
+            forRoomId:""
         }
     },
     methods:{
         createRoom() {
-            axios({
-                url: 'http://localhost:8080/room/create',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {
-                    room_id:this.roomId,
-                    room_type_id:this.roomTypeId,
-                    room_introduce:this.roomIdtro
-                },
-            }).then(res => {
-                console.log(res.data)
-                if(res.data.message=="Successful!!"){
-                swal("成功", "success");
-                // this.$router.push('FrontPersonInfo')
-            }else{
-                swal( "錯誤", "error");
-            }
-            }).catch(error => {
-                if (error.response) {
-                    // 這裡可以取得伺服器回應的詳細信息
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
+            console.log(this.roomPrice);
+            const roomtype=document.querySelectorAll(".roomtype")
+
+            roomtype.forEach(room=>{
+                if(room.checked){
+                    this.roomName=room.value
                 }
-                console.error('Error:', error);
-            });
+            })
+
+            if (this.roomId && !/^[A-Ca-c]/.test(this.roomId)||this.roomId=="") {
+                swal("錯誤", "編號請依照房間類型的A,B,C為第一字", "error");
+                return
+            }
+            if(this.roomPrice<=0){
+                swal("錯誤", "金額有誤", "error");
+                return
+            }
+            axios({
+            url:'http://localhost:8080/room/create',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+            },
+            data:{
+                room_id:this.roomId,
+                room_introduce:this.roomIntroduce,
+                room_name:this.roomName,
+                room_price:this.roomPrice
+            },
+          }).then(res=>{
+            console.log(res.data);
+            if(res.data.rtnCode==200){
+                swal("成功", "房間以新增", "success");
+            }
+            })
+           
         },
 //頁面切換
         simpleOpen(){
-            this.simple=true,
-            this.double=false,
+            this.simple=true
+            this.double=false
             this.family=false
+
+            axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+                roomName:"小資"
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            this.roomSearch=""
+            this.roomSearch=res.data.roomList
+            console.log(this.roomSearch);
+            })
         },
         doubleOpen(){
             this.simple=false,
             this.double=true,
             this.family=false
+            axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+                roomName:"舒適"
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            this.roomSearch=""
+            this.roomSearch=res.data.roomList
+            })
         },
         familyOpen(){
             this.simple=false,
             this.double=false,
             this.family=true
+            axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+                roomName:"豪華"
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            this.roomSearch=""
+            this.roomSearch=res.data.roomList
+            })
+        },
+        roomIsoren(open,roomId){
+            // console.log(roomId);    
+            let date=this.today.getUTCFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate()
+            // console.log(date);   
+            this.forRoomId=""
+            this.startDate="" 
+                
+            // console.log(this.orderRoomId);
+            this.orderRoomId.forEach(item=>{
+                // console.log(item);
+                if(roomId!=item.roomId){
+                    return
+                }
+                this.forRoomId=item.roomId
+                let sDate=new Date(item.startDate)
+                let eDate=new Date(item.endDate)
+                this.startDate=sDate.getUTCFullYear()+'-'+(sDate.getMonth()+1)+'-'+sDate.getDate()
+                this.endDate=eDate.getUTCFullYear()+'-'+(eDate.getMonth()+1)+'-'+eDate.getDate()
+
+                // console.log(item.roomId);
+                // console.log(startDate);
+                // console.log(startDate==date);
+                // console.log(endDate>date);
+            })
+            if(this.forRoomId==roomId){
+                if(this.endDate>date||this.startDate<=date){
+                    return'已有人訂房';
+                }
+            }
+            if(open){
+                return "開放中"
+            }
+            return "整修中"
         }
     },
     components:{
         backSideBar
+    },
+    mounted(){
+        axios({
+            url:'http://localhost:8080/order/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+            },
+            data:{
+                
+            },
+          }).then(res=>{
+            //   console.log(res.data.orderList);
+            //   console.log("查看陣列-------");
+            res.data.orderList.forEach(item=>{
+                this.orderRoomIdList=JSON.parse(item.roomId);
+                this.orderRoomIdList.forEach(roomId=>{
+                    this.orderRoomId.push({roomId:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
+                })
+                
+            })
+            // console.log(this.orderRoomId);
+            })
     }
 }
 </script>
@@ -82,82 +211,94 @@ export default{
             <button type="button" @click="familyOpen()">豪華家庭房</button>
         </div>
 <!-- 小資雙人房 -->
-        <div class="simple" v-if="simple">
+        <div class="simple" v-if="simple" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
-            <div class="room">
+            <div class="room" v-for="item in this.roomSearch">
                 <img src="../../../../public/room/simpledouble.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
-                        <p>小資雙人房</p>
-                        <p>編號 : A01</p>
+                        <p>{{item.roomName}}</p>
+                        <p>編號 : {{item.roomId}}</p>
                     </div>
                     <hr>
                     <div class="description">
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, accusamus!
+                            <i class="fa-solid fa-shower"></i>獨立衛浴
+                            <i class="fa-solid fa-snowflake"></i>空調
+                            <i class="fa-solid fa-tv"></i>平面電視
+                            <i class="fa-solid fa-wifi"></i>Wifi
                         </p>
                     </div>
                     <div class="price">
-                        <p>價格 : $1500</p>
+                        <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 :{{ roomIsoren(item.open,item.roomId) }}</p>
                     </div>
                 </div>
             </div>
         </div>
 <!-- 舒適雙人房 -->
-        <div class="double" v-if="double">
+        <div class="double" v-if="double" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
             </div>
-            <div class="room">
+            <div class="room" v-for="item in this.roomSearch">
                 <img src="../../../../public/room/double.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
-                        <p>舒適雙人房</p>
-                        <p>編號 : B01</p>
+                        <p>{{item.roomName}}</p>
+                        <p>編號 : {{item.roomId}}</p>
                     </div>
                     <hr>
                     <div class="description">
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, accusamus!
+                            <i class="fa-solid fa-snowflake"></i>空調
+                            <i class="fa-solid fa-tv"></i>平面電視
+                            <i class="fa-solid fa-wifi"></i>Wifi
+                            <i class="fa-solid fa-bath"></i>浴缸
+                            <i class="fa-solid fa-gamepad"></i>遊戲機
                         </p>
                     </div>
                     <div class="price">
-                        <p>價格 : $2500</p>
+                        <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
                     </div>
                 </div>
             </div>
         </div>
 <!-- 豪華家庭房 -->
-        <div class="family" v-if="family">
+        <div class="family" v-if="family" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
-            <div class="room">
+            <div class="room" v-for="item in this.roomSearch">
                 <img src="../../../../public/room/family.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
-                        <p>豪華家庭房</p>
-                        <p>編號 : C01</p>
+                        <p>{{item.roomName}}</p>
+                        <p>編號 : {{item.roomId}}</p>
                     </div>
                     <hr>
                     <div class="description">
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, accusamus!
+                            <i class="fa-solid fa-snowflake"></i>空調
+                            <i class="fa-solid fa-tv"></i>平面電視
+                            <i class="fa-solid fa-wifi"></i>Wifi
+                            <i class="fa-solid fa-bath"></i>浴缸
+                            <i class="fa-solid fa-plug"></i>床頭插座
+                            <i class="fa-solid fa-mountain-sun"></i>景觀
                         </p>
                     </div>
                     <div class="price">
-                        <p>價格 : $4000</p>
+                        <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 :{{ roomIsoren(item.open,item.roomId) }}</p>
                     </div>
                 </div>
             </div>
@@ -188,9 +329,9 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間價格 :</label>
-                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸入價格">
+                                <input type="number" class="form-control" id="recipient-name" v-model="this.roomPrice" placeholder="請輸入價格">
                             </div>
-                            <div class="mb-3">
+                                <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間說明 :</label>
                                 <br>
                                 <textarea  v-model="this.roomIdtro" placeholder="請新增房間說明"></textarea>
@@ -202,7 +343,7 @@ export default{
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="createRoom()">確認新增</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"  @click="createRoom()">確認新增</button>
                     </div>
                 </div>
             </div>
@@ -287,7 +428,7 @@ export default{
                 height: 23vh;
                 //border: 1px solid black;
                 hr{
-                    margin: 0;
+                    margin-top: 1vmin;
                 }
                 .name{
                     width: 30vw;
@@ -304,8 +445,12 @@ export default{
                 .description{
                     p{
                         color: #797A7E;
-                        font-size: 16pt;
+                        font-size: 14pt;
                         width: 35vw;
+                    }
+                    i{
+                        margin-right: 1vmin;
+                        margin-left: 1vmin;
                     }
                 }
                 .price{

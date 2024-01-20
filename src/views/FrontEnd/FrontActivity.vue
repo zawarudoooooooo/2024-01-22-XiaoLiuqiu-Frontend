@@ -19,7 +19,7 @@ export default{
         </div>
         <hr>
         <div class="traffic">
-            <div class="card" style="width: 23rem;">
+            <div class="card">
                 <img src="../../../public/ticket/ferry.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">渡輪</h5>
@@ -32,7 +32,7 @@ export default{
                     <li class="list-group-item">半票 $200 (未滿12歲)</li>
                 </ul>
             </div>
-            <div class="card" style="width: 23rem;">
+            <div class="card">
                 <img src="../../../public/ticket/scooter.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">摩托車</h5>
@@ -50,7 +50,7 @@ export default{
         </div>
         <hr>
         <div class="activity">
-            <div class="card" style="width: 23rem;">
+            <div class="card">
                 <img src="../../../public/ticket/diving.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">浮潛</h5>
@@ -63,7 +63,7 @@ export default{
                     <li class="list-group-item">$400</li>
                 </ul>
             </div>
-            <div class="card" style="width: 23rem;">
+            <div class="card">
                 <img src="../../../public/ticket/canoe.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">獨木舟</h5>
@@ -77,7 +77,7 @@ export default{
                     <li class="list-group-item">透明獨木舟 $800</li>
                 </ul>
             </div>
-            <div class="card" style="width: 23rem;">
+            <div class="card">
                 <img src="../../../public/ticket/sup.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">SUP 立式划槳</h5>
@@ -97,7 +97,7 @@ export default{
         </div>
         <hr>
         <div class="ticket">
-            <div class="card" style="width: 23rem;">
+            <div class="card">
                 <img src="../../../public/ticket/ticket.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">三大風景區門票</h5>
@@ -110,7 +110,7 @@ export default{
                     <li class="list-group-item">$100</li>
                 </ul>
             </div>
-            <div class="card" style="width: 23rem;">
+            <div class="card">
                 <img src="../../../public/ticket/t8-ticket.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">鹿粼梅花鹿園區</h5>
@@ -131,17 +131,20 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 75vw;
-        height: 230vh;
+        height: 240vh;
         margin: auto;
-        margin-top: 6vmin;
+        margin-top: 4vmin;
         position: relative;
         .title{
             p{
-                font-size: 28pt;
+                font-size: 27pt;
                 font-weight: bold;
                 color: #82AAE3;
                 text-align: center;
             }
+        }
+        .card{
+            width: 20rem;
         }
         hr{
             margin-bottom: 4vmin;
@@ -154,7 +157,7 @@ export default{
             margin-bottom: 5vmin;
         }
         .activity{
-            width: 70vw;
+            width: 75vw;
             justify-content: space-around;
             display: flex;
             margin: auto;
@@ -165,7 +168,7 @@ export default{
             margin: auto;
             display: flex;
             justify-content: space-around;
-            margin-bottom: 5vmin;;
+            margin-bottom: 5vmin;
         }
         .card{
             border-radius: 6px;
@@ -173,6 +176,7 @@ export default{
             img{
                 transition: all ease 0.5s;
                 border-radius: 6px;
+                scale: 0.9;
                 &:hover{
                     opacity: 0.6;
                     rotate: 3deg;
@@ -181,6 +185,107 @@ export default{
                 &:active{
                     opacity: 1.0;
                 }
+            }
+        }
+        .card-text{
+            font-size: 11.5pt;
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            width: 90vw;
+            height: 113vh;
+            margin-top: 2vmin;
+            hr{
+                margin-bottom: 2vmin;
+                margin-top: 0;
+            }
+            .card-title{
+                font-size: 16pt;
+            }
+            .card-text{
+                font-size: 9.5pt;
+            }
+            .traffic{
+                width: 80vw;
+                margin-bottom: 2vmin;
+            }
+            .activity{
+                width: 90vw;
+                margin-bottom: 2vmin;          
+                .card{
+                    width: 18rem;
+                }
+            }
+            .ticket{
+                width: 80vw;
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 126vh;
+            .card{
+                width: 18rem;
+            }
+            .activity{
+                .card{
+                    width: 14rem;
+                    height: 25.5rem;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 96vh;
+            .title{
+                p{
+                    font-size: 18pt;
+                    margin-bottom: 1vmin;
+                }
+            }
+            .card-title{
+                font-size: 9pt;
+            }
+            .card-text{
+                font-size: 4.5pt;
+            }
+            li{
+                font-size: 7pt;
+            }
+            .traffic{
+                .card{
+                    width: 9rem;
+                    height: 14.5rem;
+                }
+            }
+            .activity{
+                .card{
+                    width: 7rem;
+                    height: 15rem;
+                }
+            }
+            .ticket{
+                .card{
+                    width: 9rem;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            height: 103vh;
+            .title{
+                p{
+                    font-size: 15pt;
+                }
+            }
+            li{
+                font-size: 6pt;
+            }
+            .card{
+                height: 14.5rem;
             }
         }
     }

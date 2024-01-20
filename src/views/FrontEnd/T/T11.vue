@@ -45,9 +45,9 @@ export default{
             <p>
                 位於美人洞風景區第二售票亭旁邊，屬於免費景點。
                 <br>
-                擁有潔白的海灣和碧藍的海水，因為純淨無污染，是很棒的浮潛地點。
+                擁有潔白的海灣和碧藍的海水，因為純淨無污染，
+                <br>是很棒的浮潛地點。
                 很容易可以看到海膽、海參、海星。
-                <br>
             </p>
         </div>
     </div>
@@ -75,15 +75,78 @@ export default{
             }
         }
         .introduce{
+            width: 35vw;
             span{
-                font-size: 28pt;
+                font-size: 27pt;
                 color: #797A7E;
                 font-weight: bold;
+            }
+            hr{
+                margin-top: 0;
             }        
             p{
-                width: 30vw;
+                width: 35vw;
                 color: #797A7E;
-                font-size: 16pt;
+                font-size: 15pt;
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 75vh;
+            margin-top: 10vmin;
+            display: block;
+            .pictureArea{
+                width: 70vw;
+                height: 42vh;
+                margin: auto;
+            }
+            .introduce{
+                width: 75vw;
+                margin: auto;
+                span{
+                    font-size: 35pt;
+                }
+                p{
+                    width: 75vw;
+                    font-size: 25pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 75vh;
+            .introduce{
+                p{
+                    font-size: 20pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 75vh;
+            margin-top: 15vmin;
+            .pictureArea{
+                height: 32vh;
+            }
+            .introduce{
+                span{
+                    font-size: 23pt;
+                }
+                p{
+                    font-size: 17pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .introduce{
+                p{
+                    font-size: 15.5pt;
+                }
             }
         }
     }

@@ -7,10 +7,6 @@ export default{
         }
     },
     methods:{
-        goBackLogin(){
-            this.$router.push('/BackLogin')
-        }
-
     },
     components:{
         Footer
@@ -83,9 +79,9 @@ export default{
                         </div>
                     </div>
                     <div class="card" style="width: 18rem;">
-                        <img src="../../../public/other/welcomedrink.jpg" style="height: 24vh;" class="card-img-top" alt="...">
+                        <img src="../../../public/other/welcomedrink.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text">WelcomeDrink<br/>入住即享有<br/>讓您體驗離島微醺假期</p>
+                            <p class="card-text">WelcomeDrink<br/>入住即享有<br/>體驗離島微醺假期</p>
                         </div>
                     </div>
                 </div>
@@ -95,12 +91,12 @@ export default{
             <div class="title">
                 <p>Liuqiu</p>
             </div>
-            <div class="new">
+            <div class="scenery">
                 <div class="card bg-dark text-white">
                     <img src="../../../public/other/other3.jpg" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <h5 class="card-title">綠蠵龜</h5>
-                        <p class="card-text">由於小琉球海溫較為平穩，海龜們常駐小琉球。
+                        <p class="card-text" id="text">由於小琉球海溫較為平穩，海龜們常駐小琉球。
                             <br>即使沒有從事水上活動，也能在岸邊看到海龜抬頭換氣的模樣。</p>
                     </div>
                 </div>
@@ -113,9 +109,7 @@ export default{
                 </div>
             </div>
         </div>
-        <i class="fa-solid fa-gear" @click="goBackLogin()" id="back"></i>
     </div>
-    
 <Footer />
 </template>
 
@@ -123,11 +117,9 @@ export default{
     .content{
         width: 100vw;
         height: 215vh;
-        position: relative;
         .slideShow{
             width: 90vw;
             height: 80.5vh;
-            //border: 1px solid black;
             margin: auto;
             margin-top: 5vmin;
             .carousel-inner{
@@ -146,19 +138,17 @@ export default{
         .about{
             width: 90vw;
             margin: auto;
-            //border: 1px solid black;
-            height: 50vh;
+            height: 52vh;
             margin-top: 5vmin;
             display: flex;
             justify-content: space-around;
             .iconArea{
                 width: 25vw;
                 height: 50vh;
-                //border: 1px black solid;
                 display: flex;
                 justify-content: space-around;
                 flex-wrap: wrap;
-                margin-top: 3vmin;
+                margin-top: 5.5vmin;
                 .icon{
                     width: 10vw;
                     height: 20vh;
@@ -191,11 +181,10 @@ export default{
             }
             .news{
                 width: 60vw;
-                height: 50vh;
-                //border: 1px solid black;
+                height: 52vh;
                 .title{
                     p{
-                        font-size: 28pt;
+                        font-size: 27pt;
                         font-weight: bold;
                         color: #82AAE3;
                         text-align: center;
@@ -221,6 +210,9 @@ export default{
                                 text-align: center;
                             }
                         }
+                        .card-img-top{
+                            height: 25vh;
+                        }
                     }
                 }
             }
@@ -228,7 +220,6 @@ export default{
         .activity{
             width: 90vw;
             height: 67vh;
-            //border: 1px black solid;
             margin: auto;
             margin-top: 5vmin;
             .title{
@@ -240,7 +231,7 @@ export default{
                     margin-bottom: 3vmin;
                 }
             }
-            .new{
+            .scenery{
                 display: flex;
                 justify-content: space-around;
                 .card{
@@ -263,17 +254,248 @@ export default{
                 }
             }
         }
-        #back{
-            font-size: 16pt;
-            color:#F7F2E7;
-            position: absolute;
-            right: 1.1%;
-            bottom: -6%;
-            &:hover{
-                color: #797A7E;
+    }
+
+    @media(max-width:1200px){
+        .content{
+            height: 85vh;
+            .slideShow{
+                height: 30vh;
+                .carousel-inner{
+                    .carousel-item{
+                        img{
+                            height: 30vh;
+                        }
+                    }
+                }
             }
-            &:active{
-                color:#F7F2E7;
+            .about{
+                height: 23vh;
+                margin-top: 3vmin;
+                .iconArea{
+                    height: 18vh;
+                    margin-top: 6vmin;
+                    .icon{
+                        height: 7vh;
+                        padding: 2vmin;
+                        i{
+                            font-size: 26pt;
+                        }
+                        p{
+                            font-size: 11pt;
+                            margin-top: 0.5vmin;
+                        }
+                    }
+                }
+                .news{
+                    height: 24vh;
+                    .title{
+                        p{
+                            font-size: 26pt;
+                            margin-bottom: 1vmin;
+                        }
+                    }
+                    .offer{
+                        gap: 1.5vmin;
+                        .card{
+                            height: 17.5vh;
+                        }
+                    }
+                }
+            }
+            .activity{
+                height: 26vh;
+                margin-top: 3vmin;
+                .title{
+                    p{
+                        margin-bottom: 1vmin;
+                    }
+                }
+                .scenery{
+                    .card{
+                        height: 20vh;
+                    }
+                    img{
+                        height: 20vh;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 83vh;
+            .about{
+                height: 22vh;
+                .iconArea{
+                    height: 17svh;
+                    .icon{
+                        i{
+                            font-size: 20pt;
+                        }
+                        p{
+                            font-size: 9pt;
+                            margin-top: 1vmin;
+                        }
+                    }
+                }
+                .news{
+                    height: 22vh;
+                    .title{
+                        p{
+                            font-size: 24pt;
+                        }
+                    }
+                    .offer{
+                        .card{
+                            height: 16vh;
+                            .card-body{
+                                p{
+                                    font-size: 9pt;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .activity{
+                margin-top: 3vmin;
+                .title{
+                    p{
+                        font-size: 24pt;
+                    }
+                }
+                .scenery{
+                    .card{
+                        height: 15vh;
+                        img{
+                            height: 18vh;
+                        }
+                        .card-img-overlay{
+                            font-size: 10pt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 80vh;
+            .slideShow{
+                height: 20vh;
+                .carousel-inner{
+                    .carousel-item{
+                        img{
+                            height: 20vh;
+                        }
+                    }
+                }
+            }
+            .about{
+                width: 90vw;
+                height: 35vh;
+                display: flex;
+                flex-wrap: wrap;
+                .iconArea{
+                    width: 90vw;
+                    height: 10vh;
+                    display: flex;
+                    .icon{
+                        width: 18vw;
+                        height: 8vh;
+                        padding: 3vmin;
+                        i{
+                            font-size: 20pt;
+                        }
+                        p{
+                            font-size: 8pt;
+                        }
+                    }
+                }
+                .news{
+                    width: 85vw;
+                    height: 21vh;
+                    .title{
+                        p{
+                            font-size: 18pt;
+                            text-align: center;
+                        }
+                    }
+                    .offer{
+                        .card{
+                            width: 20vw;
+                            height: 16vh;
+                            .card-body{
+                                p{
+                                    font-size: 6pt;
+                                }
+                            }
+                            .card-img-top{
+                                height: 16vh;
+                            }
+                        }
+                    }
+                }
+            }
+            .activity{
+                height: 21vh;
+                .title{
+                    p{
+                        font-size: 18pt;
+                    }
+                }
+                .scenery{
+                    .card{
+                        height: 15vh;
+                        img{
+                            height: 15vh;
+                        }
+                        .card-img-overlay{
+                            font-size: 6pt;
+                            h5{
+                                font-size: 11pt;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .about{
+                .news{
+                    height: 20vh;
+                    .title{
+                        p{
+                            font-size: 16pt;
+                        }
+                    }
+                    .offer{
+                        .card{
+                            .card-body{
+                                p{
+                                    font-size: 6.5pt;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .activity{
+                .title{
+                    p{
+                        font-size: 16pt;
+                    }
+                }
+                .scenery{
+                    .card{
+                        .card-img-overlay{
+                            font-size: 5.5pt;
+                        }
+                    }
+                }
             }
         }
     }

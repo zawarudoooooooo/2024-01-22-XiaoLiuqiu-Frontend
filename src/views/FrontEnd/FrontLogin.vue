@@ -2,6 +2,7 @@
 import axios from 'axios';
 import Footer from '../../components/Footer.vue';
 import swal from 'sweetalert';
+import { RouterLink, RouterView } from 'vue-router'
 export default {
     data() {
         return {
@@ -15,6 +16,9 @@ export default {
         },
         goPersonInfo(){
             this.$router.push('/FrontPersonInfo')
+        },
+        goBackLogin(){
+            this.$router.push('/BackLogin')
         },
         login() {
             axios({
@@ -33,7 +37,7 @@ export default {
                 console.log(res.data)
                 if(res.data.message=="Successful!!"){
                     swal({
-                        title: '登錄成功',
+                        title: '登入成功',
                         text: '歡迎回來',
                         icon: 'success',
                         buttons: '確認',
@@ -60,7 +64,22 @@ export default {
                 }
                 console.error('Error:', error);
             });
-        }
+        },
+        forgotPassword(){
+
+            axios({
+                url:'http://localhost:8080/member/send_email',
+                method: "POST",
+                headers:{"Content-Type": "application/json",},
+                data: {
+                   account: this.account
+                }
+                
+            })
+            .then(res => console.log(res))
+            
+            .catch(error => console.error(error))
+        },
     },
     components: {
         Footer
@@ -71,7 +90,7 @@ export default {
 <template>
     <div class="content">
         <div class="title">
-            <p>登錄<i class="fa-solid fa-user-lock"></i></p>
+            <p>登入<i class="fa-solid fa-user-lock"></i></p>
         </div>
         <div class="account">
             <p>帳號</p>
@@ -83,71 +102,256 @@ export default {
         </div>
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
-            <button type="button" @click="login()">登錄</button>
+            <button type="button" @click="login()">登入</button>
+            <button type="button"  data-bs-toggle="modal" id="forget"
+                    data-bs-target="#exampleModal">忘記密碼
+            </button>
+            <!-- <RouterLink to="/reset" class="routerItem">重設密碼</RouterLink> -->
         </div>
-    </div>
+    </div>  
+<!-- 忘記密碼modal視窗 -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">忘記密碼</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">請輸入帳號名稱 :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="account">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="forgotPassword">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <i class="fa-solid fa-gear" @click="goBackLogin()" id="back"></i>
     <Footer />
 </template>
 
 <style lang="scss" scoped>
-.content {
-    width: 20vw;
-    height: 63vh;
-    margin: auto;
-    margin-top: 8vmin;
-    i{
-        margin-left: 2vmin;
-    }
-    input {
+    .content {
         width: 20vw;
-        height: 5vh;
-        border-radius: 10px;
-        border-style: none;
-        outline: none;
-        background-color: #D9D9D9;
-        padding-left: 2vmin;
-        margin-bottom: 4vmin;
-    }
-    .title {
-        font-size: 28pt;
-        font-weight: bold;
-        color: #82AAE3;
-        text-align: center;
-    }
-    .account {
-        p {
-            margin: 0;
-            font-size: 16pt;
-            color: #797A7E;
+        height: 63vh;
+        margin: auto;
+        margin-top: 8vmin;
+        position: relative;
+        i{
+            margin-left: 2vmin;
         }
-    }
-    .password {
-        p {
-            margin: 0;
-            font-size: 16pt;
-            color: #797A7E;
-        }
-    }
-    .buttonArea {
-        width: 20vw;
-        display: flex;
-        justify-content: space-around;
-        margin-top: 3vmin;
-        button {
-            width: 8vw;
+        input {
+            width: 20vw;
             height: 5vh;
-            border: none;
-            border-radius: 5px;
-            color: #797A7E;
-            &:hover {
-                background-color: #797A7E;
-                color: white;
-            }
-            &:active {
-                background-color: #F7F2E7;
+            border-radius: 10px;
+            border-style: none;
+            outline: none;
+            background-color: #D9D9D9;
+            padding-left: 2vmin;
+            margin-bottom: 4vmin;
+        }
+        .title {
+            font-size: 28pt;
+            font-weight: bold;
+            color: #82AAE3;
+            text-align: center;
+        }
+        .account {
+            p {
+                margin: 0;
+                font-size: 16pt;
                 color: #797A7E;
             }
         }
+        .password {
+            p {
+                margin: 0;
+                font-size: 16pt;
+                color: #797A7E;
+            }
+        }
+        .buttonArea {
+            width: 20vw;
+            height: 15vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 2vmin;
+            button {
+                width: 9vw;
+                height: 5vh;
+                border: none;
+                border-radius: 5px;
+                color: #797A7E;
+                &:hover {
+                    background-color: #797A7E;
+                    color: white;
+                }
+                &:active {
+                    background-color: #F7F2E7;
+                    color: #797A7E;
+                }
+            }
+            #forget{
+                width: 7vw;
+                height: 4.5vh;
+                font-size: 10pt;
+            }
+        }
     }
-}
+    #back{
+        font-size: 16pt;
+        color:#F7F2E7;
+        position: absolute;
+        right: 1%;
+        bottom: 2%;
+        &:hover{
+            color: #797A7E;
+        }
+        &:active{
+            color:#F7F2E7;
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            width: 60vw;
+            height: 76vh;
+            input{
+                width: 60vw;
+                height: 5vh;
+                margin-bottom: 8vmin;
+                font-size: 20pt;
+            }
+            .title{
+                font-size: 35pt;
+                margin-bottom: 5vmin;
+            }
+            .account{
+                p{
+                    font-size: 25pt;
+                }
+            }
+            .password{
+                p{
+                    font-size: 25pt;
+                }
+            }
+            .buttonArea{
+                width: 60vw;
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 8vmin;
+                button{
+                    width: 15vw;
+                    height: 4vh;
+                    font-size: 20pt;
+                }
+                #forget{
+                    width: 15vw;
+                    height: 4vh;
+                    font-size: 20pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 77vh;
+            input{
+                margin-bottom: 10vmin;
+            }
+            .account{
+                p{
+                    font-size: 23pt;
+                }
+            }
+            .password{
+                p{
+                    font-size: 23pt;
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 17vw;
+                    height: 5vh;
+                }
+                #forget{
+                    width: 17vw;
+                    height: 5vh;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            width: 70vw;
+            height: 76vh;
+            margin-top: 13vmin;
+            input{
+                width: 70vw;
+                margin-bottom: 16vmin;
+                font-size: 16pt;
+            }
+            .title{
+                font-size: 28pt;
+                margin-bottom: 10vmin;
+            }
+            .account{
+                p{
+                    font-size: 17pt;
+                }
+            }
+            .password{
+                p{
+                    font-size: 17pt;
+                }
+            }
+            .buttonArea{
+                width: 65vw;
+                button{
+                    width: 21vw;
+                    height: 5vh;
+                    font-size: 17pt;
+                }
+                #forget{
+                    width: 25vw;
+                    height: 5vh;
+                    font-size: 16pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            input{
+                font-size: 13pt;
+            }
+            .title{
+                font-size: 25pt;
+            }   
+            .account{
+                p{
+                    font-size: 16pt;
+                }
+            }
+            .password{
+                p{
+                    font-size: 16pt;
+                }
+            }
+            .buttonArea{
+                button{
+                    font-size: 15pt;
+                }
+                #forget{
+                    font-size: 14pt;
+                }
+            }
+        }
+    }
 </style>

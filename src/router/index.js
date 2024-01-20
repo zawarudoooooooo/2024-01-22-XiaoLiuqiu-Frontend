@@ -164,6 +164,16 @@ const router = createRouter({
       name: 'FrontSignUp',
       component: () => import('../views/FrontEnd/FrontSignUp.vue')
     },
+//前台忘記密碼
+    {
+      path: '/member/reset_password',
+      name: 'PwdReset',
+      component: () => import('../views/FrontEnd/PwdReset.vue'),
+      props: (route) => ({
+        account: route.query.account,
+        verificationCode: route.query.verificationCode,
+      })
+    },
 //前台使用者頁面
     {
       path: '/FrontPersonInfo',
@@ -193,6 +203,15 @@ const router = createRouter({
       path: '/BackStaff',
       name: 'BackStaff',
       component: () => import('../views/BackEnd/BackStaff.vue')
+    },
+    {
+      path: '/member/verify',
+      name: 'verifyAccount',
+      component: () => import('@/components/verifyAccount.vue'),
+      props: (route) => ({
+        memberEmail: route.query.memberEmail,
+        verificationCode: route.query.verificationCode,
+      })
     },
   ]
 })
