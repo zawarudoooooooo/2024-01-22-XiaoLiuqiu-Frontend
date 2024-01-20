@@ -86,7 +86,14 @@ export default {
             },
             }).then(res=>{
             this.employee = res.data.employeeList;
-            console.log(this.employee);
+            // console.log(this.employee);
+            this.employee.forEach(item=>{
+                if(item.account==this.cookie){
+                    this.employeeId=item.employeeId
+                    // console.log(item.employeeId);
+                    return
+                }
+            })
             })
 
             this.cookie=document.cookie.split("=")[1];
@@ -189,20 +196,16 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">員工編號 :</label>
-                                <input type="number" class="form-control" id="recipient-name" v-model="employeeId">
-                            </div>
-                            <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">舊密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.password">
+                                <input type="password" class="form-control" id="recipient-name" v-model="this.password">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">新密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.newpassword">
+                                <input type="password" class="form-control" id="recipient-name" v-model="this.newpassword">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">確認密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="confirmpassword">
+                                <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
                             </div>
                         </form>
                     </div>
