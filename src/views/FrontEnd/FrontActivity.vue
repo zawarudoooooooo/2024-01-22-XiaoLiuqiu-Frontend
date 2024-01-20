@@ -41,6 +41,7 @@ export default{
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">*兩人一台*</li>
                     <li class="list-group-item">全天 $300</li>
                 </ul>
             </div>
@@ -119,6 +120,7 @@ export default{
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">*資訊僅供參考，請自行購票*</li>
                     <li class="list-group-item">全票 $220</li>
                     <li class="list-group-item">半票 $50 (3-12歲)</li>
                 </ul>
@@ -131,7 +133,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 75vw;
-        height: 240vh;
+        height: 247vh;
         margin: auto;
         margin-top: 4vmin;
         position: relative;
@@ -144,7 +146,7 @@ export default{
             }
         }
         .card{
-            width: 20rem;
+            width: 22rem;
         }
         hr{
             margin-bottom: 4vmin;
@@ -194,7 +196,7 @@ export default{
     @media(max-width:1200px){
         .content{
             width: 90vw;
-            height: 113vh;
+            height: 120vh;
             margin-top: 2vmin;
             hr{
                 margin-bottom: 2vmin;
@@ -224,7 +226,7 @@ export default{
     }
     @media(max-width:992px){
         .content{
-            height: 126vh;
+            height: 130vh;
             .card{
                 width: 18rem;
             }
@@ -238,7 +240,7 @@ export default{
     }
     @media(max-width:576px){
         .content{
-            height: 96vh;
+            height: 100vh;
             .title{
                 p{
                     font-size: 18pt;
@@ -275,17 +277,17 @@ export default{
     }
     @media(max-width:414px){
         .content{
-            height: 103vh;
+            height: 105vh;
             .title{
                 p{
                     font-size: 15pt;
                 }
             }
             li{
-                font-size: 6pt;
+                font-size: 5pt;
             }
             .card{
-                height: 14.5rem;
+                height: 16rem;
             }
         }
     }

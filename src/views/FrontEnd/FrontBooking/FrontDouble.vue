@@ -99,11 +99,11 @@ export default{
                 this.endDate=eDate.getUTCFullYear()+'-'+(eDate.getMonth()+1)+'-'+eDate.getDate()
             })
             // console.log(this.roomId);
-            if(this.roomId==roomId){
-                if(this.endDate<=date||this.startDate<=date){
-                    return'已有人訂房';
-                }
-            }
+            // if(this.roomId==roomId){
+            //     if(this.endDate<=date||this.startDate<=date){
+            //         return'已有人訂房';
+            //     }
+            // }
             if(open){
                 return "空房"
             }

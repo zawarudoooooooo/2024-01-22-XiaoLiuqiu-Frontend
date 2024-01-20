@@ -162,7 +162,6 @@ export default {
                 </div>
             </div>
         </div>
-
 <!-- 新增人員modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -180,6 +179,7 @@ export default {
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeAdd()">確認新增</button>
                     </div>
                 </div>
@@ -210,6 +210,7 @@ export default {
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeChange()">確認更改</button>
                     </div>
                 </div>
@@ -223,14 +224,9 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        //text-align: center;
+        text-align: center;
         margin-top: 4vmin;
         height: 8vh;
-        position: relative;
-        p{
-            position: absolute;
-            right: 35%;
-        }
         i{
             margin-left: 1vmin;
         }
@@ -246,14 +242,12 @@ export default {
             display: flex;
             justify-content: space-between;
             margin: auto;
-            //border: 1px solid black;
             position: relative;
             .show{
                 .buttonArea{
                     width: 20vw;
                     display: flex;
                     justify-content: space-between;
-                    //border: 1px solid black;
                     button {
                         width: 8vw;
                         height: 5vh;
