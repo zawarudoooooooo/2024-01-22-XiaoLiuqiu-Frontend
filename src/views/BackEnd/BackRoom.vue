@@ -331,7 +331,7 @@ export default{
                                 <label for="recipient-name" class="col-form-label">房間價格 :</label>
                                 <input type="number" class="form-control" id="recipient-name" v-model="this.roomPrice" placeholder="請輸入價格">
                             </div>
-                            <!-- <div class="mb-3">
+                                <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間說明 :</label>
                                 <br>
                                 <textarea  v-model="this.roomIdtro" placeholder="請新增房間說明"></textarea>
