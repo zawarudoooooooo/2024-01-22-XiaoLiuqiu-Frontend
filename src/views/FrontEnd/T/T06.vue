@@ -92,4 +92,63 @@ export default{
             }
         }
     }
+    @media(max-width:1200px){
+        .content{
+            height: 76vh;
+            margin-top: 8vmin;
+            display: block;
+            .pictureArea{
+                width: 70vw;
+                height: 40vh;
+                margin: auto;
+            }
+            .introduce{
+                width: 75vw;
+                margin: auto;
+                span{
+                    font-size: 35pt;
+                }
+                p{
+                    width: 75vw;
+                    font-size: 23pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 77vh;
+            .introduce{
+                p{
+                    font-size: 18pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 75vh;
+            margin-top: 15vmin;
+            .pictureArea{
+                height: 27vh;
+            }
+            .introduce{
+                span{
+                    font-size: 23pt;
+                }
+                p{
+                    font-size: 15pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .introduce{
+                p{
+                    font-size: 12.5pt;
+                }
+            }
+        }
+    }
 </style>

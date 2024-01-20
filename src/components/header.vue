@@ -99,13 +99,14 @@ export default{
         <div class="logo">
             <img src="../../public/seaLifeLogo.png" @click="goFrontEntry()">
         </div>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <RouterLink to="/FrontAbout" class="routerItem" id="about"><i class="fa-solid fa-umbrella-beach"></i>關於 Sea．Life</RouterLink>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <RouterLink to="/FrontAbout" class="routerItem"><i class="fa-solid fa-umbrella-beach"></i>關於 Sea．Life</RouterLink>
-                        </li>
                         <li class="nav-item">
                             <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>訂房</RouterLink>
                         </li>
@@ -157,12 +158,16 @@ export default{
                 position: absolute;
                 left: 1%;
                 top: -30%;
+                cursor: pointer;
             }
         }
         nav{
             position: absolute;
-            bottom: 5%;
+            bottom: -23%;
             right: 2%;
+            #about{
+                margin-bottom: 2vmin;
+            }
             .routerItem{
                 font-size: 17pt;
                 text-decoration: none;
@@ -185,7 +190,6 @@ export default{
             }
         }
     }
-
     @media(max-width:1200px){
         .header{
             height: 10vh;
@@ -200,10 +204,68 @@ export default{
             }
             nav{
                 position: absolute;
-                bottom: 1%;
+                bottom: -30%;
                 .routerItem{
                     font-size: 16pt;
                     margin-right: 2vmin;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .header{
+            .logo{
+                img{
+                    width: 15vw;
+                    height: 12vh;
+                }
+            }
+            nav{
+                .container-fluid{
+                    width: 33vw;
+                    .navbar-collapse{
+                        background-color: aliceblue;
+                        border-radius: 5px;
+                        text-align: center;
+                        p{
+                            margin-bottom: 0.5vmin;
+                        }
+                    }
+                }
+                #about{
+                    margin-top: 1.5vmin;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .header{
+            position: relative;
+            .logo{
+                img{
+                    width: 30vw;
+                    height: 14vh;
+                    position: absolute;
+                    top: -10%;
+                }
+            }
+            nav{
+                .container-fluid{
+                    width: 52vw;
+                    #about{
+                        font-size: 13pt;
+                        margin-top: 1.5vmin;
+                    }
+                }
+
+            }
+        }
+    }
+    @media(max-width:414px){
+        .header{
+            nav{
+                .container-fluid{
+                    width: 57vw;
                 }
             }
         }

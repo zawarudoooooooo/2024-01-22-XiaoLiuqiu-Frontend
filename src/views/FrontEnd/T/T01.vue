@@ -90,9 +90,11 @@ export default{
         display: flex;
         align-items: center;
         justify-content: space-around;
+        //border: 1px black solid;
         .pictureArea{
             width: 35vw;
             border-radius: 10px;
+            //border: 1px red solid;
             .carousel-inner{
                 border-radius: 10px;
                 box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
@@ -103,6 +105,7 @@ export default{
         }
         .introduce{
             width: 45vw;
+            //border: 1px green solid;
             .info{
                 display: flex;
                 justify-content: space-around;
@@ -127,6 +130,75 @@ export default{
                 color: #797A7E;
                 font-size: 14.5pt;
                 margin: auto;
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 76vh;
+            margin-top: 8vmin;
+            display: block;
+            .pictureArea{
+                width: 70vw;
+                height: 40vh;
+                margin: auto;
+            }
+            .introduce{
+                width: 75vw;
+                margin: auto;
+                .info{
+                    span{
+                        font-size: 30pt;
+                    }
+                    #time{
+                        font-size: 20pt;
+                    }
+                }
+                p{
+                    width: 75vw;
+                    font-size: 20pt;
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 77vh;
+            .introduce{
+                p{
+                    font-size: 16pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 75vh;
+            margin-top: 15vmin;
+            .pictureArea{
+                height: 30vh;
+            }
+            .introduce{
+                .info{
+                    span{
+                        font-size: 20pt;
+                    }
+                    #time{
+                        font-size: 12pt;
+                    }
+                }
+                p{
+                    font-size: 12pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .introduce{
+                p{
+                    font-size: 11.5pt;
+                }
             }
         }
     }

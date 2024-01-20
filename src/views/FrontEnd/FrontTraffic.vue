@@ -3,7 +3,6 @@ import Footer from '../../components/Footer.vue';
 export default{
     data(){
         return{
-
         }
     },
     components:{
@@ -132,12 +131,12 @@ export default{
 
 <style lang="scss" scoped>
     .content{
-            width: 90vw;
-            height: 152vh;
-            margin: auto;
-            margin-top: 4vmin;
+        width: 90vw;
+        height: 155vh;
+        margin: auto;
+        margin-top: 4vmin;
         hr{
-            margin-bottom: 3vmin;
+            margin-bottom: 4vmin;
         }
         .title{
             p{
@@ -176,6 +175,7 @@ export default{
         }
         .ferry{
             width: 90vw;
+            height: 63vh;
             display: flex;
             justify-content: space-around;
             .time{
@@ -183,19 +183,20 @@ export default{
                 border: 1px solid lightgray;
                 box-shadow: 1px 1px 1px gray;
                 border-radius: 5px;
+                padding-top: 1.5vmin;
                 #ferrytime{
                     color: #797A7E;
-                    font-size: 17pt;
+                    font-size: 18pt;
                     font-weight: bold;
                     text-align: center;
-                    margin-bottom: 1vmin;
+                    margin-bottom: 0.5vmin;
                 }
                 .schedule{
                     display: flex;
                     justify-content: space-around;
                     p{
                         color: #797A7E;
-                        font-size: 14pt;
+                        font-size: 15pt;
                         text-align: center;
                     }
                 }
@@ -216,6 +217,165 @@ export default{
                     }
                     &:active{
                         opacity: 1.0;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 87vh;
+            margin-top: 2vmin;
+            hr{
+                margin-bottom: 2vmin;
+                margin-top: 0;
+            }
+            .location{
+                height: 39vh;
+                margin-bottom: 1vmin;
+                img{
+                    width: 40vw;
+                    height: 20vh;
+                    margin-top: 8vmin;
+                }
+                .traffic{
+                    ul{
+                        li{
+                            font-size: 13pt;
+                        }
+                    }
+                }
+            }
+            .ferry{
+                height: 32vh;
+                .imgArea{
+                    height: 25vh;
+                    margin-top: 3vmin;
+                    img{
+                        height: 14vh;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 90vh;
+            margin-top: 2vmin;
+            .location{
+                margin-bottom: 3vmin;
+                img{
+                    margin-top: 10vmin;
+                }
+                .traffic{
+                    ul{
+                        li{
+                            font-size: 10pt;
+                            padding-top: 0.5vmin;
+                        }
+                    }
+                }
+            }
+            .ferry{
+                .time{
+                    width: 35vw;
+                    #ferrytime{
+                        font-size: 16pt;
+                    }
+                    .schedule{
+                        p{
+                            font-size: 13pt;
+                        }
+                    }
+                }
+                .imgArea{
+                    margin-top: 6vmin;
+                    img{
+                        height: 12vh;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 91vh;
+            .title{
+                p{
+                    font-size: 20pt;
+                    margin-bottom: 1vmin;
+                }
+            }
+            .location{
+                display: block;
+                height: 55vh;
+                img{
+                    width: 70vw;
+                    height: 20vh;
+                    margin-top: 0;
+                    margin-left: 9vmin;
+                    margin-bottom: 3vmin;
+                }
+                .traffic{
+                    ul{
+                        padding-left: 1vmin;
+                        li{
+                            font-size: 9pt;
+                        }
+                    }
+                }
+            }
+            .ferry{
+                height: 21.5vh;
+                .time{
+                    width: 33vw;
+                    #ferrytime{
+                        font-size: 7pt;
+                    }
+                    .schedule{
+                        p{
+                            font-size: 7pt;
+                            margin-bottom: 0;
+                        } 
+                    }
+                }
+                .imgArea{
+                    height: 17vh;
+                    img{
+                        height: 8vh;
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            height: 89vh;
+            .title{
+                p{
+                    font-size: 15pt;
+                    margin-bottom: 1vmin;
+                }
+            }
+            .location{
+                margin-bottom: 1vmin;
+                .traffic{
+                    ul{
+                        li{
+                            font-size: 8pt;
+                        }
+                    }
+                }
+            }
+            .ferry{
+                .time{
+                    #ferrytime{
+                        margin-top: 1vmin;
+                    }
+                    .schedule{
+                        p{
+                            font-size: 6pt;
+                        }
                     }
                 }
             }

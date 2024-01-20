@@ -225,7 +225,10 @@ export default{
                     <hr>
                     <div class="description">
                         <p>
-                            {{ item.roomIntroduce }}
+                            <i class="fa-solid fa-shower"></i>獨立衛浴
+                            <i class="fa-solid fa-snowflake"></i>空調
+                            <i class="fa-solid fa-tv"></i>平面電視
+                            <i class="fa-solid fa-wifi"></i>Wifi
                         </p>
                     </div>
                     <div class="price">
@@ -252,7 +255,11 @@ export default{
                     <hr>
                     <div class="description">
                         <p>
-                            {{ item.roomIntroduce }}
+                            <i class="fa-solid fa-snowflake"></i>空調
+                            <i class="fa-solid fa-tv"></i>平面電視
+                            <i class="fa-solid fa-wifi"></i>Wifi
+                            <i class="fa-solid fa-bath"></i>浴缸
+                            <i class="fa-solid fa-gamepad"></i>遊戲機
                         </p>
                     </div>
                     <div class="price">
@@ -279,7 +286,12 @@ export default{
                     <hr>
                     <div class="description">
                         <p>
-                            {{ item.roomIntroduce }}
+                            <i class="fa-solid fa-snowflake"></i>空調
+                            <i class="fa-solid fa-tv"></i>平面電視
+                            <i class="fa-solid fa-wifi"></i>Wifi
+                            <i class="fa-solid fa-bath"></i>浴缸
+                            <i class="fa-solid fa-plug"></i>床頭插座
+                            <i class="fa-solid fa-mountain-sun"></i>景觀
                         </p>
                     </div>
                     <div class="price">
@@ -319,10 +331,10 @@ export default{
                                 <label for="recipient-name" class="col-form-label">房間價格 :</label>
                                 <input type="number" class="form-control" id="recipient-name" v-model="this.roomPrice" placeholder="請輸入價格">
                             </div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間說明 :</label>
                                 <br>
-                                <textarea  v-model="this.roomIntroduce" placeholder="請新增房間說明"></textarea>
+                                <textarea  v-model="this.roomIdtro" placeholder="請新增房間說明"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間圖片 :</label>
@@ -416,7 +428,7 @@ export default{
                 height: 23vh;
                 //border: 1px solid black;
                 hr{
-                    margin: 0;
+                    margin-top: 1vmin;
                 }
                 .name{
                     width: 30vw;
@@ -433,8 +445,12 @@ export default{
                 .description{
                     p{
                         color: #797A7E;
-                        font-size: 16pt;
+                        font-size: 14pt;
                         width: 35vw;
+                    }
+                    i{
+                        margin-right: 1vmin;
+                        margin-left: 1vmin;
                     }
                 }
                 .price{
