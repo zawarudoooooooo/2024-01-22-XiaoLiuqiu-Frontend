@@ -20,6 +20,15 @@ export default{
             test:""
         }
     },
+    mounted() {
+        let originalString = "早餐(+200/人)";
+let breakfast = originalString.split("(+")[0];
+let breakfast1 = originalString.split("(+")[1];
+let price = breakfast1.split("/")[0];
+console.log(breakfast);
+console.log(price);
+
+    },
     methods:{
         booking(){
             swal("訂購成功", "請至信箱查看明細", "success");
