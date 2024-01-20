@@ -1,29 +1,78 @@
 <script>
 import Footer from '../../../components/Footer.vue';
+import axios from 'axios';
+import FrontSimpleDouble from './FrontDouble.vue'
 export default{
+    
     data(){
         return{
+            Search:false,
+            room:"",
+            roomList:[],
         }
+    },
+    mounted() {
+        axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            params:{
+                roomName:""
+            },
+            data:{
+
+            },
+          }).then(res=>{
+            
+            this.room=res.data.roomList
+            // console.log(this.room);
+            
+            })
     },
     methods:{
         goSimpleDouble(){
-            this.$router.push('/FrontSimpleDouble')
+            this.Search=true
+            this.roomList=[]
+            this.room.forEach(element => {
+                if(element.roomName=="小資雙人房"){
+                    this.roomList.push(element)
+                }
+            });
+            console.log(this.roomList);
+            // this.$router.push('/FrontSimpleDouble')
         },
         goDouble(){
-            this.$router.push('/FrontDouble')
+            this.Search=true
+            this.roomList=[]
+            this.room.forEach(element => {
+                if(element.roomName=="舒適雙人房"){
+                    this.roomList.push(element)
+                }
+            });
+            console.log(this.roomList);
         },
         goFaimly(){
-            this.$router.push('/FrontFamily')
+            this.Search=true
+            this.roomList=[]
+            this.room.forEach(element => {
+                if(element.roomName=="豪華家庭房"){
+                    this.roomList.push(element)
+                }
+            });
+            console.log(this.roomList);
         },
     },
     components:{
-        Footer
+        Footer,
+        FrontSimpleDouble
     },
 }
 </script>
 
 <template>
-    <div class="content">
+    <div class="content" v-if="!Search">
         <div class="search">
             <div class="title">
                 <p>依房型搜尋</p>
@@ -64,6 +113,7 @@ export default{
             </div>
         </div>
     </div>
+    <FrontSimpleDouble v-if="Search" v-bind:List="this.roomList"/>
     <Footer/>
 </template>
 

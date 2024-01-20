@@ -8,6 +8,8 @@ export default {
             employee:"",
             account:"",
             pwd:"qaz159",
+            cookie:"",
+            access:"",
             password:"",
             newpassword:"",
             confirmpassword:"",
@@ -84,7 +86,37 @@ export default {
             },
             }).then(res=>{
             this.employee = res.data.employeeList;
-            console.log(this.employee);
+            // console.log(this.employee);
+            this.employee.forEach(item=>{
+                if(item.account==this.cookie){
+                    this.employeeId=item.employeeId
+                    // console.log(item.employeeId);
+                    return
+                }
+            })
+            })
+
+            this.cookie=document.cookie.split("=")[1];
+
+            console.log(this.cookie);
+
+            axios({
+            url:'http://localhost:8080/employee/employeeSearch',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                account:this.cookie
+            },
+            data:{
+
+            },
+            }).then(res=>{
+                res.data.employeeList.forEach(element => {
+                    this.access=element.access
+                    console.log(this.access);
+                });
             })
     },
     components:{
@@ -104,14 +136,14 @@ export default {
             </div>
             <div class="show">
                 <div class="buttonArea">
-                    <button type="button" data-bs-toggle="modal" 
+                    <button type="button" v-if="this.access" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增人員
                     </button>
                     <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModalpwd">修改密碼
                     </button>
                 </div>
-                <div class="employee">
+                <div class="employee" v-if="this.access">
                     <table>
                         <thead>
                             <td>員工編號</td>
@@ -164,20 +196,16 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">員工編號 :</label>
-                                <input type="number" class="form-control" id="recipient-name" v-model="employeeId">
-                            </div>
-                            <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">舊密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.password">
+                                <input type="password" class="form-control" id="recipient-name" v-model="this.password">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">新密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.newpassword">
+                                <input type="password" class="form-control" id="recipient-name" v-model="this.newpassword">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">確認密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="confirmpassword">
+                                <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
                             </div>
                         </form>
                     </div>
