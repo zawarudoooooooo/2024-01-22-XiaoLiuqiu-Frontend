@@ -50,5 +50,14 @@ export default {
         align-content: center;
         justify-content: center;
         padding: 20px;
+        h1{
+            font-weight: bold;
+            color: #82AAE3;
+            text-align: center;
+        }
+        h4{
+            color: #797A7E;
+            text-align: center;
+        }
     }
 </style>

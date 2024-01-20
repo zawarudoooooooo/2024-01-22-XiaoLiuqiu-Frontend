@@ -92,7 +92,7 @@ export default {
             outline: none;
             background-color: #D9D9D9;
             padding-left: 2vmin;
-            margin-bottom: 1vmin;
+            margin-bottom: 5vmin;
         }
         .title {
             font-size: 28pt;
@@ -100,7 +100,7 @@ export default {
             color: #82AAE3;
             text-align: center;
             p {
-                margin-bottom: 0.5vmin;
+                margin-bottom: 3vmin;
             }
         }
         .account {

@@ -1,5 +1,6 @@
 <script>
 import Footer from '../../../components/Footer.vue';
+import swal from 'sweetalert';
 export default{
     data(){
         return{
@@ -20,11 +21,17 @@ export default{
         }
     },
     methods:{
+        booking(){
+            swal("訂購成功", "請至信箱查看明細", "success");
+            this.$router.push('/')
+        },
+        cancle(){
+            this.$router.push('/FrontSearch')
+        },
         clicked(){
             this.ischecked=!this.ischecked
             // this.exxtra.push(this.value)
             // showExtra.innerText=this.exxtra
-
         },
         clicked1(){
             this.ischecked1=!this.ischecked1
@@ -68,12 +75,9 @@ export default{
 
 <template>
     <div class="content">
-        <p id="showExtra">{{ this.exxtra }}</p>
         <div class="show">
-            
             <img src="../../../../public/room/double.jpg" alt="">
             <div class="text">
-                
                 <div class="name">
                     <p>舒適雙人房</p>
                     <p>$2500</p>
@@ -81,20 +85,6 @@ export default{
                 <hr>
                 <div class="extra">
                     <p>加購項目</p>
-                    <!-- <button type="button" @click="clicked()" :class="{check:ischecked}" >早餐(+200/人)</button>
-                    <br>
-                    <button type="button" @click="clicked1()" :class="{check1:ischecked1}">來回船票(+400/全票)</button>
-                    <button type="button" @click="clicked2()" :class="{check2:ischecked2}">來回船票(+200/半票)</button>
-                    <button type="button" @click="clicked3()" :class="{check3:ischecked3}">摩托車(+300/天)</button>
-                    <button type="button" @click="clicked4()" :class="{check4:ischecked4}">三大風景區門票(+100/人)</button>
-                    <button type="button" @click="clicked5()" :class="{check5:ischecked5}">鹿粼梅花鹿園區門票(+220/全票)</button>
-                    <button type="button" @click="clicked6()" :class="{check6:ischecked6}">鹿粼梅花鹿園區門票(+50/半票)</button>
-                    <br>
-                    <button type="button" @click="clicked7()" :class="{check7:ischecked7}">浮潛(+400/人)</button>
-                    <button type="button" @click="clicked8()" :class="{check8:ischecked8}">獨木舟(+600/人)</button>
-                    <button type="button" @click="clicked9()" :class="{check9:ischecked9}">透明獨木舟(+800/人)</button>
-                    <button type="button" @click="clicked10()" :class="{check10:ischecked10}">SUP立槳(+1000/兩人一板)</button>
-                    <button type="button" @click="clicked11()" :class="{check11:ischecked11}">SUP立槳(+1200/一人一板)</button> -->
                     <input type="checkbox" id="uno" value="早餐(+200/人)" v-model="exxtra">
                     <label for="uno">早餐(+200/人)</label>
                     <input type="checkbox" id="dos" value="來回船票(+400/全票)" v-model="exxtra">
@@ -105,22 +95,40 @@ export default{
                     <label for="cuatro">摩托車(+300/天)</label>
                     <input type="checkbox" id="cinco" value="三大風景區門票(+100/人)" v-model="exxtra">
                     <label for="cinco">三大風景區門票(+100/人)</label>
+                    <br>
                     <input type="checkbox" id="seis" value="鹿粼梅花鹿園區門票(+220/全票)" v-model="exxtra">
                     <label for="seis">鹿粼梅花鹿園區門票(+220/全票)</label>
+                    <br>
                     <input type="checkbox" id="siete" value="鹿粼梅花鹿園區門票(+50/半票)" v-model="exxtra">
                     <label for="siete">鹿粼梅花鹿園區門票(+50/半票)</label>
+                    <br>
                     <input type="checkbox" id="ocho" value="浮潛(+400/人)" v-model="exxtra">
                     <label for="ocho">浮潛(+400/人)</label>
                     <input type="checkbox" id="nueve" value="獨木舟(+600/人)" v-model="exxtra">
                     <label for="nueve">獨木舟(+600/人)</label>
                     <input type="checkbox" id="dies" value="透明獨木舟(+800/人)" v-model="exxtra">
                     <label for="dies">透明獨木舟(+800/人)</label>
+                    <br>
                     <input type="checkbox" id="once" value="SUP立槳(+1000/兩人一板)" v-model="exxtra">
                     <label for="once">SUP立槳(+1000/兩人一板)</label>
                     <input type="checkbox" id="doce" value="SUP立槳(+1200/一人一板)" v-model="exxtra">
                     <label for="doce">SUP立槳(+1200/一人一板)</label>
                 </div>
-                <button type="button" id="buyBtn">確認</button>
+            </div>
+        </div>
+        <div class="cart">
+            <ul id="ul">
+                <li>
+                    <span><i class="fa-solid fa-cart-plus"></i>選取項目</span>
+                </li>
+                <ul>
+                    <li v-for="item in exxtra">{{ item }}
+                    </li>
+                </ul>
+            </ul>
+            <div class="buttonArea">
+                <button type="button" @click="cancle()">取消</button>
+                <button type="button" @click="booking()">確認</button>
             </div>
         </div>
     </div>
@@ -130,72 +138,26 @@ export default{
 <style lang="scss" scoped> 
     .content{
         width: 90vw;
-        height: 65vh;
+        height: 68vh;
         margin: auto;
-        margin-top: 6vmin;
-        .check{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check1{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check2{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check3{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check4{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check5{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check6{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check7{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check8{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check9{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check10{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check11{
-            background-color: #BFEAF5;
-            color: white;
-        }
+        margin-top: 3vmin;
+        display: flex;
+        position: relative;
         .show{
             width: 60vw;
-            height: 70vh;
-            margin: auto;
+            height: 50vh;
             display: flex;
             border-radius: 10px;
-            margin-top: 5vmin;
+            margin-top: 7vmin;
             padding: 3vmin;
             position: relative;
             img{
                 width: 23vw;
                 height: 28vh;
                 border-radius: 5px;
-                margin-right: 5vmin;
+                margin-right: 10vmin;
                 transition: all linear 0.3s;
+                box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
                 &:hover{
                     opacity: 0.7;
                     box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
@@ -222,47 +184,71 @@ export default{
                     }
                 }
                 .extra{
+                    width: 36vw;
                     p{
                         color: #797A7E;
                         font-size: 16pt;
                         font-weight: bold;
                         margin-top: 1vmin;
                     }
-                    button{
-                        height: 5vh;
-                        border-radius: 5px;
+                    label{
                         color: #797A7E;
-                        border: 1px dotted #797A7E;
-                        margin-right: 2vmin;
+                        font-size: 14pt;
+                        margin-right: 1.1vmin;
                         margin-bottom: 1vmin;
-                        &:hover{
-                            background-color: #797A7E;
-                            color: white;
-                        }
-                        &:active{
-                            background-color: #F7F2E7;
-                            color: #797A7E;
-                        }
+                    }
+                    input{
+                        margin-right: 1vmin;
                     }
                 }
             }
         }
-        #buyBtn{
-            width: 4vw;
-            height: 4.5vh;
-            border: none;
-            border-radius: 5px;
+        .cart{
+            width: 20vw;
+            height: 65vh;
+            margin: auto;
             color: #797A7E;
-            position: absolute;
-            right: 4%;
-            bottom: 15%;
-            &:hover{
-                background-color: #797A7E;
-                color: white;
+            font-size: 13pt;
+            #ul{
+                list-style: none;
+                padding-left: 1vmin;
             }
-            &:active{
-                background-color: #F7F2E7;
-                color: #797A7E;
+            li{
+                margin-bottom: 0.5vmin;
+            }
+            span{
+                font-size: 18pt;
+                font-weight: bold;
+                color: #82AAE3;
+            }
+            i{
+                font-size: 20pt;
+                color: #82AAE3;
+                margin-right: 1vmin;
+            }
+            .buttonArea{
+                width: 15vw;
+                height: 6vh;
+                display: flex;
+                justify-content: space-between;
+                position: absolute;
+                right: 0;
+                bottom: 3%;
+                button {
+                    width: 5vw;
+                    height: 5vh;
+                    border: none;
+                    border-radius: 5px;
+                    color: #797A7E;
+                    &:hover {
+                        background-color: #797A7E;
+                        color: white;
+                    }
+                    &:active {
+                        background-color: #F7F2E7;
+                        color: #797A7E;
+                    }
+                }
             }
         }
     }
