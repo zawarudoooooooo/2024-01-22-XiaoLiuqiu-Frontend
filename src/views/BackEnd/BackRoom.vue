@@ -59,7 +59,7 @@ export default{
             }).then(res=>{
             console.log(res.data);
             if(res.data.rtnCode==200){
-                swal("成功", "房間已新增", "success");
+                swal("成功", "已新增房間", "success");
             }
             })
         },

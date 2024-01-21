@@ -14,7 +14,6 @@ export default {
             newpassword:"",
             confirmpassword:"",
             employeeId:"",
-
         }
     },
     methods:{
@@ -31,7 +30,7 @@ export default {
                 access:false
             },
             }).then(res=>{
-            swal("新增帳號", "新增成功", "success");
+            swal("成功", "已新增員工", "success");
             this.account=""
             console.log(res.data);
             })
@@ -56,7 +55,7 @@ export default {
                 console.log(res.data)
                 if(res.data.rtncode=="SUCCESSFUL"){
                 
-                    swal("新增成功", "success");
+                    swal("成功","已變更密碼", "success");
                 // this.$router.push('FrontPersonInfo')
             }else{
                 swal("密碼", "錯誤", "error");
@@ -204,7 +203,7 @@ export default {
                                 <input type="password" class="form-control" id="recipient-name" v-model="this.newpassword">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">確認密碼 :</label>
+                                <label for="recipient-name" class="col-form-label">確認新密碼 :</label>
                                 <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
                             </div>
                         </form>
