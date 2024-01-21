@@ -20,7 +20,8 @@ export default{
             mEndDate:"",
             searchInfo:[],
             searchBo:false,
-            Info:[]
+            Info:[],
+            c:false,
         }
     },
     mounted() {
@@ -176,6 +177,10 @@ export default{
                 console.log(this.searchInfo);
                 this.roomList=this.searchInfo;
             })
+        },
+        goback(){
+            this.$emit("goback",this.goback)
+            console.log(this.goback);
         }
     },
     components:{
@@ -219,7 +224,7 @@ export default{
                 <button type="button" @click="booking()">訂購</button>
             </div>
         </div>
-        <button type="button" id="backbtn" @click="back()">返回</button>
+        <button type="button" id="backbtn" @click="goback()">返回</button>
     </div>
 </template>
 
