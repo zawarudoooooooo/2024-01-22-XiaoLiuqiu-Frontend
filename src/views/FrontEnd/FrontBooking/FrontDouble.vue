@@ -20,7 +20,8 @@ export default{
             mEndDate:"",
             searchInfo:[],
             searchBo:false,
-            Info:[]
+            Info:[],
+            c:false,
         }
     },
     mounted() {
@@ -34,7 +35,7 @@ export default{
             url:'http://localhost:8080/room/search',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             params:{
                 roomName:this.roomName
@@ -42,24 +43,23 @@ export default{
             data:{
 
             },
-          }).then(res=>{
+            }).then(res=>{
             this.roomList=res.data.roomList
             console.log(this.roomList);
             
             })
-
             axios({
             url:'http://localhost:8080/order/search',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             params:{
             },
             data:{
                 
             },
-          }).then(res=>{
+            }).then(res=>{
             //   console.log(res.data.orderList);
             //   console.log("查看陣列-------");
             res.data.orderList.forEach(item=>{
@@ -67,17 +67,18 @@ export default{
                 this.orderRoomIdList.forEach(roomId=>{
                     this.orderRoomId.push({roomId:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
                 })
-                
             })
             // console.log(this.orderRoomId);
             })
-            
         console.log(this.List);
     },
     props:[
         "List"
     ],
     methods:{
+        back(){
+            this.$router.push('/FrontSearch')
+        },
         booking(){
             this.$router.push('/DoubleBooking')
         },
@@ -99,23 +100,22 @@ export default{
                 this.endDate=eDate.getUTCFullYear()+'-'+(eDate.getMonth()+1)+'-'+eDate.getDate()
             })
             // console.log(this.roomId);
-            if(this.roomId==roomId){
-                if(this.endDate<=date||this.startDate<=date){
-                    return'已有人訂房';
-                }
-            }
+            // if(this.roomId==roomId){
+            //     if(this.endDate<=date||this.startDate<=date){
+            //         return'已有人訂房';
+            //     }
+            // }
             if(open){
                 return "空房"
             }
-            return "整修中"
+            return "尚未開放"
         },
         search(){
-
             axios({
             url:'http://localhost:8080/order/search',
             method:'POST',
             headers:{
-              'Content-Type':'application/json'
+                'Content-Type':'application/json'
             },
             params:{
             },
@@ -123,7 +123,7 @@ export default{
                 start_date:this.mStartDate,
                 end_date:this.mEndDate
             },
-          }).then(res=>{
+            }).then(res=>{
             // console.log(res.data.orderList);
             let date=this.today.getUTCFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate()
             this.startDate="" 
@@ -172,16 +172,16 @@ export default{
                         })
                         
                         // console.log(this.Info);
-                       
                     });
-                   
                 })
                 console.log(this.searchInfo);
                 this.roomList=this.searchInfo;
             })
+        },
+        goback(){
+            this.$emit("goback",this.goback)
+            console.log(this.goback);
         }
-        
-
     },
     components:{
         Footer
@@ -190,8 +190,6 @@ export default{
 </script>
 
 <template>
-    
-    
     <div class="content">
         <!-- <div class="date">
             
@@ -208,7 +206,7 @@ export default{
             <button type="button">回上頁</button>
             <button type="button" @click="search()" >搜尋</button>
         </div> -->
-        <button type="button">回上頁</button>
+        <!-- <button type="button">回上頁</button> -->
         <div class="show" v-for="item in this.roomList">
             <img src="../../../../room/double.jpg" alt="">
             <div class="text">
@@ -226,16 +224,19 @@ export default{
                 <button type="button" @click="booking()">訂購</button>
             </div>
         </div>
-        
+        <button type="button" id="backbtn" @click="goback()">返回</button>
     </div>
 </template>
 
 <style lang="scss" scoped> 
     .content{
         width: 90vw;
-        height: 100vh;
+        height: 69svh;
         margin: auto;
         margin-top: 6vmin;
+        //border: 1px solid black;
+        position: relative;
+        overflow: auto;
         .date{
             width: 60vw;
             display: flex;
@@ -308,7 +309,6 @@ export default{
                         font-size: 24pt;
                         margin: 0;
                     }
-
                 }
                 .description{
                     p{
@@ -337,6 +337,11 @@ export default{
                 background-color: #F7F2E7;
                 color: #797A7E;
             }
+        }
+        #backbtn{
+            position: fixed;
+            right:10%;
+            bottom: 16%;
         }
     }
 </style>

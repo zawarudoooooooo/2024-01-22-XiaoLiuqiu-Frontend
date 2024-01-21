@@ -14,7 +14,6 @@ export default {
             newpassword:"",
             confirmpassword:"",
             employeeId:"",
-
         }
     },
     methods:{
@@ -31,7 +30,7 @@ export default {
                 access:false
             },
             }).then(res=>{
-            swal("新增帳號", "新增成功", "success");
+            swal("成功", "已新增員工", "success");
             this.account=""
             console.log(res.data);
             })
@@ -56,7 +55,7 @@ export default {
                 console.log(res.data)
                 if(res.data.rtncode=="SUCCESSFUL"){
                 
-                    swal("新增成功", "success");
+                    swal("成功","已變更密碼", "success");
                 // this.$router.push('FrontPersonInfo')
             }else{
                 swal("密碼", "錯誤", "error");
@@ -162,7 +161,6 @@ export default {
                 </div>
             </div>
         </div>
-
 <!-- 新增人員modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -180,6 +178,7 @@ export default {
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeAdd()">確認新增</button>
                     </div>
                 </div>
@@ -204,21 +203,19 @@ export default {
                                 <input type="password" class="form-control" id="recipient-name" v-model="this.newpassword">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">確認密碼 :</label>
+                                <label for="recipient-name" class="col-form-label">確認新密碼 :</label>
                                 <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeChange()">確認更改</button>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
-    
 </template>
 
 <style lang="scss" scoped>
@@ -226,14 +223,9 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        //text-align: center;
+        text-align: center;
         margin-top: 4vmin;
         height: 8vh;
-        position: relative;
-        p{
-            position: absolute;
-            right: 35%;
-        }
         i{
             margin-left: 1vmin;
         }
@@ -249,14 +241,12 @@ export default {
             display: flex;
             justify-content: space-between;
             margin: auto;
-            //border: 1px solid black;
             position: relative;
             .show{
                 .buttonArea{
                     width: 20vw;
                     display: flex;
                     justify-content: space-between;
-                    //border: 1px solid black;
                     button {
                         width: 8vw;
                         height: 5vh;

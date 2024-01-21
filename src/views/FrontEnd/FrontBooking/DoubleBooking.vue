@@ -83,6 +83,16 @@ console.log(price);
 </script>
 
 <template>
+    <div class="date">
+        <div class="checkin">
+            <p>入住日期</p>
+            <input type="date" v-model="this.mStartDate">
+        </div>
+        <div class="checkout">
+            <p>退房日期</p>
+            <input type="date" v-model="this.mEndDate">
+        </div>
+        </div>
     <div class="content">
         <div class="show">
             <img src="../../../../public/room/double.jpg" alt="">
@@ -98,21 +108,24 @@ console.log(price);
                     <label for="uno">早餐(+200/人)</label>
                     <input type="checkbox" id="dos" value="來回船票(+400/全票)" v-model="exxtra">
                     <label for="dos">來回船票(+400/全票)</label>
-                    <input type="checkbox" id="tres" value="來回船票(+200/半票)" v-model="exxtra">
-                    <label for="tres">來回船票(+200/半票)</label>
+                    <br>
+                    <!-- <input type="checkbox" id="tres" value="來回船票(+200/半票)" v-model="exxtra">
+                    <label for="tres">來回船票(+200/半票)</label> -->
                     <input type="checkbox" id="cuatro" value="摩托車(+300/天)" v-model="exxtra">
                     <label for="cuatro">摩托車(+300/天)</label>
                     <input type="checkbox" id="cinco" value="三大風景區門票(+100/人)" v-model="exxtra">
                     <label for="cinco">三大風景區門票(+100/人)</label>
-                    <br>
+                    <!-- <br>
                     <input type="checkbox" id="seis" value="鹿粼梅花鹿園區門票(+220/全票)" v-model="exxtra">
                     <label for="seis">鹿粼梅花鹿園區門票(+220/全票)</label>
                     <br>
                     <input type="checkbox" id="siete" value="鹿粼梅花鹿園區門票(+50/半票)" v-model="exxtra">
                     <label for="siete">鹿粼梅花鹿園區門票(+50/半票)</label>
+                    <br> -->
                     <br>
                     <input type="checkbox" id="ocho" value="浮潛(+400/人)" v-model="exxtra">
                     <label for="ocho">浮潛(+400/人)</label>
+                    <br>
                     <input type="checkbox" id="nueve" value="獨木舟(+600/人)" v-model="exxtra">
                     <label for="nueve">獨木舟(+600/人)</label>
                     <input type="checkbox" id="dies" value="透明獨木舟(+800/人)" v-model="exxtra">
@@ -135,21 +148,96 @@ console.log(price);
                     </li>
                 </ul>
             </ul>
+            <div class="total">
+                <p><i class="fa-solid fa-dollar-sign"></i>總計 : 1500 元</p>
+            </div>
             <div class="buttonArea">
                 <button type="button" @click="cancle()">取消</button>
-                <button type="button" @click="booking()">確認</button>
+                <button type="button" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal">預覽
+                </button>
             </div>
         </div>
     </div>
+<!-- 訂購預覽視窗 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">訂購預覽</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">訂購項目 :</label>
+                                <p>小資雙人房</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">入住日期 :</label>
+                                <p>2024/02/14</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">退房日期 :</label>
+                                <p>2024/02/115</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">加購項目 :</label>
+                                <p>早餐、機車、浮潛</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">總金額 :</label>
+                                <p>3200元</p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="booking()">確認訂購</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <Footer />
 </template>
 
 <style lang="scss" scoped> 
+    .date{
+        width: 60vw;
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        margin-top: 8vmin;
+        margin-left: 5vmin;
+        input{
+            width: 20vw;
+            height: 5vh;
+            border-radius: 10px;
+            border-style: none;
+            outline: none;
+            background-color: #D9D9D9;
+            padding-left: 2vmin;
+            padding-right: 2vmin;
+            color: #797A7E;
+        }
+        p{
+            margin: 0;
+            font-size: 16pt;
+            color: #797A7E;
+            text-align: center;
+            margin-right: 2vmin;
+        }
+        .checkin{
+            display: flex;
+        }
+        .checkout{
+            display: flex;
+        }
+    }
     .content{
         width: 90vw;
         height: 68vh;
         margin: auto;
-        margin-top: 3vmin;
         display: flex;
         position: relative;
         .show{
@@ -157,7 +245,7 @@ console.log(price);
             height: 50vh;
             display: flex;
             border-radius: 10px;
-            margin-top: 7vmin;
+            margin-top: 5vmin;
             padding: 3vmin;
             position: relative;
             img{
@@ -215,9 +303,11 @@ console.log(price);
         .cart{
             width: 20vw;
             height: 65vh;
-            margin: auto;
             color: #797A7E;
             font-size: 13pt;
+            position: relative;
+            top: -3%;
+            right: -7%;
             #ul{
                 list-style: none;
                 padding-left: 1vmin;
@@ -235,13 +325,23 @@ console.log(price);
                 color: #82AAE3;
                 margin-right: 1vmin;
             }
+            .total{
+                color: #82AAE3;
+                position: absolute;
+                bottom: 16%;
+                left: 5%;
+                p{
+                    font-size: 16pt;
+                    font-weight: bold;
+                }
+            }
             .buttonArea{
                 width: 15vw;
                 height: 6vh;
                 display: flex;
                 justify-content: space-between;
                 position: absolute;
-                right: 0;
+                right: 18%;
                 bottom: 3%;
                 button {
                     width: 5vw;

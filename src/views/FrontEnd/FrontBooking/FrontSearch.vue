@@ -63,6 +63,10 @@ export default{
             });
             console.log(this.roomList);
         },
+        back(xxx){
+            this.Search=xxx
+            console.log(xxx);
+        }
     },
     components:{
         Footer,
@@ -113,7 +117,7 @@ export default{
             </div>
         </div>
     </div>
-    <FrontSimpleDouble v-if="Search" v-bind:List="this.roomList"/>
+    <FrontSimpleDouble v-if="Search" v-bind:List="this.roomList" @goback="back(xxx)"/>
     <Footer/>
 </template>
 

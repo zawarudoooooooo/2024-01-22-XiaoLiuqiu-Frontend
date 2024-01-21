@@ -2,7 +2,6 @@
 import axios from 'axios';
 import Footer from '../../components/Footer.vue';
 import swal from 'sweetalert';
-import { RouterLink, RouterView } from 'vue-router'
 export default {
     data() {
         return {
@@ -66,19 +65,17 @@ export default {
             });
         },
         forgotPassword(){
-
             axios({
                 url:'http://localhost:8080/member/send_email',
                 method: "POST",
                 headers:{"Content-Type": "application/json",},
                 data: {
-                   account: this.account
+                    account: this.account
                 }
-                
             })
             .then(res => console.log(res))
-            
             .catch(error => console.error(error))
+            this.account=""
         },
     },
     components: {
@@ -106,7 +103,6 @@ export default {
             <button type="button"  data-bs-toggle="modal" id="forget"
                     data-bs-target="#exampleModal">忘記密碼
             </button>
-            <!-- <RouterLink to="/reset" class="routerItem">重設密碼</RouterLink> -->
         </div>
     </div>  
 <!-- 忘記密碼modal視窗 -->
