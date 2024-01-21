@@ -31,12 +31,12 @@ export default{
             }).then(res => {
 
                 if(res.data.rtncode!= "SUCCESSFUL"){
-                    swal("資料有誤", "帳號或密碼有誤請再次確認", "error");
+                    swal("資料有誤", "帳號或密碼有誤，請再次確認", "error");
                     return
                 }
                 
                 swal({
-                        title: '登錄成功',
+                        title: '登入成功',
                         text: '歡迎回來',
                         icon: 'success',
                         buttons: '確認',
@@ -62,7 +62,7 @@ export default{
 <template>
     <div class="content">
         <div class="title">
-            <p>員工登錄<i class="fa-solid fa-user-gear"></i></p>
+            <p>員工登入<i class="fa-solid fa-user-gear"></i></p>
         </div>
         <div class="account">
             <p>帳號</p>
@@ -74,7 +74,7 @@ export default{
         </div>
         <div class="buttonArea">
             <button type="button" @click="goFrontEntry()">取消</button>
-            <button type="button" @click="goBack()">登錄</button>
+            <button type="button" @click="goBack()">登入</button>
         </div>
     </div>
 </template>

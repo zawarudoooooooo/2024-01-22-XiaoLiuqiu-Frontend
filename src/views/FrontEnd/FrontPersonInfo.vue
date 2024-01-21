@@ -192,7 +192,7 @@ export default{
         }).then(res => {
             console.log(res.data)
             if(res.data.message=="Successful!!"){
-                swal("成功","更新完成","success")
+                swal("成功","發佈完成","success")
                 .then((willRefresh) => {
                     if (willRefresh) {
                         // 在这里可以执行页面刷新的操作
@@ -412,7 +412,7 @@ export default{
             <p id="location"><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
             <hr>
             <div class="orderNum">
-                <p>訂單編號 : A01</p>
+                <p>訂單編號 : S01</p>
             </div>
             <div class="orderItem">
                 <p>訂單內容 : 舒適雙人房</p>
@@ -427,7 +427,7 @@ export default{
                 <p>退房時間 : 2024/02/15</p>
             </div>
             <div class="pay">
-                <p>付款期限 : </p>
+                <p>付款期限 : 2024/02/10</p>
             </div>
         </div>
 <!-- 發表回饋頁面 -->

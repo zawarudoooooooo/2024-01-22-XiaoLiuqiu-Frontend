@@ -39,7 +39,8 @@ export default {
                     this.$router.push('/')
                 }, 2000)
             })
-           . catch(error => console.error(error))
+            swal("重設密碼成功","請用新密碼登錄","success")
+            . catch(error => console.error(error))
         },
         goEntry(){
             this.$router.push('/')
