@@ -20,7 +20,6 @@ export default {
         axios({
                 url:'http://localhost:8080/member/verify',
                 method: "POST",
-                // headers:{"Content-Type": "application/json",},
                 params: {
                     memberEmail: email,
                     verificationCode: verify,

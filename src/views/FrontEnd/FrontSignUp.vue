@@ -41,7 +41,6 @@ export default {
                     memberName: this.memberName,
                     memberPhone: this.memberPhone,
                     memberEmail: this.memberEmail,
-                    memberPhoto : this.memberPhoto,
                 },
             }).then(res => {
                 console.log(res.data)
