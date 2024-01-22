@@ -191,22 +191,6 @@ export default{
 
 <template>
     <div class="content">
-        <!-- <div class="date">
-            
-            <div class="checkin">
-                <p>入住日期</p>
-                <input type="date" v-model="this.mStartDate">
-            </div>
-            <div class="checkout">
-                <p>退房日期</p>
-                <input type="date" v-model="this.mEndDate">
-            </div>
-            <div>
-            </div>
-            <button type="button">回上頁</button>
-            <button type="button" @click="search()" >搜尋</button>
-        </div> -->
-        <!-- <button type="button">回上頁</button> -->
         <div class="show" v-for="item in this.roomList">
             <img src="../../../../room/double.jpg" alt="">
             <div class="text">
@@ -237,37 +221,6 @@ export default{
         //border: 1px solid black;
         position: relative;
         overflow: auto;
-        .date{
-            width: 60vw;
-            display: flex;
-            justify-content: space-around;
-            align-content: center;
-            margin: auto;
-            input{
-                width: 20vw;
-                height: 5vh;
-                border-radius: 10px;
-                border-style: none;
-                outline: none;
-                background-color: #D9D9D9;
-                padding-left: 2vmin;
-                padding-right: 2vmin;
-                color: #797A7E;
-            }
-            p{
-                margin: 0;
-                font-size: 16pt;
-                color: #797A7E;
-                text-align: center;
-                margin-right: 2vmin;
-            }
-            .checkin{
-                display: flex;
-            }
-            .checkout{
-                display: flex;
-            }
-        }
         .show{
             width: 60vw;
             height: 34vh;
@@ -279,6 +232,8 @@ export default{
             box-shadow: 1px 1px 1px gray;
             padding: 3vmin;
             position: relative;
+            //background-color: white;
+            //box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
             img{
                 width: 23vw;
                 height: 28vh;
@@ -328,7 +283,7 @@ export default{
             position: absolute;
             right: 5%;
             bottom: 11%;
-
+            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
             &:hover{
                 background-color: #797A7E;
                 color: white;
@@ -342,6 +297,7 @@ export default{
             position: fixed;
             right:10%;
             bottom: 16%;
+            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
         }
     }
 </style>

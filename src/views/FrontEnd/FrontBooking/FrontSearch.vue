@@ -79,7 +79,7 @@ export default{
     <div class="content" v-if="!Search">
         <div class="search">
             <div class="title">
-                <p>依房型搜尋</p>
+                <p>房型總覽</p>
             </div>
             <div class="roomType">
                 <div class="card">
@@ -150,12 +150,19 @@ export default{
                 box-shadow: 1px 1px 1px lightgray;
                 transition: all linear 0.3s;
                 &:hover{
-                    opacity: 0.6;
-                    //box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
                     box-shadow: 10px -10px rgba(6, 67, 147, 0.5);
                 }
                 &:active{
                     opacity: 1.0;
+                }
+                img{
+                    transition: all linear 0.3s;
+                    &:hover{
+                        opacity: 0.6;
+                    }
+                    &:active{
+                        opacity: 1.0;
+                    }
                 }
             }
             button{
@@ -164,6 +171,7 @@ export default{
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
                     background-color: #797A7E;
                     color: white;

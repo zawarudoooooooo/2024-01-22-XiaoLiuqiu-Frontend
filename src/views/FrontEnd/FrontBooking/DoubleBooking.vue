@@ -95,7 +95,30 @@ console.log(price);
         </div>
     <div class="content">
         <div class="show">
-            <img src="../../../../public/room/double.jpg" alt="">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../../../public/room/double.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../../public/room/double1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../../public/room/double2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+
+            <!-- <img src="../../../../public/room/double.jpg" alt=""> -->
             <div class="text">
                 <div class="name">
                     <p>舒適雙人房</p>
@@ -207,7 +230,7 @@ console.log(price);
         display: flex;
         justify-content: space-around;
         align-content: center;
-        margin-top: 8vmin;
+        margin-top: 6vmin;
         margin-left: 5vmin;
         input{
             width: 20vw;
@@ -215,10 +238,11 @@ console.log(price);
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #D9D9D9;
+            background-color: #e3f6f5;
             padding-left: 2vmin;
             padding-right: 2vmin;
             color: #797A7E;
+            box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         p{
             margin: 0;
@@ -229,40 +253,59 @@ console.log(price);
         }
         .checkin{
             display: flex;
+            align-items: center;
         }
         .checkout{
             display: flex;
+            align-items: center;
         }
     }
     .content{
-        width: 90vw;
-        height: 68vh;
+        width: 95vw;
+        height: 67vh;
         margin: auto;
         display: flex;
         position: relative;
+        border: 1px solid orange;
         .show{
-            width: 60vw;
+            width: 68vw;
             height: 50vh;
             display: flex;
+            justify-content: space-around;
             border-radius: 10px;
             margin-top: 5vmin;
-            padding: 3vmin;
+            //padding: 3vmin;
             position: relative;
-            img{
+            border: 1px solid blue;
+            .carousel-inner{
                 width: 23vw;
-                height: 28vh;
-                border-radius: 5px;
-                margin-right: 10vmin;
-                transition: all linear 0.3s;
-                box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                &:hover{
-                    opacity: 0.7;
-                    box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
+                height: 33vh;
+                //border: 1px solid red;
+                .carousel-item{
+                    width: 23vw;
+                    height: 33vh;
+
+                    img{
+                        width: 23vw;
+                        height: 33vh;
+                        border-radius: 5px;
+                        //margin-right: 10vmin;
+                        transition: all linear 0.3s;
+                        box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                        &:hover{
+                            opacity: 0.7;
+                            box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
+                        }
+                        &:active{
+                            opacity: 1.0;
+                        }
+                    }
                 }
-                &:active{
-                    opacity: 1.0;
+                .carousel-control{
+                    margin-bottom: 2vmin;
                 }
             }
+   
             .text{
                 height: 23vh;
                 hr{
@@ -290,7 +333,7 @@ console.log(price);
                     }
                     label{
                         color: #797A7E;
-                        font-size: 14pt;
+                        font-size: 15.5pt;
                         margin-right: 1.1vmin;
                         margin-bottom: 1vmin;
                     }
@@ -302,18 +345,20 @@ console.log(price);
         }
         .cart{
             width: 20vw;
-            height: 65vh;
+            height: 70vh;
             color: #797A7E;
             font-size: 13pt;
             position: relative;
-            top: -3%;
-            right: -7%;
+            top: -8%;
+            right: -3%;
+            border: 1px solid green;
             #ul{
                 list-style: none;
                 padding-left: 1vmin;
             }
             li{
                 margin-bottom: 0.5vmin;
+                font-size: 14.5pt;
             }
             span{
                 font-size: 18pt;
@@ -342,13 +387,14 @@ console.log(price);
                 justify-content: space-between;
                 position: absolute;
                 right: 18%;
-                bottom: 3%;
+                bottom: 1%;
                 button {
                     width: 5vw;
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
                     color: #797A7E;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover {
                         background-color: #797A7E;
                         color: white;

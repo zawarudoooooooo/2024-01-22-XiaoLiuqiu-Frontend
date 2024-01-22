@@ -134,9 +134,9 @@ export default {
 <style lang="scss" scoped>
     .content {
         width: 20vw;
-        height: 63vh;
+        height: 64vh;
         margin: auto;
-        margin-top: 8vmin;
+        margin-top: 7vmin;
         position: relative;
         i{
             margin-left: 2vmin;
@@ -147,9 +147,10 @@ export default {
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #D9D9D9;
+            background-color: #e3f6f5;
             padding-left: 2vmin;
             margin-bottom: 4vmin;
+            box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         .title {
             font-size: 28pt;
@@ -177,13 +178,14 @@ export default {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            margin-top: 2vmin;
+            margin-top: 5vmin;
             button {
                 width: 9vw;
                 height: 5vh;
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover {
                     background-color: #797A7E;
                     color: white;
@@ -197,6 +199,7 @@ export default {
                 width: 7vw;
                 height: 4.5vh;
                 font-size: 10pt;
+                margin-top: 5vmin;
             }
         }
     }

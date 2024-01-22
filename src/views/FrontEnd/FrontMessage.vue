@@ -71,7 +71,7 @@
         margin-bottom: 3vmin;
     }
     .content{
-        width: 80vw;
+        width: 90vw;
         height: 100vh;
         margin: auto;
         display: flex;
@@ -83,6 +83,7 @@
             width: 20rem;
             height: 30rem;
             padding: 2vmin;
+            box-shadow: 1px 1px 1px lightgray;
             .info{
                 display: flex;
                 justify-content: space-between;

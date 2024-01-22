@@ -352,21 +352,21 @@ export default{
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">更改資料</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">修改資料</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">更改姓名 :</label>
+                                <label for="recipient-name" class="col-form-label">修改姓名 :</label>
                                 <input type="text" class="form-control" id="recipient-name" v-model="this.newName">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">更改電話 :</label>
+                                <label for="recipient-name" class="col-form-label">修改電話 :</label>
                                 <input type="text" class="form-control" id="recipient-name" v-model="this.newPhone">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">更改e-mail :</label>
+                                <label for="message-text" class="col-form-label">修改e-mail :</label>
                                 <input type="text" class="form-control" id="recipient-name" v-model="this.newEmail">
                             </div>
                         </form>
@@ -382,7 +382,7 @@ export default{
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">更改密碼</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">修改密碼</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -521,6 +521,7 @@ export default{
                 border-radius: 5px;
                 color: #797A7E;
                 font-size: 16pt;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
                     background-color: #797A7E;
                     color: white;
@@ -578,6 +579,7 @@ export default{
                     border-radius: 5px;
                     color: #797A7E;
                     font-size: 13pt;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{
                         background-color: #797A7E;
                         color: white;
@@ -625,9 +627,10 @@ export default{
                     border-radius: 10px;
                     border-style: none;
                     outline: none;
-                    background-color: #D9D9D9;
+                    background-color: #e3f6f5;
                     padding-left: 2vmin;
                     margin-bottom: 2vmin;
+                    box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                 }
             }
             .text{
@@ -676,6 +679,7 @@ export default{
                     border-radius: 5px;
                     color: #797A7E;
                     font-size: 13pt;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{
                         background-color: #797A7E;
                         color: white;
