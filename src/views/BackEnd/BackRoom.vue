@@ -1,79 +1,196 @@
 <script>
 import axios from 'axios';
+import swal from 'sweetalert';
 import backSideBar from '../../components/backSideBar.vue';
 export default{
     data(){
         return{
             roomId:"",
             roomTypeId:"",
-            roomIdtro:"",
-            simple:true,
+            simple:false,
             double:false,
             family:false,
-
-            roomavatar:"",
+            roomName:"",
+            roomPrice:"",
+            roomIntroduce:"",
+            roomSearch:"",
+            orderRoomIdList:"",
+            orderRoomId:[],
+            today:new Date(),
+            startDate:"",
+            endDate:"",
+            forRoomId:"",
+            editstatus:false
         }
     },
     methods:{
         createRoom() {
-            axios({
-                url: 'http://localhost:8080/room/create',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {
-                    room_id:this.roomId,
-                    room_type_id:this.roomTypeId,
-                    room_introduce:this.roomIdtro
-                },
-            }).then(res => {
-                console.log(res.data)
-                if(res.data.message=="Successful!!"){
-                swal("成功", "success");
-                // this.$router.push('FrontPersonInfo')
-            }else{
-                swal( "錯誤", "error");
-            }
-            }).catch(error => {
-                if (error.response) {
-                    // 這裡可以取得伺服器回應的詳細信息
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
+            console.log(this.roomPrice);
+            const roomtype=document.querySelectorAll(".roomtype")
+
+            roomtype.forEach(room=>{
+                if(room.checked){
+                    this.roomName=room.value
                 }
-                console.error('Error:', error);
-            });
+            })
+
+            if (this.roomId && !/^[A-Ca-c]/.test(this.roomId)||this.roomId=="") {
+                swal("錯誤", "編號請依照房間類型的A、B、C為第一字", "error");
+                return
+            }
+            if(this.roomPrice<=0){
+                swal("錯誤", "金額有誤", "error");
+                return
+            }
+            axios({
+            url:'http://localhost:8080/room/create',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+            },
+            data:{
+                room_id:this.roomId,
+                room_introduce:this.roomIntroduce,
+                room_name:this.roomName,
+                room_price:this.roomPrice
+            },
+            }).then(res=>{
+            console.log(res.data);
+            if(res.data.rtnCode==200){
+                swal("成功", "已新增房間", "success");
+            }
+            })
         },
 //頁面切換
         simpleOpen(){
-            this.simple=true,
-            this.double=false,
+            this.simple=true
+            this.double=false
             this.family=false
+
+            axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                roomName:"小資"
+            },
+            data:{
+
+            },
+            }).then(res=>{
+            this.roomSearch=""
+            this.roomSearch=res.data.roomList
+            console.log(this.roomSearch);
+            })
         },
         doubleOpen(){
             this.simple=false,
             this.double=true,
             this.family=false
+            axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                roomName:"舒適"
+            },
+            data:{
+
+            },
+            }).then(res=>{
+            this.roomSearch=""
+            this.roomSearch=res.data.roomList
+            })
         },
         familyOpen(){
             this.simple=false,
             this.double=false,
             this.family=true
-        },
-//房間照片上傳
-        onfileroom(event){
-            this.file=event.target.files[0]
-            let filereader=new FileReader();
-            filereader.readAsDataURL(this.file)
-            filereader.addEventListener("load",()=>{
-                this.roomavatar=filereader.result;
-                console.warn(this.roomavatar)
+            axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                roomName:"豪華"
+            },
+            data:{
+
+            },
+            }).then(res=>{
+            this.roomSearch=""
+            this.roomSearch=res.data.roomList
             })
         },
+        roomIsoren(open,roomId){
+            // console.log(roomId);    
+            let date=this.today.getUTCFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate()
+            // console.log(date);   
+            this.forRoomId=""
+            this.startDate="" 
+                
+            // console.log(this.orderRoomId);
+            this.orderRoomId.forEach(item=>{
+                // console.log(item);
+                if(roomId!=item.roomId){
+                    return
+                }
+                this.forRoomId=item.roomId
+                let sDate=new Date(item.startDate)
+                let eDate=new Date(item.endDate)
+                this.startDate=sDate.getUTCFullYear()+'-'+(sDate.getMonth()+1)+'-'+sDate.getDate()
+                this.endDate=eDate.getUTCFullYear()+'-'+(eDate.getMonth()+1)+'-'+eDate.getDate()
+
+                // console.log(item.roomId);
+                // console.log(startDate);
+                // console.log(startDate==date);
+                // console.log(endDate>date);
+            })
+            // if(this.forRoomId==roomId){
+            //     if(this.endDate>date||this.startDate<=date){
+            //         return'已有人訂房';
+            //     }
+            // }
+            if(open){
+                return "開放中"
+            }
+            return "未開放"
+        }
     },
     components:{
         backSideBar
+    },
+    mounted(){
+        axios({
+            url:'http://localhost:8080/order/search',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+            },
+            data:{
+                
+            },
+            }).then(res=>{
+            //   console.log(res.data.orderList);
+            //   console.log("查看陣列-------");
+            res.data.orderList.forEach(item=>{
+                this.orderRoomIdList=JSON.parse(item.roomId);
+                this.orderRoomIdList.forEach(roomId=>{
+                    this.orderRoomId.push({roomId:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
+                })
+                
+            })
+            // console.log(this.orderRoomId);
+            })
     }
 }
 </script>
@@ -94,16 +211,16 @@ export default{
             <button type="button" @click="familyOpen()">豪華家庭房</button>
         </div>
 <!-- 小資雙人房 -->
-        <div class="simple" v-if="simple">
+        <div class="simple" v-if="simple" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
-            <div class="room">
+            <div class="room" v-for="item in this.roomSearch">
                 <img src="../../../../public/room/simpledouble.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
-                        <p>小資雙人房</p>
-                        <p>編號 : A01</p>
+                        <p>{{item.roomName}}</p>
+                        <p>編號 : {{item.roomId}}</p>
                     </div>
                     <hr>
                     <div class="description">
@@ -115,25 +232,29 @@ export default{
                         </p>
                     </div>
                     <div class="price">
-                        <p>價格 : $1500</p>
+                        <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
+                    </div>
+                    <div class="edit">
+                        <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
+                            data-bs-target="#edit">編輯</p>
                     </div>
                 </div>
             </div>
         </div>
 <!-- 舒適雙人房 -->
-        <div class="double" v-if="double">
+        <div class="double" v-if="double" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
             </div>
-            <div class="room">
+            <div class="room" v-for="item in this.roomSearch">
                 <img src="../../../../public/room/double.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
-                        <p>舒適雙人房</p>
-                        <p>編號 : B01</p>
+                        <p>{{item.roomName}}</p>
+                        <p>編號 : {{item.roomId}}</p>
                     </div>
                     <hr>
                     <div class="description">
@@ -146,25 +267,29 @@ export default{
                         </p>
                     </div>
                     <div class="price">
-                        <p>價格 : $2500</p>
+                        <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
+                    </div>
+                    <div class="edit">
+                        <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
+                            data-bs-target="#edit">編輯</p>
                     </div>
                 </div>
             </div>
         </div>
 <!-- 豪華家庭房 -->
-        <div class="family" v-if="family">
+        <div class="family" v-if="family" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
-            <div class="room">
+            <div class="room" v-for="item in this.roomSearch">
                 <img src="../../../../public/room/family.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
-                        <p>豪華家庭房</p>
-                        <p>編號 : C01</p>
+                        <p>{{item.roomName}}</p>
+                        <p>編號 : {{item.roomId}}</p>
                     </div>
                     <hr>
                     <div class="description">
@@ -178,10 +303,14 @@ export default{
                         </p>
                     </div>
                     <div class="price">
-                        <p>價格 : $4000</p>
+                        <p>價格 : ${{ item.roomPrice}}</p>
                     </div>
                     <div class="status">
-                        <p>狀態 : 空房</p>
+                        <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
+                    </div>
+                    <div class="edit">
+                        <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
+                            data-bs-target="#edit">編輯</p>
                     </div>
                 </div>
             </div>
@@ -212,28 +341,57 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間價格 :</label>
-                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸入價格">
+                                <input type="number" class="form-control" id="recipient-name" v-model="this.roomPrice" placeholder="請輸入價格">
                             </div>
-                            <!-- <div class="mb-3">
-                                <label for="message-text" class="col-form-label">房間說明 :</label>
-                                <br>
-                                <textarea  v-model="this.roomIdtro" placeholder="請新增房間說明"></textarea>
-                            </div> -->
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間圖片 :</label>
-                                <input type="file" class="form-control" id="recipient-name" @change="onfileroom">
-                            </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">圖片預覽 :</label>
-                                <br>
-                                <div class="imgArea">
-                                    <img :src="roomavatar" class="roomimg" alt="">
-                                </div>                
+                                <input type="file" class="form-control" id="recipient-name">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="createRoom()">確認新增</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"  @click="createRoom()">確認新增</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- 編輯房間modal -->
+        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">編輯房間</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">房間金額 :</label>
+                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸入欲更改金額">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">房間說明 :</label>
+                                <br>
+                                <small>*多筆請以逗號做分隔</small>
+                                <br>
+                                <textarea placeholder="請輸入欲更改說明"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">更改狀態 :</label>
+                                <input type="checkbox" value="false" v-model="editstatus">
+                                <label for="">已開放</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">房間圖片 :</label>
+                                <input type="file" class="form-control" id="recipient-name">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">更改</button>
                     </div>
                 </div>
             </div>
@@ -246,14 +404,8 @@ export default{
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        //text-align: center;
+        text-align: center;
         margin-top: 4vmin;
-        position: relative;
-        height: 8vh;
-        p{
-            position: absolute;
-            right: 35%;
-        }
         i{
             margin-left: 1vmin;
         }
@@ -266,10 +418,8 @@ export default{
         justify-content: space-between;
         margin-top: 5vmin;
         position: relative;
-        //border: 1px solid black;
         .buttonArea{
             width: 35vw;
-            //border: 1px solid black;
             display: flex;
             justify-content: space-between;
             position: absolute;
@@ -289,6 +439,9 @@ export default{
                     color: #797A7E;
                     }
             }
+        }
+        .info{
+            width: 12vw;
         }
         p{
             color: #797A7E;
@@ -322,7 +475,6 @@ export default{
             }
             .text{
                 height: 23vh;
-                //border: 1px solid black;
                 hr{
                     margin-top: 1vmin;
                 }
@@ -369,6 +521,22 @@ export default{
                         font-size: 25pt;
                     }
                 }
+                .edit{
+                    display: flex;
+                    align-items: center;
+                    width: 5vw;
+                    position: absolute;
+                    right: 4%;
+                    bottom: 8%;
+                    i{
+                        font-size: 14pt;
+                        color: #797A7E;
+                    }
+                    p{
+                        font-size: 15pt;
+                        margin: 0;
+                    }
+                }
             }
         }
     }
@@ -377,20 +545,11 @@ export default{
         height: 15vh;
         border-radius: 5px;
         padding-left: 1vmin;
+        margin-top: 1vmin;
+        outline: none;
     }
     label{
         margin-right: 1vmin;
         margin-left: 1vmin;
-    }
-    .modal-content{
-        .modal-body{
-            .mb-3{
-                .roomimg{
-                    width: 15vw;
-                    height: 25vh;
-                    border-radius: 5px;
-                }
-            }
-        }
     }
 </style>

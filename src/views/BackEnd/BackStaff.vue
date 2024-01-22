@@ -8,11 +8,12 @@ export default {
             employee:"",
             account:"",
             pwd:"qaz159",
+            cookie:"",
+            access:"",
             password:"",
             newpassword:"",
             confirmpassword:"",
             employeeId:"",
-
         }
     },
     methods:{
@@ -29,7 +30,7 @@ export default {
                 access:false
             },
             }).then(res=>{
-            swal("新增帳號", "新增成功", "success");
+            swal("成功", "已新增員工", "success");
             this.account=""
             console.log(res.data);
             })
@@ -54,7 +55,7 @@ export default {
                 console.log(res.data)
                 if(res.data.rtncode=="SUCCESSFUL"){
                 
-                    swal("新增成功", "success");
+                    swal("成功","已變更密碼", "success");
                 // this.$router.push('FrontPersonInfo')
             }else{
                 swal("密碼", "錯誤", "error");
@@ -84,7 +85,37 @@ export default {
             },
             }).then(res=>{
             this.employee = res.data.employeeList;
-            console.log(this.employee);
+            // console.log(this.employee);
+            this.employee.forEach(item=>{
+                if(item.account==this.cookie){
+                    this.employeeId=item.employeeId
+                    // console.log(item.employeeId);
+                    return
+                }
+            })
+            })
+
+            this.cookie=document.cookie.split("=")[1];
+
+            console.log(this.cookie);
+
+            axios({
+            url:'http://localhost:8080/employee/employeeSearch',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                account:this.cookie
+            },
+            data:{
+
+            },
+            }).then(res=>{
+                res.data.employeeList.forEach(element => {
+                    this.access=element.access
+                    console.log(this.access);
+                });
             })
     },
     components:{
@@ -104,14 +135,14 @@ export default {
             </div>
             <div class="show">
                 <div class="buttonArea">
-                    <button type="button" data-bs-toggle="modal" 
+                    <button type="button" v-if="this.access" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增人員
                     </button>
                     <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModalpwd">修改密碼
                     </button>
                 </div>
-                <div class="employee">
+                <div class="employee" v-if="this.access">
                     <table>
                         <thead>
                             <td>員工編號</td>
@@ -130,7 +161,6 @@ export default {
                 </div>
             </div>
         </div>
-
 <!-- 新增人員modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -148,6 +178,7 @@ export default {
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeAdd()">確認新增</button>
                     </div>
                 </div>
@@ -164,33 +195,27 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">員工編號 :</label>
-                                <input type="number" class="form-control" id="recipient-name" v-model="employeeId">
-                            </div>
-                            <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">舊密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.password">
+                                <input type="password" class="form-control" id="recipient-name" v-model="this.password">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">新密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.newpassword">
+                                <input type="password" class="form-control" id="recipient-name" v-model="this.newpassword">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">確認密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="confirmpassword">
+                                <label for="recipient-name" class="col-form-label">確認新密碼 :</label>
+                                <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeChange()">確認更改</button>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
-    
 </template>
 
 <style lang="scss" scoped>
@@ -198,14 +223,9 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        //text-align: center;
+        text-align: center;
         margin-top: 4vmin;
         height: 8vh;
-        position: relative;
-        p{
-            position: absolute;
-            right: 35%;
-        }
         i{
             margin-left: 1vmin;
         }
@@ -221,14 +241,12 @@ export default {
             display: flex;
             justify-content: space-between;
             margin: auto;
-            //border: 1px solid black;
             position: relative;
             .show{
                 .buttonArea{
                     width: 20vw;
                     display: flex;
                     justify-content: space-between;
-                    //border: 1px solid black;
                     button {
                         width: 8vw;
                         height: 5vh;

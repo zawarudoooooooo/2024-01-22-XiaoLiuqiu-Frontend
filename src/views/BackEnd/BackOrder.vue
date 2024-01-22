@@ -49,7 +49,7 @@ export default {
                 
                 element.orderDateTime=dayTime.getFullYear()+"年"+(dayTime.getMonth()+1)+"月"+dayTime.getDate()+"日"+" "+dayTime.getHours()+":"+dayTime.getMinutes()+":"+dayTime.getSeconds()
                 this.orders.push({orderId:element.orderId,memberName:element.memberName,orderItem:JSON.parse(element.orderItem),
-                    roomId:JSON.parse(element.roomId),startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime})
+                    roomId:JSON.parse(element.roomId),startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime,orderPayment:element.orderPayment,payOrNot:element.payOrNot})
                 });
                 console.log(this.orders);
             })
@@ -81,6 +81,7 @@ export default {
                     <td>訂購項目</td>
                     <td>加購項目</td>
                     <td>訂單時間</td>
+                    <td>付款方式</td>
                     <td>訂單狀態</td>
                 </tr>
             </thead>
@@ -90,92 +91,74 @@ export default {
                     <td>{{ item.memberName }}</td>
                     <td>{{ item.startDate }}</td>
                     <td>{{ item.endDate }}</td>
-                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderItem" @click="roomIdF(index)" data-bs-whatever="@mdo">查看</button></td>
-                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#roomId" @click="orderItemF(index)" data-bs-whatever="@mdo">查看</button></td>
+                    <td><button type="button" data-bs-toggle="modal" data-bs-target="#orderItem" @click="roomIdF(index)" data-bs-whatever="@mdo">查看</button></td>
+                    <td><button type="button" data-bs-toggle="modal" data-bs-target="#roomId" @click="orderItemF(index)" data-bs-whatever="@mdo">查看</button></td>
                     <td>{{ item.orderDateTime }}</td>
-                    <td></td>
+                    <td v-if="item.orderPayment">到場支付</td>
+                    <td v-if="!item.orderPayment">線上支付</td>
+                    <td v-if="!item.payOrNot">未支付</td>
+                    <td v-if="item.payOrNot">已支付</td>
                 </tr>
             </tbody>
             </table>
         </div>
     </div>
-    <!-- 訂購項目model -->
+<!-- 訂購項目model -->
     <div class="modal fade" id="orderItem" tabindex="-1" aria-labelledby="orderItem" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="orderItem">訂購項目</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <table>
-                <thead>
-                <tr>
-                    <td>訂單編號</td>
-                    <td>會員名稱</td>
-                    <td>入住時間</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in roomId">
-                    <td>{{ item.roomId }}</td>
-                    <td>{{ item.roomIntroduce }}</td>
-                    <td>{{ item.roomTypeId }}</td>
-                </tr>
-            </tbody>
-            </table>
-          </div>
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderItem">訂購項目</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form v-for="item in roomId">
+                        <div class="mb-3" >
+                            <label for="recipient-name" class="col-form-label">房間ID :</label>
+                            <p>{{ item.roomId }}</p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">房間名稱 :</label>
+                            <p>{{ item.roomName }}</p>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light">更改</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-    <!-- 加購項目model -->
-    <div class="modal fade" id="roomId" tabindex="-1" aria-labelledby="roomId" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="roomId">加購項目</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <table>
-                <thead>
-                <tr>
-                    <td>加購項目</td>
-                    <td>加購價格</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in orderItem">
-                    <td>{{ item.extraName }}</td>
-                    <td>{{ item.extraPrice }}</td>
-                </tr>
-            </tbody>
-            </table>
-          </div>
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
+<!-- 加購項目model -->
+    <div class="modal fade" id="roomId" tabindex="-1" aria-labelledby="orderItem" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderItem">加購項目</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form v-for="item in orderItem">
+                        <div class="mb-3" >
+                            <label for="recipient-name" class="col-form-label">加購項目 :</label>
+                            <p>{{ item.extraName }}</p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">加購價格 :</label>
+                            <p>{{ item.extraPrice }}</p>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light">更改</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-
 </template>
 
 <style lang="scss" scoped>
@@ -183,14 +166,8 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        //text-align: center;
-        position: relative;
+        text-align: center;
         margin-top: 4vmin;
-        height: 8vh;
-        p{
-            position: absolute;
-            right: 35%;
-        }
         i{
             margin-left: 1vmin;
         }
@@ -219,14 +196,23 @@ export default {
                 position: absolute;
                 text-align: center;
                 right: 10%;
-                th{
-                    td{
-                        border: 2px solid #797A7E;
+                thead{
+                    tr{
+                        td{
+                            border: 2px solid #797A7E;
+                            font-weight: bold;
+                        }
                     }
                 }
                 tr{
                     td{
                         border: 2px solid #797A7E;
+                        button{
+                            background-color: transparent;
+                            color: #797A7E;
+                            outline: none;
+                            border: none;
+                        }
                     }
                 }
             }

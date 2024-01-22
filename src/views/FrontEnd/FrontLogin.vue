@@ -2,7 +2,6 @@
 import axios from 'axios';
 import Footer from '../../components/Footer.vue';
 import swal from 'sweetalert';
-import { RouterLink, RouterView } from 'vue-router'
 export default {
     data() {
         return {
@@ -66,19 +65,17 @@ export default {
             });
         },
         forgotPassword(){
-
             axios({
                 url:'http://localhost:8080/member/send_email',
                 method: "POST",
                 headers:{"Content-Type": "application/json",},
                 data: {
-                   account: this.account
+                    account: this.account
                 }
-                
             })
             .then(res => console.log(res))
-            
             .catch(error => console.error(error))
+            this.account=""
         },
     },
     components: {
@@ -106,7 +103,6 @@ export default {
             <button type="button"  data-bs-toggle="modal" id="forget"
                     data-bs-target="#exampleModal">忘記密碼
             </button>
-            <!-- <RouterLink to="/reset" class="routerItem">重設密碼</RouterLink> -->
         </div>
     </div>  
 <!-- 忘記密碼modal視窗 -->
@@ -219,12 +215,13 @@ export default {
     }
     @media(max-width:1200px){
         .content{
-            width: 50vw;
+            width: 60vw;
             height: 76vh;
             input{
-                width: 50vw;
-                height: 4vh;
+                width: 60vw;
+                height: 5vh;
                 margin-bottom: 8vmin;
+                font-size: 20pt;
             }
             .title{
                 font-size: 35pt;
@@ -241,10 +238,19 @@ export default {
                 }
             }
             .buttonArea{
-                width: 50vw;
+                width: 60vw;
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 8vmin;
                 button{
                     width: 15vw;
                     height: 4vh;
+                    font-size: 20pt;
+                }
+                #forget{
+                    width: 15vw;
+                    height: 4vh;
+                    font-size: 20pt;
                 }
             }
         }
@@ -252,15 +258,40 @@ export default {
     @media(max-width:992px){
         .content{
             height: 77vh;
+            input{
+                margin-bottom: 10vmin;
+            }
+            .account{
+                p{
+                    font-size: 23pt;
+                }
+            }
+            .password{
+                p{
+                    font-size: 23pt;
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 17vw;
+                    height: 5vh;
+                }
+                #forget{
+                    width: 17vw;
+                    height: 5vh;
+                }
+            }
         }
     }
     @media(max-width:576px){
         .content{
-            width: 60vw;
-            height: 79vh;
+            width: 70vw;
+            height: 76vh;
+            margin-top: 13vmin;
             input{
-                width: 60vw;
-                margin-bottom: 12vmin;
+                width: 70vw;
+                margin-bottom: 16vmin;
+                font-size: 16pt;
             }
             .title{
                 font-size: 28pt;
@@ -268,19 +299,53 @@ export default {
             }
             .account{
                 p{
-                    font-size: 19pt;
+                    font-size: 17pt;
                 }
             }
             .password{
                 p{
-                    font-size: 19pt;
+                    font-size: 17pt;
                 }
             }
             .buttonArea{
-                width: 60vw;
+                width: 65vw;
                 button{
-                    width: 35vw;
+                    width: 21vw;
                     height: 5vh;
+                    font-size: 17pt;
+                }
+                #forget{
+                    width: 25vw;
+                    height: 5vh;
+                    font-size: 16pt;
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            input{
+                font-size: 13pt;
+            }
+            .title{
+                font-size: 25pt;
+            }   
+            .account{
+                p{
+                    font-size: 16pt;
+                }
+            }
+            .password{
+                p{
+                    font-size: 16pt;
+                }
+            }
+            .buttonArea{
+                button{
+                    font-size: 15pt;
+                }
+                #forget{
+                    font-size: 14pt;
                 }
             }
         }
