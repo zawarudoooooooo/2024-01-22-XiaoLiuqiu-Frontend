@@ -108,10 +108,6 @@ export default{
         onfileuser(event){
             this.file=event.target.files[0]
             let filereader=new FileReader();
-            // imageConversion.compress(filereader,0.3).then(res=>{
-            //     resolve(res);
-            //     console.log("壓縮成功")
-            // })
             filereader.readAsDataURL(this.file)
             filereader.addEventListener("load",()=>{
                 this.useravatar=filereader.result;
@@ -323,7 +319,7 @@ export default{
                     <!-- <img :src="IDc1" alt="" class="upload_cover">
                     <input class="upload_cover" id="IDc1" name="IDc1" type="file"
                     @change="uploadIMG"> -->
-                    <input id="upload_input" type="file" @change="uploadImg($event)">
+                    <input id="upload_input" type="file" @change="onfileuser">
                     <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
                     <img :src="useravatar" class="upload_cover" alt="">
                 </label>
