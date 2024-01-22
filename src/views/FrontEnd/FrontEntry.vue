@@ -7,6 +7,9 @@ export default{
         }
     },
     methods:{
+        goTourist(){
+            this.$router.push('/FrontTourist')
+        }
     },
     components:{
         Footer
@@ -44,21 +47,140 @@ export default{
         </div>
         <div class="about">
             <div class="iconArea">
-                <div class="icon">
+                <div class="icon" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModaloperation">
                     <i class="fa-solid fa-leaf"></i>
                     <p>永續經營</p>
                 </div>
-                <div class="icon">
+                <div class="icon" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModalenergy">
                     <i class="fa-regular fa-lightbulb"></i>
                     <p>節能設備</p>
                 </div>
-                <div class="icon">
+                <div class="icon"  data-bs-toggle="modal" 
+                        data-bs-target="#exampleModalfood">
                     <i class="fa-solid fa-wheat-awn"></i>
                     <p>有機食材</p>
                 </div>
-                <div class="icon">
+                <div class="icon" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModalpet">
                     <i class="fa-solid fa-paw"></i>
                     <p>寵物友善</p>
+                </div>
+            </div>
+<!-- 永續經營視窗 -->
+            <div class="modal fade" id="exampleModaloperation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">永續經營</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <ul>
+                                        <li>
+                                            使用天然分解產品，及友善環境沐浴用品
+                                        </li>
+                                        <li>
+                                            配有飲水機，不提供瓶裝水
+                                        </li>
+                                        <li>
+                                            提供環保容器和餐具租借
+                                        </li>
+                                        <li>
+                                            續住不提供床單和毛巾更換
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 節能設備視窗 -->
+            <div class="modal fade" id="exampleModalenergy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">節能設備</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <ul>
+                                        <li>
+                                            LED 照明設備
+                                        </li>
+                                        <li>
+                                            變頻冷氣
+                                        </li>
+                                        <li>
+                                            省水馬桶
+                                        </li>
+                                        <li>
+                                            太陽能熱水器
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 有機食材視窗 -->
+            <div class="modal fade" id="exampleModalfood" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">有機食材</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <ul>
+                                        <li>
+                                            小農嚴選食材
+                                        </li>
+                                        <li>
+                                            種植及生產加工過程均不使用農藥化肥、防腐劑<br>等人工合成化學物質
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 寵物友善視窗 -->
+            <div class="modal fade" id="exampleModalpet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">寵物友善</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <ul>
+                                        <li>
+                                            要有牽繩或是寵物推車才可入內
+                                        </li>
+                                        <li>
+                                            勿讓毛孩上床，自備寵物床、毯子
+                                        </li>
+                                        <li>
+                                            請自備寵物餐具，勿使用餐廳提供給人的餐具
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="news">
@@ -66,19 +188,22 @@ export default{
                     <p>Special Offer</p>
                 </div>
                 <div class="offer">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModalmoring">
                         <img src="../../../public/other/breakfast.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text">Morning<br/>美好的一天<br/>從多樣早餐開始</p>
                         </div>
                     </div>
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModallounge">
                         <img src="../../../public/other/coffeelounge.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text">24hr Lounge<br/>無時無刻<br/>讓您盡情享用</p>
                         </div>
                     </div>
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModaldrink">
                         <img src="../../../public/other/welcomedrink.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text">WelcomeDrink<br/>入住即享有<br/>體驗離島微醺假期</p>
@@ -86,28 +211,166 @@ export default{
                     </div>
                 </div>
             </div>
+<!-- Morning視窗 -->
+            <div class="modal fade" id="exampleModalmoring" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Morning</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <ul>
+                                        <li>
+                                            低糖飲食
+                                        </li>
+                                        <li>
+                                            現打果汁
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- 24hrlounge視窗 -->
+            <div class="modal fade" id="exampleModallounge" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">24hr Lounge</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <ul>
+                                        <li>
+                                            24小時開放公共空間
+                                        </li>
+                                        <li>
+                                            飲料和零食無限拿
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- welcome drink視窗 -->
+            <div class="modal fade" id="exampleModaldrink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Welcome drink</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <ul>
+                                        <li>
+                                            入住時告知櫃台，即可享有免費調酒一杯
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+<!-- 景點輪播 -->
         <div class="activity">
             <div class="title">
-                <p>Liuqiu</p>
+                <p>Xiaoliuqiu Island</p>
             </div>
             <div class="scenery">
-                <div class="card bg-dark text-white">
-                    <img src="../../../public/other/other3.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay">
-                        <h5 class="card-title">綠蠵龜</h5>
-                        <p class="card-text" id="text">由於小琉球海溫較為平穩，海龜們常駐小琉球。
-                            <br>即使沒有從事水上活動，也能在岸邊看到海龜抬頭換氣的模樣。</p>
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../public/other/other1.jpg" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>綠蠵龜</h4>
+                                    <p>由於小琉球海溫較為平穩，海龜們常駐小琉球。
+                                        <br>即使沒有從事水上活動，也能在岸邊看到海龜抬頭換氣的模樣。</p>
+                                </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../public/tourist/t10/t10-2.JPG" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>中澳沙灘</h4>
+                                    <p>擁有潔白的沙灘、蔚藍的海水。少有遊客前往，是一座鬧中取靜的小小秘境。</p>
+                                </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../public/tourist/t06/t6-1.JPG" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>花瓶岩</h4>
+                                    <p>花瓶石是一塊珊瑚礁，隨著時間發生抬升，加上頸部長時間受海水侵蝕，逐漸形成現在的樣子。</p>
+                                </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <div class="card bg-dark text-white">
-                    <img src="../../../public/tourist/t02/t2-7.JPG" class="card-img" alt="...">
-                    <div class="card-img-overlay">
-                        <h5 class="card-title">烏鬼洞</h5>
-                        <p class="card-text">島上石灰岩洞穴遍布最出名的區域，<br>內部結構錯綜複雜，宛如迷宮陣一般。</p>
+                <div id="carouselExampleCaptions1" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../public/tourist/t01/t1-8.jpg" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>美人洞</h4>
+                                    <p>時而看見海景、時而看見巨大怪石，每一景都是大自然用成千上萬年時間慢慢雕刻出來，充滿驚奇！</p>
+                                </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../public/tourist/t03/t3-1.JPG" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>山豬溝</h4>
+                                    <p>沿途可看見許多藏在礁石內的珊瑚礁及貝殼化石，也有指標引導旅客前往園區中的小景點。</p>
+                                </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../public/tourist/t02/t2-7.JPG" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>烏鬼洞</h4>
+                                    <p>一座天然的珊瑚礁岩洞。穿越石洞、高低起伏之間，有一段歷史故事。</p>
+                                </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
+        </div>
+        <div class="buttonArea">
+            <button type="button" @click="goTourist()">前往更多景點</button>
         </div>
     </div>
 <Footer />
@@ -116,7 +379,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 100vw;
-        height: 215vh;
+        height: 220vh;
         .slideShow{
             width: 90vw;
             height: 80.5vh;
@@ -219,7 +482,7 @@ export default{
         }
         .activity{
             width: 90vw;
-            height: 67vh;
+            height: 70vh;
             margin: auto;
             margin-top: 5vmin;
             .title{
@@ -234,9 +497,9 @@ export default{
             .scenery{
                 display: flex;
                 justify-content: space-around;
-                .card{
+                .carousel-inner{
                     width: 40vw;
-                    border-style: none;
+                    border-radius: 5px;
                     box-shadow: 2px 2px 2px gray;
                     transition: all linear 0.3s;
                     &:hover{
@@ -246,14 +509,46 @@ export default{
                     &:active{
                         opacity: 1.0;
                     }
-                }
-                img{
-                    width: 40vw;
-                    height: 55vh;
-                    border-radius: 5px;
+                    .carousel-item{
+                        width: 40vw;
+                        img{
+                            width: 40vw;
+                            height: 55vh;
+                            border-radius: 5px;
+                        }
+                        p{
+                            font-size: 14pt;
+                            text-align: center;
+                            text-shadow: 2px 2px 2px #797A7E;
+                        }
+                        h4{
+                            text-shadow: 3px 3px 3px #797A7E;
+                        }
+                    }
                 }
             }
         }
+        .buttonArea{
+            width: 90vw;
+            margin: auto;
+            text-align: center;
+            button{
+                width: 8vw;
+                height: 5vh;
+                border: none;
+                color: #797A7E;
+                border-radius: 5px;
+                &:hover {
+                    background-color: #797A7E;
+                    color: white;
+                }
+                &:active {
+                    background-color: #F7F2E7;
+                    color: #797A7E;
+                }
+            }
+        }
+
     }
 
     @media(max-width:1200px){
