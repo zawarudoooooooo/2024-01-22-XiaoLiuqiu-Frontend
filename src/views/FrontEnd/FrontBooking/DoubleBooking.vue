@@ -98,13 +98,13 @@ console.log(price);
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../../../../public/room/double.jpg" class="d-block w-100" alt="...">
+                        <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/room/double1.jpg" class="d-block w-100" alt="...">
+                        <img src="../../../../public/room/D/double1-1.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/room/double2.jpg" class="d-block w-100" alt="...">
+                        <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

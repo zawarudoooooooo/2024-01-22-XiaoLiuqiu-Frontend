@@ -6,6 +6,11 @@ export default{
 
         }
     },
+    methods:{
+        goNews(){
+            this.$router.push('/FrontNews')
+        }
+    },
     components:{
         Footer
     }
@@ -47,16 +52,16 @@ export default{
             </div>
         </div>
         <div class="title">
-            <p>消息</p>
+            <p>推播</p>
         </div>
         <hr>
         <div class="event">
             <div class="img">
-                <img src="../../../public/activity/activity4.jpg" alt="">
-                <img src="../../../public/activity/activity2.jpg" alt="">
-                <img src="../../../public/activity/activity.jpg" alt="">
-                <img src="../../../public/activity/activity1.jpg" alt="">
-                <img src="../../../public/activity/activity3.jpg" alt="">
+                <img src="../../../public/news/nm.jpg" alt="">
+                <img src="../../../public/news/nm1.jpg" alt="">
+                <img src="../../../public/news/nm2.jpg" alt="">
+                <img src="../../../public/news/nm3.jpg" alt="">
+                <img src="../../../public/news/nm4.jpg" alt="">
             </div>
             <ul>
                 <li>
@@ -69,11 +74,12 @@ export default{
                     當日壽星我最大 ! 兩人同行，壽星免費
                 </li>
                 <li>
-                    使用 Line Pay 回饋 8%
+                    非實體支付享回饋 8%
                 </li>
                 <li>
-                    特約美食店家，凡出示Sea．Life房卡，即享有用餐折扣
+                    成為Sea．Life會員，訂房即享有超值套票加購
                 </li>
+                <button type="button" @click="goNews()">點我看更多</button>
             </ul>
         </div>
     </div>
@@ -83,7 +89,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 128vh;
+        height: 124vh;
         margin: auto;
         margin-top: 4vmin;
         .title{
@@ -95,7 +101,7 @@ export default{
             }
         }
         .introduce{
-            height: 48vh;
+            height: 47vh;
             display: flex;
             justify-content: space-between;
             margin-top: 3vmin;
@@ -132,6 +138,7 @@ export default{
         }
         .event{
             margin-top: 3vmin;
+            position: relative;
             .img{
                 display: flex;
                 justify-content: space-around;
@@ -157,6 +164,25 @@ export default{
                 li{
                     color: #797A7E;
                     font-size: 17pt;
+                }
+                button{
+                    width: 7vw;
+                    height: 5vh;
+                    border: none;
+                    color: #797A7E;
+                    border-radius: 5px;
+                    position: absolute;
+                    right: 4%;
+                    bottom: 1%;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+                    &:hover {
+                        background-color: #797A7E;
+                        color: white;
+                    }
+                    &:active {
+                        background-color: #F7F2E7;
+                        color: #797A7E;
+                    }
                 }
             }
         }

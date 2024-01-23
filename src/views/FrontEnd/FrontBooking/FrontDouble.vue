@@ -192,7 +192,7 @@ export default{
 <template>
     <div class="content">
         <div class="show" v-for="item in this.roomList">
-            <img src="../../../../room/double.jpg" alt="">
+            <img src="../../../../room/D/double1.jpg" alt="">
             <div class="text">
                 <div class="name" >
                     <p>{{ item.roomName }}</p>

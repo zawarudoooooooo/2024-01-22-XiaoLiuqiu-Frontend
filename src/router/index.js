@@ -146,6 +146,12 @@ const router = createRouter({
       name: 'FrontAbout',
       component: () => import('../views/FrontEnd/FrontAbout.vue')
     },
+//前台消息
+    {
+      path: '/FrontNews',
+      name: 'FrontNews',
+      component: () => import('../views/FrontEnd/FrontNews.vue')
+    },
 //前台留言板
     {
       path: '/FrontMessage',
