@@ -216,7 +216,27 @@ export default{
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
             <div class="room" v-for="item in this.roomSearch">
-                <img src="../../../../public/room/simpledouble.jpg" alt="" style="width: 23vw;height: 28vh;">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../../public/room/SP/simpledouble1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/SP/simpledouble1-2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/SP/simpledouble1-3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <div class="text">
                     <div class="name">
                         <p>{{item.roomName}}</p>
@@ -250,7 +270,27 @@ export default{
                 <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
             </div>
             <div class="room" v-for="item in this.roomSearch">
-                <img src="../../../../public/room/double.jpg" alt="" style="width: 23vw;height: 28vh;">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/D/double1-3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <div class="text">
                     <div class="name">
                         <p>{{item.roomName}}</p>
@@ -285,7 +325,27 @@ export default{
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
             <div class="room" v-for="item in this.roomSearch">
-                <img src="../../../../public/room/family.jpg" alt="" style="width: 23vw;height: 28vh;">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../../public/room/F/family1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/F/family1-1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/f/family1-2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <div class="text">
                     <div class="name">
                         <p>{{item.roomName}}</p>
@@ -457,22 +517,45 @@ export default{
             height: 35vh;
             margin: auto;
             display: flex;
+            justify-content: space-around;
             border: 1px solid lightgray;
             border-radius: 10px;
             margin-top: 5vmin;
             box-shadow: 1px 1px 1px gray;
-            padding: 3vmin;
+            padding: 3vmin 2vmin 0vmin;
             position: relative;
-            img{
-                width: 23vw;
+
+            #carouselExample{
+                width: 20vw;
                 height: 28vh;
+                margin-top: 0.5vmin;
                 border-radius: 5px;
-                margin-right: 5vmin;
-                &:hover{
-                    opacity: 0.6;
+                box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                .carousel-inner{
+                    width: 20vw;
+                    border-radius: 5px;
+                    .carousel-item{
+                        width: 20vw;
+                        border-radius: 5px;
+                        img{
+                            width: 21vw;
+                            height: 28vh;
+                            border-radius: 5px;
+                            transition: all linear 0.3s;
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                            &:active{
+                                opacity: 1.0;
+                            }
+                        }
+                    }
                 }
-                &:active{
-                    opacity: 1.0;
+                .carousel-control-prev-icon{
+                    width: 1.5rem;
+                }
+                .carousel-control-next-icon{
+                    width: 1.5rem;
                 }
             }
             .text{

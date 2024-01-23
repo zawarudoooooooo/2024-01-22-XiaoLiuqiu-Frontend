@@ -208,16 +208,16 @@ export default{
                 <button type="button" @click="booking()">訂購</button>
             </div>
         </div>
-        <button type="button" id="backbtn" @click="goback()">返回</button>
+        <button type="button" id="backbtn" @click="goback()"><i class="fa-solid fa-arrow-right-to-bracket"></i>返回</button>
     </div>
 </template>
 
 <style lang="scss" scoped> 
     .content{
         width: 90vw;
-        height: 69svh;
+        //height: 66vh;
         margin: auto;
-        margin-top: 6vmin;
+        //margin-top: 6vmin;
         //border: 1px solid black;
         position: relative;
         overflow: auto;
@@ -294,10 +294,17 @@ export default{
             }
         }
         #backbtn{
+            width: 5vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
             position: fixed;
             right:10%;
-            bottom: 16%;
+            bottom: 18%;
             box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+            i{
+                scale: -1;
+            }
         }
     }
 </style>

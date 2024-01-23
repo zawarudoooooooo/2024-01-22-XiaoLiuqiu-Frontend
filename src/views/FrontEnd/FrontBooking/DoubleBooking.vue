@@ -95,7 +95,7 @@ console.log(price);
         </div>
     <div class="content">
         <div class="show">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="../../../../public/room/double.jpg" class="d-block w-100" alt="...">
@@ -107,11 +107,11 @@ console.log(price);
                         <img src="../../../../public/room/double2.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -230,7 +230,7 @@ console.log(price);
         display: flex;
         justify-content: space-around;
         align-content: center;
-        margin-top: 6vmin;
+        margin-top: 7vmin;
         margin-left: 5vmin;
         input{
             width: 20vw;
@@ -262,50 +262,51 @@ console.log(price);
     }
     .content{
         width: 95vw;
-        height: 67vh;
+        height: 66vh;
         margin: auto;
         display: flex;
         position: relative;
-        border: 1px solid orange;
         .show{
             width: 68vw;
             height: 50vh;
             display: flex;
             justify-content: space-around;
             border-radius: 10px;
-            margin-top: 5vmin;
-            //padding: 3vmin;
+            margin-top: 8vmin;
             position: relative;
-            border: 1px solid blue;
-            .carousel-inner{
+            #carouselExample{
                 width: 23vw;
                 height: 33vh;
-                //border: 1px solid red;
-                .carousel-item{
+                margin-top: 6vmin;
+                border-radius: 5px;
+                box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                .carousel-inner{
                     width: 23vw;
-                    height: 33vh;
-
-                    img{
+                    border-radius: 5px;
+                    .carousel-item{
                         width: 23vw;
-                        height: 33vh;
                         border-radius: 5px;
-                        //margin-right: 10vmin;
-                        transition: all linear 0.3s;
-                        box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                        &:hover{
-                            opacity: 0.7;
-                            box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
-                        }
-                        &:active{
-                            opacity: 1.0;
+                        img{
+                            width: 23vw;
+                            height: 33vh;
+                            border-radius: 5px;
+                            transition: all linear 0.3s;
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                            &:active{
+                                opacity: 1.0;
+                            }
                         }
                     }
                 }
-                .carousel-control{
-                    margin-bottom: 2vmin;
+                .carousel-control-prev-icon{
+                    width: 1.5rem;
+                }
+                .carousel-control-next-icon{
+                    width: 1.5rem;
                 }
             }
-   
             .text{
                 height: 23vh;
                 hr{
@@ -351,7 +352,6 @@ console.log(price);
             position: relative;
             top: -8%;
             right: -3%;
-            border: 1px solid green;
             #ul{
                 list-style: none;
                 padding-left: 1vmin;
@@ -387,7 +387,7 @@ console.log(price);
                 justify-content: space-between;
                 position: absolute;
                 right: 18%;
-                bottom: 1%;
+                bottom: 3%;
                 button {
                     width: 5vw;
                     height: 5vh;

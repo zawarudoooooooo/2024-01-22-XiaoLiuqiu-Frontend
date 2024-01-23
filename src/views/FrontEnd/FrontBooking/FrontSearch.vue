@@ -124,9 +124,9 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 69vh;
+        height: 67.5vh;
         margin: auto;
-        margin-top: 4vmin;
+        margin-top: 3.5vmin;
         .search{
             height: 60vh;
             .title{
