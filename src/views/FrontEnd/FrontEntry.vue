@@ -197,7 +197,7 @@ export default{
                     </div>
                     <div class="card" style="width: 18rem;" data-bs-toggle="modal" 
                         data-bs-target="#exampleModallounge">
-                        <img src="../../../public/other/coffeelounge.jpg" class="card-img-top" alt="...">
+                        <img src="../../../public/other/lounge.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text">24hr Lounge<br/>無時無刻<br/>讓您盡情享用</p>
                         </div>
@@ -298,7 +298,7 @@ export default{
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../../../public/other/other1.jpg" class="d-block w-100" alt="...">
+                            <img src="../../../public/other/turtle.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h4>綠蠵龜</h4>
                                     <p>由於小琉球海溫較為平穩，海龜們常駐小琉球。

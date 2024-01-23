@@ -83,7 +83,7 @@ export default{
             </div>
             <div class="roomType">
                 <div class="card">
-                    <img src="../../../../room/simpledouble3.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/SP/simpledouble2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">小資雙人房</h5>
                         <p class="card-text">經濟實惠的最佳選擇。
@@ -93,7 +93,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../../room/double4.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/D/double2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">舒適雙人房</h5>
                         <p class="card-text">
@@ -104,7 +104,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../../room/family4.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/F/family1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">豪華家庭房</h5>
                         <p class="card-text">
@@ -156,6 +156,7 @@ export default{
                     opacity: 1.0;
                 }
                 img{
+                    height: 13rem;
                     transition: all linear 0.3s;
                     &:hover{
                         opacity: 0.6;
