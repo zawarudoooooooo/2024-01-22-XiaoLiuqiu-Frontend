@@ -109,6 +109,7 @@ export default{
             this.file=event.target.files[0]
             let filereader=new FileReader();
             filereader.readAsDataURL(this.file)
+            
             filereader.addEventListener("load",()=>{
                 this.useravatar=filereader.result;
                 console.warn(this.useravatar)
