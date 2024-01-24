@@ -20,7 +20,9 @@ export default{
             startDate:"",
             endDate:"",
             forRoomId:"",
-            editstatus:false
+            editstatus:false,
+            upDateRoomPrice:"",
+            upDateIntroduce:""
         }
     },
     methods:{
@@ -62,6 +64,21 @@ export default{
                 swal("成功", "已新增房間", "success");
             }
             })
+        },
+        upDateRoom(index){
+            console.log(index);
+            this.roomSearch.forEach((item,roomIndex)=>{
+                if(index!=roomIndex){
+                    return
+                }
+                this.upDateRoomPrice=item.roomPrice
+                this.upDateIntroduce=item.roomIntroduce
+                this.editstatus=item.open
+                // console.log(item.roomPrice);
+                // console.log(item.roomIntroduce);
+                // console.log(item.open);
+            })
+            // console.log(this.roomSearch);
         },
 //頁面切換
         simpleOpen(){
@@ -168,29 +185,7 @@ export default{
         backSideBar
     },
     mounted(){
-        axios({
-            url:'http://localhost:8080/order/search',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            params:{
-            },
-            data:{
-                
-            },
-            }).then(res=>{
-            //   console.log(res.data.orderList);
-            //   console.log("查看陣列-------");
-            res.data.orderList.forEach(item=>{
-                this.orderRoomIdList=JSON.parse(item.roomId);
-                this.orderRoomIdList.forEach(roomId=>{
-                    this.orderRoomId.push({roomId:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
-                })
-                
-            })
-            // console.log(this.orderRoomId);
-            })
+        
     }
 }
 </script>
@@ -215,7 +210,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
-            <div class="room" v-for="item in this.roomSearch">
+            <div class="room" v-for="(item, index) in this.roomSearch">
                 <img src="../../../../public/room/simpledouble.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
@@ -239,7 +234,7 @@ export default{
                     </div>
                     <div class="edit">
                         <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
-                            data-bs-target="#edit">編輯</p>
+                            data-bs-target="#edit" @click="upDateRoom(index)">編輯</p>
                     </div>
                 </div>
             </div>
@@ -310,7 +305,7 @@ export default{
                     </div>
                     <div class="edit">
                         <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
-                            data-bs-target="#edit">編輯</p>
+                            data-bs-target="#edit" >編輯</p>
                     </div>
                 </div>
             </div>
@@ -369,18 +364,18 @@ export default{
                         <form>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間金額 :</label>
-                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸入欲更改金額">
+                                <input type="number" class="form-control" id="recipient-name" v-model="this.upDateRoomPrice" placeholder="請輸入欲更改金額">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間說明 :</label>
                                 <br>
                                 <small>*多筆請以逗號做分隔</small>
                                 <br>
-                                <textarea placeholder="請輸入欲更改說明"></textarea>
+                                <textarea v-model="this.upDateIntroduce" placeholder="請輸入欲更改說明"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">更改狀態 :</label>
-                                <input type="checkbox" value="false" v-model="editstatus">
+                                <input type="checkbox" value="false" v-model="this.editstatus">
                                 <label for="">已開放</label>
                             </div>
                             <div class="mb-3">
