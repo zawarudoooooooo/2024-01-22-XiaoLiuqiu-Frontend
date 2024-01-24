@@ -66,6 +66,8 @@ export default{
             <ul>
                 <li>
                     不定期免費手作體驗活動，多種類型，大人小孩都適合
+                    <span @click="goNews()">more</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 </li>
                 <li>
                     出示外國護照，即享精美小禮物一份
@@ -79,7 +81,7 @@ export default{
                 <li>
                     成為Sea．Life會員，訂房即享有超值套票加購
                 </li>
-                <button type="button" @click="goNews()">點我看更多</button>
+                <!-- <button type="button" @click="goNews()">點我看更多</button> -->
             </ul>
         </div>
     </div>
@@ -164,7 +166,16 @@ export default{
                 li{
                     color: #797A7E;
                     font-size: 17pt;
+                    i{
+                        transform:rotate(-40deg);
+                        font-size: 9pt;
+                        margin-left: 0.5vmin;
+                    }
+                    span{
+                        font-size: 10pt;
+                    }
                 }
+
                 button{
                     width: 7vw;
                     height: 5vh;

@@ -36,7 +36,7 @@
     <div class="content">
         <div class="card" v-for="item in this.msglist">
             <div class="info">
-                <img src="../../../public/user1.png" class="card-img-top" alt="...">
+                <img src="../../../public/demo/user1.png" class="card-img-top" alt="...">
                 <p>user : {{ item.memberName }}</p>
             </div>
             <div class="card-body">
