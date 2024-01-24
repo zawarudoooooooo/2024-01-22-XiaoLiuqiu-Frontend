@@ -158,6 +158,12 @@ const router = createRouter({
       name: 'FrontMessage',
       component: () => import('../views/FrontEnd/FrontMessage.vue')
     },
+//前台推薦行程
+    {
+      path: '/FrontRecommand',
+      name: 'FrontRecommand',
+      component: () => import('../views/FrontEnd/FrontRecommand.vue')
+    },
 //前台登錄
     {
       path: '/FrontLogin',
