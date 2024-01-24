@@ -134,11 +134,11 @@ const router = createRouter({
       name: 'FrontMeal',
       component: () => import('../views/FrontEnd/FrontMeal.vue')
     },
-//前台活動
+//前台加購套票
     {
-      path: '/FrontActivity',
-      name: 'FrontActivity',
-      component: () => import('../views/FrontEnd/FrontActivity.vue')
+      path: '/FrontTicket',
+      name: 'FrontTicket',
+      component: () => import('../views/FrontEnd/FrontTicket.vue')
     },
 //前台關於
     {
@@ -146,11 +146,11 @@ const router = createRouter({
       name: 'FrontAbout',
       component: () => import('../views/FrontEnd/FrontAbout.vue')
     },
-//前台消息
+//前台體驗活動
     {
-      path: '/FrontNews',
-      name: 'FrontNews',
-      component: () => import('../views/FrontEnd/FrontNews.vue')
+      path: '/FrontActivity',
+      name: 'FrontActivity',
+      component: () => import('../views/FrontEnd/FrontActivity.vue')
     },
 //前台留言板
     {
@@ -158,7 +158,7 @@ const router = createRouter({
       name: 'FrontMessage',
       component: () => import('../views/FrontEnd/FrontMessage.vue')
     },
-  //前台登錄
+//前台登錄
     {
       path: '/FrontLogin',
       name: 'FrontLogin',

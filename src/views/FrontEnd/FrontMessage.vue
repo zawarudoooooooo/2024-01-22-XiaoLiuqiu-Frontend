@@ -1,7 +1,7 @@
 <script>
-    import Footer from '../../components/Footer.vue';
-    import axios from 'axios';
-    export default{
+import Footer from '../../components/Footer.vue';
+import axios from 'axios';
+export default{
     data(){
         return{
             msglist:""
@@ -78,7 +78,6 @@
         flex-wrap: wrap;
         gap: 3vmin;
         position: relative;
-        //border: 1px solid black;
         .card{
             width: 20rem;
             height: 30rem;
