@@ -30,6 +30,9 @@ export default{
 
             cookie:"",
             memberInfo:"",
+
+            memberName:"",
+            memberOrderArr:""
         }
     },
     methods:{
@@ -277,7 +280,7 @@ export default{
         this.cookie=document.cookie.split("=")[1];
 
         // console.log(this.cookie);
-
+//會員資訊
         axios({
             url:'http://localhost:8080/member/member',
             method:'POST',
@@ -293,11 +296,43 @@ export default{
         }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
-                console.log(this.memberInfo);
+                this.memberName=this.memberInfo.memberName
+                console.log(this.memberInfo.memberName);
             });
             // this.memberInfo=
             // console.log(this.memberInfo);
+
+            //會員訂單
+            axios({
+                url:'http://localhost:8080/order/searchMemberName',
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                params:{
+                    memberName:this.memberName
+                },
+                data:{
+
+                },
+                }).then(res=>{
+                    let order=[]
+                    this.memberOrderArr=res.data.orderList
+                    // console.log(this.memberOrderArr);
+                    this.memberOrderArr.forEach(item=>{
+                        console.log(item.orderItem);
+                        order.push(JSON.parse(item.orderItem))
+                        order.forEach(order1=>{
+                            order1.forEach(order2=>{
+                                item.orderItem=JSON.parse(order2.extraName)
+                            })
+                        })
+                    })
+                    console.log(this.memberOrderArr);
+                    // console.log(res.data.orderList);
+                })
             })
+
     },
     components:{
         Footer
@@ -408,27 +443,73 @@ export default{
             </div>
         </div>
 <!-- 訂單資訊頁面 -->
-        <div class="order" v-if="orderPage">
+
+
+
+
+
+
+
+
+
+
+
+        <div class="order" v-if="orderPage" >
+            <div class="accordion" id="accordionExample">
+  
+        </div>
             <p id="location"><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
             <hr>
-            <div class="orderNum">
-                <p>訂單編號 : S01</p>
+            <div class="orderMemberArr">
+        <div v-for="(item, index) in memberOrderArr" :key="index">
+            <p>
+                <a class="btn btn-primary" data-bs-toggle="collapse" :href="'#multiCollapseExample1' + index" role="button" aria-expanded="false" :aria-controls="'multiCollapseExample1' + index">訂單編號：{{item.orderId}}</a>
+            </p>
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse " :id="'multiCollapseExample1' + index">
+                        <div class="card card-body">
+                            <div class="orderItem">
+                                <p>訂單內容 : {{item.roomId}}</p>
+                            </div>
+                            <div class="extra">
+                                <p>加購項目 : <span v-for="order in item.orderItem">{{ order }}.</span></p>
+                            </div>
+                            <div class="start">
+                                <p>入住時間 : {{item.startDate}}</p>
+                            </div>
+                            <div class="end">
+                                <p>退房時間 : {{item.endDate}}</p>
+                            </div>
+                            <div class="pay">
+                                <p>付款期限 : {{item.endDate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- <div >
+            <div class="orderNum" v-for=" (item,index) in this.memberOrderArr">
+                <p>訂單編號 : {{ item.orderId }}</p>
             </div>
             <div class="orderItem">
-                <p>訂單內容 : 舒適雙人房</p>
+                <p>訂單內容 : {{item.roomId}}</p>
             </div>
             <div class="extra">
-                <p>加購項目 : 早餐,摩托車,sup,來回船票</p>
+                <p>加購項目 : <span v-for="order in item.orderItem">{{ order }}.</span></p>
             </div>
             <div class="start">
-                <p>入住時間 : 2024/02/14</p>
+                <p>入住時間 : {{item.startDate}}</p>
             </div>
             <div class="end">
-                <p>退房時間 : 2024/02/15</p>
+                <p>退房時間 : {{item.endDate}}</p>
             </div>
             <div class="pay">
-                <p>付款期限 : 2024/02/10</p>
+                <p>付款期限 : {{item.endDate}}</p>
             </div>
+        </div> -->
         </div>
 <!-- 發表回饋頁面 -->
         <div class="message" v-if="messagePage">
@@ -969,5 +1050,6 @@ export default{
                 }
             }
         }
+        
     }
 </style>

@@ -33,7 +33,7 @@ export default {
     },
     mounted(){
         axios({
-            url:'http://localhost:8080/order/search',
+            url:'http://localhost:8080/order/searchRoomId',
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -49,7 +49,7 @@ export default {
                 
                 element.orderDateTime=dayTime.getFullYear()+"年"+(dayTime.getMonth()+1)+"月"+dayTime.getDate()+"日"+" "+dayTime.getHours()+":"+dayTime.getMinutes()+":"+dayTime.getSeconds()
                 this.orders.push({orderId:element.orderId,memberName:element.memberName,orderItem:JSON.parse(element.orderItem),
-                    roomId:JSON.parse(element.roomId),startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime,orderPayment:element.orderPayment,payOrNot:element.payOrNot})
+                    roomId:element.roomId,startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime,orderPayment:element.orderPayment,payOrNot:element.payOrNot})
                 });
                 console.log(this.orders);
             })
@@ -78,7 +78,7 @@ export default {
                     <td>會員名稱</td>
                     <td>入住時間</td>
                     <td>退房時間</td>
-                    <td>訂購項目</td>
+                    <td>訂購房間</td>
                     <td>加購項目</td>
                     <td>訂單時間</td>
                     <td>付款方式</td>
@@ -91,7 +91,7 @@ export default {
                     <td>{{ item.memberName }}</td>
                     <td>{{ item.startDate }}</td>
                     <td>{{ item.endDate }}</td>
-                    <td><button type="button" data-bs-toggle="modal" data-bs-target="#orderItem" @click="roomIdF(index)" data-bs-whatever="@mdo">查看</button></td>
+                    <td>{{ item.roomId }}</td>
                     <td><button type="button" data-bs-toggle="modal" data-bs-target="#roomId" @click="orderItemF(index)" data-bs-whatever="@mdo">查看</button></td>
                     <td>{{ item.orderDateTime }}</td>
                     <td v-if="item.orderPayment">到場支付</td>
