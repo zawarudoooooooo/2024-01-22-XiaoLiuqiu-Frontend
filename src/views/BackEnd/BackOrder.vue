@@ -33,10 +33,13 @@ export default {
     },
     mounted(){
         axios({
-            url:'http://localhost:8080/order/searchRoomId',
+            url:'http://localhost:8080/order/searchMemberName',
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
+            },
+            params:{
+                memberName:""
             },
             data:{
                 
