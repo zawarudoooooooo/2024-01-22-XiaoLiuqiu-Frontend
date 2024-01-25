@@ -1,6 +1,7 @@
 <script>
 import Footer from '../../../components/Footer.vue';
 import swal from 'sweetalert';
+import axios from 'axios';
 export default{
     data(){
         return{
@@ -17,26 +18,177 @@ export default{
             ischecked10:false,
             ischecked11:false,
             exxtra:[],
-            test:""
+            test:"",
+            order:"",
+            total:0,
+            total1:0,
+            Price:0,
+            startDate:"",
+            endDate:"",
+            today:new Date(),
+            paymentMethod:"請選擇",
+            cookie:"",
+            name:"",
+            roomId:"",
+            arr:[],
+            exArr:[]
         }
     },
     mounted() {
-        let originalString = "早餐(+200/人)";
-let breakfast = originalString.split("(+")[0];
-let breakfast1 = originalString.split("(+")[1];
-let price = breakfast1.split("/")[0];
-console.log(breakfast);
-console.log(price);
+        if(document.cookie!=""){
+            this.cookie=document.cookie.split("=")[1];
+            axios({
+                url:'http://localhost:8080/member/member',
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                params:{
+                    account:this.cookie
+                },
+                data:{
+                },
+                }).then(res=>{
+                    res.data.memberList.forEach(item=>{
+                        this.name=item.memberName
+                    })
+                })
+        }
+        
+
+        
+
+        this.order=this.info
+        console.log(this.order);
+        this.order.forEach(element => {
+            this.roomId=element.roomId
+            this.total1=element.roomPrice
+            this.total=element.roomPrice
+        });
+        this.startDate=this.StartDate
+        this.endDate=this.EndDate
+
+        if(this.StartDate==""){
+            let currentYear = this.today.getFullYear();
+            let currentMonth = String(this.today.getMonth() + 1).padStart(2, '0');
+            let currentDay = String(this.today.getDate()).padStart(2, '0');
+            let currentDateStr = `${currentYear}-${currentMonth}-${currentDay}`;
+            this.startDate=currentDateStr
+        }
+
+        setInterval(() => {
+            this.exxtraClick();
+        }, 100); 
 
     },
+    props:[
+        "info",
+        "StartDate",
+        "EndDate"
+    ],
     methods:{
         booking(){
+            // console.log(this.paymentMethod);
+            this.exArr=[]
+            this.exxtra.forEach(item=>{
+                this.exArr.push(item.split("(+")[0])
+            })
+            this.arr.push({extraName:JSON.stringify(this.exArr),extraPrice:this.Price})
+            // const test=this.arr
+            console.log(JSON.stringify(this.arr));
+            if(this.paymentMethod=="請選擇"){
+                swal("錯誤", "請選擇付款方式", "error");
+                return
+            }
+            if(this.startDate==0||this.endDate==0){
+                swal("錯誤", "請輸入入住日期或者退房日期", "error");
+                return
+            }
+            axios({
+            url:'http://localhost:8080/order/ordersCreate',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },  
+            data:{
+                memberName:this.name,
+                room_id:this.roomId,
+                order_item: this.arr,
+                start_date:this.startDate,
+                end_date:this.endDate,
+                order_payment:this.paymentMethod
+            },
+            }).then(res=>{
+                console.log(res.data);
+            }).catch(error => {
+                console.error( error);
+            })
+
             swal("訂購成功", "請至信箱查看明細", "success");
             this.$router.push('/')
         },
         cancle(){
             this.$router.push('/FrontSearch')
         },
+        exxtraClick(){
+            // this.total=0
+            // // console.log(this.order);
+            // this.order.forEach(element => {
+            // this.total+=element.roomPrice
+            // });
+            this.order.forEach(order=>{
+                this.Price=0
+                // console.log(order.roomName);
+                let roomName=order.roomName.slice(-3)
+                // console.log(roomName);
+                if(this.exxtra.length!==0){
+                    if(roomName==="雙人房"){
+                        this.exxtra.forEach(item=>{
+                            let breakfast = item.split("(+")[0];
+                            let breakfast1 = item.split("(+")[1];
+                            let price = parseFloat(breakfast1.split("/")[0]);
+                            if(breakfast==='摩托車'){
+                                this.Price+=price
+                                return
+                            }
+                                // console.log(price*2);
+                                this.Price+=(price*2)
+
+                            // console.log(price);
+                            // console.log(item);
+                        })
+                    }
+                    if(roomName==="家庭房"){
+                        this.exxtra.forEach(item=>{
+                            let breakfast = item.split("(+")[0];
+                            let breakfast1 = item.split("(+")[1];
+                            let price = parseFloat(breakfast1.split("/")[0]);
+                            if(breakfast==='摩托車'){
+                                this.Price+=(price*2)
+                                return
+                            }
+                                // console.log(price*2);
+                                this.Price+=(price*4)
+
+                            // console.log(price);
+                            // console.log(item);
+                        })
+                    }
+                    return
+                }
+                // console.log(this.total);
+            })
+            this.total=this.total1
+            this.total += this.Price
+        },
+        Click(){
+            if(this.startDate==0||this.endDate==0){
+                swal("錯誤", "請輸入入住日期或者退房日期", "error");
+                return
+            }
+            this.exxtraClick()
+        },
+
         clicked(){
             this.ischecked=!this.ischecked
             // this.exxtra.push(this.value)
@@ -86,20 +238,22 @@ console.log(price);
     <div class="date">
         <div class="checkin">
             <p>入住日期</p>
-            <input type="date" v-model="this.mStartDate">
+            <input type="date" v-model="this.startDate" v-if="this.StartDate!=''"  disabled>
+            <input type="date" v-model="this.startDate"  v-else disabled>
         </div>
         <div class="checkout">
             <p>退房日期</p>
-            <input type="date" v-model="this.mEndDate">
+            <input type="date" v-model="this.endDate" v-if="this.EndDate!=''" disabled>
+            <input type="date" v-model="this.endDate" v-else>
         </div>
         </div>
-    <div class="content">
+    <div class="content" v-for="item in this.order">
         <div class="show">
             <img src="../../../../public/room/double.jpg" alt="">
             <div class="text">
                 <div class="name">
-                    <p>舒適雙人房</p>
-                    <p>$2500</p>
+                    <p>{{item.roomName}}</p>
+                    <p>${{item.roomPrice}}</p>
                 </div>
                 <hr>
                 <div class="extra">
@@ -149,12 +303,12 @@ console.log(price);
                 </ul>
             </ul>
             <div class="total">
-                <p><i class="fa-solid fa-dollar-sign"></i>總計 : 1500 元</p>
+                <p><i class="fa-solid fa-dollar-sign"></i>總計 : {{this.total}} 元</p>
             </div>
             <div class="buttonArea">
                 <button type="button" @click="cancle()">取消</button>
                 <button type="button" data-bs-toggle="modal" 
-                        data-bs-target="#exampleModal">預覽
+                        data-bs-target="#exampleModal" @click="exxtraClick()">預覽
                 </button>
             </div>
         </div>
@@ -168,26 +322,35 @@ console.log(price);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form v-for="item in this.order">
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">訂購項目 :</label>
-                                <p>小資雙人房</p>
+                                <p>{{item.roomName}}</p>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">入住日期 :</label>
-                                <p>2024/02/14</p>
+                                <p>{{this.startDate}}</p>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">退房日期 :</label>
-                                <p>2024/02/115</p>
+                                <p>{{this.endDate}}</p>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">加購項目 :</label>
-                                <p>早餐、機車、浮潛</p>
+                                <p v-for="exxItem in exxtra">{{ exxItem.split("(+")[0] }}</p>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">總金額 :</label>
-                                <p>3200元</p>
+                                <span>{{ this.total }}元</span>
+                            </div>
+                            <div class="mb-3">
+                                <!-- <input type="checkbox" value="true"> -->
+                                <label for="recipient-name" class="col-form-label">支付方式</label>
+                                <select v-model="this.paymentMethod">
+                                    <option >請選擇</option>
+                                    <option value="true">現場支付</option>
+                                    <option value="false">線上支付</option>
+                                </select>
                             </div>
                         </form>
                     </div>
@@ -198,7 +361,7 @@ console.log(price);
                 </div>
             </div>
         </div>
-    <Footer />
+    <!-- <Footer /> -->
 </template>
 
 <style lang="scss" scoped> 

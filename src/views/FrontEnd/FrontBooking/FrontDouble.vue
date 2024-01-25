@@ -1,18 +1,19 @@
 <script>
 import axios from 'axios';
 import Footer from '../../../components/Footer.vue';
-import { info } from 'sass';
+import DoubleBooking from './DoubleBooking.vue'
 export default{
     data(){
         return{
             roomList:"",
+            roomList1:"",
             roomId:"",
             // roomTypeId: "",
             // roomIntroduce:"",
             // roomTypeId2:"",
             roomName:"",
             roomPrice:"",
-            orderRoomId:[],
+            orderRoomId:"",
             today:new Date,
             startDate:"",
             endDate:"",
@@ -22,32 +23,32 @@ export default{
             searchBo:false,
             Info:[],
             c:false,
+            bookingInfo:[],
+            bookingData:false
         }
     },
     mounted() {
+
+        // 設定開始時間和結束時間
+var startTime = new Date('2024-01-22T00:00:00');
+var endTime = new Date('2024-01-23T23:59:59'); // 將結束時間設置到當天的最後一秒
+
+// 取得今天的日期和時間
+var currentTime = new Date();
+
+// 判斷是否在範圍內
+if (startTime <= currentTime && currentTime <= endTime) {
+    console.log("今天的日期在開始時間和結束時間之間。");
+} else {
+    console.log("今天的日期不在範圍內。");
+}
+
+
         // this.search();
         this.List.forEach(element => {
                 this.roomName=element.roomName
             });
             // console.log(this.roomName);
-
-        axios({
-            url:'http://localhost:8080/room/search',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            params:{
-                roomName:this.roomName
-            },
-            data:{
-
-            },
-            }).then(res=>{
-            this.roomList=res.data.roomList
-            console.log(this.roomList);
-            
-            })
             axios({
             url:'http://localhost:8080/order/search',
             method:'POST',
@@ -60,16 +61,49 @@ export default{
                 
             },
             }).then(res=>{
-            //   console.log(res.data.orderList);
-            //   console.log("查看陣列-------");
-            res.data.orderList.forEach(item=>{
-                this.orderRoomIdList=JSON.parse(item.roomId);
-                this.orderRoomIdList.forEach(roomId=>{
-                    this.orderRoomId.push({roomId:roomId.roomId,startDate:item.startDate,endDate:item.endDate})
+                this.orderRoomId=res.data.orderList
+                console.log(this.orderRoomId);
+                axios({
+            url:'http://localhost:8080/room/search',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                roomName:this.roomName
+            },
+            data:{
+
+            },
+                }).then(res=>{
+                    this.roomList1=res.data.roomList
+                    // console.log(this.roomList1);
+                    this.roomList=res.data.roomList
+                    // console.log(this.roomList);
+                    
+                    const availableRooms = [];
+                    this.roomList.forEach(room => {
+                        room.roomIntroduce= JSON.parse(room.roomIntroduce)
+                        console.log(room);
+                        // 檢查房間是否已經被訂購
+                        const isBooked = this.orderRoomId.some(order => {
+                            const nStartDate = new Date(order.startDate);
+                            const nEndDate = new Date(order.endDate);
+                            return order.roomId === room.roomId && nStartDate <= this.today && nEndDate >= this.today;
+                        });
+                    
+                        // 如果沒有被訂購，加入可用房間列表
+                        if (!isBooked) {
+                            availableRooms.push(room);
+                        }
+                    });
+                    this.roomList = availableRooms;
+                    console.log(this.roomList);
                 })
             })
-            // console.log(this.orderRoomId);
-            })
+
+        
+            
         console.log(this.List);
     },
     props:[
@@ -79,104 +113,63 @@ export default{
         back(){
             this.$router.push('/FrontSearch')
         },
-        booking(){
-            this.$router.push('/DoubleBooking')
-        },
-        roomIsopren(open,roomId){
-            // console.log(open);
-            // console.log(roomId);
-            let date=this.today.getUTCFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate()
-            this.roomId=""
-            this.startDate="" 
-            this.endDate=""
-            this.orderRoomId.forEach(item=>{
+        booking(roomId){
+            this.bookingData=true
+            this.roomList.forEach(item=>{
                 if(roomId!=item.roomId){
                     return
                 }
-                this.roomId=item.roomId
-                let sDate=new Date(item.startDate)
-                let eDate=new Date(item.endDate)
-                this.startDate=sDate.getUTCFullYear()+'-'+(sDate.getMonth()+1)+'-'+sDate.getDate()
-                this.endDate=eDate.getUTCFullYear()+'-'+(eDate.getMonth()+1)+'-'+eDate.getDate()
+                this.bookingInfo.push(item)
+                console.log(this.bookingInfo);
             })
-            // console.log(this.roomId);
-            // if(this.roomId==roomId){
-            //     if(this.endDate<=date||this.startDate<=date){
-            //         return'已有人訂房';
-            //     }
-            // }
-            if(open){
-                return "空房"
-            }
-            return "尚未開放"
+            // this.$router.push('/DoubleBooking')
         },
         search(){
-            axios({
-            url:'http://localhost:8080/order/search',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            params:{
-            },
-            data:{
-                start_date:this.mStartDate,
-                end_date:this.mEndDate
-            },
-            }).then(res=>{
-            // console.log(res.data.orderList);
-            let date=this.today.getUTCFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate()
-            this.startDate="" 
-            this.endDate=""
 
                 let mEndDate=new Date(this.mEndDate)
                 let mStartDate=new Date(this.mStartDate)
                 let enDate=mEndDate.getUTCFullYear()+'-'+(mEndDate.getMonth()+1)+'-'+mEndDate.getDate()
                 let stDate=mStartDate.getUTCFullYear()+'-'+(mStartDate.getMonth()+1)+'-'+mStartDate.getDate()
-                res.data.orderList.forEach(item=>{
-                    // console.log(item);
-                    let sDate=new Date(item.startDate)
-                    let eDate=new Date(item.endDate)
-                    
-                    this.startDate=sDate.getUTCFullYear()+'-'+(sDate.getMonth()+1)+'-'+sDate.getDate()
-                    this.endDate=eDate.getUTCFullYear()+'-'+(eDate.getMonth()+1)+'-'+eDate.getDate()
-                    JSON.parse(item.roomId).forEach(itemRoom=>{
-                        // console.log(itemRoom);
-                            this.searchInfo=[]
+
+                this.roomList=[]
+                this.roomList1.forEach(room=>{
+                    let isMatched = false;
+                    for (let order of this.orderRoomId) {
+                    if (room.roomId != order.roomId) {
                         
-                        this.roomList.forEach(list=>{
-                            // console.log(list);
-                            // if(itemRoom.roomId.charAt(0) === 'A'){
-                                // console.log(itemRoom);
-                                // console.log(list);
-                                
-                                if(this.mStartDate==""||this.mStartDate==""){
-                                    
-                                    this.searchInfo.push(list)
-                                    return
-                                }
-                                
-                                if(itemRoom.roomId==list.roomId){
-                                    
-                                    if(enDate<=this.endDate&&stDate>=this.startDate){
-                                        console.log(list);  
-                                    }
-                                    
-                                    return
-                                }
-                                
-                                this.searchInfo.push(list)
-                                // console.log(this.searchInfo);
-                                
-                            // }
-                        })
+                            this.roomList.push(room)
+                            console.log(this.roomList);
+                            isMatched = true;
+                            return
+                        }
+                        let nStartDate = new Date(order.startDate);
+                        let nEndDate = new Date(order.endDate);
+                        let startDate = nStartDate.getUTCFullYear() + '-' + (nStartDate.getMonth() + 1) + '-' + nStartDate.getDate();
+                        let endDate = nEndDate.getUTCFullYear() + '-' + (nEndDate.getMonth() + 1) + '-' + nEndDate.getDate();
                         
-                        // console.log(this.Info);
-                    });
+                        
+                        if(this.mStartDate!=""){
+                            if(stDate<endDate){
+                                isMatched = true;
+                                return
+                            }
+                        }
+                        if(this.mEndDate!=""){
+                            if(enDate<endDate){
+                                isMatched = true;
+                                return
+                            }
+                        }
+                        // this.roomList.push(room)
+                        
+                        
+                    }
+                    if (!isMatched) {
+                        this.roomList.push(room);
+                    }
                 })
-                console.log(this.searchInfo);
-                this.roomList=this.searchInfo;
-            })
+                console.log(this.roomList);
+                
         },
         goback(){
             this.$emit("goback",this.goback)
@@ -184,15 +177,15 @@ export default{
         }
     },
     components:{
-        Footer
+        Footer,
+        DoubleBooking
     }
 }
 </script>
 
 <template>
-    <div class="content">
-        <!-- <div class="date">
-            
+    <div class="content" v-if="!bookingData">
+        <div class="date">
             <div class="checkin">
                 <p>入住日期</p>
                 <input type="date" v-model="this.mStartDate">
@@ -200,32 +193,42 @@ export default{
             <div class="checkout">
                 <p>退房日期</p>
                 <input type="date" v-model="this.mEndDate">
+                <button type="button"   @click="search()" >搜尋</button>
             </div>
-            <div>
-            </div>
-            <button type="button">回上頁</button>
-            <button type="button" @click="search()" >搜尋</button>
-        </div> -->
+        </div>
         <!-- <button type="button">回上頁</button> -->
-        <div class="show" v-for="item in this.roomList">
+        <div class="show" v-for="(item,index) in this.roomList" >
             <img src="../../../../room/double.jpg" alt="">
-            <div class="text">
+            <div class="text" >
                 <div class="name" >
                     <p>{{ item.roomName }}</p>
                     <p>$ {{ item.roomPrice }}</p>
                 </div>
                 <hr>
                 <div class="description" >
-                    <p>{{ item.roomIntroduce }}</p>
+                    <span v-for="introduce in item.roomIntroduce">
+                        <!-- {{introduce}} -->
+                            
+                            <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                            <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake" ></i>空調</span>
+                            <span v-if="introduce=='平面電視 '"> <i class="fa-solid fa-tv" ></i> 平面電視</span>
+                            <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi" ></i>Wifi</span>
+                            <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath" ></i>浴缸</span>
+                            <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad" ></i>遊戲機</span>
+                            <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                            <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                        <!-- {{ introduce }} , -->
+                    </span>
+                            
                 </div>
-                <div class="description" >
-                    <p>{{ roomIsopren(item.open,item.roomId) }}</p>
-                </div>
-                <button type="button" @click="booking()">訂購</button>
+                <button type="button" @click="booking(item.roomId)">訂購</button>
             </div>
+        
         </div>
+        
         <button type="button" id="backbtn" @click="goback()">返回</button>
     </div>
+    <DoubleBooking v-if="bookingData" :info="this.bookingInfo" :StartDate="this.mStartDate" :EndDate="this.mEndDate"/>
 </template>
 
 <style lang="scss" scoped> 
@@ -343,5 +346,6 @@ export default{
             right:10%;
             bottom: 16%;
         }
+        
     }
 </style>
