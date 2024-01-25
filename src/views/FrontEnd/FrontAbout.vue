@@ -3,7 +3,6 @@ import Footer from '../../components/Footer.vue';
 export default{
     data(){
         return{
-
         }
     },
     components:{
@@ -47,34 +46,177 @@ export default{
             </div>
         </div>
         <div class="title">
-            <p>消息</p>
+            <p>推播</p>
         </div>
         <hr>
         <div class="event">
             <div class="img">
-                <img src="../../../public/activity/activity4.jpg" alt="">
-                <img src="../../../public/activity/activity2.jpg" alt="">
-                <img src="../../../public/activity/activity.jpg" alt="">
-                <img src="../../../public/activity/activity1.jpg" alt="">
-                <img src="../../../public/activity/activity3.jpg" alt="">
+                <img src="../../../public/news/nm.jpg" alt="">
+                <img src="../../../public/news/nm1.jpg" alt="">
+                <img src="../../../public/news/nm2.jpg" alt="">
+                <img src="../../../public/news/nm3.jpg" alt="">
+                <img src="../../../public/news/nm4.jpg" alt="">
             </div>
             <ul>
-                <li>
-                    不定期免費手作體驗活動，多種類型，大人小孩都適合
+                <li
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModalActivity">
+                    免費手作體驗活動，多種類型，大人小孩都適合
                 </li>
-                <li>
+                <li
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModalPassport">
                     出示外國護照，即享精美小禮物一份
                 </li>
-                <li>
+                <li
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModalBirthday">
                     當日壽星我最大 ! 兩人同行，壽星免費
                 </li>
-                <li>
-                    使用 Line Pay 回饋 8%
+                <li
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModalCashless">
+                    非實體支付享9折優惠
                 </li>
-                <li>
-                    特約美食店家，凡出示Sea．Life房卡，即享有用餐折扣
+                <li
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModalMember">
+                    成為Sea．Life會員，訂房即享有超值套票加購
                 </li>
             </ul>
+        </div>
+    </div>
+<!-- 手作體驗活動 modal視窗 -->
+    <div class="modal fade" id="exampleModalActivity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">免費手作體驗</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <ul>
+                                <li>
+                                    每日下午3點開始
+                                </li>
+                                <li>
+                                    欲參加活動請至櫃檯報到
+                                </li>
+                                <li>
+                                    <a href="http://localhost:5173/FrontActivity">
+                                        詳情請至活動頁面<i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 出示護照 modal視窗 -->
+    <div class="modal fade" id="exampleModalPassport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">精美小禮物</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <ul>
+                                <li>
+                                    活動期間 : 2024/01/01-2024/06/30
+                                </li>
+                                <li>
+                                    請於 check in 時，至櫃台兌換
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 壽星我最大 modal視窗 -->
+    <div class="modal fade" id="exampleModalBirthday" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">壽星我最大</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <ul>
+                                <li>
+                                    生日當日，兩人同行，壽星半價
+                                </li>
+                                <li>
+                                    請於 check in 時，出示證件以供查驗，再進行折扣 
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--  非實體支付 modal視窗 -->
+    <div class="modal fade" id="exampleModalCashless" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">9折優惠</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <ul>
+                                <li>
+                                    非實體支付享9折優惠
+                                </li>
+                                <li>
+                                    減少現金交易
+                                </li>
+                                <li>
+                                    節省排隊時間
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--  Sea．Life 會員福利 modal視窗 -->
+    <div class="modal fade" id="exampleModalMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sea．Life 會員福利</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <ul>
+                                <li>
+                                    超值加購活動套票
+                                </li>
+                                <li>
+                                    特約商家折扣
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 <Footer />
@@ -83,7 +225,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 128vh;
+        height: 124vh;
         margin: auto;
         margin-top: 4vmin;
         .title{
@@ -95,7 +237,7 @@ export default{
             }
         }
         .introduce{
-            height: 48vh;
+            height: 47vh;
             display: flex;
             justify-content: space-between;
             margin-top: 3vmin;
@@ -132,6 +274,7 @@ export default{
         }
         .event{
             margin-top: 3vmin;
+            position: relative;
             .img{
                 display: flex;
                 justify-content: space-around;
@@ -157,6 +300,46 @@ export default{
                 li{
                     color: #797A7E;
                     font-size: 17pt;
+                    &:hover{
+                        color: #92a5e7;
+                    }
+                }
+                button{
+                    width: 7vw;
+                    height: 5vh;
+                    border: none;
+                    color: #797A7E;
+                    border-radius: 5px;
+                    position: absolute;
+                    right: 4%;
+                    bottom: 1%;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+                    &:hover {
+                        background-color: #797A7E;
+                        color: white;
+                    }
+                    &:active {
+                        background-color: #F7F2E7;
+                        color: #797A7E;
+                    }
+                }
+            }
+        }
+    }
+    .modal-body{
+        .mb-3{
+            ul{
+                li{
+                    i{
+                        transform:rotate(-40deg);
+                        font-size: 9pt;
+                        margin-left: 0.5vmin;
+                    }
+                    a{
+                        text-decoration: none;
+                        color: #82AAE3;
+                        font-weight: bold;
+                    }
                 }
             }
         }

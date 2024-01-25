@@ -1,7 +1,7 @@
 <script>
-    import Footer from '../../components/Footer.vue';
-    import axios from 'axios';
-    export default{
+import Footer from '../../components/Footer.vue';
+import axios from 'axios';
+export default{
     data(){
         return{
             msglist:""
@@ -36,7 +36,7 @@
     <div class="content">
         <div class="card" v-for="item in this.msglist">
             <div class="info">
-                <img src="../../../public/user1.png" class="card-img-top" alt="...">
+                <img src="../../../public/demo/user1.png" class="card-img-top" alt="...">
                 <p>user : {{ item.memberName }}</p>
             </div>
             <div class="card-body">
@@ -71,18 +71,18 @@
         margin-bottom: 3vmin;
     }
     .content{
-        width: 80vw;
+        width: 90vw;
         height: 100vh;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
         gap: 3vmin;
         position: relative;
-        //border: 1px solid black;
         .card{
             width: 20rem;
             height: 30rem;
             padding: 2vmin;
+            box-shadow: 1px 1px 1px lightgray;
             .info{
                 display: flex;
                 justify-content: space-between;
