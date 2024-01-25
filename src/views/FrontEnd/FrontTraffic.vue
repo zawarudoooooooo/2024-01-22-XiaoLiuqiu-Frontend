@@ -132,7 +132,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 160vh;
+        height: 165vh;
         margin: auto;
         margin-top: 4vmin;
         hr{
@@ -166,6 +166,11 @@ export default{
             }
             .traffic{
                 margin-left: 2vmin;
+                background-color: white;
+                border: 1px solid lightgray;
+                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
+                border-radius: 5px;
+                padding: 1.5vmin;
                 ul{
                     li{
                         color: #797A7E;
@@ -209,6 +214,7 @@ export default{
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1vmin;
+                margin-top: 3vmin;
                 img{
                     width: 22vw;
                     height: 27vh;

@@ -64,16 +64,4 @@ export default{
       }
     }
   }
-
-  .gotop {
-  text-align: center;
-  position: fixed;
-  right: 50px;
-  bottom: 30px;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 50%;
-  background: white;
-  color: #000000;
-}
 </style>
