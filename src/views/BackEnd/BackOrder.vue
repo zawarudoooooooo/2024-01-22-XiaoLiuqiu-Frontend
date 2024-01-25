@@ -241,8 +241,9 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        text-align: center;
+        //text-align: center;
         margin-top: 4vmin;
+        margin-left: 52%;
         i{
             margin-left: 1vmin;
         }

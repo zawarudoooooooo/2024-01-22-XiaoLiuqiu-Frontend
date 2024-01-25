@@ -369,9 +369,10 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        text-align: center;
+        //text-align: center;
         margin-top: 4vmin;
-        height: 8vh;
+        margin-left: 45%;
+        //height: 8vh;
         i{
             margin-left: 1vmin;
         }
@@ -399,6 +400,7 @@ export default {
                         border: none;
                         border-radius: 5px;
                         color: #797A7E;
+                        box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                         &:hover {
                             background-color: #797A7E;
                             color: white;

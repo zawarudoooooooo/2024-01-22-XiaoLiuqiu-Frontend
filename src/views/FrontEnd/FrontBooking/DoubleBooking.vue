@@ -249,7 +249,30 @@ export default{
         </div>
     <div class="content" v-for="item in this.order">
         <div class="show">
-            <img src="../../../../public/room/double.jpg" alt="">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../../public/room/D/double1-1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+
+            <!-- <img src="../../../../public/room/double.jpg" alt=""> -->
             <div class="text">
                 <div class="name">
                     <p>{{item.roomName}}</p>
@@ -370,7 +393,7 @@ export default{
         display: flex;
         justify-content: space-around;
         align-content: center;
-        margin-top: 8vmin;
+        margin-top: 7vmin;
         margin-left: 5vmin;
         input{
             width: 20vw;
@@ -378,10 +401,11 @@ export default{
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #D9D9D9;
+            background-color: #e3f6f5;
             padding-left: 2vmin;
             padding-right: 2vmin;
             color: #797A7E;
+            box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         p{
             margin: 0;
@@ -392,38 +416,58 @@ export default{
         }
         .checkin{
             display: flex;
+            align-items: center;
         }
         .checkout{
             display: flex;
+            align-items: center;
         }
     }
     .content{
-        width: 90vw;
-        height: 68vh;
+        width: 95vw;
+        height: 66vh;
         margin: auto;
         display: flex;
         position: relative;
         .show{
-            width: 60vw;
+            width: 68vw;
             height: 50vh;
             display: flex;
+            justify-content: space-around;
             border-radius: 10px;
-            margin-top: 5vmin;
-            padding: 3vmin;
+            margin-top: 8vmin;
             position: relative;
-            img{
+            #carouselExample{
                 width: 23vw;
-                height: 28vh;
+                height: 33vh;
+                margin-top: 6vmin;
                 border-radius: 5px;
-                margin-right: 10vmin;
-                transition: all linear 0.3s;
                 box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                &:hover{
-                    opacity: 0.7;
-                    box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
+                .carousel-inner{
+                    width: 23vw;
+                    border-radius: 5px;
+                    .carousel-item{
+                        width: 23vw;
+                        border-radius: 5px;
+                        img{
+                            width: 23vw;
+                            height: 33vh;
+                            border-radius: 5px;
+                            transition: all linear 0.3s;
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                            &:active{
+                                opacity: 1.0;
+                            }
+                        }
+                    }
                 }
-                &:active{
-                    opacity: 1.0;
+                .carousel-control-prev-icon{
+                    width: 1.5rem;
+                }
+                .carousel-control-next-icon{
+                    width: 1.5rem;
                 }
             }
             .text{
@@ -453,7 +497,7 @@ export default{
                     }
                     label{
                         color: #797A7E;
-                        font-size: 14pt;
+                        font-size: 15.5pt;
                         margin-right: 1.1vmin;
                         margin-bottom: 1vmin;
                     }
@@ -465,18 +509,19 @@ export default{
         }
         .cart{
             width: 20vw;
-            height: 65vh;
+            height: 70vh;
             color: #797A7E;
             font-size: 13pt;
             position: relative;
-            top: -3%;
-            right: -7%;
+            top: -8%;
+            right: -3%;
             #ul{
                 list-style: none;
                 padding-left: 1vmin;
             }
             li{
                 margin-bottom: 0.5vmin;
+                font-size: 14.5pt;
             }
             span{
                 font-size: 18pt;
@@ -512,6 +557,7 @@ export default{
                     border: none;
                     border-radius: 5px;
                     color: #797A7E;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover {
                         background-color: #797A7E;
                         color: white;

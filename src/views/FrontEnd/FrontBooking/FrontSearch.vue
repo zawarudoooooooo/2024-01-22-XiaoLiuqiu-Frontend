@@ -79,11 +79,11 @@ export default{
     <div class="content" v-if="!Search">
         <div class="search">
             <div class="title">
-                <p>依房型搜尋</p>
+                <p>房型總覽</p>
             </div>
             <div class="roomType">
                 <div class="card">
-                    <img src="../../../../room/simpledouble3.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/SP/simpledouble2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">小資雙人房</h5>
                         <p class="card-text">經濟實惠的最佳選擇。
@@ -93,7 +93,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../../room/double4.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/D/double2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">舒適雙人房</h5>
                         <p class="card-text">
@@ -104,7 +104,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../../room/family4.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/F/family1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">豪華家庭房</h5>
                         <p class="card-text">
@@ -124,9 +124,9 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 69vh;
+        height: 67.5vh;
         margin: auto;
-        margin-top: 4vmin;
+        margin-top: 3.5vmin;
         .search{
             height: 60vh;
             .title{
@@ -150,12 +150,20 @@ export default{
                 box-shadow: 1px 1px 1px lightgray;
                 transition: all linear 0.3s;
                 &:hover{
-                    opacity: 0.6;
-                    //box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
                     box-shadow: 10px -10px rgba(6, 67, 147, 0.5);
                 }
                 &:active{
                     opacity: 1.0;
+                }
+                img{
+                    height: 13rem;
+                    transition: all linear 0.3s;
+                    &:hover{
+                        opacity: 0.6;
+                    }
+                    &:active{
+                        opacity: 1.0;
+                    }
                 }
             }
             button{
@@ -164,6 +172,7 @@ export default{
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
                     background-color: #797A7E;
                     color: white;
