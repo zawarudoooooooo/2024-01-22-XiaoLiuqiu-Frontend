@@ -108,17 +108,18 @@ export default{
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>訂房</RouterLink>
+                            <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>房型總覽</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="/FrontActivity" class="routerItem"><i class="fa-solid fa-ticket"></i>套票</RouterLink>
+                            <RouterLink to="/FrontTicket" class="routerItem"><i class="fa-solid fa-comments-dollar"></i>超值加購</RouterLink>
                         </li>
                         <li class="nav-item dropdown">
-                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-location-dot"></i>導覽</p>
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-circle-info"></i>導覽</p>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><RouterLink to="/FrontTraffic" class="dropdown-item"><i class="fa-solid fa-ferry"></i>交通</RouterLink></li>
                                 <li><RouterLink to="/FrontTourist" class="dropdown-item"><i class="fa-solid fa-camera"></i>景點</RouterLink></li>
                                 <li><RouterLink to="/FrontMeal" class="dropdown-item"><i class="fa-solid fa-utensils"></i>美食</RouterLink></li>
+                                <li><RouterLink to="/FrontRecommand" class="dropdown-item"><i class="fa-regular fa-thumbs-up"></i>推薦行程</RouterLink></li>
                             </ul>
                         </li>
                         <li class="nav-item">

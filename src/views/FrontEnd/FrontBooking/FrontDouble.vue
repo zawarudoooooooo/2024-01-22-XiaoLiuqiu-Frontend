@@ -225,8 +225,7 @@ if (startTime <= currentTime && currentTime <= endTime) {
             </div>
         
         </div>
-        
-        <button type="button" id="backbtn" @click="goback()">返回</button>
+        <button type="button" id="backbtn" @click="goback()"><i class="fa-solid fa-arrow-right-to-bracket"></i>返回</button>
     </div>
     <DoubleBooking v-if="bookingData" :info="this.bookingInfo" :StartDate="this.mStartDate" :EndDate="this.mEndDate"/>
 </template>
@@ -234,43 +233,12 @@ if (startTime <= currentTime && currentTime <= endTime) {
 <style lang="scss" scoped> 
     .content{
         width: 90vw;
-        height: 69svh;
+        //height: 66vh;
         margin: auto;
-        margin-top: 6vmin;
+        //margin-top: 6vmin;
         //border: 1px solid black;
         position: relative;
         overflow: auto;
-        .date{
-            width: 60vw;
-            display: flex;
-            justify-content: space-around;
-            align-content: center;
-            margin: auto;
-            input{
-                width: 20vw;
-                height: 5vh;
-                border-radius: 10px;
-                border-style: none;
-                outline: none;
-                background-color: #D9D9D9;
-                padding-left: 2vmin;
-                padding-right: 2vmin;
-                color: #797A7E;
-            }
-            p{
-                margin: 0;
-                font-size: 16pt;
-                color: #797A7E;
-                text-align: center;
-                margin-right: 2vmin;
-            }
-            .checkin{
-                display: flex;
-            }
-            .checkout{
-                display: flex;
-            }
-        }
         .show{
             width: 60vw;
             height: 34vh;
@@ -282,6 +250,8 @@ if (startTime <= currentTime && currentTime <= endTime) {
             box-shadow: 1px 1px 1px gray;
             padding: 3vmin;
             position: relative;
+            //background-color: white;
+            //box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
             img{
                 width: 23vw;
                 height: 28vh;
@@ -331,7 +301,7 @@ if (startTime <= currentTime && currentTime <= endTime) {
             position: absolute;
             right: 5%;
             bottom: 11%;
-
+            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
             &:hover{
                 background-color: #797A7E;
                 color: white;
@@ -342,9 +312,17 @@ if (startTime <= currentTime && currentTime <= endTime) {
             }
         }
         #backbtn{
+            width: 5vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
             position: fixed;
             right:10%;
-            bottom: 16%;
+            bottom: 18%;
+            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+            i{
+                scale: -1;
+            }
         }
         
     }

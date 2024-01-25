@@ -132,7 +132,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 155vh;
+        height: 165vh;
         margin: auto;
         margin-top: 4vmin;
         hr{
@@ -156,6 +156,7 @@ export default{
                 height: 53vh;
                 border-radius: 10px;
                 transition: all ease 0.5s;
+                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                 &:hover{
                     opacity: 0.6;
                 }
@@ -165,6 +166,11 @@ export default{
             }
             .traffic{
                 margin-left: 2vmin;
+                background-color: white;
+                border: 1px solid lightgray;
+                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
+                border-radius: 5px;
+                padding: 1.5vmin;
                 ul{
                     li{
                         color: #797A7E;
@@ -181,9 +187,10 @@ export default{
             .time{
                 width: 28vw;
                 border: 1px solid lightgray;
-                box-shadow: 1px 1px 1px gray;
+                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                 border-radius: 5px;
                 padding-top: 1.5vmin;
+                background-color: white;
                 #ferrytime{
                     color: #797A7E;
                     font-size: 18pt;
@@ -207,11 +214,13 @@ export default{
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1vmin;
+                margin-top: 3vmin;
                 img{
                     width: 22vw;
                     height: 27vh;
                     border-radius: 5px;
                     transition: all ease 0.5s;
+                    box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                     &:hover{
                         opacity: 0.6;
                     }
