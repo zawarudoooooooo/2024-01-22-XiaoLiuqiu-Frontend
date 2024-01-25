@@ -1,39 +1,80 @@
 <script>
 import axios from 'axios';
 import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import backSideBar from '../../components/backSideBar.vue';
 export default {
     data(){
         return{
             employee:"",
             account:"",
-            pwd:"qaz159",
+            pwd:"123",
             cookie:"",
-            access:"",
+            access: 0,
+            active: false,
             password:"",
-            newpassword:"",
-            confirmpassword:"",
+            newPassword:"",
+            confirmPassword:"",
             employeeId:"",
+            employees:[],
+            department: "",
+            role: "",
+            giveAccess: "",
         }
     },
-    methods:{
+    mounted(){
+        this.employeeData();
+        this.access = this.getAccess();
+        console.log(this.getAccess());
+        console.log(this.access)
+    },
+    methods: {
+        employeeData(){
+            const cookieValue = this.getCookie("employee");
+            console.log(cookieValue);
+            const [account] = cookieValue.split(":");
+
+            axios({
+            url:'http://localhost:8080/employee/employeeSearch',
+            method:'POST',
+            withCredentials: true,
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                account: account
+            },
+            data:{
+
+            },
+            }).then(res=>{
+                const account = res.data.account
+                this.employees = res.data.employeeList
+                console.log(this.employees);
+            })
+        },
         employeeAdd(){
             axios({
-            url:'http://localhost:8080/employee/createMaster',
+            url:'http://localhost:8080/employee/create',
             method:'POST',
+            withCredentials: true,
             headers:{
                 'Content-Type':'application/json'
             },
             data:{
                 account:this.account,
                 password:this.pwd,
-                access:false
+                department: this.department,
+                access: this.giveAccess,
+                role: this.role
             },
             }).then(res=>{
             swal("成功", "已新增員工", "success");
             this.account=""
             console.log(res.data);
+            this.employeeData();
             })
+            
         },
         employeeChange() {
             axios({
@@ -47,8 +88,8 @@ export default {
                 },
                 data: {
                     password:this.password,
-                    new_password:this.newpassword,
-                    confirm_password:this.confirmpassword,
+                    new_password:this.newPassword,
+                    confirm_password:this.confirmPassword,
                     
                 },
             }).then(res => {
@@ -69,54 +110,120 @@ export default {
                 }
                 console.error('Error:', error);
             });
-        }
-    },
-    mounted(){
-        axios({
-            url:'http://localhost:8080/employee/search',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            data:{
-                account:"",
-                password:"",
-                access:false
-            },
-            }).then(res=>{
-            this.employee = res.data.employeeList;
-            // console.log(this.employee);
-            this.employee.forEach(item=>{
-                if(item.account==this.cookie){
-                    this.employeeId=item.employeeId
-                    // console.log(item.employeeId);
-                    return
-                }
-            })
-            })
-
-            this.cookie=document.cookie.split("=")[1];
-
-            console.log(this.cookie);
+        },
+        employeeActive(){
+            const cookieValue = this.getCookie("employee");
+            console.log(cookieValue);
+            const [account] = cookieValue.split(":");
 
             axios({
-            url:'http://localhost:8080/employee/employeeSearch',
+            url:'http://localhost:8080/employee/active',
             method:'POST',
+            withCredentials: true,
+            
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
             },
             params:{
-                account:this.cookie
-            },
-            data:{
-
+                account: account
             },
             }).then(res=>{
-                res.data.employeeList.forEach(element => {
-                    this.access=element.access
-                    console.log(this.access);
-                });
+                console.log(res);
+                if(res.data.rtncode=="SUCCESSFUL"){
+                    swal("成功","已完成驗證", "success");
+                    this.employeeData();
+                }else if(res.data.rtncode=="ACCOUNT_IS_ALREADY_ACTIVED"){
+                    swal("錯誤", "帳號已完成驗證", "warning");
+                }else{
+                    swal("錯誤", "驗證未成功", "error");
+                }
             })
+        },
+        deactive(account){
+
+            axios({
+            url:'http://localhost:8080/employee/deactive',
+            method:'POST',
+            withCredentials: true,
+            headers:{
+                'Content-Type':'application/json',
+            },
+            params:{
+                account: account
+            },
+            }).then(res=>{
+                console.log(res);
+                if(res.data.rtncode=="SUCCESSFUL"){
+                swal("成功","刪除員工驗證狀態", "success");
+                }else{
+                    swal("錯誤", "刪除員工驗證未成功", "error");
+                }
+            })
+
+            this.employeeData();
+        },
+        confirmDeactive(account){
+            Swal.fire({
+                title: '真的要執行嗎?',
+                text: '此動作將視為該員工已離職',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+                preConfirm: () => {
+                    return this.deactive(account)
+                },
+            })
+        },
+        getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) {
+                const [account, access, active] = parts.pop().split(';').shift().split(":");
+                this.access = parseInt(access);
+                this.active = active === "true";  
+            return account;
+        }
+        return "";
+        },
+        getActive() {
+            const cookieValue = this.getCookie("employee");
+            return cookieValue ? cookieValue.split(":")[2] === "true" : false;
+    },
+        getAccess(){
+            const cookieValue = this.getCookie("employee")
+            console.log(cookieValue);
+            if(cookieValue){
+                const parts = cookieValue.split(":")
+                console.log("Cookie parts:", parts);
+                return parts.length === 3 ? parseInt(parts[1]) : 0
+            }
+            return 0
+        },
+        hasAccess(requiredAccess){
+            return this.access = requiredAccess
+        },
+        getRole(role){
+            if(role === "ADMINISTRATIVE_SUPERVISOR"){
+                return "人事主管"
+            }else if(role === "OPERATIONS_SUPERVISOR"){
+                return "營運主管"
+            }else if(role === "HOUSEKEEPING_SUPERVISOR"){
+                return "房務主管"
+            }else{
+                return "基層員工"
+            }
+        },
+        getDepartment(department){
+            if(department === "HR"){
+                return "人事部"
+            }else if(department === "OPERATIONS"){
+                return "營運部"
+            }else if(department === "HOUSEKEEPING"){
+                return "房務部"
+            }else{
+                return "櫃台"
+            }
+        }
     },
     components:{
         backSideBar
@@ -135,26 +242,37 @@ export default {
             </div>
             <div class="show">
                 <div class="buttonArea">
-                    <button type="button" v-if="this.access" data-bs-toggle="modal" 
+                    <button type="button" v-if="this.access == 100" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增人員
                     </button>
                     <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModalpwd">修改密碼
                     </button>
+                    <button v-if="this.active === false" @click="employeeActive">
+                        驗證
+                    </button>
                 </div>
-                <div class="employee" v-if="this.access">
+                <div class="employee">
                     <table>
                         <thead>
                             <td>員工編號</td>
                             <td>員工帳號</td>
                             <td>職位</td>
+                            <td>部門</td>
+                            <td>驗證</td>
+                            <td v-if="this.access === 100">離職</td>
                         </thead>
                         <tbody>
-                            <tr v-for=" (item) in employee">
+                            <tr v-for=" item in employees">
                                 <td>{{ item.employeeId }}</td>
                                 <td>{{ item.account }}</td>
-                                <td v-if="item.access">主管</td>
-                                <td v-if="!item.access">員工</td>
+                                <td>{{ getRole(item.role) }}</td>
+                                <td>{{ getDepartment(item.department) }}</td>
+                                <td v-if="item.active === true">已驗證</td>
+                                <td v-else>尚未驗證</td>
+                                <td v-if="this.access === 100">
+                                    <input type="button" value="確認" @click="confirmDeactive(item.account)">
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -172,8 +290,36 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">人員帳號 :</label>
+                                <label for="recipient-name" class="col-form-label">帳號 :</label>
                                 <input type="text" class="form-control" v-model="this.account" id="recipient-name">
+
+                                <label for="recipient-name" class="col-form-label" style="margin-left: 20px;">部門 :</label>
+                                <select name="department" id="recipient-name" v-model="this.department" style="margin: 10px;">
+                                    <option value="">請選擇</option>
+                                    <option value="HR">人事部</option>
+                                    <option value="OPERATIONS">營運部</option>
+                                    <option value="HOUSEKEEPING">房務部</option>
+                                    <option value="COUNTER">櫃台</option>
+                                </select>
+                                
+
+                                <label for="recipient-name" class="col-form-label">權限 :</label>
+                                <select name="access" id="recipient-name" v-model="this.giveAccess" style="margin: 10px;">
+                                    <option value="">請選擇</option>
+                                    <option value="100">高階</option>
+                                    <option value="50">中階</option>
+                                    <option value="0">一般</option>
+                                </select>
+                                
+
+                                <label for="recipient-name" class="col-form-label">職位 :</label>
+                                <select name="role" id="recipient-name" v-model="this.role" style="margin: 10px;">
+                                    <option value="">請選擇</option>
+                                    <option value="ADMINISTRATIVE_SUPERVISOR">人事主管</option>
+                                    <option value="OPERATIONS_SUPERVISOR">營運主管</option>
+                                    <option value="HOUSEKEEPING_SUPERVISOR">房務主管</option>
+                                    <option value="EMPLOYEE">一般員工</option>
+                                </select>
                             </div>
                         </form>
                     </div>
