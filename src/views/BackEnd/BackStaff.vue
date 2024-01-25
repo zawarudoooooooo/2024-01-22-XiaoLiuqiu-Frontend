@@ -154,13 +154,13 @@ export default {
             }).then(res=>{
                 console.log(res);
                 if(res.data.rtncode=="SUCCESSFUL"){
-                swal("成功","刪除員工驗證狀態", "success");
+                    swal("成功","刪除員工驗證狀態", "success");
+                    this.employeeData();
                 }else{
                     swal("錯誤", "刪除員工驗證未成功", "error");
                 }
             })
-
-            this.employeeData();
+            
         },
         confirmDeactive(account){
             Swal.fire({
