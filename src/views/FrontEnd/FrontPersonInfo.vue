@@ -2,147 +2,158 @@
 import Footer from '../../components/Footer.vue';
 import axios from 'axios';
 import * as imageConversion from 'image-conversion';
-export default{
-    data(){
-        return{
+export default {
+    data() {
+        return {
             //更新會員資訊
-            newName:"",
-            newPhone:"",
-            newEmail:"",
+            newName: "",
+            newPhone: "",
+            newEmail: "",
             //會員圖片
-            useravatar:"",
+            useravatar: "",
 
             //更改密碼
-            oldPwd:"",
-            newPwd:"",
-            checkNewPwd:"",
+            oldPwd: "",
+            newPwd: "",
+            checkNewPwd: "",
 
             //貼文
-            topic:"",
-            text:"",
+            topic: "",
+            text: "",
 
-            msgavatar:"",
+            msgavatar: "",
 
             //頁面切換
-            personInfoPage:true,
-            orderPage:false,
-            messagePage:false,
+            personInfoPage: true,
+            orderPage: false,
+            messagePage: false,
 
-            cookie:"",
-            memberInfo:"",
+            cookie: "",
+            memberInfo: "",
         }
     },
-    methods:{
+    methods: {
         uploadImg(e) {
-        let files = e.target.files || e.dataTransfer.files
-        let id = e.target.id
-        if (!files.length) return
-        this.picavalue = files[0]
-        console.log(this.picavalue.size / 1024)
-        if (this.picavalue.size / 1024 > 10240) {
-            this.$vux.alert.show({
-            title: '溫馨提示',
-            content: '圖片過大，請重新上傳'
-            })
-        } else {
-            this.text1 = '正在獲取圖片'
-            this.imgPreview(this.picavalue, id)
+            let files = e.target.files || e.dataTransfer.files
+            let id = e.target.id
+            if (!files.length) return
+            this.picavalue = files[0]
+            console.log(this.picavalue.size / 1024)
+            if (this.picavalue.size / 1024 > 10240) {
+                this.$vux.alert.show({
+                    title: '溫馨提示',
+                    content: '圖片過大，請重新上傳'
+                })
+            } else {
+                this.text1 = '正在獲取圖片'
+                this.imgPreview(this.picavalue, id)
 
-            this.file=event.target.files[0]
-            let filereader=new FileReader();
-            filereader.readAsDataURL(this.file)
-            filereader.addEventListener("load",()=>{
-                this.useravatar=filereader.result;
-                console.warn(this.useravatar)
-            })
+                this.file = event.target.files[0]
+                let filereader = new FileReader();
+                filereader.readAsDataURL(this.file)
+                filereader.addEventListener("load", () => {
+                    this.useravatar = filereader.result;
+                    console.warn(this.useravatar)
+                })
             }
         },
-//獲取圖片
+        //獲取圖片
         imgPreview(file, id) {
-        let self = this
-        //判斷支不支持FileReader
-        if (!file || !window.FileReader) return false
-        if (/^image/.test(file.type)) {
-          //創建一個reader
-            let reader = new FileReader()
-          //將圖片轉成base64格式
-            reader.readAsDataURL(file)
-          //讀取成功後的回調
-            reader.onloadend = function() {
-            let result = this.result
-            let img = new Image()
-            img.src = result
-            console.log('********未壓縮前的圖片大小********')
-            console.log(result.length / 1024)
-            img.onload = function() {
-                let data = self.compress(img, 0.3)
-                self.uploadImg(data, id)
-            } 
+            let self = this
+            //判斷支不支持FileReader
+            if (!file || !window.FileReader) return false
+            if (/^image/.test(file.type)) {
+                //創建一個reader
+                let reader = new FileReader()
+                //將圖片轉成base64格式
+                reader.readAsDataURL(file)
+                //讀取成功後的回調
+                reader.onloadend = function () {
+                    let result = this.result
+                    let img = new Image()
+                    img.src = result
+                    console.log('********未壓縮前的圖片大小********')
+                    console.log(result.length / 1024)
+                    img.onload = function () {
+                        let data = self.compress(img, 0.3)
+                        self.uploadImg(data, id)
+                    }
+                }
             }
-        }
         },
-// 壓縮圖片
+        // 壓縮圖片
         compress(img, size) {
-        let canvas = document.createElement('canvas')
-        let ctx = canvas.getContext('2d')
-        let initSize = img.src.length
-        let width = img.width
-        let height = img.height
-        canvas.width = width
-        canvas.height = height
-        // 鋪底色
-        ctx.fillStyle = '#fff'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-        ctx.drawImage(img, 0, 0, width, height)
-        //進行最小壓縮
-        let ndata = canvas.toDataURL('image/jpeg', size)
-        console.log('*******壓縮後的圖片大小*******')
-        // console.log(ndata)
-        console.log(ndata.length / 1024)
-        return ndata
+            let canvas = document.createElement('canvas')
+            let ctx = canvas.getContext('2d')
+            let initSize = img.src.length
+            let width = img.width
+            let height = img.height
+            canvas.width = width
+            canvas.height = height
+            // 鋪底色
+            ctx.fillStyle = '#fff'
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+            ctx.drawImage(img, 0, 0, width, height)
+            //進行最小壓縮
+            let ndata = canvas.toDataURL('image/jpeg', size)
+            console.log('*******壓縮後的圖片大小*******')
+            // console.log(ndata)
+            console.log(ndata.length / 1024)
+            return ndata
         },
         // uploadImg(base64, id) {   
         //     console.log('得到壓縮後的base64傳入後臺') 
         // },
-//使用者照片上傳
-        onfileuser(event){
-            this.file=event.target.files[0]
-            let filereader=new FileReader();
+        //使用者照片上傳
+        onfileuser(event) {
+            this.file = event.target.files[0]
+            let filereader = new FileReader();
             filereader.readAsDataURL(this.file)
-            
-            filereader.addEventListener("load",()=>{
-                this.useravatar=filereader.result;
+
+            filereader.addEventListener("load", () => {
+                this.useravatar = filereader.result;
                 console.warn(this.useravatar)
             })
         },
-//貼文照片上傳
-        onfilemsg(event){
-            this.file=event.target.files[0]
-            let filereader=new FileReader();
+        test(event) {
+            var fileInput = document.getElementById('fileInput');
+
+            // 检查是否有选中文件
+            if (fileInput.files.length > 0) {
+                var filePath = URL.createObjectURL(fileInput.files[0]);
+                console.log("文件路径:", filePath);
+            } else {
+                console.log("没有选中文件");
+            }
+        },
+        //貼文照片上傳
+        onfilemsg(event) {
+            this.file = event.target.files[0]
+            let filereader = new FileReader();
             filereader.readAsDataURL(this.file)
-            filereader.addEventListener("load",()=>{
-                this.msgavatar=filereader.result;
+            filereader.addEventListener("load", () => {
+                this.msgavatar = filereader.result;
                 console.warn(this.msgavatar)
             })
         },
-        test(){
+        test() {
             let arr = document.querySelectorAll(".img");
-            Promise.all(Array.from(arr).map((item)=>{
-                if(item.files[0] != undefined ){
+            Promise.all(Array.from(arr).map((item) => {
+                if (item.files[0] != undefined) {
                     this.imgConvert((item.className.split("")[0], (item.files[0])))
                 }
                 return Promise.resolve();
             }))
         },
-//圖片轉換
-        imgConvert(key, data){
-            return new Promise((resolve) =>{
-                imageConversion.compressAccurately(data, 80).then((res) =>{
+        //圖片轉換
+        imgConvert(key, data) {
+            return new Promise((resolve) => {
+                imageConversion.compressAccurately(data, 80).then((res) => {
                     let reader = new FileReader();
-                    if(res){
+                    if (res) {
                         reader.readAsDataURL(res)
                     }
-                    reader.onload = () =>{
+                    reader.onload = () => {
                         let base64 = reader.result;
                         this.map.set(key, base64);
                         resolve(base64);
@@ -150,153 +161,153 @@ export default{
                 })
             })
         },
-//貼文取消清除輸入
-        cancle(){
-            this.topic="",
-            this.text=""
-            
+        //貼文取消清除輸入
+        cancle() {
+            this.topic = "",
+                this.text = ""
+
         },
-//頁面切換
-        personInfoShow(){
-            this.personInfoPage=true
-            this.orderPage=false,
-            this.messagePage=false
+        //頁面切換
+        personInfoShow() {
+            this.personInfoPage = true
+            this.orderPage = false,
+                this.messagePage = false
         },
-        orderPageShow(){
-            this.orderPage=true
-            this.personInfoPage=false,
-            this.messagePage=false
+        orderPageShow() {
+            this.orderPage = true
+            this.personInfoPage = false,
+                this.messagePage = false
         },
-        messagePageShow(){
-            this.messagePage=true
-            this.personInfoPage=false,
-            this.orderPage=false
+        messagePageShow() {
+            this.messagePage = true
+            this.personInfoPage = false,
+                this.orderPage = false
         },
-//留言板
-        messageCreate(){
+        //留言板
+        messageCreate() {
             axios({
-            url:'http://localhost:8080/message/messageCreate',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },  
-            
-            data:{
-                memberName:this.memberInfo.memberName,
-                roomId:this.topic,
-                roomMessageBoardDescription:this.text,
-            },
-        }).then(res => {
-            console.log(res.data)
-            if(res.data.message=="Successful!!"){
-                swal("成功","發佈完成","success")
-                .then((willRefresh) => {
-                    if (willRefresh) {
-                        // 在这里可以执行页面刷新的操作
-                            
-                        } 
-                    });
-                }else{
-                    swal("失敗","發生未知錯誤","error");
+                url: 'http://localhost:8080/message/messageCreate',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                data: {
+                    memberName: this.memberInfo.memberName,
+                    roomId: this.topic,
+                    roomMessageBoardDescription: this.text,
+                },
+            }).then(res => {
+                console.log(res.data)
+                if (res.data.message == "Successful!!") {
+                    swal("成功", "發佈完成", "success")
+                        .then((willRefresh) => {
+                            if (willRefresh) {
+                                // 在这里可以执行页面刷新的操作
+
+                            }
+                        });
+                } else {
+                    swal("失敗", "發生未知錯誤", "error");
                 }
             })
         },
-//更新會員資訊
-        updateMemberInfo(){
+        //更新會員資訊
+        updateMemberInfo() {
             axios({
-            url:'http://localhost:8080/member/upDate',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            params:{
-                memberId:this.memberInfo.memberId
-            },             
-            data:{
-                memberName:this.newName,
-                memberPhone:this.newPhone,
-                memberEmail:this.newEmail,
-                memberPhoto:this.useravatar
-            },
-        }).then(res => {     
-            console.log(res.data)
-            if(res.data.message=="Successful!!"){
-                swal("成功","更新完成","success")
-                .then((willRefresh) => {
-                    if (willRefresh) {  
-                        // 在这里可以执行页面刷新的操作
-                        } 
-                    });
-                }else{
-                    swal("失敗","發生未知錯誤","error");
+                url: 'http://localhost:8080/member/upDate',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                params: {
+                    memberId: this.memberInfo.memberId
+                },
+                data: {
+                    memberName: this.newName,
+                    memberPhone: this.newPhone,
+                    memberEmail: this.newEmail,
+                    memberPhoto: this.useravatar
+                },
+            }).then(res => {
+                console.log(res.data)
+                if (res.data.message == "Successful!!") {
+                    swal("成功", "更新完成", "success")
+                        .then((willRefresh) => {
+                            if (willRefresh) {
+                                // 在这里可以执行页面刷新的操作
+                            }
+                        });
+                } else {
+                    swal("失敗", "發生未知錯誤", "error");
                 }
             })
-            this.newName="",
-            this.newPhone="",
-            this.newEmail=""
+            this.newName = "",
+                this.newPhone = "",
+                this.newEmail = ""
         },
-//變更密碼
-        updatePwd(){
+        //變更密碼
+        updatePwd() {
             axios({
-            url:'http://localhost:8080/member/pwdUpDate',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            params:{
-                memberId:this.memberInfo.memberId
-            },             
-            data:{
-                pwd:this.oldPwd,
-                newPwd:this.newPwd,
-                confirmPwd:this.checkNewPwd
-            },
-        }).then(res => { 
-            console.log(res)
-            console.log(res.data)
-            if(res.data.message=="Successful!!"){
-                swal("成功","變更完成","success")
-                .then((willRefresh) => {
-                    if (willRefresh) {  
-                        // 在这里可以执行页面刷新的操作
-                        } 
-                    });
-                }else{
-                    swal("失敗","發生未知錯誤","error");
+                url: 'http://localhost:8080/member/pwdUpDate',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                params: {
+                    memberId: this.memberInfo.memberId
+                },
+                data: {
+                    pwd: this.oldPwd,
+                    newPwd: this.newPwd,
+                    confirmPwd: this.checkNewPwd
+                },
+            }).then(res => {
+                console.log(res)
+                console.log(res.data)
+                if (res.data.message == "Successful!!") {
+                    swal("成功", "變更完成", "success")
+                        .then((willRefresh) => {
+                            if (willRefresh) {
+                                // 在这里可以执行页面刷新的操作
+                            }
+                        });
+                } else {
+                    swal("失敗", "發生未知錯誤", "error");
                 }
             })
-            this.oldPwd="",
-            this.newPwd="",
-            this.checkNewPwd=""
+            this.oldPwd = "",
+                this.newPwd = "",
+                this.checkNewPwd = ""
         }
     },
-    mounted(){
-        this.cookie=document.cookie.split("=")[1];
+    mounted() {
+        this.cookie = document.cookie.split("=")[1];
 
         // console.log(this.cookie);
 
         axios({
-            url:'http://localhost:8080/member/member',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },  
-            params:{
-                account:this.cookie
+            url: 'http://localhost:8080/member/member',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            data:{
+            params: {
+                account: this.cookie
+            },
+            data: {
 
             },
-        }).then(res=>{
+        }).then(res => {
             res.data.memberList.forEach(element => {
-                this.memberInfo=element
+                this.memberInfo = element
                 console.log(this.memberInfo);
             });
             // this.memberInfo=
             // console.log(this.memberInfo);
-            })
+        })
     },
-    components:{
+    components: {
         Footer
     }
 }
@@ -309,7 +320,7 @@ export default{
             <button type=button @click="orderPageShow()"><i class="fa-solid fa-list"></i>訂單資訊</button>
             <button type=button @click="messagePageShow()"><i class="fa-solid fa-message"></i>發表貼文</button>
         </div>
-<!-- 會員資料頁面 -->
+        <!-- 會員資料頁面 -->
         <div class="personInfo" v-if="personInfoPage">
             <p id="location"><i class="fa-solid fa-map-pin"></i>會員資訊</p>
             <hr>
@@ -326,25 +337,24 @@ export default{
                 </label>
             </div>
             <div class="name">
-                <p>姓名 : {{this.memberInfo.memberName}}</p>
+                <p>姓名 : {{ this.memberInfo.memberName }}</p>
             </div>
             <div class="phone">
-                <p>電話 : 0{{this.memberInfo.memberPhone}}</p>
+                <p>電話 : 0{{ this.memberInfo.memberPhone }}</p>
             </div>
             <div class="email">
-                <p>E-mail : {{this.memberInfo.memberEmail}}</p>
+                <p>E-mail : {{ this.memberInfo.memberEmail }}</p>
+                
             </div>
             <div class="personInfoBtn">
-                <button type="button"  data-bs-toggle="modal" 
-                        data-bs-target="#exampleModal">修改資料
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">修改資料
                 </button>
-                <button type="button"  data-bs-toggle="modal" 
-                        data-bs-target="#exampleModalPwd">修改密碼
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalPwd">修改密碼
                 </button>
                 <button type="button" @click="updateMemberInfo()">儲存</button>
             </div>
         </div>
-<!-- 更改資料modal視窗 -->
+        <!-- 更改資料modal視窗 -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -369,12 +379,13 @@ export default{
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="updateMemberInfo()">確認更改</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"
+                            @click="updateMemberInfo()">確認更改</button>
                     </div>
                 </div>
             </div>
         </div>
-<!-- 更改密碼modal視窗 -->
+        <!-- 更改密碼modal視窗 -->
         <div class="modal fade" id="exampleModalPwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -399,12 +410,13 @@ export default{
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="updatePwd()">確認更改</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"
+                            @click="updatePwd()">確認更改</button>
                     </div>
                 </div>
             </div>
         </div>
-<!-- 訂單資訊頁面 -->
+        <!-- 訂單資訊頁面 -->
         <div class="order" v-if="orderPage">
             <p id="location"><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
             <hr>
@@ -427,7 +439,7 @@ export default{
                 <p>付款期限 : 2024/02/10</p>
             </div>
         </div>
-<!-- 發表回饋頁面 -->
+        <!-- 發表回饋頁面 -->
         <div class="message" v-if="messagePage">
             <p id="location"><i class="fa-solid fa-map-pin"></i>貼文</p>
             <hr>
@@ -448,12 +460,11 @@ export default{
             </div>
             <div class="msgBtnArea">
                 <button type="button" @click="cancle()">取消</button>
-                <button type="button"  data-bs-toggle="modal" 
-                        data-bs-target="#exampleModalmsg">預覽
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalmsg">預覽
                 </button>
             </div>
         </div>
-<!-- 貼文預覽視窗 -->
+        <!-- 貼文預覽視窗 -->
         <div class="modal fade" id="exampleModalmsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog  modal-dialog-centered">
                 <div class="modal-content">
@@ -476,495 +487,585 @@ export default{
                                 <br>
                                 <div class="imgArea">
                                     <img :src="msgavatar" class="msgimg" alt="">
-                                </div>                
+                                </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="messageCreate()">發佈</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"
+                            @click="messageCreate()">發佈</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <Footer/>
+    <Footer />
 </template>
 
 <style lang="scss" scoped>
-    .content{
-        width: 63vw;
-        height: 65vh;
-        margin: auto;
-        margin-top: 6vmin;
+.content {
+    width: 63vw;
+    height: 65vh;
+    margin: auto;
+    margin-top: 6vmin;
+    display: flex;
+    padding-top: 2vmin;
+    position: relative;
+
+    i {
+        margin-right: 2vmin;
+    }
+
+    .buttonArea {
+        width: 15vw;
+        height: 30vh;
         display: flex;
-        padding-top: 2vmin;
-        position: relative;
-        i{
-            margin-right: 2vmin;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 8vmin;
+        margin-right: 18vmin;
+
+        button {
+            width: 13vw;
+            height: 7vh;
+            border: none;
+            border-radius: 5px;
+            color: #797A7E;
+            font-size: 16pt;
+
+            &:hover {
+                background-color: #797A7E;
+                color: white;
+            }
+
+            &:active {
+                background-color: #F7F2E7;
+                color: #797A7E;
+            }
         }
-        .buttonArea{
-            width: 15vw;
-            height: 30vh;
+    }
+
+    .personInfo {
+        width: 38vw;
+        height: 35vh;
+        margin-top: 1%;
+
+        #location {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #82AAE3;
+            margin: 0;
+        }
+
+        .user {
+            .upload_cover {
+                width: 20vmin;
+                height: 20vmin;
+                cursor: pointer;
+                border-radius: 50%;
+                position: absolute;
+                right: 6%;
+                top: -3%;
+                border: 1px solid#797A7E;
+                background-image: url('../../../public/userimg.png');
+                background-size: contain;
+            }
+
+            #upload_input {
+                display: none;
+            }
+        }
+
+        p {
+            font-size: 16pt;
+            color: #797A7E;
+            margin-bottom: 3vmin;
+        }
+
+        .personInfoBtn {
+            width: 30vw;
+            height: 5vh;
             display: flex;
             justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 8vmin;
-            margin-right: 18vmin;
-            button{
-                width: 13vw;
-                height: 7vh;
+            position: absolute;
+            right: 6%;
+            bottom: 10%;
+
+            button {
+                width: 8vw;
+                height: 5vh;
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
-                font-size: 16pt;
-                &:hover{
+                font-size: 13pt;
+
+                &:hover {
                     background-color: #797A7E;
                     color: white;
                 }
-                &:active{
+
+                &:active {
                     background-color: #F7F2E7;
                     color: #797A7E;
                 }
             }
         }
-        .personInfo{
-            width: 38vw;
-            height: 35vh;
-            margin-top: 1%;
-            #location{
-                font-size: 24pt;
-                font-weight: bold;
-                color: #82AAE3;
+    }
+
+    .order {
+        width: 30vw;
+
+        #location {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #82AAE3;
+            margin: 0;
+        }
+
+        p {
+            font-size: 16pt;
+            color: #797A7E;
+            margin-bottom: 3vmin;
+        }
+    }
+
+    .message {
+        width: 30vw;
+        height: 57vh;
+        position: relative;
+
+        #location {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #82AAE3;
+            margin: 0;
+        }
+
+        .topic {
+            p {
                 margin: 0;
-            }           
-            .user{
-                .upload_cover{
-                    width: 20vmin;
-                    height: 20vmin;
-                    cursor: pointer;
-                    border-radius: 50%;
-                    position: absolute;
-                    right: 6%;
-                    top: -3%;
-                    border: 1px solid#797A7E;
-                    background-image: url('../../../public/userimg.png');
-                    background-size: contain;
-                }
-                #upload_input{
-                    display: none;
-                }
-            }
-            p{
                 font-size: 16pt;
                 color: #797A7E;
-                margin-bottom: 3vmin;
             }
-            .personInfoBtn{
+
+            input {
                 width: 30vw;
                 height: 5vh;
-                display: flex;
-                justify-content: space-around;
-                position: absolute;
-                right: 6%;
-                bottom: 10%;
-                button{
-                    width: 8vw;
-                    height: 5vh;
-                    border: none;
-                    border-radius: 5px;
-                    color: #797A7E;
-                    font-size: 13pt;
-                    &:hover{
-                        background-color: #797A7E;
-                        color: white;
-                    }
-                    &:active{
-                        background-color: #F7F2E7;
-                        color: #797A7E;
-                    }
-                }
+                border-radius: 10px;
+                border-style: none;
+                outline: none;
+                background-color: #D9D9D9;
+                padding-left: 2vmin;
+                margin-bottom: 2vmin;
             }
         }
-        .order{
-            width: 30vw;
-            #location{
-                font-size: 24pt;
-                font-weight: bold;
-                color: #82AAE3;
+
+        .text {
+            p {
                 margin: 0;
-            } 
-            p{
                 font-size: 16pt;
                 color: #797A7E;
-                margin-bottom: 3vmin;
+            }
+
+            textarea {
+                width: 30vw;
+                height: 15vh;
+                border-radius: 5px;
+                outline: none;
+                margin-bottom: 1vmin;
+                padding: 1vmin;
             }
         }
-        .message{
-            width: 30vw;
-            height: 57vh;
-            position: relative;
-            #location{
-                font-size: 24pt;
-                font-weight: bold;
-                color: #82AAE3;
+
+        .img {
+            display: flex;
+
+            p {
                 margin: 0;
-            } 
-            .topic{
-                p{
-                    margin: 0;
-                    font-size: 16pt;
-                    color: #797A7E;
-                }
-                input{
-                    width: 30vw;
-                    height: 5vh;
-                    border-radius: 10px;
-                    border-style: none;
-                    outline: none;
-                    background-color: #D9D9D9;
-                    padding-left: 2vmin;
-                    margin-bottom: 2vmin;
-                }
+                font-size: 16pt;
+                color: #797A7E;
             }
-            .text{
-                p{
-                    margin: 0;
-                    font-size: 16pt;
-                    color: #797A7E;
-                }
-                textarea{
-                    width: 30vw;
-                    height: 15vh;
-                    border-radius: 5px;
-                    outline: none;
-                    margin-bottom: 1vmin;
-                    padding: 1vmin;
-                }
+
+            #addicon {
+                font-size: 22pt;
+                color: #797A7E;
+                margin-left: 1vmin;
             }
-            .img{
-                display: flex;
-                p{
-                    margin: 0;
-                    font-size: 16pt;
-                    color: #797A7E;
-                }
-                #addicon{
-                    font-size: 22pt;
-                    color: #797A7E;
-                    margin-left: 1vmin;
-                }
-                .addimg{
-                    display: none;
-                }
-            }
-            .msgBtnArea{
-                width: 20vw;
-                height: 6vh;
-                display: flex;
-                justify-content: space-around;
-                position: absolute;
-                right: 0;
-                bottom: -7%;
-                button{
-                    width: 8vw;
-                    height: 5vh;
-                    border: none;
-                    border-radius: 5px;
-                    color: #797A7E;
-                    font-size: 13pt;
-                    &:hover{
-                        background-color: #797A7E;
-                        color: white;
-                    }
-                    &:active{
-                        background-color: #F7F2E7;
-                        color: #797A7E;
-                    }   
-                }
+
+            .addimg {
+                display: none;
             }
         }
-        .modal-content{
-            .modal-body{
-                .mb-3{
-                    .msgimg{
-                        width: 15vw;
-                        height: 20vh;
-                        border-radius: 5px;
-                    }
+
+        .msgBtnArea {
+            width: 20vw;
+            height: 6vh;
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            right: 0;
+            bottom: -7%;
+
+            button {
+                width: 8vw;
+                height: 5vh;
+                border: none;
+                border-radius: 5px;
+                color: #797A7E;
+                font-size: 13pt;
+
+                &:hover {
+                    background-color: #797A7E;
+                    color: white;
+                }
+
+                &:active {
+                    background-color: #F7F2E7;
+                    color: #797A7E;
                 }
             }
         }
     }
-    @media(max-width:1200px){
-        .content{
+
+    .modal-content {
+        .modal-body {
+            .mb-3 {
+                .msgimg {
+                    width: 15vw;
+                    height: 20vh;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1200px) {
+    .content {
+        width: 80vw;
+        height: 78vh;
+        display: block;
+
+        .buttonArea {
             width: 80vw;
-            height: 78vh;
-            display: block;
-            .buttonArea{
-                width: 80vw;
-                height: 10vh;
-                margin-top: 0;
-                margin-bottom: 12vmin;
-                flex-direction: row;
-                button{
-                    width: 20vw;
+            height: 10vh;
+            margin-top: 0;
+            margin-bottom: 12vmin;
+            flex-direction: row;
+
+            button {
+                width: 20vw;
+                height: 5vh;
+                font-size: 18pt;
+            }
+        }
+
+        .personInfo {
+            width: 75vw;
+            margin: auto;
+
+            #location {
+                font-size: 30pt;
+            }
+
+            .user {
+                .upload_cover {
+                    width: 17vmin;
+                    height: 17vmin;
+                    right: 4%;
+                    top: 20%;
+                }
+            }
+
+            p {
+                font-size: 25pt;
+            }
+
+            .personInfoBtn {
+                width: 60vw;
+
+                button {
+                    width: 18vw;
                     height: 5vh;
                     font-size: 18pt;
                 }
             }
-            .personInfo{
-                width: 75vw;
-                margin: auto;
-                #location{
-                    font-size: 30pt;
-                }
-                .user{
-                    .upload_cover{
-                        width: 17vmin;
-                        height: 17vmin;
-                        right: 4%;
-                        top: 20%;
-                    }
-                }
-                p{
+        }
+
+        .order {
+            width: 75vw;
+            margin: auto;
+
+            #location {
+                font-size: 30pt;
+            }
+
+            p {
+                font-size: 24pt;
+            }
+        }
+
+        .message {
+            width: 75vw;
+            height: 50vh;
+            margin: auto;
+
+            #location {
+                font-size: 30pt;
+            }
+
+            .topic {
+                p {
                     font-size: 25pt;
                 }
-                .personInfoBtn{
-                    width: 60vw;
-                    button{
-                        width: 18vw;
-                        height: 5vh;
-                        font-size: 18pt;
-                    }
+
+                input {
+                    width: 75vw;
+                    height: 4vh;
+                    margin-bottom: 3vmin;
                 }
             }
-            .order{
-                width: 75vw;
-                margin: auto;
-                #location{
-                    font-size: 30pt;
+
+            .text {
+                p {
+                    font-size: 25pt;
                 }
-                p{
+
+                textarea {
+                    width: 75vw;
+                    height: 13vh;
+                    margin-bottom: 3vmin;
+                }
+            }
+
+            .img {
+                p {
+                    font-size: 25pt;
+                }
+
+                #addicon {
+                    margin-top: 1vmin;
+                    font-size: 26pt;
+                }
+            }
+
+            .msgBtnArea {
+                width: 40vw;
+
+                button {
+                    width: 18vw;
+                    height: 4vh;
+                    font-size: 20pt;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:992px) {
+    .content {
+        .personInfo {
+            .user {
+                .upload_cover {
+                    width: 20vmin;
+                    height: 20vmin;
+                }
+            }
+        }
+
+        .order {
+            p {
+                font-size: 22pt;
+            }
+        }
+
+        .message {
+            .msgBtnArea {
+                button {
+                    font-size: 18pt;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    .content {
+        height: 79.5vh;
+
+        .buttonArea {
+            margin-bottom: 17vmin;
+
+            button {
+                width: 24vw;
+                font-size: 12pt;
+            }
+        }
+
+        .personInfo {
+            #location {
+                font-size: 22pt;
+            }
+
+            .user {
+                height: 1vmin;
+
+                .upload_cover {
+                    width: 23vmin;
+                    height: 23vmin;
+                    top: 20%;
+                }
+            }
+
+            p {
+                font-size: 20pt;
+            }
+
+            .personInfoBtn {
+                width: 75vw;
+                right: 3%;
+                bottom: 9%;
+
+                button {
+                    width: 20vw;
+                    font-size: 13pt;
+                }
+            }
+        }
+
+        .order {
+            #location {
+                font-size: 22pt;
+            }
+
+            p {
+                font-size: 17pt;
+            }
+        }
+
+        .message {
+            #location {
+                font-size: 22pt;
+            }
+
+            .topic {
+                p {
+                    font-size: 17pt;
+                }
+
+                input {
+                    margin-bottom: 5vmin;
+                }
+            }
+
+            .text {
+                p {
+                    font-size: 17pt;
+                }
+
+                textarea {
+                    margin-bottom: 5vmin;
+                }
+            }
+
+            .img {
+                p {
+                    font-size: 17pt;
+                }
+
+                #addicon {
                     font-size: 24pt;
                 }
             }
-            .message{
-                width: 75vw;
-                height: 50vh;
-                margin: auto;
-                #location{
-                    font-size: 30pt;
-                }
-                .topic{
-                    p{
-                        font-size: 25pt;
-                    }
-                    input{
-                        width: 75vw;
-                        height: 4vh;
-                        margin-bottom: 3vmin;
-                    }
-                }
-                .text{
-                    p{
-                        font-size: 25pt;
-                    }
-                    textarea{
-                        width: 75vw;
-                        height: 13vh;
-                        margin-bottom: 3vmin;
-                    }
-                }
-                .img{
-                    p{
-                        font-size: 25pt;
-                    }
-                    #addicon{
-                        margin-top: 1vmin;
-                        font-size: 26pt;
-                    }
-                }
-                .msgBtnArea{
-                    width: 40vw;
-                    button{
-                        width: 18vw;
-                        height: 4vh;
-                        font-size: 20pt;
-                    }
+
+            .msgBtnArea {
+                button {
+                    bottom: -9%;
                 }
             }
         }
     }
-    @media(max-width:992px){
-        .content{
-            .personInfo{
-                .user{
-                    .upload_cover{
-                        width: 20vmin;
-                        height: 20vmin;
-                    }
-                }
-            }
-            .order{
-                p{
-                    font-size: 22pt;
-                }
-            }
-            .message{
-                .msgBtnArea{
-                    button{
-                        font-size: 18pt;
-                    }
-                }
+}
+
+@media(max-width:414px) {
+    .content {
+        .buttonArea {
+            button {
+                font-size: 11pt;
             }
         }
-    }
-    @media(max-width:576px){
-        .content{
-            height: 79.5vh;
-            .buttonArea{
-                margin-bottom: 17vmin;
-                button{
-                    width: 24vw;
+
+        .personInfo {
+            #location {
+                font-size: 20pt;
+            }
+
+            .user {
+                .upload_cover {
+                    width: 25vmin;
+                    height: 25vmin;
+                    top: 18%;
+                }
+            }
+
+            p {
+                font-size: 16pt;
+            }
+
+            .personInfoBtn {
+                button {
                     font-size: 12pt;
                 }
             }
-            .personInfo{
-                #location{
-                    font-size: 22pt;
-                }
-                .user{
-                    height: 1vmin;
-                    .upload_cover{
-                        width: 23vmin;
-                        height: 23vmin;
-                        top: 20%;
-                    }
-                }
-                p{
-                    font-size: 20pt;
-                }
-                .personInfoBtn{
-                    width: 75vw;
-                    right: 3%;
-                    bottom: 9%;
-                    button{
-                        width: 20vw;
-                        font-size: 13pt;
-                    }
+        }
+
+        .order {
+            #location {
+                font-size: 20pt;
+            }
+
+            p {
+                font-size: 16pt;
+            }
+        }
+
+        .message {
+            #location {
+                font-size: 20pt;
+            }
+
+            .topic {
+                p {
+                    font-size: 16pt;
                 }
             }
-            .order{
-                #location{
-                    font-size: 22pt;
-                }
-                p{
-                    font-size: 17pt;
+
+            .text {
+                p {
+                    font-size: 16pt;
                 }
             }
-            .message{
-                #location{
+
+            .img {
+                p {
+                    font-size: 16pt;
+                }
+
+                #addicon {
                     font-size: 22pt;
                 }
-                .topic{
-                    p{
-                        font-size: 17pt;
-                    }
-                    input{
-                        margin-bottom: 5vmin;
-                    }
-                }
-                .text{
-                    p{
-                        font-size: 17pt;
-                    }
-                    textarea{
-                        margin-bottom: 5vmin;
-                    }
-                }
-                .img{
-                    p{
-                        font-size: 17pt;
-                    }
-                    #addicon{
-                        font-size: 24pt;
-                    }
-                }
-                .msgBtnArea{
-                    button{
-                        bottom: -9%;
-                    }
+            }
+
+            .msgBtnArea {
+                width: 50vw;
+                bottom: -12%;
+
+                button {
+                    width: 22vw;
+                    font-size: 14pt;
                 }
             }
         }
     }
-    @media(max-width:414px){
-        .content{
-            .buttonArea{
-                button{
-                    font-size: 11pt;
-                }
-            }
-            .personInfo{
-                #location{
-                    font-size: 20pt;
-                }
-                .user{
-                    .upload_cover{
-                        width: 25vmin;
-                        height: 25vmin;
-                        top: 18%;
-                    }
-                }
-                p{
-                    font-size: 16pt;
-                }
-                .personInfoBtn{
-                    button{
-                        font-size: 12pt;
-                    }
-                }
-            }
-            .order{
-                #location{
-                    font-size: 20pt;
-                }
-                p{
-                    font-size: 16pt;
-                }
-            }
-            .message{
-                #location{
-                    font-size: 20pt;
-                }
-                .topic{
-                    p{
-                        font-size: 16pt;
-                    }
-                }
-                .text{
-                    p{
-                        font-size: 16pt;
-                    }
-                }
-                .img{
-                    p{
-                        font-size: 16pt;
-                    }
-                    #addicon{
-                        font-size: 22pt;
-                    }
-                }
-                .msgBtnArea{
-                    width: 50vw;
-                    bottom: -12%;
-                    button{
-                        width: 22vw;
-                        font-size: 14pt;
-                    }
-                }
-            }
-        }
-    }
-</style>
+}</style>
