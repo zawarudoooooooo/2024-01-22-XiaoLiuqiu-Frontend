@@ -1,5 +1,7 @@
 <script>
 import Footer from '../../../components/Footer.vue';
+import swal from 'sweetalert';
+import axios from 'axios';
 export default{
     data(){
         return{
@@ -15,11 +17,182 @@ export default{
             ischecked9:false,
             ischecked10:false,
             ischecked11:false,
+            exxtra:[],
+            test:"",
+            order:"",
+            total:0,
+            total1:0,
+            Price:0,
+            startDate:"",
+            endDate:"",
+            today:new Date(),
+            paymentMethod:"請選擇",
+            cookie:"",
+            name:"",
+            roomId:"",
+            arr:[],
+            exArr:[]
         }
     },
+    mounted() {
+        if(document.cookie!=""){
+            this.cookie=document.cookie.split("=")[1];
+            axios({
+                url:'http://localhost:8080/member/member',
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                params:{
+                    account:this.cookie
+                },
+                data:{
+                },
+                }).then(res=>{
+                    res.data.memberList.forEach(item=>{
+                        this.name=item.memberName
+                    })
+                })
+        }
+        
+
+        
+
+        this.order=this.info
+        console.log(this.order);
+        this.order.forEach(element => {
+            this.roomId=element.roomId
+            this.total1=element.roomPrice
+            this.total=element.roomPrice
+        });
+        this.startDate=this.StartDate
+        this.endDate=this.EndDate
+
+        if(this.StartDate==""){
+            let currentYear = this.today.getFullYear();
+            let currentMonth = String(this.today.getMonth() + 1).padStart(2, '0');
+            let currentDay = String(this.today.getDate()).padStart(2, '0');
+            let currentDateStr = `${currentYear}-${currentMonth}-${currentDay}`;
+            this.startDate=currentDateStr
+        }
+
+        setInterval(() => {
+            this.exxtraClick();
+        }, 100); 
+
+    },
+    props:[
+        "info",
+        "StartDate",
+        "EndDate"
+    ],
     methods:{
+        booking(){
+            // console.log(this.paymentMethod);
+            this.exArr=[]
+            this.exxtra.forEach(item=>{
+                this.exArr.push(item.split("(+")[0])
+            })
+            this.arr.push({extraName:JSON.stringify(this.exArr),extraPrice:this.Price})
+            // const test=this.arr
+            console.log(JSON.stringify(this.arr));
+            if(this.paymentMethod=="請選擇"){
+                swal("錯誤", "請選擇付款方式", "error");
+                return
+            }
+            if(this.startDate==0||this.endDate==0){
+                swal("錯誤", "請輸入入住日期或者退房日期", "error");
+                return
+            }
+            axios({
+            url:'http://localhost:8080/order/ordersCreate',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },  
+            data:{
+                memberName:this.name,
+                room_id:this.roomId,
+                order_item: this.arr,
+                start_date:this.startDate,
+                end_date:this.endDate,
+                order_payment:this.paymentMethod
+            },
+            }).then(res=>{
+                console.log(res.data);
+            }).catch(error => {
+                console.error( error);
+            })
+
+            swal("訂購成功", "請至信箱查看明細", "success");
+            this.$router.push('/')
+        },
+        cancle(){
+            this.$router.push('/FrontSearch')
+        },
+        exxtraClick(){
+            // this.total=0
+            // // console.log(this.order);
+            // this.order.forEach(element => {
+            // this.total+=element.roomPrice
+            // });
+            this.order.forEach(order=>{
+                this.Price=0
+                // console.log(order.roomName);
+                let roomName=order.roomName.slice(-3)
+                // console.log(roomName);
+                if(this.exxtra.length!==0){
+                    if(roomName==="雙人房"){
+                        this.exxtra.forEach(item=>{
+                            let breakfast = item.split("(+")[0];
+                            let breakfast1 = item.split("(+")[1];
+                            let price = parseFloat(breakfast1.split("/")[0]);
+                            if(breakfast==='摩托車'){
+                                this.Price+=price
+                                return
+                            }
+                                // console.log(price*2);
+                                this.Price+=(price*2)
+
+                            // console.log(price);
+                            // console.log(item);
+                        })
+                    }
+                    if(roomName==="家庭房"){
+                        this.exxtra.forEach(item=>{
+                            let breakfast = item.split("(+")[0];
+                            let breakfast1 = item.split("(+")[1];
+                            let price = parseFloat(breakfast1.split("/")[0]);
+                            if(breakfast==='摩托車'){
+                                this.Price+=(price*2)
+                                return
+                            }
+                                // console.log(price*2);
+                                this.Price+=(price*4)
+
+                            // console.log(price);
+                            // console.log(item);
+                        })
+                    }
+                    return
+                }
+                // console.log(this.total);
+            })
+            this.total=this.total1
+            this.total += this.Price
+        },
+        Click(){
+            if(this.startDate==0||this.endDate==0){
+                swal("錯誤", "請輸入入住日期或者退房日期", "error");
+                return
+            }
+            this.exxtraClick()
+        },
+
         clicked(){
             this.ischecked=!this.ischecked
+            // this.exxtra.push(this.value)
+            // showExtra.innerText=this.exxtra
         },
         clicked1(){
             this.ischecked1=!this.ischecked1
@@ -62,114 +235,239 @@ export default{
 </script>
 
 <template>
-    <div class="content">
+    <div class="date">
+        <div class="checkin">
+            <p>入住日期</p>
+            <input type="date" v-model="this.startDate" v-if="this.StartDate!=''"  disabled>
+            <input type="date" v-model="this.startDate"  v-else disabled>
+        </div>
+        <div class="checkout">
+            <p>退房日期</p>
+            <input type="date" v-model="this.endDate" v-if="this.EndDate!=''" disabled>
+            <input type="date" v-model="this.endDate" v-else>
+        </div>
+        </div>
+    <div class="content" v-for="item in this.order">
         <div class="show">
-            <img src="../../../../public/room/double.jpg" alt="">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../../public/room/D/double1-1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+
+            <!-- <img src="../../../../public/room/double.jpg" alt=""> -->
             <div class="text">
                 <div class="name">
-                    <p>舒適雙人房</p>
-                    <p>$2500</p>
+                    <p>{{item.roomName}}</p>
+                    <p>${{item.roomPrice}}</p>
                 </div>
                 <hr>
                 <div class="extra">
                     <p>加購項目</p>
-                    <button type="button" @click="clicked()" :class="{check:ischecked}">早餐(+200/人)</button>
+                    <input type="checkbox" id="uno" value="早餐(+200/人)" v-model="exxtra">
+                    <label for="uno">早餐(+200/人)</label>
+                    <input type="checkbox" id="dos" value="來回船票(+400/全票)" v-model="exxtra">
+                    <label for="dos">來回船票(+400/全票)</label>
                     <br>
-                    <button type="button" @click="clicked1()" :class="{check1:ischecked1}">來回船票(+400/全票)</button>
-                    <button type="button" @click="clicked2()" :class="{check2:ischecked2}">來回船票(+200/半票)</button>
-                    <button type="button" @click="clicked3()" :class="{check3:ischecked3}">摩托車(+300/天)</button>
-                    <button type="button" @click="clicked4()" :class="{check4:ischecked4}">三大風景區門票(+100/人)</button>
-                    <button type="button" @click="clicked5()" :class="{check5:ischecked5}">鹿粼梅花鹿園區門票(+220/全票)</button>
-                    <button type="button" @click="clicked6()" :class="{check6:ischecked6}">鹿粼梅花鹿園區門票(+50/半票)</button>
+                    <!-- <input type="checkbox" id="tres" value="來回船票(+200/半票)" v-model="exxtra">
+                    <label for="tres">來回船票(+200/半票)</label> -->
+                    <input type="checkbox" id="cuatro" value="摩托車(+300/天)" v-model="exxtra">
+                    <label for="cuatro">摩托車(+300/天)</label>
+                    <input type="checkbox" id="cinco" value="三大風景區門票(+100/人)" v-model="exxtra">
+                    <label for="cinco">三大風景區門票(+100/人)</label>
+                    <!-- <br>
+                    <input type="checkbox" id="seis" value="鹿粼梅花鹿園區門票(+220/全票)" v-model="exxtra">
+                    <label for="seis">鹿粼梅花鹿園區門票(+220/全票)</label>
                     <br>
-                    <button type="button" @click="clicked7()" :class="{check7:ischecked7}">浮潛(+400/人)</button>
-                    <button type="button" @click="clicked8()" :class="{check8:ischecked8}">獨木舟(+600/人)</button>
-                    <button type="button" @click="clicked9()" :class="{check9:ischecked9}">透明獨木舟(+800/人)</button>
-                    <button type="button" @click="clicked10()" :class="{check10:ischecked10}">SUP立槳(+1000/兩人一板)</button>
-                    <button type="button" @click="clicked11()" :class="{check11:ischecked11}">SUP立槳(+1200/一人一板)</button>
+                    <input type="checkbox" id="siete" value="鹿粼梅花鹿園區門票(+50/半票)" v-model="exxtra">
+                    <label for="siete">鹿粼梅花鹿園區門票(+50/半票)</label>
+                    <br> -->
+                    <br>
+                    <input type="checkbox" id="ocho" value="浮潛(+400/人)" v-model="exxtra">
+                    <label for="ocho">浮潛(+400/人)</label>
+                    <br>
+                    <input type="checkbox" id="nueve" value="獨木舟(+600/人)" v-model="exxtra">
+                    <label for="nueve">獨木舟(+600/人)</label>
+                    <input type="checkbox" id="dies" value="透明獨木舟(+800/人)" v-model="exxtra">
+                    <label for="dies">透明獨木舟(+800/人)</label>
+                    <br>
+                    <input type="checkbox" id="once" value="SUP立槳(+1000/兩人一板)" v-model="exxtra">
+                    <label for="once">SUP立槳(+1000/兩人一板)</label>
+                    <input type="checkbox" id="doce" value="SUP立槳(+1200/一人一板)" v-model="exxtra">
+                    <label for="doce">SUP立槳(+1200/一人一板)</label>
                 </div>
-                <button type="button" id="buyBtn">確認</button>
+            </div>
+        </div>
+        <div class="cart">
+            <ul id="ul">
+                <li>
+                    <span><i class="fa-solid fa-cart-plus"></i>選取項目</span>
+                </li>
+                <ul>
+                    <li v-for="item in exxtra">{{ item }}
+                    </li>
+                </ul>
+            </ul>
+            <div class="total">
+                <p><i class="fa-solid fa-dollar-sign"></i>總計 : {{this.total}} 元</p>
+            </div>
+            <div class="buttonArea">
+                <button type="button" @click="cancle()">取消</button>
+                <button type="button" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal" @click="exxtraClick()">預覽
+                </button>
             </div>
         </div>
     </div>
-    <Footer />
+<!-- 訂購預覽視窗 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">訂購預覽</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form v-for="item in this.order">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">訂購項目 :</label>
+                                <p>{{item.roomName}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">入住日期 :</label>
+                                <p>{{this.startDate}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">退房日期 :</label>
+                                <p>{{this.endDate}}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">加購項目 :</label>
+                                <p v-for="exxItem in exxtra">{{ exxItem.split("(+")[0] }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">總金額 :</label>
+                                <span>{{ this.total }}元</span>
+                            </div>
+                            <div class="mb-3">
+                                <!-- <input type="checkbox" value="true"> -->
+                                <label for="recipient-name" class="col-form-label">支付方式</label>
+                                <select v-model="this.paymentMethod">
+                                    <option >請選擇</option>
+                                    <option value="true">現場支付</option>
+                                    <option value="false">線上支付</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="booking()">確認訂購</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- <Footer /> -->
 </template>
 
 <style lang="scss" scoped> 
-    .content{
-        width: 90vw;
-        height: 65vh;
-        margin: auto;
-        margin-top: 6vmin;
-        .check{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check1{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check2{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check3{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check4{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check5{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check6{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check7{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check8{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check9{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check10{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .check11{
-            background-color: #BFEAF5;
-            color: white;
-        }
-        .show{
-            width: 60vw;
-            height: 70vh;
-            margin: auto;
-            display: flex;
+    .date{
+        width: 60vw;
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        margin-top: 7vmin;
+        margin-left: 5vmin;
+        input{
+            width: 20vw;
+            height: 5vh;
             border-radius: 10px;
-            margin-top: 5vmin;
-            padding: 3vmin;
+            border-style: none;
+            outline: none;
+            background-color: #e3f6f5;
+            padding-left: 2vmin;
+            padding-right: 2vmin;
+            color: #797A7E;
+            box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
+        }
+        p{
+            margin: 0;
+            font-size: 16pt;
+            color: #797A7E;
+            text-align: center;
+            margin-right: 2vmin;
+        }
+        .checkin{
+            display: flex;
+            align-items: center;
+        }
+        .checkout{
+            display: flex;
+            align-items: center;
+        }
+    }
+    .content{
+        width: 95vw;
+        height: 66vh;
+        margin: auto;
+        display: flex;
+        position: relative;
+        .show{
+            width: 68vw;
+            height: 50vh;
+            display: flex;
+            justify-content: space-around;
+            border-radius: 10px;
+            margin-top: 8vmin;
             position: relative;
-            img{
+            #carouselExample{
                 width: 23vw;
-                height: 28vh;
+                height: 33vh;
+                margin-top: 6vmin;
                 border-radius: 5px;
-                margin-right: 5vmin;
-                transition: all linear 0.3s;
-                &:hover{
-                    opacity: 0.7;
-                    box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
+                box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                .carousel-inner{
+                    width: 23vw;
+                    border-radius: 5px;
+                    .carousel-item{
+                        width: 23vw;
+                        border-radius: 5px;
+                        img{
+                            width: 23vw;
+                            height: 33vh;
+                            border-radius: 5px;
+                            transition: all linear 0.3s;
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                            &:active{
+                                opacity: 1.0;
+                            }
+                        }
+                    }
                 }
-                &:active{
-                    opacity: 1.0;
+                .carousel-control-prev-icon{
+                    width: 1.5rem;
+                }
+                .carousel-control-next-icon{
+                    width: 1.5rem;
                 }
             }
             .text{
@@ -190,47 +488,85 @@ export default{
                     }
                 }
                 .extra{
+                    width: 36vw;
                     p{
                         color: #797A7E;
                         font-size: 16pt;
                         font-weight: bold;
                         margin-top: 1vmin;
                     }
-                    button{
-                        height: 5vh;
-                        border-radius: 5px;
+                    label{
                         color: #797A7E;
-                        border: 1px dotted #797A7E;
-                        margin-right: 2vmin;
+                        font-size: 15.5pt;
+                        margin-right: 1.1vmin;
                         margin-bottom: 1vmin;
-                        &:hover{
-                            background-color: #797A7E;
-                            color: white;
-                        }
-                        &:active{
-                            background-color: #F7F2E7;
-                            color: #797A7E;
-                        }
+                    }
+                    input{
+                        margin-right: 1vmin;
                     }
                 }
             }
         }
-        #buyBtn{
-            width: 4vw;
-            height: 4.5vh;
-            border: none;
-            border-radius: 5px;
+        .cart{
+            width: 20vw;
+            height: 70vh;
             color: #797A7E;
-            position: absolute;
-            right: 4%;
-            bottom: 15%;
-            &:hover{
-                background-color: #797A7E;
-                color: white;
+            font-size: 13pt;
+            position: relative;
+            top: -8%;
+            right: -3%;
+            #ul{
+                list-style: none;
+                padding-left: 1vmin;
             }
-            &:active{
-                background-color: #F7F2E7;
-                color: #797A7E;
+            li{
+                margin-bottom: 0.5vmin;
+                font-size: 14.5pt;
+            }
+            span{
+                font-size: 18pt;
+                font-weight: bold;
+                color: #82AAE3;
+            }
+            i{
+                font-size: 20pt;
+                color: #82AAE3;
+                margin-right: 1vmin;
+            }
+            .total{
+                color: #82AAE3;
+                position: absolute;
+                bottom: 16%;
+                left: 5%;
+                p{
+                    font-size: 16pt;
+                    font-weight: bold;
+                }
+            }
+            .buttonArea{
+                width: 15vw;
+                height: 6vh;
+                display: flex;
+                justify-content: space-between;
+                position: absolute;
+                right: 18%;
+                bottom: 3%;
+                button {
+                    width: 5vw;
+                    height: 5vh;
+                    border: none;
+                    border-radius: 5px;
+                    color: #797A7E;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+                    &:hover {
+                        background-color: #797A7E;
+                        color: white;
+                    }
+                    &:active {
+                        background-color: #F7F2E7;
+                        color: #797A7E;
+                    }
+                }
             }
         }
     }

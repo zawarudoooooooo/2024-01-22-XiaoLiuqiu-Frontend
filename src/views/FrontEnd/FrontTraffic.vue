@@ -3,7 +3,6 @@ import Footer from '../../components/Footer.vue';
 export default{
     data(){
         return{
-
         }
     },
     components:{
@@ -133,7 +132,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 146vh;
+        height: 165vh;
         margin: auto;
         margin-top: 4vmin;
         hr{
@@ -157,6 +156,7 @@ export default{
                 height: 53vh;
                 border-radius: 10px;
                 transition: all ease 0.5s;
+                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                 &:hover{
                     opacity: 0.6;
                 }
@@ -166,6 +166,11 @@ export default{
             }
             .traffic{
                 margin-left: 2vmin;
+                background-color: white;
+                border: 1px solid lightgray;
+                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
+                border-radius: 5px;
+                padding: 1.5vmin;
                 ul{
                     li{
                         color: #797A7E;
@@ -176,14 +181,16 @@ export default{
         }
         .ferry{
             width: 90vw;
+            height: 63vh;
             display: flex;
             justify-content: space-around;
             .time{
                 width: 28vw;
                 border: 1px solid lightgray;
-                box-shadow: 1px 1px 1px gray;
+                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                 border-radius: 5px;
                 padding-top: 1.5vmin;
+                background-color: white;
                 #ferrytime{
                     color: #797A7E;
                     font-size: 18pt;
@@ -207,11 +214,13 @@ export default{
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1vmin;
+                margin-top: 3vmin;
                 img{
                     width: 22vw;
                     height: 27vh;
                     border-radius: 5px;
                     transition: all ease 0.5s;
+                    box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                     &:hover{
                         opacity: 0.6;
                     }
@@ -224,18 +233,19 @@ export default{
     }
     @media(max-width:1200px){
         .content{
-            height: 81vh;
+            height: 87vh;
             margin-top: 2vmin;
             hr{
                 margin-bottom: 2vmin;
                 margin-top: 0;
             }
             .location{
-                height: 30vh;
+                height: 39vh;
+                margin-bottom: 1vmin;
                 img{
                     width: 40vw;
                     height: 20vh;
-                    margin-top: 5vmin;
+                    margin-top: 8vmin;
                 }
                 .traffic{
                     ul{
@@ -246,23 +256,26 @@ export default{
                 }
             }
             .ferry{
-                height: 30vh;
+                height: 32vh;
                 .imgArea{
                     height: 25vh;
+                    margin-top: 3vmin;
                     img{
                         height: 14vh;
                     }
                 }
-
             }
         }
     }
     @media(max-width:992px){
         .content{
-            height: 81vh;
+            height: 90vh;
             margin-top: 2vmin;
             .location{
                 margin-bottom: 3vmin;
+                img{
+                    margin-top: 10vmin;
+                }
                 .traffic{
                     ul{
                         li{
@@ -285,7 +298,7 @@ export default{
                     }
                 }
                 .imgArea{
-                    margin-top: 4vmin;
+                    margin-top: 6vmin;
                     img{
                         height: 12vh;
                     }

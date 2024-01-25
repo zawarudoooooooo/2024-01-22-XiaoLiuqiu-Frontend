@@ -23,7 +23,7 @@ export default{
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                withCredentials:true,
+                withCredentials: true,
                 data: {
                     account:this.account,
                     password:this.pwd,
@@ -31,12 +31,12 @@ export default{
             }).then(res => {
 
                 if(res.data.rtncode!= "SUCCESSFUL"){
-                    swal("資料有誤", "帳號或密碼有誤請再次確認", "error");
+                    swal("資料有誤", "帳號或密碼有誤，請再次確認", "error");
                     return
                 }
                 
                 swal({
-                        title: '登錄成功',
+                        title: '登入成功',
                         text: '歡迎回來',
                         icon: 'success',
                         buttons: '確認',
@@ -62,7 +62,7 @@ export default{
 <template>
     <div class="content">
         <div class="title">
-            <p>員工登錄<i class="fa-solid fa-user-gear"></i></p>
+            <p>員工登入<i class="fa-solid fa-user-gear"></i></p>
         </div>
         <div class="account">
             <p>帳號</p>
@@ -74,7 +74,7 @@ export default{
         </div>
         <div class="buttonArea">
             <button type="button" @click="goFrontEntry()">取消</button>
-            <button type="button" @click="goBack()">登錄</button>
+            <button type="button" @click="goBack()">登入</button>
         </div>
     </div>
 </template>
@@ -93,9 +93,10 @@ export default{
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #D9D9D9;
+            background-color: #e3f6f5;
             padding-left: 2vmin;
             margin-bottom: 4vmin;
+            box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         .title{
             font-size: 28pt;
@@ -121,13 +122,14 @@ export default{
             width: 20vw;
             display: flex;
             justify-content: space-around;
-            margin-top: 3vmin;
+            margin-top: 6vmin;
             button{
                 width: 8vw;
                 height: 5vh;
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
                     background-color: #797A7E;
                     color: white;
