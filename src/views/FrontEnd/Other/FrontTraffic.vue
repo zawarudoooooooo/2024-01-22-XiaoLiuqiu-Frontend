@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../components/Footer.vue';
+import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -18,7 +18,7 @@ export default{
         </div>
         <hr>
         <div class="location">
-            <img src="../../../public/map.jpg" alt="">
+            <img src="../../../../public/map.jpg" alt="">
             <div class="traffic">
                 <ul>
                     <li>
@@ -119,10 +119,10 @@ export default{
                 </div>
             </div>
             <div class="imgArea">
-                <img src="../../../public/ferry/IMG_1430.JPG" alt="">
-                <img src="../../../public/ferry/IMG_1413.JPG" alt="">
-                <img src="../../../public/ferry/IMG_1150.JPG" alt="">
-                <img src="../../../public/ferry/IMG_1143.JPG" alt="">
+                <img src="../../../../public/ferry/IMG_1430.JPG" alt="">
+                <img src="../../../../public/ferry/IMG_1413.JPG" alt="">
+                <img src="../../../../public/ferry/IMG_1150.JPG" alt="">
+                <img src="../../../../public/ferry/IMG_1143.JPG" alt="">
             </div>
         </div>
     </div>

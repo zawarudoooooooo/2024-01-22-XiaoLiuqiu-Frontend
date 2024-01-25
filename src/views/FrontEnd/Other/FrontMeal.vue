@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../components/Footer.vue';
+import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -24,7 +24,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/turtle.jpg" alt="...">
+                        <img src="../../../../public/meal/turtle.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -56,7 +56,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/cheese.jpg" alt="...">
+                        <img src="../../../../public/meal/cheese.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -85,7 +85,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/ice.jpg" alt="...">
+                        <img src="../../../../public/meal/ice.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -114,7 +114,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/donut.jpg" alt="...">
+                        <img src="../../../../public/meal/donut.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -143,7 +143,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/smallcheese.jpg" alt="...">
+                        <img src="../../../../public/meal/smallcheese.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -172,7 +172,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/mr.jpg" alt="...">
+                        <img src="../../../../public/meal/mr.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -201,7 +201,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/banto.jpg" alt="...">
+                        <img src="../../../../public/meal/banto.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -230,7 +230,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/bula.jpg" alt="...">
+                        <img src="../../../../public/meal/bula.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

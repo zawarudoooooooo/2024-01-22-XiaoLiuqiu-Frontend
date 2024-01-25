@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../components/Footer.vue';
+import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -42,7 +42,7 @@ export default{
                 </ul>
             </div>
             <div class="img">
-                <img src="../../../public/about.jpeg" alt="">
+                <img src="../../../../public/about.jpeg" alt="">
             </div>
         </div>
         <div class="title">
@@ -51,11 +51,11 @@ export default{
         <hr>
         <div class="event">
             <div class="img">
-                <img src="../../../public/news/nm.jpg" alt="">
-                <img src="../../../public/news/nm1.jpg" alt="">
-                <img src="../../../public/news/nm2.jpg" alt="">
-                <img src="../../../public/news/nm3.jpg" alt="">
-                <img src="../../../public/news/nm4.jpg" alt="">
+                <img src="../../../../public/news/nm.jpg" alt="">
+                <img src="../../../../public/news/nm1.jpg" alt="">
+                <img src="../../../../public/news/nm2.jpg" alt="">
+                <img src="../../../../public/news/nm3.jpg" alt="">
+                <img src="../../../../public/news/nm4.jpg" alt="">
             </div>
             <ul>
                 <li

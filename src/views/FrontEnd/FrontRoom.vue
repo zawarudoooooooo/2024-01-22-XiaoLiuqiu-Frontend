@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
-import Footer from '../../../components/Footer.vue';
-import DoubleBooking from './DoubleBooking.vue'
+import Footer from '../../components/Footer.vue';
+import FrontBooking from './FrontBooking.vue'
 export default{
     data(){
         return{
@@ -29,20 +29,19 @@ export default{
     },
     mounted() {
 
-        // 設定開始時間和結束時間
-var startTime = new Date('2024-01-22T00:00:00');
-var endTime = new Date('2024-01-23T23:59:59'); // 將結束時間設置到當天的最後一秒
+    // 設定開始時間和結束時間
+        var startTime = new Date('2024-01-22T00:00:00');
+        var endTime = new Date('2024-01-23T23:59:59'); // 將結束時間設置到當天的最後一秒
 
-// 取得今天的日期和時間
-var currentTime = new Date();
+    // 取得今天的日期和時間
+        var currentTime = new Date();
 
-// 判斷是否在範圍內
-if (startTime <= currentTime && currentTime <= endTime) {
-    console.log("今天的日期在開始時間和結束時間之間。");
-} else {
-    console.log("今天的日期不在範圍內。");
-}
-
+    // 判斷是否在範圍內
+        if (startTime <= currentTime && currentTime <= endTime) {
+            console.log("今天的日期在開始時間和結束時間之間。");
+        } else {
+            console.log("今天的日期不在範圍內。");
+        }
 
         // this.search();
         this.List.forEach(element => {
@@ -83,15 +82,15 @@ if (startTime <= currentTime && currentTime <= endTime) {
                     
                     const availableRooms = [];
                     this.roomList.forEach(room => {
-                        room.roomIntroduce= JSON.parse(room.roomIntroduce)
-                        console.log(room);
+                        console.log(room.roomIntroduce );
+                        // room.roomIntroduce= JSON.parse(room.roomIntroduce)
+                        // console.log(room);
                         // 檢查房間是否已經被訂購
                         const isBooked = this.orderRoomId.some(order => {
                             const nStartDate = new Date(order.startDate);
                             const nEndDate = new Date(order.endDate);
                             return order.roomId === room.roomId && nStartDate <= this.today && nEndDate >= this.today;
                         });
-                    
                         // 如果沒有被訂購，加入可用房間列表
                         if (!isBooked) {
                             availableRooms.push(room);
@@ -101,9 +100,6 @@ if (startTime <= currentTime && currentTime <= endTime) {
                     console.log(this.roomList);
                 })
             })
-
-        
-            
         console.log(this.List);
     },
     props:[
@@ -126,50 +122,46 @@ if (startTime <= currentTime && currentTime <= endTime) {
         },
         search(){
 
-                let mEndDate=new Date(this.mEndDate)
-                let mStartDate=new Date(this.mStartDate)
-                let enDate=mEndDate.getUTCFullYear()+'-'+(mEndDate.getMonth()+1)+'-'+mEndDate.getDate()
-                let stDate=mStartDate.getUTCFullYear()+'-'+(mStartDate.getMonth()+1)+'-'+mStartDate.getDate()
+            let mEndDate=new Date(this.mEndDate)
+            let mStartDate=new Date(this.mStartDate)
+            let enDate=mEndDate.getUTCFullYear()+'-'+(mEndDate.getMonth()+1)+'-'+mEndDate.getDate()
+            let stDate=mStartDate.getUTCFullYear()+'-'+(mStartDate.getMonth()+1)+'-'+mStartDate.getDate()
 
-                this.roomList=[]
-                this.roomList1.forEach(room=>{
-                    let isMatched = false;
-                    for (let order of this.orderRoomId) {
-                    if (room.roomId != order.roomId) {
+            this.roomList=[]
+            this.roomList1.forEach(room=>{
+            let isMatched = false;
+                for (let order of this.orderRoomId) {
+                if (room.roomId != order.roomId) {
                         
-                            this.roomList.push(room)
-                            console.log(this.roomList);
+                    this.roomList.push(room)
+                    console.log(this.roomList);
+                    isMatched = true;
+                    return
+                }
+                let nStartDate = new Date(order.startDate);
+                let nEndDate = new Date(order.endDate);
+                let startDate = nStartDate.getUTCFullYear() + '-' + (nStartDate.getMonth() + 1) + '-' + nStartDate.getDate();
+                let endDate = nEndDate.getUTCFullYear() + '-' + (nEndDate.getMonth() + 1) + '-' + nEndDate.getDate();
+                        
+                if(this.mStartDate!=""){
+                    if(stDate<endDate){
+                        isMatched = true;
+                        return
+                    }
+                }
+                    if(this.mEndDate!=""){
+                        if(enDate<endDate){
                             isMatched = true;
                             return
                         }
-                        let nStartDate = new Date(order.startDate);
-                        let nEndDate = new Date(order.endDate);
-                        let startDate = nStartDate.getUTCFullYear() + '-' + (nStartDate.getMonth() + 1) + '-' + nStartDate.getDate();
-                        let endDate = nEndDate.getUTCFullYear() + '-' + (nEndDate.getMonth() + 1) + '-' + nEndDate.getDate();
-                        
-                        
-                        if(this.mStartDate!=""){
-                            if(stDate<endDate){
-                                isMatched = true;
-                                return
-                            }
-                        }
-                        if(this.mEndDate!=""){
-                            if(enDate<endDate){
-                                isMatched = true;
-                                return
-                            }
-                        }
-                        // this.roomList.push(room)
-                        
-                        
                     }
-                    if (!isMatched) {
-                        this.roomList.push(room);
-                    }
-                })
-                console.log(this.roomList);
-                
+                    // this.roomList.push(room)
+            }
+                if (!isMatched) {
+                    this.roomList.push(room);
+                }
+            })
+            console.log(this.roomList);
         },
         goback(){
             this.$emit("goback",this.goback)
@@ -178,14 +170,14 @@ if (startTime <= currentTime && currentTime <= endTime) {
     },
     components:{
         Footer,
-        DoubleBooking
+        FrontBooking
     }
 }
 </script>
 
 <template>
     <div class="content" v-if="!bookingData">
-        <div class="date">
+        <div class="search">
             <div class="checkin">
                 <p>入住日期</p>
                 <input type="date" v-model="this.mStartDate">
@@ -193,12 +185,12 @@ if (startTime <= currentTime && currentTime <= endTime) {
             <div class="checkout">
                 <p>退房日期</p>
                 <input type="date" v-model="this.mEndDate">
-                <button type="button"   @click="search()" >搜尋</button>
             </div>
+            <button type="button" @click="search()" id="searchbtn">搜尋</button>
         </div>
         <!-- <button type="button">回上頁</button> -->
         <div class="show" v-for="(item,index) in this.roomList" >
-            <img src="../../../../room/double.jpg" alt="">
+            <img src="../../../../room/D/double1.jpg" alt="">
             <div class="text" >
                 <div class="name" >
                     <p>{{ item.roomName }}</p>
@@ -208,7 +200,6 @@ if (startTime <= currentTime && currentTime <= endTime) {
                 <div class="description" >
                     <span v-for="introduce in item.roomIntroduce">
                         <!-- {{introduce}} -->
-                            
                             <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
                             <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake" ></i>空調</span>
                             <span v-if="introduce=='平面電視 '"> <i class="fa-solid fa-tv" ></i> 平面電視</span>
@@ -219,26 +210,74 @@ if (startTime <= currentTime && currentTime <= endTime) {
                             <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
                         <!-- {{ introduce }} , -->
                     </span>
-                            
                 </div>
                 <button type="button" @click="booking(item.roomId)">訂購</button>
             </div>
-        
         </div>
         <button type="button" id="backbtn" @click="goback()"><i class="fa-solid fa-arrow-right-to-bracket"></i>返回</button>
     </div>
-    <DoubleBooking v-if="bookingData" :info="this.bookingInfo" :StartDate="this.mStartDate" :EndDate="this.mEndDate"/>
+    <FrontBooking v-if="bookingData" :info="this.bookingInfo" :StartDate="this.mStartDate" :EndDate="this.mEndDate"/>
 </template>
 
 <style lang="scss" scoped> 
     .content{
         width: 90vw;
-        //height: 66vh;
+        height: 66vh;
         margin: auto;
-        //margin-top: 6vmin;
-        //border: 1px solid black;
+        margin-top: 6vmin;
         position: relative;
         overflow: auto;
+        .search{
+            width: 65vw;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 7vmin;
+            margin: auto;
+            input{
+                width: 20vw;
+                height: 5vh;
+                border-radius: 10px;
+                border-style: none;
+                outline: none;
+                background-color: #e3f6f5;
+                padding-left: 2vmin;
+                padding-right: 2vmin;
+                color: #797A7E;
+                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
+            }
+            p{
+                margin: 0;
+                font-size: 16pt;
+                color: #797A7E;
+                text-align: center;
+                margin-right: 2vmin;
+            }
+            .checkin{
+                display: flex;
+                align-items: center;
+            }
+            .checkout{
+                display: flex;
+                align-items: center;
+            }
+            #searchbtn{
+                width: 4vw;
+                height: 4.5vh;
+                border: none;
+                border-radius: 5px;
+                color: #797A7E;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+                &:hover{
+                    background-color: #797A7E;
+                    color: white;
+                }
+                &:active{
+                    background-color: #F7F2E7;
+                    color: #797A7E;
+                }
+            }
+        }
         .show{
             width: 60vw;
             height: 34vh;
@@ -284,35 +323,39 @@ if (startTime <= currentTime && currentTime <= endTime) {
                     }
                 }
                 .description{
-                    p{
+                    span{
                         color: #797A7E;
                         font-size: 16pt;
                         width: 35vw;
                     }
                 }
-            }
-        }
-        button{
-            width: 4vw;
-            height: 4.5vh;
-            border: none;
-            border-radius: 5px;
-            color: #797A7E;
-            position: absolute;
-            right: 5%;
-            bottom: 11%;
-            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
-            &:hover{
-                background-color: #797A7E;
-                color: white;
-            }
-            &:active{
-                background-color: #F7F2E7;
-                color: #797A7E;
+                button{
+                    width: 4vw;
+                    height: 4.5vh;
+                    border: none;
+                    border-radius: 5px;
+                    color: #797A7E;
+                    position: absolute;
+                    right: 5%;
+                    bottom: 11%;
+                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+                    &:hover{
+                        background-color: #797A7E;
+                        color: white;
+                    }
+                    &:active{
+                        background-color: #F7F2E7;
+                        color: #797A7E;
+                    }
+                }
             }
         }
         #backbtn{
             width: 5vw;
+            height: 4.5vh;
+            border: none;
+            border-radius: 5px;
+            color: #797A7E;
             display: flex;
             align-items: center;
             justify-content: space-around;
