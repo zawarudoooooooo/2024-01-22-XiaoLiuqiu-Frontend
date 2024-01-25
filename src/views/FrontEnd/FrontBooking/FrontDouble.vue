@@ -83,6 +83,8 @@ if (startTime <= currentTime && currentTime <= endTime) {
                     
                     const availableRooms = [];
                     this.roomList.forEach(room => {
+                        room.roomIntroduce= JSON.parse(room.roomIntroduce)
+                        console.log(room);
                         // 檢查房間是否已經被訂購
                         const isBooked = this.orderRoomId.some(order => {
                             const nStartDate = new Date(order.startDate);
@@ -204,7 +206,20 @@ if (startTime <= currentTime && currentTime <= endTime) {
                 </div>
                 <hr>
                 <div class="description" >
-                    <p>{{ item.roomIntroduce }}</p>
+                    <span v-for="introduce in item.roomIntroduce">
+                        <!-- {{introduce}} -->
+                            
+                            <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                            <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake" ></i>空調</span>
+                            <span v-if="introduce=='平面電視 '"> <i class="fa-solid fa-tv" ></i> 平面電視</span>
+                            <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi" ></i>Wifi</span>
+                            <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath" ></i>浴缸</span>
+                            <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad" ></i>遊戲機</span>
+                            <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                            <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                        <!-- {{ introduce }} , -->
+                    </span>
+                            
                 </div>
                 <button type="button" @click="booking(item.roomId)">訂購</button>
             </div>

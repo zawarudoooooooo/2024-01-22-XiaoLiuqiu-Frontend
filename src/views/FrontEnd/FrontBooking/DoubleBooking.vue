@@ -35,24 +35,26 @@ export default{
         }
     },
     mounted() {
-        this.cookie=document.cookie.split("=")[1];
-
-        axios({
-            url:'http://localhost:8080/member/member',
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            params:{
-                account:this.cookie
-            },
-            data:{
-            },
-            }).then(res=>{
-                res.data.memberList.forEach(item=>{
-                    this.name=item.memberName
+        if(document.cookie!=""){
+            this.cookie=document.cookie.split("=")[1];
+            axios({
+                url:'http://localhost:8080/member/member',
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                params:{
+                    account:this.cookie
+                },
+                data:{
+                },
+                }).then(res=>{
+                    res.data.memberList.forEach(item=>{
+                        this.name=item.memberName
+                    })
                 })
-            })
+        }
+        
 
         
 
@@ -138,6 +140,7 @@ export default{
                 this.Price=0
                 // console.log(order.roomName);
                 let roomName=order.roomName.slice(-3)
+                // console.log(roomName);
                 if(this.exxtra.length!==0){
                     if(roomName==="雙人房"){
                         this.exxtra.forEach(item=>{
@@ -154,13 +157,14 @@ export default{
                             // console.log(price);
                             // console.log(item);
                         })
-                    }else{
+                    }
+                    if(roomName==="家庭房"){
                         this.exxtra.forEach(item=>{
                             let breakfast = item.split("(+")[0];
                             let breakfast1 = item.split("(+")[1];
                             let price = parseFloat(breakfast1.split("/")[0]);
                             if(breakfast==='摩托車'){
-                                this.Price+=price
+                                this.Price+=(price*2)
                                 return
                             }
                                 // console.log(price*2);

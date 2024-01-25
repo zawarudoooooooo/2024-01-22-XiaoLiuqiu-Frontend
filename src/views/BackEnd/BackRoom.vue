@@ -22,7 +22,13 @@ export default{
             forRoomId:"",
             editstatus:false,
             upDateRoomPrice:"",
-            upDateIntroduce:""
+            upDateIntroduce:"",
+            upRoomId:"",
+            upRoomName:"",
+            
+            isChecked: false,
+
+            introduce:[]
         }
     },
     methods:{
@@ -54,7 +60,7 @@ export default{
             },
             data:{
                 room_id:this.roomId,
-                room_introduce:this.roomIntroduce,
+                room_introduce:JSON.stringify(this.introduce),
                 room_name:this.roomName,
                 room_price:this.roomPrice
             },
@@ -65,20 +71,50 @@ export default{
             }
             })
         },
+        test(){
+            console.log(JSON.stringify(this.introduce));
+        },
         upDateRoom(index){
-            console.log(index);
             this.roomSearch.forEach((item,roomIndex)=>{
                 if(index!=roomIndex){
                     return
                 }
+                // console.log(item);
+                this.upRoomId=item.roomId
+                this.upRoomName=item.roomName
                 this.upDateRoomPrice=item.roomPrice
                 this.upDateIntroduce=item.roomIntroduce
                 this.editstatus=item.open
-                // console.log(item.roomPrice);
-                // console.log(item.roomIntroduce);
-                // console.log(item.open);
             })
+            console.log(this.upRoomId);
+            console.log(this.upRoomName);
+            console.log(this.upDateRoomPrice);
+            console.log(this.upDateIntroduce);
+            console.log(this.editstatus);
             // console.log(this.roomSearch);
+        },
+        upDate(){
+            axios({
+            url:'http://localhost:8080/room/update',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+            },
+            data:{
+                room_id:this.upRoomId,
+                room_introduce:this.upDateIntroduce,
+                room_name:this.upRoomName,
+                room_price:this.upDateRoomPrice,
+                is_open:this.editstatus
+            },
+            }).then(res=>{
+            console.log(res.data);
+            if(res.data.rtnCode==200){
+                swal("成功", "已新增房間", "success");
+            }
+            })
         },
 //頁面切換
         simpleOpen(){
@@ -123,6 +159,7 @@ export default{
             }).then(res=>{
             this.roomSearch=""
             this.roomSearch=res.data.roomList
+            console.log(this.roomSearch);
             })
         },
         familyOpen(){
@@ -144,6 +181,7 @@ export default{
             }).then(res=>{
             this.roomSearch=""
             this.roomSearch=res.data.roomList
+            console.log(this.roomSearch);
             })
         },
         roomIsoren(open,roomId){
@@ -244,7 +282,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
             </div>
-            <div class="room" v-for="item in this.roomSearch">
+            <div class="room" v-for="(item,index) in this.roomSearch">
                 <img src="../../../../public/room/double.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
@@ -269,7 +307,7 @@ export default{
                     </div>
                     <div class="edit">
                         <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
-                            data-bs-target="#edit">編輯</p>
+                            data-bs-target="#edit" @click="upDateRoom(index)">編輯</p>
                     </div>
                 </div>
             </div>
@@ -279,7 +317,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
-            <div class="room" v-for="item in this.roomSearch">
+            <div class="room" v-for="(item,index) in this.roomSearch">
                 <img src="../../../../public/room/family.jpg" alt="" style="width: 23vw;height: 28vh;">
                 <div class="text">
                     <div class="name">
@@ -305,7 +343,7 @@ export default{
                     </div>
                     <div class="edit">
                         <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
-                            data-bs-target="#edit" >編輯</p>
+                            data-bs-target="#edit" @click="upDateRoom(index)">編輯</p>
                     </div>
                 </div>
             </div>
@@ -333,6 +371,28 @@ export default{
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間編號 :</label>
                                 <input type="text" class="form-control" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">房間說明 :</label>
+                                <br>
+                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.introduce">
+                                <label for="uno">獨立衛浴</label>
+                                <input type="checkbox" id="uno2" value="空調" v-model="this.introduce">
+                                <label for="uno">空調 </label>
+                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.introduce">
+                                <label for="uno">平面電視 </label>
+                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.introduce">
+                                <label for="uno">Wifi</label>
+                                <br>
+                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.introduce">
+                                <label for="uno">浴缸</label>
+                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.introduce">
+                                <label for="uno">遊戲機</label>
+                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.introduce">
+                                <label for="uno">床頭插座</label>
+                                <input type="checkbox" id="uno7" value="景觀" v-model="this.introduce">
+                                <label for="uno">景觀</label>
+                                <button type="button" @click="test()">測試</button>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間價格 :</label>
@@ -369,9 +429,24 @@ export default{
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間說明 :</label>
                                 <br>
-                                <small>*多筆請以逗號做分隔</small>
+                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.isChecked" :checked="introduce.includes('獨立衛浴')">
+                                <label for="uno">獨立衛浴</label>
+                                <input type="checkbox" id="uno2" value="空調" v-model="this.introduce">
+                                <label for="uno">空調 </label>
+                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.introduce">
+                                <label for="uno">平面電視 </label>
+                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.introduce">
+                                <label for="uno">Wifi</label>
                                 <br>
-                                <textarea v-model="this.upDateIntroduce" placeholder="請輸入欲更改說明"></textarea>
+                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.introduce">
+                                <label for="uno">浴缸</label>
+                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.introduce">
+                                <label for="uno">遊戲機</label>
+                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.introduce">
+                                <label for="uno">床頭插座</label>
+                                <input type="checkbox" id="uno7" value="景觀" v-model="this.introduce">
+                                <label for="uno">景觀</label>
+                                <button type="button" @click="test()">測試</button>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">更改狀態 :</label>
@@ -386,7 +461,7 @@ export default{
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">更改</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="upDate()">更改</button>
                     </div>
                 </div>
             </div>
