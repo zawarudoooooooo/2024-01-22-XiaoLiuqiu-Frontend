@@ -107,7 +107,7 @@ export default {
         </div>
     </div>
 <!-- 訂購項目model -->
-    <div class="modal fade" id="orderItem" tabindex="-1" aria-labelledby="orderItem" aria-hidden="true">
+    <!-- <div class="modal fade" id="orderItem" tabindex="-1" aria-labelledby="orderItem" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -133,7 +133,7 @@ export default {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 <!-- 加購項目model -->
     <div class="modal fade" id="roomId" tabindex="-1" aria-labelledby="orderItem" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -145,11 +145,11 @@ export default {
                 <div class="modal-body">
                     <form v-for="item in orderItem">
                         <div class="mb-3" >
-                            <label for="recipient-name" class="col-form-label">加購項目 :</label>
+                            <label for="recipient-name" class="col-form-label">項目 :</label>
                             <span>{{ item.extraName }}</span>
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">加購價格 :</label>
+                            <label for="recipient-name" class="col-form-label">價格 :</label>
                             <span>${{ item.extraPrice }}元</span>
                         </div>
                     </form>
@@ -168,7 +168,6 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        //text-align: center;
         margin-top: 4vmin;
         margin-left: 52%;
         i{
@@ -182,14 +181,12 @@ export default {
         display: flex;
         margin-top: 5vmin;
         position: relative;
-        //border: 1px solid black;
         .list{
             width: 80vw;
             height: 50vh;
             display: flex;
             justify-content: space-between;
             margin: auto;
-            //border: 1px solid black;
         }
         .show{
             table{
@@ -212,9 +209,10 @@ export default {
                         border: 2px solid #797A7E;
                         button{
                             background-color: transparent;
-                            color: #797A7E;
+                            color: #82AAE3;
                             outline: none;
                             border: none;
+                            font-weight: bold;
                         }
                     }
                 }
