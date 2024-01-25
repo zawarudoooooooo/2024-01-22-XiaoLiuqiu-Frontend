@@ -190,11 +190,11 @@ export default {
                     <form v-for="item in roomId">
                         <div class="mb-3" >
                             <label for="recipient-name" class="col-form-label">房間ID :</label>
-                            <p>{{ item.roomId }}</p>
+                            <span>{{ item.roomId }}</span>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">房間名稱 :</label>
-                            <p>{{ item.roomName }}</p>
+                            <span>{{ item.roomName }}</span>
                         </div>
                         <hr>
                     </form>
@@ -218,13 +218,12 @@ export default {
                     <form v-for="item in orderItem">
                         <div class="mb-3" >
                             <label for="recipient-name" class="col-form-label">加購項目 :</label>
-                            <p>{{ item.extraName }}</p>
+                            <span>{{ item.extraName }}</span>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">加購價格 :</label>
-                            <p>{{ item.extraPrice }}</p>
+                            <span>${{ item.extraPrice }}元</span>
                         </div>
-                        <hr>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -291,6 +290,13 @@ export default {
                         }
                     }
                 }
+            }
+        }
+    }
+    .modal-body{
+        .mb-3{
+            span{
+                margin-left: 1vmin;
             }
         }
     }

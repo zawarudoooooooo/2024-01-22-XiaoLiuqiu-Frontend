@@ -393,20 +393,21 @@ export default{
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">修改姓名 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.newName">
+                                <label for="recipient-name" class="col-form-label">姓名 :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newName" placeholder="請輸入欲更改姓名">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">修改電話 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.newPhone">
+                                <label for="recipient-name" class="col-form-label">電話 :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newPhone" placeholder="請輸入欲更改電話">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">修改e-mail :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.newEmail">
+                                <label for="message-text" class="col-form-label">E-mail :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newEmail" placeholder="請輸入欲更改E-mail">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="updateMemberInfo()">確認更改</button>
                     </div>
                 </div>
@@ -423,93 +424,67 @@ export default{
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">請輸入舊密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.oldPwd">
+                                <label for="recipient-name" class="col-form-label">舊密碼 :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.oldPwd" placeholder="請輸入舊密碼">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">請輸入新密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.newPwd">
+                                <label for="recipient-name" class="col-form-label">新密碼 :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.newPwd" placeholder="請輸入新密碼">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">請確認新密碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.checkNewPwd">
+                                <label for="message-text" class="col-form-label">確認新密碼 :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.checkNewPwd" placeholder="請再次輸入新密碼">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="updatePwd()">確認更改</button>
                     </div>
                 </div>
             </div>
         </div>
 <!-- 訂單資訊頁面 -->
-
-
-
-
-
-
-
-
-
-
-
         <div class="order" v-if="orderPage" >
-            <div class="accordion" id="accordionExample">
-  
-        </div>
             <p id="location"><i class="fa-solid fa-map-pin"></i>訂單資訊</p>
             <hr>
             <div class="orderMemberArr">
-        <div v-for="(item, index) in memberOrderArr" :key="index">
-            <p>
-                <a class="btn btn-primary" data-bs-toggle="collapse" :href="'#multiCollapseExample1' + index" role="button" aria-expanded="false" :aria-controls="'multiCollapseExample1' + index">訂單編號：{{item.orderId}}</a>
-            </p>
-            <div class="row">
-                <div class="col">
-                    <div class="collapse multi-collapse " :id="'multiCollapseExample1' + index">
-                        <div class="card card-body">
-                            <div class="orderItem">
-                                <p>訂單內容 : {{item.roomId}}</p>
-                            </div>
-                            <div class="extra">
-                                <p>加購項目 : <span v-for="order in item.orderItem">{{ order }}.</span></p>
-                            </div>
-                            <div class="start">
-                                <p>入住時間 : {{item.startDate}}</p>
-                            </div>
-                            <div class="end">
-                                <p>退房時間 : {{item.endDate}}</p>
-                            </div>
-                            <div class="pay">
-                                <p>付款期限 : {{item.endDate}}</p>
+                <div v-for="(item, index) in memberOrderArr" :key="index">
+                    <button>
+                        <a class="ordernumbtn" data-bs-toggle="collapse" :href="'#multiCollapseExample1' + index" role="button" aria-expanded="false" :aria-controls="'multiCollapseExample1' + index">訂單編號：{{item.orderId}}</a>
+                    </button>
+                    <div class="row">
+                        <div class="col">
+                            <div class="collapse multi-collapse" :id="'multiCollapseExample1' + index">
+                                <div class="card-body">
+                                    <div class="orderItem">
+                                        <ul>
+                                            <li>
+                                                <p>訂單內容 : {{item.roomId}}</p>
+                                            </li>
+                                            <li>
+                                                <p>加購項目 : <span v-for="order in item.orderItem">{{ order }}.</span></p>
+                                            </li>
+                                            <li>
+                                                <p>入住時間 : {{item.startDate}}</p>
+                                            </li>
+                                            <li>
+                                                <p>退房時間 : {{item.endDate}}</p>
+                                            </li>
+                                            <li>
+                                                <p>總金額 : 待增加</p>
+                                            </li>
+                                            <li>
+                                                <p>付款期限 : {{item.endDate}}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-            <!-- <div >
-            <div class="orderNum" v-for=" (item,index) in this.memberOrderArr">
-                <p>訂單編號 : {{ item.orderId }}</p>
-            </div>
-            <div class="orderItem">
-                <p>訂單內容 : {{item.roomId}}</p>
-            </div>
-            <div class="extra">
-                <p>加購項目 : <span v-for="order in item.orderItem">{{ order }}.</span></p>
-            </div>
-            <div class="start">
-                <p>入住時間 : {{item.startDate}}</p>
-            </div>
-            <div class="end">
-                <p>退房時間 : {{item.endDate}}</p>
-            </div>
-            <div class="pay">
-                <p>付款期限 : {{item.endDate}}</p>
-            </div>
-        </div> -->
         </div>
 <!-- 發表回饋頁面 -->
         <div class="message" v-if="messagePage">
@@ -531,7 +506,6 @@ export default{
                 </label>
             </div>
             <div class="msgBtnArea">
-                <button type="button" @click="cancle()">取消</button>
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalmsg">預覽
                 </button>
@@ -549,11 +523,11 @@ export default{
                         <form>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">標題 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.topic">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.topic" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">內容 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.text">
+                                <input type="text" class="form-control" id="recipient-name" v-model="this.text" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">照片 :</label>
@@ -565,6 +539,7 @@ export default{
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="messageCreate()">發佈</button>
                     </div>
                 </div>
@@ -577,9 +552,9 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 63vw;
-        height: 65vh;
+        height: 66vh;
         margin: auto;
-        margin-top: 6vmin;
+        margin-top: 5vmin;
         display: flex;
         padding-top: 2vmin;
         position: relative;
@@ -631,9 +606,9 @@ export default{
                     border-radius: 50%;
                     position: absolute;
                     right: 6%;
-                    top: -3%;
+                    top: -2%;
                     border: 1px solid#797A7E;
-                    background-image: url('../../../public/userimg.png');
+                    background-image: url('../../../public/demo/userimg.png');
                     background-size: contain;
                 }
                 #upload_input{
@@ -680,10 +655,33 @@ export default{
                 color: #82AAE3;
                 margin: 0;
             } 
-            p{
-                font-size: 16pt;
-                color: #797A7E;
-                margin-bottom: 3vmin;
+            .orderMemberArr{
+                .card-body{
+                    background-color: white;
+                    border-radius: 5px;
+                    height: 28vh;
+                    overflow: scroll;
+                }
+                a{
+                    text-decoration: none;
+                    color: #797A7E;
+                    font-size: 15pt;
+                }
+                button{
+                    width: 30vw;
+                    height: 5vh;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: #e3f6f5;
+                    margin-bottom: 1.5vmin;
+                    box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
+                    &:hover {
+                        background-color: #F7F2E7;;
+                    }
+                    &:active {
+                        background-color: #e3f6f5;
+                    }
+                }
             }
         }
         .message{
@@ -746,13 +744,13 @@ export default{
                 }
             }
             .msgBtnArea{
-                width: 20vw;
+                width: 9vw;
                 height: 6vh;
                 display: flex;
                 justify-content: space-around;
                 position: absolute;
                 right: 0;
-                bottom: -7%;
+                bottom: -2%;
                 button{
                     width: 8vw;
                     height: 5vh;
@@ -778,7 +776,6 @@ export default{
                     .msgimg{
                         width: 15vw;
                         height: 20vh;
-                        border-radius: 5px;
                     }
                 }
             }

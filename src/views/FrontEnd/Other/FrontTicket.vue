@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../components/Footer.vue';
+import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -20,7 +20,7 @@ export default{
         <hr>
         <div class="traffic">
             <div class="card">
-                <img src="../../../public/ticket/ferry.jpg" class="card-img-top" alt="...">
+                <img src="../../../../public/ticket/ferry.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">渡輪</h5>
                     <p class="card-text">多元取票方式，隨到隨上船。
@@ -33,7 +33,7 @@ export default{
                 </ul>
             </div>
             <div class="card">
-                <img src="../../../public/ticket/scooter.jpg" class="card-img-top" alt="...">
+                <img src="../../../../public/ticket/scooter.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">摩托車</h5>
                     <p class="card-text">全系列125cc的新車。
@@ -52,7 +52,7 @@ export default{
         <hr>
         <div class="activity">
             <div class="card">
-                <img src="../../../public/ticket/diving.jpg" class="card-img-top" alt="...">
+                <img src="../../../../public/ticket/diving.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">浮潛</h5>
                     <p class="card-text">由專業的潛水教練帶領前往安全海域，
@@ -65,7 +65,7 @@ export default{
                 </ul>
             </div>
             <div class="card">
-                <img src="../../../public/ticket/canoe.jpg" class="card-img-top" alt="...">
+                <img src="../../../../public/ticket/canoe.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">獨木舟</h5>
                     <p class="card-text">在湛藍大海中自在划槳，享受悠閒獨木舟之旅
@@ -79,7 +79,7 @@ export default{
                 </ul>
             </div>
             <div class="card">
-                <img src="../../../public/ticket/sup.jpg" class="card-img-top" alt="...">
+                <img src="../../../../public/ticket/sup.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">SUP 立式划槳</h5>
                     <p class="card-text">挑戰最夯的SUP立槳，體驗乘風破浪的樂趣。
@@ -99,7 +99,7 @@ export default{
         <hr>
         <div class="ticket">
             <div class="card">
-                <img src="../../../public/ticket/ticket.jpg" class="card-img-top" alt="...">
+                <img src="../../../../public/ticket/ticket.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">三大風景區門票</h5>
                     <p class="card-text">小琉球三大風景區，美人洞、山豬溝、烏鬼洞的名字都有特別的故事由來。
@@ -112,7 +112,7 @@ export default{
                 </ul>
             </div>
             <div class="card">
-                <img src="../../../public/ticket/t8-ticket.jpg" class="card-img-top" alt="...">
+                <img src="../../../../public/ticket/t8-ticket.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">鹿粼梅花鹿園區</h5>
                     <p class="card-text">園區養殖了許多品種的梅花鹿，是台灣目前少數的梅花鹿主題園區

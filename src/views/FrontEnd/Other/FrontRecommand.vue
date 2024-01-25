@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../components/Footer.vue';
+import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -20,7 +20,7 @@ export default{
         <div class="list">
             <ul>
                 <li>
-                    <img src="../../../public/tourist/t10/t10-5.JPG" alt="">
+                    <img src="../../../../public/tourist/t10/t10-5.JPG" alt="">
                     <div class="text">
                         <p class="topic">一日遊</p>
                         <hr>
@@ -61,7 +61,7 @@ export default{
                             <br>
                             厚石群礁⭢厚石澳神秘沙灘⭢龍蝦洞⭢中澳沙灘
                         </p>
-                        <img src="../../../public/tourist/t12/t12-6.JPG" alt="">
+                        <img src="../../../../public/tourist/t12/t12-6.JPG" alt="">
                     </div>
                     <hr>
                     <div class="water">
@@ -89,7 +89,7 @@ export default{
                     </small>
                 </li>
                 <li>
-                    <img src="../../../public/tourist/t02/t2-6.JPG" alt="">
+                    <img src="../../../../public/tourist/t02/t2-6.JPG" alt="">
                     <div class="text">
                         <p class="topic">三天兩夜</p>
                         <hr>
@@ -153,6 +153,15 @@ export default{
                         width: 25vw;
                         height: 35vh;
                         border-radius: 5px;
+                        box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
+                        transition: all linear 0.3s;
+                        &:hover{
+                            opacity: 0.7;
+                            box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
+                        }
+                        &:active{
+                            opacity: 1.0;
+                        }
                     }
                     .text{
                         width: 45vw;
