@@ -253,7 +253,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
-            <div class="room" v-for="item in this.roomSearch">
+            <div class="room" v-for="(item,index) in this.roomSearch">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -307,7 +307,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
             </div>
-            <div class="room" v-for="item in this.roomSearch">
+            <div class="room" v-for=" (item,index) in this.roomSearch">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -362,7 +362,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
-            <div class="room" v-for="item in this.roomSearch">
+            <div class="room" v-for="(item,index) in this.roomSearch">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
