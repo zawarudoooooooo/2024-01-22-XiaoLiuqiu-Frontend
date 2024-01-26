@@ -496,7 +496,7 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">圖片 :</label>
-                                <input type="file" class="form-control" id="recipient-name">
+                                <input type="file" class="form-control" id="recipient-name" multiple>
                             </div>
                         </form>
                     </div>
