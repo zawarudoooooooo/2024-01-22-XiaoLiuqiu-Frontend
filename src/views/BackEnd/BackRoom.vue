@@ -464,7 +464,7 @@ export default{
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間類型 :</label>
+                                <label for="recipient-name" class="col-form-label">類型 :</label>
                                 <br>
                                 <input type="radio" value="小資雙人房" class="roomtype" name="roomtype">
                                 <label for="">A : 小資雙人房</label>
@@ -474,11 +474,11 @@ export default{
                                 <label for="">C : 豪華家庭房</label>
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間編號 :</label>
+                                <label for="recipient-name" class="col-form-label">編號 :</label>
                                 <input type="text" class="form-control" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間說明 :</label>
+                                <label for="recipient-name" class="col-form-label">說明 :</label>
                                 <br>
                                 <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.introduce">
                                 <label for="uno">獨立衛浴</label>
@@ -497,15 +497,15 @@ export default{
                                 <label for="uno">床頭插座</label>
                                 <input type="checkbox" id="uno8" value="景觀" v-model="this.introduce">
                                 <label for="uno">景觀</label>
-                                <button type="button" @click="test()">測試</button>
+                                <!-- <button type="button" @click="test()">測試</button> -->
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間價格 :</label>
+                                <label for="recipient-name" class="col-form-label">價格 :</label>
                                 <input type="number" class="form-control" id="recipient-name" v-model="this.roomPrice" placeholder="請輸入價格">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">房間圖片 :</label>
-                                <input type="file" class="form-control" id="recipient-name">
+                                <label for="message-text" class="col-form-label">圖片 :</label>
+                                <input type="file" class="form-control" id="recipient-name" multiple>
                             </div>
                         </form>
                     </div>
@@ -528,11 +528,11 @@ export default{
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間金額 :</label>
-                                <input type="number" class="form-control" id="recipient-name" v-model="this.upDateRoomPrice" placeholder="請輸入欲更改金額">
+                                <label for="recipient-name" class="col-form-label">更改金額 :</label>
+                                <input type="number" class="form-control" id="recipient-name" v-model="this.upDateRoomPrice">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">房間說明 :</label>
+                                <label for="recipient-name" class="col-form-label">更改說明 :</label>
                                 <br>
                                 <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
                                 <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
@@ -558,7 +558,7 @@ export default{
                                 <label for="uno">床頭插座</label>
                                 <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
                                 <label for="uno">景觀</label>
-                                <button type="button" @click="test()">測試</button>
+                                <!-- <button type="button" @click="test()">測試</button> -->
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">更改狀態 :</label>
@@ -566,7 +566,7 @@ export default{
                                 <label for="">已開放</label>
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">房間圖片 :</label>
+                                <label for="message-text" class="col-form-label">更改圖片 :</label>
                                 <input type="file" class="form-control" id="recipient-name">
                             </div>
                         </form>
