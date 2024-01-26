@@ -85,10 +85,14 @@ export default{
             })
         },
         test(){
-            console.log(JSON.stringify(this.introduce));
+            console.log(this.upDateIntroduce);
         },
         upDateRoom(index){
-            console.log(index);
+                this.upRoomId=""
+                this.upRoomName=""
+                this.upDateRoomPrice=""
+                this.upDateIntroduce="" 
+                this.editstatus=false
             this.roomSearch.forEach((item,roomIndex)=>{
                 if(index!=roomIndex){
                     return
@@ -98,13 +102,14 @@ export default{
                 this.upRoomName=item.roomName
                 this.upDateRoomPrice=item.roomPrice
                 this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
+                this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
                 this.editstatus=item.open
             })
-            console.log(this.upRoomId);
-            console.log(this.upRoomName);
-            console.log(this.upDateRoomPrice);
+            // console.log(this.upRoomId);
+            // console.log(this.upRoomName);
+            // console.log(this.upDateRoomPrice);
             console.log(this.upDateIntroduce);
-            console.log(this.editstatus);
+            // console.log(this.editstatus);
             // console.log(this.roomSearch);
         },
         upDate(){
@@ -118,9 +123,9 @@ export default{
             },
             data:{
                 room_id:this.upRoomId,
-                room_introduce:JSON.stringify(this.upDateIntroduce) ,
+                room_introduce:JSON.stringify(this.upDateIntroduce),
                 room_name:this.upRoomName,
-                room_price:this.upDateRoomPrice,
+                room_price: this.upDateRoomPrice,
                 is_open:this.editstatus
             },
             }).then(res=>{
@@ -279,11 +284,13 @@ export default{
             <button type="button" @click="doubleOpen()">舒適雙人房</button>
             <button type="button" @click="familyOpen()">豪華家庭房</button>
         </div>
+        </div>
 <!-- 小資雙人房 -->
         <div class="simple" v-if="simple" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
+            <div class="room" v-for="(item,index) in this.roomSearch">
             <div class="room" v-for="(item,index) in this.roomSearch">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -333,12 +340,13 @@ export default{
                 </div>
             </div>
         </div>
+        </div>
 <!-- 舒適雙人房 -->
         <div class="double" v-if="double" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
             </div>
-            <div class="room" v-for="(item,index) in this.roomSearch">
+            <div class="room" v-for=" (item,index) in this.roomSearch">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -393,6 +401,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
+            <div class="room" v-for="(item,index) in this.roomSearch">
             <div class="room" v-for="(item,index) in this.roomSearch">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -486,7 +495,7 @@ export default{
                                 <label for="uno">遊戲機</label>
                                 <input type="checkbox" id="uno7" value="床頭插座" v-model="this.introduce">
                                 <label for="uno">床頭插座</label>
-                                <input type="checkbox" id="uno7" value="景觀" v-model="this.introduce">
+                                <input type="checkbox" id="uno8" value="景觀" v-model="this.introduce">
                                 <label for="uno">景觀</label>
                                 <!-- <button type="button" @click="test()">測試</button> -->
                             </div>
@@ -525,22 +534,29 @@ export default{
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">更改說明 :</label>
                                 <br>
-                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.introduce">
+                                <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
+                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
                                 <label for="uno">獨立衛浴</label>
+                                <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
                                 <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
                                 <label for="uno">空調 </label>
                                 <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
                                 <label for="uno">平面電視 </label>
+                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                                 <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                                 <label for="uno">Wifi</label>
                                 <br>
                                 <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
                                 <label for="uno">浴缸</label>
+                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
                                 <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
                                 <label for="uno">遊戲機</label>
                                 <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                                 <label for="uno">床頭插座</label>
-                                <input type="checkbox" id="uno7" value="景觀" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
                                 <label for="uno">景觀</label>
                                 <!-- <button type="button" @click="test()">測試</button> -->
                             </div>
