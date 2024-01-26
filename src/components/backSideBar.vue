@@ -46,6 +46,7 @@ export default{
             border-radius: 5px;
             color: #797A7E;
             font-size: 16pt;
+            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
             &:hover{
                 background-color: #797A7E;
                 color: white;

@@ -39,7 +39,6 @@ export default {
                     memberName: this.memberName,
                     memberPhone: this.memberPhone,
                     memberEmail: this.memberEmail,
-                    memberPhoto : this.memberPhoto,
                 },
             }).then(res => {
                 console.log(res.data)
@@ -109,7 +108,7 @@ export default {
 <style lang="scss" scoped>
     .content {
         width: 20vw;
-        height: 85vh;
+        height: 90vh;
         margin: auto;
         margin-top: 3vmin;
         i{
@@ -121,9 +120,10 @@ export default {
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #D9D9D9;
+            background-color: #e3f6f5;
             padding-left: 2vmin;
-            margin-bottom: 1vmin;
+            margin-bottom: 2vmin;
+            box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         .title {
             font-size: 28pt;
@@ -134,21 +134,21 @@ export default {
         .account {
             p {
                 margin: 0;
-                font-size: 14pt;
+                font-size: 13pt;
                 color: #797A7E;
             }
         }
         .name {
             p {
                 margin: 0;
-                font-size: 14pt;
+                font-size: 13pt;
                 color: #797A7E;
             }
         }
         .password {
             p {
                 margin: 0;
-                font-size: 14pt;
+                font-size: 13pt;
                 color: #797A7E;
             }
         }
@@ -160,7 +160,7 @@ export default {
             }
             p {
                 margin: 0;
-                font-size: 14pt;
+                font-size: 13pt;
                 color: #797A7E;
             }
             #checkpwd{
@@ -171,14 +171,14 @@ export default {
         .phone {
             p {
                 margin: 0;
-                font-size: 14pt;
+                font-size: 13pt;
                 color: #797A7E;
             }
         }
         .email {
             p {
                 margin: 0;
-                font-size: 14pt;
+                font-size: 13pt;
                 color: #797A7E;
             }
         }
@@ -186,13 +186,14 @@ export default {
             width: 20vw;
             display: flex;
             justify-content: space-around;
-            margin-top: 3vmin;
+            margin-top: 5vmin;
             button {
                 width: 8vw;
                 height: 5vh;
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover {
                     background-color: #797A7E;
                     color: white;

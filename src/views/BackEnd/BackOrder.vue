@@ -1,12 +1,16 @@
 <script>
 import axios from 'axios';
 import backSideBar from '../../components/backSideBar.vue';
+import Swal from 'sweetalert2'
 export default {
     data(){
         return{
             orders:[],
             roomId:"",
             orderItem:"",
+            account: "",
+            access: 0,
+            isAdmin: false
         }
     },
     methods:{
@@ -28,6 +32,62 @@ export default {
                 }
                 this.orderItem= item.orderItem
                 console.log(this.orderItem);
+            })
+        },
+        getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) {
+                const [account, access, active] = parts.pop().split(';').shift().split(":");
+                this.access = parseInt(access);
+                this.active = active === "true";  
+                return account;
+            }
+        return "";
+        },
+        getAccess(){
+            const cookieValue = this.getCookie("employee")
+            console.log(cookieValue);
+            if(cookieValue){
+                const parts = cookieValue.split(":")
+                console.log("Cookie parts:", parts);
+                return parts.length === 3 ? parseInt(parts[1]) : 0
+            }
+            return 0
+        },
+        orderFinished(orderId){
+
+            axios({
+            url:'http://localhost:8080/order/order_finished',
+            method:'POST',
+            withCredentials: true,
+            headers:{
+                'Content-Type':'application/json',
+            },
+            params:{
+                orderId: orderId
+            },
+            }).then(res=>{
+                console.log(res);
+                if(res.data.message == "Successful!!"){
+                    swal("成功","已完成結單", "success");
+                }else if(res.data.message == "Order already finished"){
+                    swal("提示", "訂單已結案", "warning")
+                }else{
+                    swal("錯誤", "尚未完成結單", "error");
+                }
+            })
+        },
+        confirmFinished(orderId){
+            Swal.fire({
+                title: '是否確認結單?',
+                text: '請確認是否收到款項才執行此動作',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+                preConfirm: () => {
+                    return this.orderFinished(orderId)
+                },
             })
         }
     },
@@ -55,7 +115,15 @@ export default {
                     roomId:element.roomId,startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime,orderPayment:element.orderPayment,payOrNot:element.payOrNot})
                 });
                 console.log(this.orders);
-            })
+            }),
+            
+            this.access = this.getAccess();
+            this.account = this.getCookie("employee")
+            this.isAdmin = /^B/.test(this.account) && this.access === 50;
+            console.log(this.account);
+            console.log(this.access);
+            console.log(this.isAdmin);
+
     },
     components:{
         backSideBar
@@ -86,6 +154,7 @@ export default {
                     <td>訂單時間</td>
                     <td>付款方式</td>
                     <td>訂單狀態</td>
+                    <td v-if="isAdmin">確認結單</td>
                 </tr>
             </thead>
             <tbody>
@@ -101,6 +170,9 @@ export default {
                     <td v-if="!item.orderPayment">線上支付</td>
                     <td v-if="!item.payOrNot">未支付</td>
                     <td v-if="item.payOrNot">已支付</td>
+                    <td v-if="isAdmin">
+                        <button @click="confirmFinished(item.orderId)">確定</button>
+                    </td>
                 </tr>
             </tbody>
             </table>
@@ -118,11 +190,11 @@ export default {
                     <form v-for="item in roomId">
                         <div class="mb-3" >
                             <label for="recipient-name" class="col-form-label">房間ID :</label>
-                            <p>{{ item.roomId }}</p>
+                            <span>{{ item.roomId }}</span>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">房間名稱 :</label>
-                            <p>{{ item.roomName }}</p>
+                            <span>{{ item.roomName }}</span>
                         </div>
                         <hr>
                     </form>
@@ -146,13 +218,12 @@ export default {
                     <form v-for="item in orderItem">
                         <div class="mb-3" >
                             <label for="recipient-name" class="col-form-label">加購項目 :</label>
-                            <p>{{ item.extraName }}</p>
+                            <span>{{ item.extraName }}</span>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">加購價格 :</label>
-                            <p>{{ item.extraPrice }}</p>
+                            <span>${{ item.extraPrice }}元</span>
                         </div>
-                        <hr>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -169,8 +240,9 @@ export default {
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        text-align: center;
+        //text-align: center;
         margin-top: 4vmin;
+        margin-left: 52%;
         i{
             margin-left: 1vmin;
         }
@@ -218,6 +290,13 @@ export default {
                         }
                     }
                 }
+            }
+        }
+    }
+    .modal-body{
+        .mb-3{
+            span{
+                margin-left: 1vmin;
             }
         }
     }

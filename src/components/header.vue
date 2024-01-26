@@ -6,7 +6,8 @@ export default{
     data(){
         return{
             cookie:"",
-            cookieTest:""
+            cookieTest:"",
+            account:""
         }
     },
     methods: {
@@ -89,6 +90,7 @@ export default{
         this.cookie=document.cookie;
         // console.log(this.cookie);
         this.cookieTest=this.cookie.split("=")[0]
+        this.account=this.cookie.split("=")[1]
         // console.log(this.cookieTest);
     }
 }
@@ -108,17 +110,18 @@ export default{
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>訂房</RouterLink>
+                            <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>房型總覽</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="/FrontActivity" class="routerItem"><i class="fa-solid fa-ticket"></i>套票</RouterLink>
+                            <RouterLink to="/FrontTicket" class="routerItem"><i class="fa-solid fa-comments-dollar"></i>超值加購</RouterLink>
                         </li>
                         <li class="nav-item dropdown">
-                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-location-dot"></i>導覽</p>
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-circle-info"></i>導覽</p>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><RouterLink to="/FrontTraffic" class="dropdown-item"><i class="fa-solid fa-ferry"></i>交通</RouterLink></li>
                                 <li><RouterLink to="/FrontTourist" class="dropdown-item"><i class="fa-solid fa-camera"></i>景點</RouterLink></li>
                                 <li><RouterLink to="/FrontMeal" class="dropdown-item"><i class="fa-solid fa-utensils"></i>美食</RouterLink></li>
+                                <li><RouterLink to="/FrontRecommand" class="dropdown-item"><i class="fa-regular fa-thumbs-up"></i>推薦行程</RouterLink></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -128,7 +131,7 @@ export default{
                             <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user"></i>登入</RouterLink>
                         </li>
                         <li class="nav-item dropdown"  v-if="this.cookie!=''&&this.cookieTest!='employee'">
-                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>會員名稱</p>
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>您好，{{this.account}}</p>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li class="dropdown-item" @click="goUserInfo()"><i class="fa-solid fa-user-check"></i>會員中心</li>
                                 <li class="dropdown-item" @click="logout()"><i class="fa-solid fa-right-from-bracket"></i>登出</li>

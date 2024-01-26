@@ -25,16 +25,29 @@ export default{
             upDateIntroduce:"",
             upRoomId:"",
             upRoomName:"",
-            
             isChecked: false,
-
-            introduce:[]
+            introduce:[],
+            access: 0,
         }
+    },
+    mounted(){
+        this.access = this.getAccess();
+        console.log(this.access);
     },
     methods:{
         createRoom() {
             console.log(this.roomPrice);
             const roomtype=document.querySelectorAll(".roomtype")
+
+            const cookieValue = this.getCookie("employee");
+            console.log(cookieValue);
+            console.log(this.access);
+            const [account] = cookieValue.split(":");
+
+            if(!/^[C]/.test(account) || this.access != 50){
+                swal("錯誤", "權限不足", "error");
+                return
+            }
 
             roomtype.forEach(room=>{
                 if(room.checked){
@@ -72,25 +85,31 @@ export default{
             })
         },
         test(){
-            console.log(JSON.stringify(this.introduce));
+            console.log(this.upDateIntroduce);
         },
         upDateRoom(index){
+                this.upRoomId=""
+                this.upRoomName=""
+                this.upDateRoomPrice=""
+                this.upDateIntroduce="" 
+                this.editstatus=false
             this.roomSearch.forEach((item,roomIndex)=>{
                 if(index!=roomIndex){
                     return
                 }
-                // console.log(item);
+                console.log(item);
                 this.upRoomId=item.roomId
                 this.upRoomName=item.roomName
                 this.upDateRoomPrice=item.roomPrice
-                this.upDateIntroduce=item.roomIntroduce
+                this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
+                this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
                 this.editstatus=item.open
             })
-            console.log(this.upRoomId);
-            console.log(this.upRoomName);
-            console.log(this.upDateRoomPrice);
+            // console.log(this.upRoomId);
+            // console.log(this.upRoomName);
+            // console.log(this.upDateRoomPrice);
             console.log(this.upDateIntroduce);
-            console.log(this.editstatus);
+            // console.log(this.editstatus);
             // console.log(this.roomSearch);
         },
         upDate(){
@@ -104,9 +123,9 @@ export default{
             },
             data:{
                 room_id:this.upRoomId,
-                room_introduce:this.upDateIntroduce,
+                room_introduce:JSON.stringify(this.upDateIntroduce),
                 room_name:this.upRoomName,
-                room_price:this.upDateRoomPrice,
+                room_price: this.upDateRoomPrice,
                 is_open:this.editstatus
             },
             }).then(res=>{
@@ -217,7 +236,29 @@ export default{
                 return "開放中"
             }
             return "未開放"
-        }
+        },
+        getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) {
+                const [account, access, active] = parts.pop().split(';').shift().split(":");
+                this.access = parseInt(access);
+                this.active = active === "true";  
+                return account;
+            }
+        return "";
+        },
+        getAccess(){
+            const cookieValue = this.getCookie("employee")
+            console.log(cookieValue);
+            if(cookieValue){
+                const parts = cookieValue.split(":")
+                console.log("Cookie parts:", parts);
+                return parts.length === 3 ? parseInt(parts[1]) : 0
+            }
+            return 0
+        },
+        
     },
     components:{
         backSideBar
@@ -243,13 +284,35 @@ export default{
             <button type="button" @click="doubleOpen()">舒適雙人房</button>
             <button type="button" @click="familyOpen()">豪華家庭房</button>
         </div>
+        </div>
 <!-- 小資雙人房 -->
         <div class="simple" v-if="simple" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
-            <div class="room" v-for="(item, index) in this.roomSearch">
-                <img src="../../../../public/room/simpledouble.jpg" alt="" style="width: 23vw;height: 28vh;">
+            <div class="room" v-for="(item,index) in this.roomSearch">
+            <div class="room" v-for="(item,index) in this.roomSearch">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../../public/room/SP/simpledouble1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/SP/simpledouble1-2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/SP/simpledouble1-3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <div class="text">
                     <div class="name">
                         <p>{{item.roomName}}</p>
@@ -277,13 +340,34 @@ export default{
                 </div>
             </div>
         </div>
+        </div>
 <!-- 舒適雙人房 -->
         <div class="double" v-if="double" >
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
             </div>
-            <div class="room" v-for="(item,index) in this.roomSearch">
-                <img src="../../../../public/room/double.jpg" alt="" style="width: 23vw;height: 28vh;">
+            <div class="room" v-for=" (item,index) in this.roomSearch">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/D/double1-3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <div class="text">
                     <div class="name">
                         <p>{{item.roomName}}</p>
@@ -318,7 +402,28 @@ export default{
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
             <div class="room" v-for="(item,index) in this.roomSearch">
-                <img src="../../../../public/room/family.jpg" alt="" style="width: 23vw;height: 28vh;">
+            <div class="room" v-for="(item,index) in this.roomSearch">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../../public/room/F/family1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/F/family1-1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../../public/room/f/family1-2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <div class="text">
                     <div class="name">
                         <p>{{item.roomName}}</p>
@@ -390,7 +495,7 @@ export default{
                                 <label for="uno">遊戲機</label>
                                 <input type="checkbox" id="uno7" value="床頭插座" v-model="this.introduce">
                                 <label for="uno">床頭插座</label>
-                                <input type="checkbox" id="uno7" value="景觀" v-model="this.introduce">
+                                <input type="checkbox" id="uno8" value="景觀" v-model="this.introduce">
                                 <label for="uno">景觀</label>
                                 <button type="button" @click="test()">測試</button>
                             </div>
@@ -429,22 +534,29 @@ export default{
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">房間說明 :</label>
                                 <br>
-                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.isChecked" :checked="introduce.includes('獨立衛浴')">
+                                <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
+                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
                                 <label for="uno">獨立衛浴</label>
-                                <input type="checkbox" id="uno2" value="空調" v-model="this.introduce">
+                                <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
                                 <label for="uno">空調 </label>
-                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.introduce">
+                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
                                 <label for="uno">平面電視 </label>
-                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.introduce">
+                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                                 <label for="uno">Wifi</label>
                                 <br>
-                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.introduce">
+                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
                                 <label for="uno">浴缸</label>
-                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.introduce">
+                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
                                 <label for="uno">遊戲機</label>
-                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.introduce">
+                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                                 <label for="uno">床頭插座</label>
-                                <input type="checkbox" id="uno7" value="景觀" v-model="this.introduce">
+                                <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
                                 <label for="uno">景觀</label>
                                 <button type="button" @click="test()">測試</button>
                             </div>
@@ -474,8 +586,9 @@ export default{
         font-size: 28pt;
         font-weight: bold;
         color: #82AAE3;
-        text-align: center;
+        //text-align: center;
         margin-top: 4vmin;
+        margin-left: 50%;
         i{
             margin-left: 1vmin;
         }
@@ -500,6 +613,7 @@ export default{
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover {
                     background-color: #797A7E;
                     color: white;
@@ -525,22 +639,45 @@ export default{
             height: 35vh;
             margin: auto;
             display: flex;
+            justify-content: space-around;
             border: 1px solid lightgray;
             border-radius: 10px;
             margin-top: 5vmin;
             box-shadow: 1px 1px 1px gray;
-            padding: 3vmin;
+            padding: 3vmin 2vmin 0vmin;
             position: relative;
-            img{
-                width: 23vw;
+
+            #carouselExample{
+                width: 20vw;
                 height: 28vh;
+                margin-top: 0.5vmin;
                 border-radius: 5px;
-                margin-right: 5vmin;
-                &:hover{
-                    opacity: 0.6;
+                box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                .carousel-inner{
+                    width: 20vw;
+                    border-radius: 5px;
+                    .carousel-item{
+                        width: 20vw;
+                        border-radius: 5px;
+                        img{
+                            width: 21vw;
+                            height: 28vh;
+                            border-radius: 5px;
+                            transition: all linear 0.3s;
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                            &:active{
+                                opacity: 1.0;
+                            }
+                        }
+                    }
                 }
-                &:active{
-                    opacity: 1.0;
+                .carousel-control-prev-icon{
+                    width: 1.5rem;
+                }
+                .carousel-control-next-icon{
+                    width: 1.5rem;
                 }
             }
             .text{

@@ -23,7 +23,7 @@ export default{
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                withCredentials:true,
+                withCredentials: true,
                 data: {
                     account:this.account,
                     password:this.pwd,
@@ -93,9 +93,10 @@ export default{
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #D9D9D9;
+            background-color: #e3f6f5;
             padding-left: 2vmin;
             margin-bottom: 4vmin;
+            box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         .title{
             font-size: 28pt;
@@ -121,13 +122,14 @@ export default{
             width: 20vw;
             display: flex;
             justify-content: space-around;
-            margin-top: 3vmin;
+            margin-top: 6vmin;
             button{
                 width: 8vw;
                 height: 5vh;
                 border: none;
                 border-radius: 5px;
                 color: #797A7E;
+                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
                     background-color: #797A7E;
                     color: white;
