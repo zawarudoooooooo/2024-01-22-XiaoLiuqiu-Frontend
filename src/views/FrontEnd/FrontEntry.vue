@@ -554,7 +554,7 @@ export default{
 
     @media(max-width:1200px){
         .content{
-            height: 85vh;
+            height: 93vh;
             .slideShow{
                 height: 30vh;
                 .carousel-inner{
@@ -600,7 +600,7 @@ export default{
                 }
             }
             .activity{
-                height: 26vh;
+                height: 27vh;
                 margin-top: 3vmin;
                 .title{
                     p{
@@ -608,19 +608,31 @@ export default{
                     }
                 }
                 .scenery{
-                    .card{
+                    .carousel-inner{
                         height: 20vh;
+                        .carousel-item{
+                            height: 20vh;
+                            img{
+                                height: 20vh;
+                            }
+                            p{
+                                font-size: 10pt;
+                            }
+                        }
                     }
-                    img{
-                        height: 20vh;
-                    }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 12vw;
+                    height: 3vh;
                 }
             }
         }
     }
     @media(max-width:992px){
         .content{
-            height: 83vh;
+            height: 90vh;
             .about{
                 height: 22vh;
                 .iconArea{
@@ -655,6 +667,7 @@ export default{
                 }
             }
             .activity{
+                height: 26vh;
                 margin-top: 3vmin;
                 .title{
                     p{
@@ -662,22 +675,26 @@ export default{
                     }
                 }
                 .scenery{
-                    .card{
-                        height: 15vh;
-                        img{
-                            height: 18vh;
-                        }
-                        .card-img-overlay{
-                            font-size: 10pt;
+                    .carousel-inner{
+                        .carousel-item{
+                            p{
+                                font-size: 8pt;
+                            }
                         }
                     }
+
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 14vw;
                 }
             }
         }
     }
     @media(max-width:576px){
         .content{
-            height: 80vh;
+            height: 82vh;
             .slideShow{
                 height: 20vh;
                 .carousel-inner{
@@ -735,31 +752,35 @@ export default{
                 }
             }
             .activity{
-                height: 21vh;
+                height: 17.5vh;
                 .title{
                     p{
                         font-size: 18pt;
                     }
                 }
                 .scenery{
-                    .card{
-                        height: 15vh;
-                        img{
-                            height: 15vh;
-                        }
-                        .card-img-overlay{
-                            font-size: 6pt;
-                            h5{
-                                font-size: 11pt;
+                    .carousel-inner{
+                        height: 11vh;
+                        .carousel-item{
+                            height: 11vh;
+                            img{
+                                height: 11vh;
                             }
                         }
                     }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 26vw;
+                    height: 3vh;
                 }
             }
         }
     }
     @media(max-width:414px){
         .content{
+            height: 80vh;
             .about{
                 .news{
                     height: 20vh;
@@ -791,6 +812,11 @@ export default{
                             font-size: 5.5pt;
                         }
                     }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 29vw;
                 }
             }
         }

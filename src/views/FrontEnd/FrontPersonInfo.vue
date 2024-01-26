@@ -1,6 +1,7 @@
 <script>
 import Footer from '../../components/Footer.vue';
 import axios from 'axios';
+import swal from 'sweetalert';
 import * as imageConversion from 'image-conversion';
 export default{
     data(){
@@ -160,7 +161,10 @@ export default{
         cancle(){
             this.topic="",
             this.text=""
-            
+        },
+//付款成功
+        success(){
+            swal("付款成功", "感謝您的訂購", "success");
         },
 //頁面切換
         personInfoShow(){
@@ -241,6 +245,25 @@ export default{
             this.newPhone="",
             this.newEmail=""
         },
+        upDateMemberImg(){
+            axios({
+            url:'http://localhost:8080/member/imgUpDate',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                memberId:this.memberInfo.memberId
+            },             
+            data:{
+                memberImg:this.useravatar
+            },
+        }).then(res => {     
+            console.log(res.data)
+            
+            })
+        
+        },
 //變更密碼
         updatePwd(){
             axios({
@@ -278,7 +301,6 @@ export default{
     },
     mounted(){
         this.cookie=document.cookie.split("=")[1];
-
         // console.log(this.cookie);
 //會員資訊
         axios({
@@ -318,7 +340,7 @@ export default{
                 }).then(res=>{
                     let order=[]
                     this.memberOrderArr=res.data.orderList
-                    // console.log(this.memberOrderArr);
+                    console.log(this.memberOrderArr);
                     this.memberOrderArr.forEach(item=>{
                         console.log(item.orderItem);
                         order.push(JSON.parse(item.orderItem))
@@ -328,11 +350,10 @@ export default{
                             })
                         })
                     })
-                    console.log(this.memberOrderArr);
+                    //console.log(this.memberOrderArr);
                     // console.log(res.data.orderList);
                 })
             })
-
     },
     components:{
         Footer
@@ -358,8 +379,11 @@ export default{
                     <!-- <img :src="IDc1" alt="" class="upload_cover">
                     <input class="upload_cover" id="IDc1" name="IDc1" type="file"
                     @change="uploadIMG"> -->
-                    <input id="upload_input" type="file" @change="uploadImg($event)">
+
+                    <!-- <input id="upload_input" type="file" @change="uploadImg($event)"> -->
+                    
                     <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
+                    <input id="upload_input" type="file" @change="uploadImg($event)">
                     <img :src="useravatar" class="upload_cover" alt="">
                 </label>
             </div>
@@ -379,7 +403,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
-                <button type="button" @click="updateMemberInfo()">儲存</button>
+                <button type="button" @click="upDateMemberImg()">儲存</button>
             </div>
         </div>
 <!-- 更改資料modal視窗 -->
@@ -472,16 +496,62 @@ export default{
                                                 <p>退房時間 : {{item.endDate}}</p>
                                             </li>
                                             <li>
-                                                <p>總金額 : 待增加</p>
+                                                <p>總金額(待增加) : 加購金額+住宿天數*房間金額</p>
                                             </li>
                                             <li>
-                                                <p>付款期限 : {{item.endDate}}</p>
+                                                <p v-if="item.orderPayment==false">付款方式 : 現場支付</p>
+                                                <p v-else>付款方式 : 線上支付
+                                                    <i class="fa-regular fa-credit-card" data-bs-toggle="modal" 
+                                                    data-bs-target="#exampleModalPay"></i>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>付款期限(待修改) : {{item.endDate}}</p>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- 線上付款modal視窗 -->
+        <div class="modal fade" id="exampleModalPay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">線上付款</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">持卡人姓名 :</label>
+                                <input type="text" class="form-control" id="recipient-name" placeholder="請輸入持卡人姓名">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">手機號碼 :</label>
+                                <input type="text" class="form-control" id="recipient-name" placeholder="請輸入手機號碼">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">信用卡卡號 :</label>
+                                <input type="text" class="form-control" id="recipient-name" placeholder="請輸入16碼數字">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">有效年月 :</label>
+                                <input type="date" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">信用卡背面末三碼 :</label>
+                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸入背面末三碼">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="success()">付款</button>
                     </div>
                 </div>
             </div>
@@ -661,6 +731,13 @@ export default{
                     border-radius: 5px;
                     height: 28vh;
                     overflow: scroll;
+                    li{
+                        i{
+                            margin-left: 0.5vmin;
+                            color: #82AAE3;
+                            cursor: pointer;
+                        }
+                    }
                 }
                 a{
                     text-decoration: none;

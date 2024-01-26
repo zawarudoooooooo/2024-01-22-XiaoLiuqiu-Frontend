@@ -76,6 +76,9 @@ export default{
         setInterval(() => {
             this.exxtraClick();
         }, 100); 
+        // setInterval(() => {
+        //     this.test3()
+        // }, 1000); 
 
     },
     props:[
@@ -133,6 +136,10 @@ export default{
             // this.order.forEach(element => {
             // this.total+=element.roomPrice
             // });
+            let start=new Date(this.startDate)
+            let end=new Date(this.endDate)
+            let timeDifference=end-start;
+            let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
             this.order.forEach(order=>{
                 this.Price=0
                 // console.log(order.roomName);
@@ -145,13 +152,29 @@ export default{
                             let breakfast1 = item.split("(+")[1];
                             let price = parseFloat(breakfast1.split("/")[0]);
                             if(breakfast==='摩托車'){
+                                if(this.endDate!=''){
+                                    this.Price+=(price*days)
+                                }
                                 this.Price+=price
+
                                 return
                             }
+                            if(breakfast==='早餐'){
+                                if(this.endDate!=''){
+                                    // console.log(13);
+                                    // console.log(days);
+                                    this.Price+=(price*days)*2
+                                    
+                                    // console.log(this.Pric+(price*2));
+                                    
+                                    // console.log(this.Price*days+(price*2));
+                                    return
+                                }
+                            }
+                            this.Price+=(price*2)
                                 // console.log(price*2);
-                                this.Price+=(price*2)
 
-                            // console.log(price);
+                            
                             // console.log(item);
                         })
                     }
@@ -176,6 +199,11 @@ export default{
                 // console.log(this.total);
             })
             this.total=this.total1
+            if(this.endDate!=''){
+                this.total = (this.total*days) +this.Price
+                // console.log(this.Price);
+                return
+            }
             this.total += this.Price
         },
         Click(){
@@ -190,6 +218,11 @@ export default{
             this.ischecked=!this.ischecked
             // this.exxtra.push(this.value)
             // showExtra.innerText=this.exxtra
+        },
+        test3(){
+            
+            console.log(this.total);
+            // console.log(this.endDate);
         },
         clicked1(){
             this.ischecked1=!this.ischecked1

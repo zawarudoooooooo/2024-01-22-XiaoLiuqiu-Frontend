@@ -205,6 +205,11 @@ const router = createRouter({
         verificationCode: route.query.verificationCode,
       })
     },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('../views/FrontEnd/test.vue')
+    },
   ]
 })
 export default router

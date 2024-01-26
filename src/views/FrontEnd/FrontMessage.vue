@@ -22,6 +22,13 @@ export default{
         }).then(res=>{
             //console.log(res.data.messageList)
             this.msglist=res.data.messageList
+            this.msglist.forEach(element => {
+                let date=new Date(element.messageDateTime)
+                let messageDate=date.getUTCFullYear()+'年'+(date.getMonth()+1)+'月'+date.getDate()+'日'+date.getHours()+'時'+date.getMinutes()+'分'
+                console.log(messageDate);
+                element.messageDateTime=messageDate
+                
+            });
             console.log(this.msglist)
         })
     }
@@ -47,7 +54,7 @@ export default{
                 <img src="../../../public/message/IMG_1210.JPG" alt="">
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><small>2024/01/06 15:20</small></li>
+                <li class="list-group-item"><small>{{item.messageDateTime}}</small></li>
             </ul>
         </div>
     </div>
