@@ -23,7 +23,7 @@ export default{
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                withCredentials:true,
+                withCredentials: true,
                 data: {
                     account:this.account,
                     password:this.pwd,

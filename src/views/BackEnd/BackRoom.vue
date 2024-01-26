@@ -25,16 +25,29 @@ export default{
             upDateIntroduce:"",
             upRoomId:"",
             upRoomName:"",
-            
             isChecked: false,
-
-            introduce:[]
+            introduce:[],
+            access: 0,
         }
+    },
+    mounted(){
+        this.access = this.getAccess();
+        console.log(this.access);
     },
     methods:{
         createRoom() {
             console.log(this.roomPrice);
             const roomtype=document.querySelectorAll(".roomtype")
+
+            const cookieValue = this.getCookie("employee");
+            console.log(cookieValue);
+            console.log(this.access);
+            const [account] = cookieValue.split(":");
+
+            if(!/^[C]/.test(account) || this.access != 50){
+                swal("錯誤", "權限不足", "error");
+                return
+            }
 
             roomtype.forEach(room=>{
                 if(room.checked){
@@ -218,7 +231,29 @@ export default{
                 return "開放中"
             }
             return "未開放"
-        }
+        },
+        getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) {
+                const [account, access, active] = parts.pop().split(';').shift().split(":");
+                this.access = parseInt(access);
+                this.active = active === "true";  
+                return account;
+            }
+        return "";
+        },
+        getAccess(){
+            const cookieValue = this.getCookie("employee")
+            console.log(cookieValue);
+            if(cookieValue){
+                const parts = cookieValue.split(":")
+                console.log("Cookie parts:", parts);
+                return parts.length === 3 ? parseInt(parts[1]) : 0
+            }
+            return 0
+        },
+        
     },
     components:{
         backSideBar
@@ -490,7 +525,7 @@ export default{
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">更改說明 :</label>
                                 <br>
-                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.introduce">
                                 <label for="uno">獨立衛浴</label>
                                 <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
                                 <label for="uno">空調 </label>
