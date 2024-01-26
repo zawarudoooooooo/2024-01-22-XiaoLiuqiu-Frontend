@@ -270,478 +270,484 @@ export default{
 </script>
 
 <template>
-    <div class="title">
-        <p>房型管理<i class="fa-solid fa-bed"></i></p>
-    </div>
     <div class="content">
-        <div class="side">
-            <backSideBar />
+        <div class="title">
+            <p>房型管理<i class="fa-solid fa-bed"></i></p>
         </div>
-        <div class="buttonArea">
-            <button type="button" data-bs-toggle="modal" 
-                data-bs-target="#exampleModal">新增房間</button>
-            <button type="button" @click="simpleOpen()">小資雙人房</button>
-            <button type="button" @click="doubleOpen()">舒適雙人房</button>
-            <button type="button" @click="familyOpen()">豪華家庭房</button>
-        </div>
-        </div>
+        <div class="list">
+            <div class="side">
+                <backSideBar />
+            </div>
+            <div class="roominfo">
+                <div class="buttonArea">
+                    <button type="button" data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal">新增房間
+                    </button>
+                    <button type="button" @click="simpleOpen()">小資雙人房</button>
+                    <button type="button" @click="doubleOpen()">舒適雙人房</button>
+                    <button type="button" @click="familyOpen()">豪華家庭房</button>
+                </div>
 <!-- 小資雙人房 -->
-        <div class="simple" v-if="simple" >
-            <div class="info">
-                <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
-            </div>
-            <div class="room" v-for="(item,index) in this.roomSearch">
-            <div class="room" v-for="(item,index) in this.roomSearch">
-                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../../../../public/room/SP/simpledouble1.jpg" class="d-block w-100" alt="...">
+                <div class="simple" v-if="simple" >
+                    <div class="info">
+                        <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
+                    </div>
+                    <div class="room" v-for="(item,index) in this.roomSearch">
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="../../../../public/room/SP/simpledouble1.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../../../public/room/SP/simpledouble1-2.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../../../public/room/SP/simpledouble1-3.jpg" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="carousel-item">
-                            <img src="../../../../public/room/SP/simpledouble1-2.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../../../../public/room/SP/simpledouble1-3.jpg" class="d-block w-100" alt="...">
+                        <div class="text">
+                            <div class="name">
+                                <p>{{item.roomName}}</p>
+                                <p>編號 : {{item.roomId}}</p>
+                            </div>
+                            <hr>
+                            <div class="description">
+                                <p>
+                                    <i class="fa-solid fa-shower"></i>獨立衛浴
+                                    <i class="fa-solid fa-snowflake"></i>空調
+                                    <i class="fa-solid fa-tv"></i>平面電視
+                                    <i class="fa-solid fa-wifi"></i>Wifi
+                                </p>
+                            </div>
+                            <div class="price">
+                                <p>價格 : ${{ item.roomPrice}}</p>
+                            </div>
+                            <div class="status">
+                                <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
+                            </div>
+                            <div class="edit">
+                                <i class="fa-solid fa-paint-roller"></i>
+                                <p data-bs-toggle="modal" 
+                                    data-bs-target="#edit" @click="upDateRoom(index)">編輯
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
-                <div class="text">
-                    <div class="name">
-                        <p>{{item.roomName}}</p>
-                        <p>編號 : {{item.roomId}}</p>
-                    </div>
-                    <hr>
-                    <div class="description">
-                        <p>
-                            <i class="fa-solid fa-shower"></i>獨立衛浴
-                            <i class="fa-solid fa-snowflake"></i>空調
-                            <i class="fa-solid fa-tv"></i>平面電視
-                            <i class="fa-solid fa-wifi"></i>Wifi
-                        </p>
-                    </div>
-                    <div class="price">
-                        <p>價格 : ${{ item.roomPrice}}</p>
-                    </div>
-                    <div class="status">
-                        <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
-                    </div>
-                    <div class="edit">
-                        <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
-                            data-bs-target="#edit" @click="upDateRoom(index)">編輯</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
 <!-- 舒適雙人房 -->
-        <div class="double" v-if="double" >
-            <div class="info">
-                <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
-            </div>
-            <div class="room" v-for=" (item,index) in this.roomSearch">
-                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
+                <div class="double" v-if="double" >
+                    <div class="info">
+                        <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
+                    </div>
+                    <div class="room" v-for=" (item,index) in this.roomSearch">
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../../../public/room/D/double1-3.jpg" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="carousel-item">
-                            <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../../../../public/room/D/double1-3.jpg" class="d-block w-100" alt="...">
+                        <div class="text">
+                            <div class="name">
+                                <p>{{item.roomName}}</p>
+                                <p>編號 : {{item.roomId}}</p>
+                            </div>
+                            <hr>
+                            <div class="description">
+                                <p>
+                                    <i class="fa-solid fa-snowflake"></i>空調
+                                    <i class="fa-solid fa-tv"></i>平面電視
+                                    <i class="fa-solid fa-wifi"></i>Wifi
+                                    <i class="fa-solid fa-bath"></i>浴缸
+                                    <i class="fa-solid fa-gamepad"></i>遊戲機
+                                </p>
+                            </div>
+                            <div class="price">
+                                <p>價格 : ${{ item.roomPrice}}</p>
+                            </div>
+                            <div class="status">
+                                <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
+                            </div>
+                            <div class="edit">
+                                <i class="fa-solid fa-paint-roller"></i>
+                                <p data-bs-toggle="modal" 
+                                    data-bs-target="#edit" @click="upDateRoom(index)">編輯
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
-                <div class="text">
-                    <div class="name">
-                        <p>{{item.roomName}}</p>
-                        <p>編號 : {{item.roomId}}</p>
-                    </div>
-                    <hr>
-                    <div class="description">
-                        <p>
-                            <i class="fa-solid fa-snowflake"></i>空調
-                            <i class="fa-solid fa-tv"></i>平面電視
-                            <i class="fa-solid fa-wifi"></i>Wifi
-                            <i class="fa-solid fa-bath"></i>浴缸
-                            <i class="fa-solid fa-gamepad"></i>遊戲機
-                        </p>
-                    </div>
-                    <div class="price">
-                        <p>價格 : ${{ item.roomPrice}}</p>
-                    </div>
-                    <div class="status">
-                        <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
-                    </div>
-                    <div class="edit">
-                        <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
-                            data-bs-target="#edit" @click="upDateRoom(index)">編輯</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 <!-- 豪華家庭房 -->
-        <div class="family" v-if="family" >
-            <div class="info">
-                <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
-            </div>
-            <div class="room" v-for="(item,index) in this.roomSearch">
-            <div class="room" v-for="(item,index) in this.roomSearch">
-                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../../../../public/room/F/family1.jpg" class="d-block w-100" alt="...">
+                <div class="family" v-if="family" >
+                    <div class="info">
+                        <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
+                    </div>
+                    <div class="room" v-for="(item,index) in this.roomSearch">
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="../../../../public/room/F/family1.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../../../public/room/F/family1-1.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../../../public/room/f/family1-2.jpg" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="carousel-item">
-                            <img src="../../../../public/room/F/family1-1.jpg" class="d-block w-100" alt="...">
+                        <div class="text">
+                            <div class="name">
+                                <p>{{item.roomName}}</p>
+                                <p>編號 : {{item.roomId}}</p>
+                            </div>
+                            <hr>
+                            <div class="description">
+                                <p>
+                                    <i class="fa-solid fa-snowflake"></i>空調
+                                    <i class="fa-solid fa-tv"></i>平面電視
+                                    <i class="fa-solid fa-wifi"></i>Wifi
+                                    <i class="fa-solid fa-bath"></i>浴缸
+                                    <i class="fa-solid fa-plug"></i>床頭插座
+                                    <i class="fa-solid fa-mountain-sun"></i>景觀
+                                </p>
+                            </div>
+                            <div class="price">
+                                <p>價格 : ${{ item.roomPrice}}</p>
+                            </div>
+                            <div class="status">
+                                <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
+                            </div>
+                            <div class="edit">
+                                <i class="fa-solid fa-paint-roller"></i>
+                                <p data-bs-toggle="modal" 
+                                    data-bs-target="#edit" @click="upDateRoom(index)">編輯
+                                </p>
                         </div>
-                        <div class="carousel-item">
-                            <img src="../../../../public/room/f/family1-2.jpg" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="text">
-                    <div class="name">
-                        <p>{{item.roomName}}</p>
-                        <p>編號 : {{item.roomId}}</p>
-                    </div>
-                    <hr>
-                    <div class="description">
-                        <p>
-                            <i class="fa-solid fa-snowflake"></i>空調
-                            <i class="fa-solid fa-tv"></i>平面電視
-                            <i class="fa-solid fa-wifi"></i>Wifi
-                            <i class="fa-solid fa-bath"></i>浴缸
-                            <i class="fa-solid fa-plug"></i>床頭插座
-                            <i class="fa-solid fa-mountain-sun"></i>景觀
-                        </p>
-                    </div>
-                    <div class="price">
-                        <p>價格 : ${{ item.roomPrice}}</p>
-                    </div>
-                    <div class="status">
-                        <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
-                    </div>
-                    <div class="edit">
-                        <i class="fa-solid fa-paint-roller"></i><p data-bs-toggle="modal" 
-                            data-bs-target="#edit" @click="upDateRoom(index)">編輯</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-<!-- 新增房間modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">新增房間</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">類型 :</label>
-                                <br>
-                                <input type="radio" value="小資雙人房" class="roomtype" name="roomtype">
-                                <label for="">A : 小資雙人房</label>
-                                <input type="radio" value="舒適雙人房" class="roomtype" name="roomtype">
-                                <label for="">B : 舒適雙人房</label>
-                                <input type="radio" value="豪華家庭房" class="roomtype" name="roomtype">
-                                <label for="">C : 豪華家庭房</label>
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">編號 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">說明 :</label>
-                                <br>
-                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.introduce">
-                                <label for="uno">獨立衛浴</label>
-                                <input type="checkbox" id="uno2" value="空調" v-model="this.introduce">
-                                <label for="uno">空調 </label>
-                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.introduce">
-                                <label for="uno">平面電視 </label>
-                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.introduce">
-                                <label for="uno">Wifi</label>
-                                <br>
-                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.introduce">
-                                <label for="uno">浴缸</label>
-                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.introduce">
-                                <label for="uno">遊戲機</label>
-                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.introduce">
-                                <label for="uno">床頭插座</label>
-                                <input type="checkbox" id="uno8" value="景觀" v-model="this.introduce">
-                                <label for="uno">景觀</label>
-                                <!-- <button type="button" @click="test()">測試</button> -->
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">價格 :</label>
-                                <input type="number" class="form-control" id="recipient-name" v-model="this.roomPrice" placeholder="請輸入價格">
-                            </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">圖片 :</label>
-                                <input type="file" class="form-control" id="recipient-name" multiple>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"  @click="createRoom()">確認新增</button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-<!-- 編輯房間modal -->
-        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">編輯房間</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">更改金額 :</label>
-                                <input type="number" class="form-control" id="recipient-name" v-model="this.upDateRoomPrice">
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">更改說明 :</label>
-                                <br>
-                                <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
-                                <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
-                                <label for="uno">獨立衛浴</label>
-                                <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
-                                <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
-                                <label for="uno">空調 </label>
-                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
-                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
-                                <label for="uno">平面電視 </label>
-                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
-                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
-                                <label for="uno">Wifi</label>
-                                <br>
-                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
-                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
-                                <label for="uno">浴缸</label>
-                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
-                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
-                                <label for="uno">遊戲機</label>
-                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
-                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
-                                <label for="uno">床頭插座</label>
-                                <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
-                                <label for="uno">景觀</label>
-                                <!-- <button type="button" @click="test()">測試</button> -->
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">更改狀態 :</label>
-                                <input type="checkbox" value="false" v-model="this.editstatus">
-                                <label for="">已開放</label>
-                            </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">更改圖片 :</label>
-                                <input type="file" class="form-control" id="recipient-name">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="upDate()">更改</button>
-                    </div>
+        
+            </div>
+        </div>
+    </div>
+<!-- 新增房間modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">新增房間</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">類型 :</label>
+                            <br>
+                            <input type="radio" value="小資雙人房" class="roomtype" name="roomtype">
+                            <label for="">A : 小資雙人房</label>
+                            <input type="radio" value="舒適雙人房" class="roomtype" name="roomtype">
+                            <label for="">B : 舒適雙人房</label>
+                            <input type="radio" value="豪華家庭房" class="roomtype" name="roomtype">
+                            <label for="">C : 豪華家庭房</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">編號 :</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">說明 :</label>
+                            <br>
+                            <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.introduce">
+                            <label for="uno">獨立衛浴</label>
+                            <input type="checkbox" id="uno2" value="空調" v-model="this.introduce">
+                            <label for="uno">空調 </label>
+                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.introduce">
+                            <label for="uno">平面電視 </label>
+                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.introduce">
+                            <label for="uno">Wifi</label>
+                            <br>
+                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.introduce">
+                            <label for="uno">浴缸</label>
+                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.introduce">
+                            <label for="uno">遊戲機</label>
+                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.introduce">
+                            <label for="uno">床頭插座</label>
+                            <input type="checkbox" id="uno8" value="景觀" v-model="this.introduce">
+                            <label for="uno">景觀</label>
+                            <!-- <button type="button" @click="test()">測試</button> -->
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">價格 :</label>
+                            <input type="number" class="form-control" id="recipient-name" v-model="this.roomPrice" placeholder="請輸入價格">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">圖片 :</label>
+                            <input type="file" class="form-control" id="recipient-name" multiple>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"  @click="createRoom()">確認新增</button>
                 </div>
             </div>
         </div>
     </div>
+<!-- 編輯房間modal -->
+    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">編輯房間</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">更改金額 :</label>
+                            <input type="number" class="form-control" id="recipient-name" v-model="this.upDateRoomPrice">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">更改說明 :</label>
+                            <br>
+                            <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
+                            <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
+                            <label for="uno">獨立衛浴</label>
+                            <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
+                            <label for="uno">空調 </label>
+                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
+                            <label for="uno">平面電視 </label>
+                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
+                            <label for="uno">Wifi</label>
+                            <br>
+                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
+                            <label for="uno">浴缸</label>
+                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
+                            <label for="uno">遊戲機</label>
+                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
+                            <label for="uno">床頭插座</label>
+                            <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
+                            <label for="uno">景觀</label>
+                            <!-- <button type="button" @click="test()">測試</button> -->
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">更改狀態 :</label>
+                            <input type="checkbox" value="false" v-model="this.editstatus">
+                            <label for="">已開放</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">更改圖片 :</label>
+                            <input type="file" class="form-control" id="recipient-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="upDate()">更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </template>
 
 <style lang="scss" scoped>
-    .title{
-        font-size: 28pt;
-        font-weight: bold;
-        color: #82AAE3;
-        //text-align: center;
-        margin-top: 4vmin;
-        margin-left: 50%;
-        i{
-            margin-left: 1vmin;
-        }
-    }
     .content{
-        width: 80vw;
-        height: 50vh;
+        width: 90vw;
         margin: auto;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 5vmin;
-        position: relative;
-        .buttonArea{
-            width: 35vw;
+        margin-top: 4vmin;
+        .title{
+            font-size: 28pt;
+            font-weight: bold;
+            color: #82AAE3;
+            text-align: center;
+        }
+        .list{
             display: flex;
             justify-content: space-between;
-            position: absolute;
-            right: 0;
-            button {
-                width: 8vw;
-                height: 5vh;
-                border: none;
-                border-radius: 5px;
-                color: #797A7E;
-                box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
-                &:hover {
-                    background-color: #797A7E;
-                    color: white;
-                }
-                &:active {
-                    background-color: #F7F2E7;
-                    color: #797A7E;
-                    }
-            }
-        }
-        .info{
-            width: 12vw;
-        }
-        p{
-            color: #797A7E;
-            font-size: 20pt;
-        }
-        i{
-            margin-right: 2vmin;
-        }
-        .room{
-            width: 60vw;
-            height: 35vh;
-            margin: auto;
-            display: flex;
-            justify-content: space-around;
-            border: 1px solid lightgray;
-            border-radius: 10px;
-            margin-top: 5vmin;
-            box-shadow: 1px 1px 1px gray;
-            padding: 3vmin 2vmin 0vmin;
             position: relative;
-
-            #carouselExample{
-                width: 20vw;
-                height: 28vh;
-                margin-top: 0.5vmin;
-                border-radius: 5px;
-                box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                .carousel-inner{
-                    width: 20vw;
-                    border-radius: 5px;
-                    .carousel-item{
-                        width: 20vw;
+            .roominfo{
+                .buttonArea{
+                    width: 35vw;
+                    display: flex;
+                    justify-content: space-between;
+                    position: absolute;
+                    right: 0%;
+                    button {
+                        width: 8vw;
+                        height: 5vh;
+                        border: none;
                         border-radius: 5px;
-                        img{
-                            width: 21vw;
-                            height: 28vh;
-                            border-radius: 5px;
-                            transition: all linear 0.3s;
-                            &:hover{
-                                opacity: 0.7;
-                            }
-                            &:active{
-                                opacity: 1.0;
-                            }
+                        color: #797A7E;
+                        font-size: 14pt;
+                        box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+                        &:hover {
+                            background-color: #797A7E;
+                            color: white;
+                        }
+                        &:active {
+                            background-color: #F7F2E7;
+                            color: #797A7E;
                         }
                     }
                 }
-                .carousel-control-prev-icon{
-                    width: 1.5rem;
-                }
-                .carousel-control-next-icon{
-                    width: 1.5rem;
-                }
-            }
-            .text{
-                height: 23vh;
-                hr{
-                    margin-top: 1vmin;
-                }
-                .name{
-                    width: 30vw;
-                    margin: auto;
-                    display: flex;
-                    align-content: center;
-                    justify-content: space-between;
+                .info{
                     p{
                         color: #797A7E;
                         font-size: 24pt;
-                        margin: 0;
-                    }
-                }
-                .description{
-                    p{
-                        color: #797A7E;
-                        font-size: 14pt;
-                        width: 35vw;
                     }
                     i{
-                        margin-right: 1vmin;
-                        margin-left: 1vmin;
-                    }
+                        margin-right: 2vmin;
+                    } 
                 }
-                .price{
-                    p{
-                        color: #797A7E;
-                        font-size: 16pt;
-                        width: 35vw;
-                    }
-                }
-                .status{
-                    width: 30vw;
+                .room{
+                    width: 70vw;
+                    height: 35vh;
+                    margin: auto;
                     display: flex;
-                    p{
-                        color: #797A7E;
-                        font-size: 16pt;
-                        width: 35vw;
+                    justify-content: space-around;
+                    border: 1px solid lightgray;
+                    border-radius: 10px;
+                    margin-top: 5vmin;
+                    box-shadow: 1px 1px 1px gray;
+                    padding: 3vmin 2vmin 0vmin;
+                    position: relative;
+                    #carouselExample{
+                        width: 20vw;
+                        height: 28vh;
+                        margin-top: 0.5vmin;
+                        border-radius: 5px;
+                        box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                        .carousel-inner{
+                            width: 20vw;
+                            border-radius: 5px;
+                            .carousel-item{
+                                width: 20vw;
+                                border-radius: 5px;
+                                img{
+                                    width: 21vw;
+                                    height: 28vh;
+                                    border-radius: 5px;
+                                    transition: all linear 0.3s;
+                                    &:hover{
+                                        opacity: 0.7;
+                                    }
+                                    &:active{
+                                        opacity: 1.0;
+                                    }
+                                }
+                            }
+                        }
+                        .carousel-control-prev-icon{
+                            width: 1.5rem;
+                        }
+                        .carousel-control-next-icon{
+                            width: 1.5rem;
+                        }
                     }
-                    i{
-                        color: #797A7E;
-                        font-size: 25pt;
-                    }
-                }
-                .edit{
-                    display: flex;
-                    align-items: center;
-                    width: 5vw;
-                    position: absolute;
-                    right: 4%;
-                    bottom: 8%;
-                    i{
-                        font-size: 14pt;
-                        color: #797A7E;
-                    }
-                    p{
-                        font-size: 15pt;
-                        margin: 0;
+                    .text{
+                        height: 23vh;
+                        hr{
+                            margin-top: 1vmin;
+                        }
+                        .name{
+                            width: 40vw;
+                            margin: auto;
+                            display: flex;
+                            align-content: center;
+                            justify-content: space-between;
+                            p{
+                                color: #797A7E;
+                                font-size: 24pt;
+                                margin: 0;
+                            }
+                        }
+                        .description{
+                            p{
+                                color: #797A7E;
+                                font-size: 14pt;
+                                width: 35vw;
+                            }
+                            i{
+                                margin-right: 1vmin;
+                                margin-left: 1vmin;
+                            }
+                        }
+                        .price{
+                            p{
+                                color: #797A7E;
+                                font-size: 16pt;
+                                width: 35vw;
+                            }
+                        }
+                        .status{
+                            width: 30vw;
+                            display: flex;
+                            p{
+                                color: #797A7E;
+                                font-size: 16pt;
+                                width: 35vw;
+                            }
+                            i{
+                                color: #797A7E;
+                                font-size: 25pt;
+                            }
+                        }
+                        .edit{
+                            display: flex;
+                            align-items: center;
+                            width: 5vw;
+                            position: absolute;
+                            right: 4%;
+                            bottom: 8%;
+                            i{
+                                font-size: 14pt;
+                                color: #797A7E;
+                            }
+                            p{
+                                font-size: 15pt;
+                                color: #797A7E;
+                                margin: 0;
+                            }
+                        }
                     }
                 }
             }
