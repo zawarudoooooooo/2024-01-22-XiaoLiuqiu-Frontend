@@ -241,6 +241,25 @@ export default{
             this.newPhone="",
             this.newEmail=""
         },
+        upDateMemberImg(){
+            axios({
+            url:'http://localhost:8080/member/imgUpDate',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                memberId:this.memberInfo.memberId
+            },             
+            data:{
+                memberImg:this.useravatar
+            },
+        }).then(res => {     
+            console.log(res.data)
+            
+            })
+        
+        },
 //變更密碼
         updatePwd(){
             axios({
@@ -358,8 +377,11 @@ export default{
                     <!-- <img :src="IDc1" alt="" class="upload_cover">
                     <input class="upload_cover" id="IDc1" name="IDc1" type="file"
                     @change="uploadIMG"> -->
-                    <input id="upload_input" type="file" @change="uploadImg($event)">
+
+                    <!-- <input id="upload_input" type="file" @change="uploadImg($event)"> -->
+                    
                     <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
+                    <input id="upload_input" type="file" @change="uploadImg($event)">
                     <img :src="useravatar" class="upload_cover" alt="">
                 </label>
             </div>
@@ -379,7 +401,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
-                <button type="button" @click="updateMemberInfo()">儲存</button>
+                <button type="button" @click="upDateMemberImg()">儲存</button>
             </div>
         </div>
 <!-- 更改資料modal視窗 -->
