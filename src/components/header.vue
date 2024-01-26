@@ -6,7 +6,8 @@ export default{
     data(){
         return{
             cookie:"",
-            cookieTest:""
+            cookieTest:"",
+            account:""
         }
     },
     methods: {
@@ -89,6 +90,7 @@ export default{
         this.cookie=document.cookie;
         // console.log(this.cookie);
         this.cookieTest=this.cookie.split("=")[0]
+        this.account=this.cookie.split("=")[1]
         // console.log(this.cookieTest);
     }
 }
@@ -129,7 +131,7 @@ export default{
                             <RouterLink to="/FrontLogin" class="routerItem"><i class="fa-solid fa-user"></i>登入</RouterLink>
                         </li>
                         <li class="nav-item dropdown"  v-if="this.cookie!=''&&this.cookieTest!='employee'">
-                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>會員名稱</p>
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>您好，{{this.account}}</p>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li class="dropdown-item" @click="goUserInfo()"><i class="fa-solid fa-user-check"></i>會員中心</li>
                                 <li class="dropdown-item" @click="logout()"><i class="fa-solid fa-right-from-bracket"></i>登出</li>

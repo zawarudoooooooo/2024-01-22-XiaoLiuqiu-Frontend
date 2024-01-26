@@ -83,7 +83,7 @@ export default{
                     const availableRooms = [];
                     this.roomList.forEach(room => {
                         console.log(room.roomIntroduce );
-                        // room.roomIntroduce= JSON.parse(room.roomIntroduce)
+                        room.roomIntroduce= JSON.parse(room.roomIntroduce)
                         // console.log(room);
                         // 檢查房間是否已經被訂購
                         const isBooked = this.orderRoomId.some(order => {
