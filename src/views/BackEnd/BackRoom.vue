@@ -284,6 +284,7 @@ export default{
             <button type="button" @click="doubleOpen()">舒適雙人房</button>
             <button type="button" @click="familyOpen()">豪華家庭房</button>
         </div>
+        </div>
 <!-- 小資雙人房 -->
         <div class="simple" v-if="simple" >
             <div class="info">
@@ -338,6 +339,7 @@ export default{
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 <!-- 舒適雙人房 -->
         <div class="double" v-if="double" >
