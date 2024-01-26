@@ -1,7 +1,7 @@
 <script>
-import Footer from '../../../components/Footer.vue';
+import Footer from '../../components/Footer.vue';
 import axios from 'axios';
-import FrontSimpleDouble from './FrontDouble.vue'
+import FrontRoom from './FrontRoom.vue'
 export default{
     
     data(){
@@ -70,7 +70,7 @@ export default{
     },
     components:{
         Footer,
-        FrontSimpleDouble
+        FrontRoom
     },
 }
 </script>
@@ -117,7 +117,7 @@ export default{
             </div>
         </div>
     </div>
-    <FrontSimpleDouble v-if="Search" v-bind:List="this.roomList" @goback="back(xxx)"/>
+    <FrontRoom v-if="Search" v-bind:List="this.roomList" @goback="back(xxx)"/>
     <Footer/>
 </template>
 

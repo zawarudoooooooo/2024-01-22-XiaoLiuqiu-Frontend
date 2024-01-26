@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../../components/Footer.vue';
+import Footer from '../../components/Footer.vue';
 import swal from 'sweetalert';
 import axios from 'axios';
 export default{
@@ -54,9 +54,6 @@ export default{
                     })
                 })
         }
-        
-
-        
 
         this.order=this.info
         console.log(this.order);
@@ -101,7 +98,7 @@ export default{
                 return
             }
             if(this.startDate==0||this.endDate==0){
-                swal("錯誤", "請輸入入住日期或者退房日期", "error");
+                swal("錯誤", "請選擇入住日期或者退房日期", "error");
                 return
             }
             axios({
@@ -128,7 +125,7 @@ export default{
             this.$router.push('/')
         },
         cancle(){
-            this.$router.push('/FrontSearch')
+            this.$router.push('/')
         },
         exxtraClick(){
             // this.total=0
@@ -183,7 +180,7 @@ export default{
         },
         Click(){
             if(this.startDate==0||this.endDate==0){
-                swal("錯誤", "請輸入入住日期或者退房日期", "error");
+                swal("錯誤", "請選擇入住日期或者退房日期", "error");
                 return
             }
             this.exxtraClick()
@@ -270,9 +267,6 @@ export default{
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-
-
-            <!-- <img src="../../../../public/room/double.jpg" alt=""> -->
             <div class="text">
                 <div class="name">
                     <p>{{item.roomName}}</p>
@@ -348,27 +342,27 @@ export default{
                         <form v-for="item in this.order">
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">訂購項目 :</label>
-                                <p>{{item.roomName}}</p>
+                                <span>{{item.roomName}}</span>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">入住日期 :</label>
-                                <p>{{this.startDate}}</p>
+                                <span>{{this.startDate}}</span>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">退房日期 :</label>
-                                <p>{{this.endDate}}</p>
+                                <span>{{this.endDate}}</span>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">加購項目 :</label>
-                                <p v-for="exxItem in exxtra">{{ exxItem.split("(+")[0] }}</p>
+                                <span v-for="exxItem in exxtra">{{ exxItem.split("(+")[0] }}</span>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">總金額 :</label>
-                                <span>{{ this.total }}元</span>
+                                <span>${{ this.total }}元</span>
                             </div>
                             <div class="mb-3">
                                 <!-- <input type="checkbox" value="true"> -->
-                                <label for="recipient-name" class="col-form-label">支付方式</label>
+                                <label for="recipient-name" class="col-form-label">支付方式 :</label>
                                 <select v-model="this.paymentMethod">
                                     <option >請選擇</option>
                                     <option value="true">現場支付</option>
@@ -568,6 +562,17 @@ export default{
                     }
                 }
             }
+        }
+    }
+    .modal-body{
+        span{
+            margin-left: 1vmin;
+        }
+        select{
+            width: 6vw;
+            border-radius: 5px;
+            margin-left: 1vmin;
+            text-align: center;
         }
     }
 </style>

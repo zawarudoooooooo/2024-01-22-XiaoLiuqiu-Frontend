@@ -25,16 +25,29 @@ export default{
             upDateIntroduce:"",
             upRoomId:"",
             upRoomName:"",
-            
             isChecked: false,
-
-            introduce:[]
+            introduce:[],
+            access: 0,
         }
+    },
+    mounted(){
+        this.access = this.getAccess();
+        console.log(this.access);
     },
     methods:{
         createRoom() {
             console.log(this.roomPrice);
             const roomtype=document.querySelectorAll(".roomtype")
+
+            const cookieValue = this.getCookie("employee");
+            console.log(cookieValue);
+            console.log(this.access);
+            const [account] = cookieValue.split(":");
+
+            if(!/^[C]/.test(account) || this.access != 50){
+                swal("錯誤", "權限不足", "error");
+                return
+            }
 
             roomtype.forEach(room=>{
                 if(room.checked){
@@ -84,10 +97,11 @@ export default{
                 if(index!=roomIndex){
                     return
                 }
-                // console.log(item);
+                console.log(item);
                 this.upRoomId=item.roomId
                 this.upRoomName=item.roomName
                 this.upDateRoomPrice=item.roomPrice
+                this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
                 this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
                 this.editstatus=item.open
             })
@@ -222,7 +236,29 @@ export default{
                 return "開放中"
             }
             return "未開放"
-        }
+        },
+        getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) {
+                const [account, access, active] = parts.pop().split(';').shift().split(":");
+                this.access = parseInt(access);
+                this.active = active === "true";  
+                return account;
+            }
+        return "";
+        },
+        getAccess(){
+            const cookieValue = this.getCookie("employee")
+            console.log(cookieValue);
+            if(cookieValue){
+                const parts = cookieValue.split(":")
+                console.log("Cookie parts:", parts);
+                return parts.length === 3 ? parseInt(parts[1]) : 0
+            }
+            return 0
+        },
+        
     },
     components:{
         backSideBar
@@ -253,6 +289,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
             </div>
+            <div class="room" v-for="(item,index) in this.roomSearch">
             <div class="room" v-for="(item,index) in this.roomSearch">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -362,6 +399,7 @@ export default{
             <div class="info">
                 <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
             </div>
+            <div class="room" v-for="(item,index) in this.roomSearch">
             <div class="room" v-for="(item,index) in this.roomSearch">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -498,16 +536,22 @@ export default{
                                 <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
                                 <label for="uno">獨立衛浴</label>
                                 <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
                                 <label for="uno">空調 </label>
                                 <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
                                 <label for="uno">平面電視 </label>
+                                <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                                 <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                                 <label for="uno">Wifi</label>
                                 <br>
                                 <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
                                 <label for="uno">浴缸</label>
                                 <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
+                                <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
                                 <label for="uno">遊戲機</label>
+                                <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                                 <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                                 <label for="uno">床頭插座</label>
                                 <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
