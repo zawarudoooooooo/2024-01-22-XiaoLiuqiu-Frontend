@@ -116,7 +116,8 @@ export default{
                 order_item: this.arr,
                 start_date:this.startDate,
                 end_date:this.endDate,
-                order_payment:this.paymentMethod
+                order_payment:this.paymentMethod,
+                total:this.total
             },
             }).then(res=>{
                 console.log(res.data);
@@ -205,6 +206,7 @@ export default{
                 return
             }
             this.total += this.Price
+            // console.log(this.total);
         },
         Click(){
             if(this.startDate==0||this.endDate==0){
