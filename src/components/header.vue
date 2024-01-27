@@ -17,6 +17,9 @@ export default{
         goUserInfo(){
             this.$router.push('/FrontPersonInfo')
         },
+        goBack(){
+            this.$router.push('/BackOrder')
+        },
         logout(){
             axios({
             url:'http://localhost:8080/member/logout',
@@ -61,7 +64,7 @@ export default{
             params:{
             },
             data:{
-
+                
             },
             }).then(res=>{
             console.log(res.data);
@@ -81,14 +84,12 @@ export default{
                             },100)
                         } 
                     });
-            
             })
         },
-        
     },
     mounted(){
         this.cookie=document.cookie;
-        // console.log(this.cookie);
+        //console.log(this.cookie);
         this.cookieTest=this.cookie.split("=")[0]
         this.account=this.cookie.split("=")[1]
         // console.log(this.cookieTest);
@@ -110,7 +111,7 @@ export default{
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>房型總覽</RouterLink>
+                            <RouterLink to="/FrontSearch" class="routerItem"  v-if="this.cookie!=''||this.cookieTest =='employee'"><i class="fa-solid fa-bed"></i>房型總覽</RouterLink>
                         </li>
                         <li class="nav-item">
                             <RouterLink to="/FrontTicket" class="routerItem"><i class="fa-solid fa-comments-dollar"></i>超值加購</RouterLink>
@@ -137,8 +138,12 @@ export default{
                                 <li class="dropdown-item" @click="logout()"><i class="fa-solid fa-right-from-bracket"></i>登出</li>
                             </ul>
                         </li>
-                        <li class="nav-item" v-if="this.cookie!=''&&this.cookieTest=='employee'">
-                            <button @click="employeeLogout()" class="routerItem" ><i class="fa-solid fa-user-check"></i>員工登出</button>
+                        <li class="nav-item dropdown" v-if="this.cookie!=''&&this.cookieTest=='employee'">
+                            <p class="routerItem" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user-gear"></i>員工</p>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li class="dropdown-item" @click="goBack()"><i class="fa-solid fa-gears"></i>後台管理</li>
+                                <li class="dropdown-item" @click="employeeLogout()"><i class="fa-solid fa-right-from-bracket"></i>員工登出</li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -180,6 +185,8 @@ export default{
             .dropdown-item{
                 font-size: 16pt;
                 color: #797A7E;
+                text-align: center;
+                cursor: pointer;
                 &:active{
                     background-color: #BFEAF5;
                 }

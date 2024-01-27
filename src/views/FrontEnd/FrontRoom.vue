@@ -75,14 +75,15 @@ export default{
 
             },
                 }).then(res=>{
+
                     this.roomList1=res.data.roomList
                     // console.log(this.roomList1);
                     this.roomList=res.data.roomList
                     // console.log(this.roomList);
-                    
+
                     const availableRooms = [];
                     this.roomList.forEach(room => {
-                        console.log(room.roomIntroduce );
+                        console.log(room.roomIntroduce);
                         room.roomIntroduce= JSON.parse(room.roomIntroduce)
                         // console.log(room);
                         // 檢查房間是否已經被訂購
@@ -98,6 +99,31 @@ export default{
                     });
                     this.roomList = availableRooms;
                     console.log(this.roomList);
+
+
+                    // this.roomList1=res.data.roomList
+                    // // console.log(this.roomList1);
+                    // this.roomList=res.data.roomList
+                    // // console.log(this.roomList);
+                    
+                    // const availableRooms = [];
+                    // this.roomList.forEach(room => {
+                    //     console.log(room.roomIntroduce );
+                    //     room.roomIntroduce= JSON.parse(room.roomIntroduce)
+                    //     console.log(room);
+                    //     // 檢查房間是否已經被訂購
+                    //     const isBooked = this.orderRoomId.some(order => {
+                    //         const nStartDate = new Date(order.startDate);
+                    //         const nEndDate = new Date(order.endDate);
+                    //         return order.roomId === room.roomId && nStartDate <= this.today && nEndDate >= this.today;
+                    //     });
+                    //     // 如果沒有被訂購，加入可用房間列表
+                    //     if (!isBooked) {
+                    //         availableRooms.push(room);
+                    //     }
+                    // });
+                    // this.roomList = availableRooms;
+                    // console.log(this.roomList);
                 })
             })
         console.log(this.List);

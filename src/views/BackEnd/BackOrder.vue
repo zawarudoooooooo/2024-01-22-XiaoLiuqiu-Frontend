@@ -7,7 +7,7 @@ export default {
         return{
             orders:[],
             roomId:"",
-            orderItem:"",
+            orderItem:[],
             account: "",
             access: 0,
             isAdmin: false,
@@ -27,6 +27,7 @@ export default {
         },
         orderItemF(index){
             this.roomId=""
+            this.orderItem=[]
             this.orders.forEach((item,ordersIndex)=>{
                 if(ordersIndex!=index){
                     return
@@ -139,16 +140,14 @@ export default {
 </script>
 
 <template>
-    <div class="title">
-        <p>訂單管理<i class="fa-solid fa-list-check"></i></p>
-    </div>
     <div class="content">
+        <div class="title">
+            <p>訂單管理<i class="fa-solid fa-list-check"></i></p>
+        </div>
         <div class="list">
             <div class="side">
                 <backSideBar />
             </div>
-        </div>
-        <div class="show">
             <table>
                 <thead>
                 <tr>
@@ -183,35 +182,7 @@ export default {
             </table>
         </div>
     </div>
-<!-- 訂購項目model -->
-    <!-- <div class="modal fade" id="orderItem" tabindex="-1" aria-labelledby="orderItem" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="orderItem">訂購項目</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form v-for="item in roomId">
-                        <div class="mb-3" >
-                            <label for="recipient-name" class="col-form-label">房間ID :</label>
-                            <span>{{ item.roomId }}</span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">房間名稱 :</label>
-                            <span>{{ item.roomName }}</span>
-                        </div>
-                        <hr>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-light">更改</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-<!-- 加購項目model -->
+<!-- 訂單明細model -->
     <div class="modal fade" id="roomId" tabindex="-1" aria-labelledby="orderItem" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -246,38 +217,24 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    .title{
-        font-size: 28pt;
-        font-weight: bold;
-        color: #82AAE3;
-        margin-top: 4vmin;
-        margin-left: 52%;
-        i{
-            margin-left: 1vmin;
-        }
-    }
     .content{
         width: 90vw;
-        height: 50vh;
         margin: auto;
-        display: flex;
-        margin-top: 5vmin;
-        position: relative;
+        margin-top: 4vmin;
+        .title{
+            font-size: 28pt;
+            font-weight: bold;
+            color: #82AAE3;
+            text-align: center;
+        }
         .list{
-            width: 80vw;
-            height: 50vh;
             display: flex;
             justify-content: space-between;
-            margin: auto;
-        }
-        .show{
             table{
-                width:55vw;
-                font-size: 12pt;
+                width: 70vw;
+                font-size: 14pt;
                 color: #797A7E;
-                position: absolute;
                 text-align: center;
-                right: 10%;
                 thead{
                     tr{
                         td{
@@ -289,6 +246,7 @@ export default {
                 tr{
                     td{
                         border: 2px solid #797A7E;
+                        }
                         button{
                             background-color: transparent;
                             color: #82AAE3;
@@ -300,7 +258,6 @@ export default {
                 }
             }
         }
-    }
     .modal-body{
         .mb-3{
             span{
