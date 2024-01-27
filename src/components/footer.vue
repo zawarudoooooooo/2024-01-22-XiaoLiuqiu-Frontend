@@ -32,6 +32,7 @@ export default{
                 color:#F7F2E7;
                 margin-right: 3vmin;
                 margin-top: 5vmin;
+                cursor: pointer;
                 &:hover{
                     color: #797A7E;
                 }

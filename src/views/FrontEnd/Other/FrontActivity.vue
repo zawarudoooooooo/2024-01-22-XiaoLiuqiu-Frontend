@@ -22,7 +22,7 @@ export default{
                 <li class="show">
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity3.jpg" alt="">
+                            <img src="../../../../public/news/activity3.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -52,7 +52,7 @@ export default{
                     <hr>
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity4.jpg" alt="">
+                            <img src="../../../../public/news/activity4.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -82,7 +82,7 @@ export default{
                     <hr>
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity1.jpg" alt="">
+                            <img src="../../../../public/news/activity1.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -111,7 +111,7 @@ export default{
                     <hr>
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity2.jpg" alt="">
+                            <img src="../../../../public/news/activity2.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -140,7 +140,7 @@ export default{
                     <hr>
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity.jpg" alt="">
+                            <img src="../../../../public/news/activity.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -206,8 +206,8 @@ export default{
                                 width: 25vw;
                                 height: 32vh;
                                 border-radius: 5px;
-                                box-shadow: 1px 1px 1px gray;
                                 transition: all linear 0.3s;
+                                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                                 &:hover{
                                     opacity: 0.8;
                                     box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);

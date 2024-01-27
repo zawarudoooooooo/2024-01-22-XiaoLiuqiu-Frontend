@@ -875,13 +875,13 @@ export default{
     @media(max-width:1200px){
         .content{
             width: 80vw;
-            height: 78vh;
+            height: 78.5vh;
             display: block;
             .buttonArea{
                 width: 80vw;
                 height: 10vh;
                 margin-top: 0;
-                margin-bottom: 12vmin;
+                margin-bottom: 15vmin;
                 flex-direction: row;
                 button{
                     width: 20vw;
@@ -897,17 +897,17 @@ export default{
                 }
                 .user{
                     .upload_cover{
-                        width: 17vmin;
-                        height: 17vmin;
+                        width: 18vmin;
+                        height: 18vmin;
                         right: 4%;
-                        top: 20%;
+                        top: 21%;
                     }
                 }
                 p{
                     font-size: 25pt;
                 }
                 .personInfoBtn{
-                    width: 60vw;
+                    width: 70vw;
                     button{
                         width: 18vw;
                         height: 5vh;
@@ -998,8 +998,9 @@ export default{
     }
     @media(max-width:576px){
         .content{
-            height: 79.5vh;
+            height: 80vh;
             .buttonArea{
+                height: 13vh;
                 margin-bottom: 17vmin;
                 button{
                     width: 24vw;
@@ -1015,7 +1016,7 @@ export default{
                     .upload_cover{
                         width: 23vmin;
                         height: 23vmin;
-                        top: 20%;
+                        top: 24%;
                     }
                 }
                 p{
@@ -1024,7 +1025,7 @@ export default{
                 .personInfoBtn{
                     width: 75vw;
                     right: 3%;
-                    bottom: 9%;
+                    bottom: 13%;
                     button{
                         width: 20vw;
                         font-size: 13pt;
@@ -1090,7 +1091,7 @@ export default{
                     .upload_cover{
                         width: 25vmin;
                         height: 25vmin;
-                        top: 18%;
+                        top: 22%;
                     }
                 }
                 p{
