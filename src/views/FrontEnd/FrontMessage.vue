@@ -10,6 +10,24 @@ export default{
     components:{
         Footer
     },
+    methods:{
+        member(){
+            axios({
+            url:'http://localhost:8080/member/member',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },  
+            params:{
+                account:""
+            },  
+            data:{
+            },
+        }).then(res=>{
+            console.log(res.data)
+        })
+        }
+    },
     mounted(){
         axios({
             url:'http://localhost:8080/message/search',
@@ -22,6 +40,14 @@ export default{
         }).then(res=>{
             //console.log(res.data.messageList)
             this.msglist=res.data.messageList
+            this.msglist.forEach(element => {
+                console.log(element);
+                let date=new Date(element.messageDateTime)
+                let messageDate=date.getUTCFullYear()+'年'+(date.getMonth()+1)+'月'+date.getDate()+'日'+date.getHours()+'時'+date.getMinutes()+'分'
+                console.log(messageDate);
+                element.messageDateTime=messageDate
+                
+            });
             console.log(this.msglist)
         })
     }
@@ -44,10 +70,10 @@ export default{
                 <p class="card-text">
                     {{ item.roomMessageBoardDescription }}
                 </p>
-                <img src="../../../public/message/IMG_1210.JPG" alt="">
+                <img :src="'public/message/'+item.messageImg" alt="">
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><small>2024/01/06 15:20</small></li>
+                <li class="list-group-item"><small>{{item.messageDateTime}}</small></li>
             </ul>
         </div>
     </div>

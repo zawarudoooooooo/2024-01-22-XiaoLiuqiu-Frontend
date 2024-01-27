@@ -12,6 +12,8 @@ export default{
             newEmail:"",
             //會員圖片
             useravatar:"",
+            img:"",
+            ImgPhoto:"",
 
             //更改密碼
             oldPwd:"",
@@ -21,6 +23,7 @@ export default{
             //貼文
             topic:"",
             text:"",
+            messageImg:"",
 
             msgavatar:"",
 
@@ -195,6 +198,8 @@ export default{
                 memberName:this.memberInfo.memberName,
                 roomId:this.topic,
                 roomMessageBoardDescription:this.text,
+                messageImg:this.messageImg,
+                account:this.memberInfo.account
             },
         }).then(res => {
             console.log(res.data)
@@ -226,7 +231,6 @@ export default{
                 memberName:this.newName,
                 memberPhone:this.newPhone,
                 memberEmail:this.newEmail,
-                memberPhoto:this.useravatar
             },
         }).then(res => {     
             console.log(res.data)
@@ -244,6 +248,25 @@ export default{
             this.newName="",
             this.newPhone="",
             this.newEmail=""
+        },
+        upDateMemberImg(){
+            axios({
+            url:'http://localhost:8080/member/imgUpDate',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            params:{
+                memberId:this.memberInfo.memberId
+            },             
+            data:{
+                memberImg:this.img
+            },
+        }).then(res => {     
+            console.log(res.data)
+            
+            })
+        
         },
 //變更密碼
         updatePwd(){
@@ -278,7 +301,17 @@ export default{
             this.oldPwd="",
             this.newPwd="",
             this.checkNewPwd=""
-        }
+        },
+        handleFileChange(event) {
+            const file = event.target.files[0];
+            this.img=file.name
+            console.log(this.img);
+        },
+        messageFileChange(event) {
+            const file = event.target.files[0];
+            this.messageImg=file.name
+            console.log(this.messageImg);
+        },
     },
     mounted(){
         this.cookie=document.cookie.split("=")[1];
@@ -299,11 +332,15 @@ export default{
         }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
+                console.log(this.memberInfo);
                 this.memberName=this.memberInfo.memberName
-                console.log(this.memberInfo.memberName);
+                // this.ImgPhoto="public\" +JSON.parse(this.memberInfo.memberImgPhoto)
+                // console.log(   );
             });
+            this.memberInfo.memberImgPhoto=JSON.parse(this.memberInfo.memberImgPhoto)
+            this.ImgPhoto=this.memberInfo.memberImgPhoto.memberImg
             // this.memberInfo=
-            // console.log(this.memberInfo);
+            console.log(this.ImgPhoto);
 
             //會員訂單
             axios({
@@ -323,7 +360,7 @@ export default{
                     this.memberOrderArr=res.data.orderList
                     console.log(this.memberOrderArr);
                     this.memberOrderArr.forEach(item=>{
-                        console.log(item.orderItem);
+                        // console.log(item.orderItem);
                         order.push(JSON.parse(item.orderItem))
                         order.forEach(order1=>{
                             order1.forEach(order2=>{
@@ -331,8 +368,7 @@ export default{
                             })
                         })
                     })
-                    //console.log(this.memberOrderArr);
-                    // console.log(res.data.orderList);
+
                 })
             })
     },
@@ -360,9 +396,9 @@ export default{
                     <!-- <img :src="IDc1" alt="" class="upload_cover">
                     <input class="upload_cover" id="IDc1" name="IDc1" type="file"
                     @change="uploadIMG"> -->
-                    <input id="upload_input" type="file" @change="uploadImg($event)">
-                    <!-- <img src="../../../public/userimg.png" class="upload_cover" alt=""> -->
-                    <img :src="useravatar" class="upload_cover" alt="">
+                    <input id="upload_input" type="file" @change="handleFileChange">
+                    <!-- <input id="upload_input" type="file" @change="uploadImg($event)"> -->
+                    <img :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
                 </label>
             </div>
             <div class="name">
@@ -381,7 +417,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
-                <button type="button" @click="updateMemberInfo()">儲存</button>
+                <button type="button" @click="upDateMemberImg()">儲存</button>
             </div>
         </div>
 <!-- 更改資料modal視窗 -->
@@ -474,7 +510,7 @@ export default{
                                                 <p>退房時間 : {{item.endDate}}</p>
                                             </li>
                                             <li>
-                                                <p>總金額(待增加) : 加購金額+住宿天數*房間金額</p>
+                                                <p>總金額 :{{item.total}}</p>
                                             </li>
                                             <li>
                                                 <p v-if="item.orderPayment==false">付款方式 : 現場支付</p>
@@ -484,7 +520,7 @@ export default{
                                                 </p>
                                             </li>
                                             <li>
-                                                <p>付款期限(待修改) : {{item.endDate}}</p>
+                                                <p>付款期限 : {{item.startDate}}</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -550,7 +586,7 @@ export default{
                 <p>新增相片</p>
                 <label>
                     <i class="fa-solid fa-images" id="addicon"></i>
-                    <input type="file" class="addimg" @change="onfilemsg">
+                    <input type="file" class="addimg" @change="messageFileChange">
                 </label>
             </div>
             <div class="msgBtnArea">

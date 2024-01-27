@@ -10,7 +10,8 @@ export default {
             orderItem:[],
             account: "",
             access: 0,
-            isAdmin: false
+            isAdmin: false,
+            orderItems:""
         }
     },
     methods:{
@@ -31,9 +32,13 @@ export default {
                 if(ordersIndex!=index){
                     return
                 }
-                console.log(item);
-                this.orderItem.push({orderId:item.orderId,roomId:item.roomId,orderItem:item.orderItem})
-                console.log(this.orderItem);
+                // console.log(item);
+                this.orderItem= item
+                this.orderItems=item.orderItem
+                this.orderItems.forEach(order=>{
+                    order.extraName=JSON.parse(order.extraName)
+                })
+                console.log(this.orderItems);
             })
         },
         getCookie(name) {
@@ -110,11 +115,12 @@ export default {
             // console.log(res.data.orderList);
             res.data.orderList.forEach(element => {
                 let dayTime=new Date(element.orderDateTime)
-                console.log(element.orderDateTime);
+                // console.log(element);
                 
                 element.orderDateTime=dayTime.getFullYear()+"年"+(dayTime.getMonth()+1)+"月"+dayTime.getDate()+"日"+" "+dayTime.getHours()+":"+dayTime.getMinutes()+":"+dayTime.getSeconds()
                 this.orders.push({orderId:element.orderId,memberName:element.memberName,orderItem:JSON.parse(element.orderItem),
-                    roomId:element.roomId,startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime,orderPayment:element.orderPayment,payOrNot:element.payOrNot})
+                    roomId:element.roomId,startDate:element.startDate,endDate:element.endDate,orderDateTime:element.orderDateTime,
+                    orderPayment:element.orderPayment,payOrNot:element.payOrNot,total:element.total})
                 });
                 console.log(this.orders);
             }),
@@ -144,37 +150,35 @@ export default {
             </div>
             <table>
                 <thead>
-                    <tr>
-                        <td>訂單編號</td>
-                        <td>會員名稱</td>
-                        <td>入住時間</td>
-                        <td>退房時間</td>
-                        <!-- <td>訂購房間</td> -->
-                        <td>訂單明細</td>
-                        <td>訂單時間</td>
-                        <td>付款方式</td>
-                        <td>訂單狀態</td>
-                        <td v-if="isAdmin">確認結單</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item,index) in orders">
-                        <td>{{ item.orderId }}</td>
-                        <td>{{ item.memberName }}</td>
-                        <td>{{ item.startDate }}</td>
-                        <td>{{ item.endDate }}</td>
-                        <!-- <td>{{ item.roomId }}</td> -->
-                        <td><button type="button" data-bs-toggle="modal" data-bs-target="#roomId" @click="orderItemF(index)" data-bs-whatever="@mdo">查看</button></td>
-                        <td>{{ item.orderDateTime }}</td>
-                        <td v-if="item.orderPayment">到場支付</td>
-                        <td v-if="!item.orderPayment">線上支付</td>
-                        <td v-if="!item.payOrNot">未支付</td>
-                        <td v-if="item.payOrNot">已支付</td>
-                        <td v-if="isAdmin">
-                            <button @click="confirmFinished(item.orderId)">確定</button>
-                        </td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td>訂單編號</td>
+                    <td>會員名稱</td>
+                    <td>入住時間</td>
+                    <td>退房時間</td>
+                    <td>訂購項目</td>
+                    <td>訂單時間</td>
+                    <td>付款方式</td>
+                    <td>訂單狀態</td>
+                    <td v-if="isAdmin">確認結單</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in orders">
+                    <td>{{ item.orderId }}</td>
+                    <td>{{ item.memberName }}</td>
+                    <td>{{ item.startDate }}</td>
+                    <td>{{ item.endDate }}</td>
+                    <td><button type="button" data-bs-toggle="modal" data-bs-target="#roomId" @click="orderItemF(index)" data-bs-whatever="@mdo">查看</button></td>
+                    <td>{{ item.orderDateTime }}</td>
+                    <td v-if="item.orderPayment">到場支付</td>
+                    <td v-if="!item.orderPayment">線上支付</td>
+                    <td v-if="!item.payOrNot">未支付</td>
+                    <td v-if="item.payOrNot">已支付</td>
+                    <td v-if="isAdmin">
+                        <button @click="confirmFinished(item.orderId)">確定</button>
+                    </td>
+                </tr>
+            </tbody>
             </table>
         </div>
     </div>
@@ -183,40 +187,29 @@ export default {
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="orderItem">訂單明細</h5>
+                    <h5 class="modal-title" id="orderItem">訂購項目</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- v-for="item in orderItem" -->
                     <form >
-                        <div class="mb-3" v-for="item in orderItem">
-                            <ul>
-                                <li>
-                                    <p>訂單內容 : {{item.roomId }}</p>
-                                </li>
-                                <li>
-                                    <p>加購項目 : {{item.orderItem}}</p>
-                                </li>
-                                <li>
-                                    <p>總金額 : 待新增</p>
-                                </li>
-                            </ul>
-
+                        <div class="mb-3" >
+                            <label for="recipient-name" class="col-form-label">房間編號 :</label>
+                            <span>{{ this.orderItem.roomId }}</span>
                         </div>
-                        <!-- <div class="mb-3" v-for="item in orderItem">
-                            <label for="recipient-name" class="col-form-label">加購項目 :</label>
-                            <span>{{ item.orderId }}</span>
-                            <span>{{ item.orderItem }}</span>
-                            <span>{{ item.roomId }}</span>
+                        <div class="mb-3" v-for="order in this.orderItems">
+                            <label for="recipient-name" class="col-form-label" >加購項目 :</label>
+                            <span v-for="item in order.extraName">{{ item }}</span>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">總金額 :</label>
-                            <span></span>
-                        </div> -->
+                            <span>${{  this.orderItem.total }}元</span>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-light">更改</button>
+                    <button type="button" class="btn btn-light">確認</button>
                 </div>
             </div>
         </div>

@@ -28,6 +28,8 @@ export default{
             isChecked: false,
             introduce:[],
             access: 0,
+            imgArr:"",
+            arr:[]
         }
     },
     mounted(){
@@ -75,7 +77,8 @@ export default{
                 room_id:this.roomId,
                 room_introduce:JSON.stringify(this.introduce),
                 room_name:this.roomName,
-                room_price:this.roomPrice
+                room_price:this.roomPrice,
+                room_img:JSON.stringify(this.arr) 
             },
             }).then(res=>{
             console.log(res.data);
@@ -156,6 +159,9 @@ export default{
             }).then(res=>{
             this.roomSearch=""
             this.roomSearch=res.data.roomList
+            this.roomSearch.forEach(item=>{
+                item.roomImg=JSON.parse(item.roomImg)
+            })
             console.log(this.roomSearch);
             })
         },
@@ -176,8 +182,11 @@ export default{
 
             },
             }).then(res=>{
-            this.roomSearch=""
+                this.roomSearch=""
             this.roomSearch=res.data.roomList
+            this.roomSearch.forEach(item=>{
+                item.roomImg=JSON.parse(item.roomImg)
+            })
             console.log(this.roomSearch);
             })
         },
@@ -198,8 +207,11 @@ export default{
 
             },
             }).then(res=>{
-            this.roomSearch=""
+                this.roomSearch=""
             this.roomSearch=res.data.roomList
+            this.roomSearch.forEach(item=>{
+                item.roomImg=JSON.parse(item.roomImg)
+            })
             console.log(this.roomSearch);
             })
         },
@@ -258,6 +270,19 @@ export default{
             }
             return 0
         },
+        handleFileChange(event) {
+            console.log(event);
+            const file = event.target.files;
+            this.imgArr = [...file];
+            this.imgArr.forEach(item=>{
+                this.arr.push(item.name)
+            })
+            console.log(this.arr);
+            // console.log(this.imgArr);
+            // this.img=file
+            // console.log(img);
+            // this.uploadFile(file);
+        },
         
     },
     components:{
@@ -292,24 +317,18 @@ export default{
                     <div class="info">
                         <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
                     </div>
-                    <div class="room" v-for="(item,index) in this.roomSearch">
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="../../../../public/room/SP/simpledouble1.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../../../../public/room/SP/simpledouble1-2.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../../../../public/room/SP/simpledouble1-3.jpg" class="d-block w-100" alt="...">
+                    <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
+                            <div class="carousel-inner" >
+                                <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
+                                    <img :src="'public/room/SP/'+img" class="d-block w-100" alt="">
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
@@ -348,24 +367,18 @@ export default{
                     <div class="info">
                         <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
                     </div>
-                    <div class="room" v-for=" (item,index) in this.roomSearch">
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../../../../public/room/D/double1-3.jpg" class="d-block w-100" alt="...">
+                    <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
+                            <div class="carousel-inner" >
+                                <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
+                                    <img :src="'public/room/D/'+img" class="d-block w-100" alt="">
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
@@ -405,24 +418,18 @@ export default{
                     <div class="info">
                         <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
                     </div>
-                    <div class="room" v-for="(item,index) in this.roomSearch">
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="../../../../public/room/F/family1.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../../../../public/room/F/family1-1.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../../../../public/room/f/family1-2.jpg" class="d-block w-100" alt="...">
+                    <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
+                            <div class="carousel-inner" >
+                                <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
+                                    <img :src="'public/room/F/'+img" class="d-block w-100" alt="">
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
@@ -514,7 +521,7 @@ export default{
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name" multiple>
+                            <input type="file" class="form-control" id="recipient-name" @change="handleFileChange" multiple>
                         </div>
                     </form>
                 </div>
