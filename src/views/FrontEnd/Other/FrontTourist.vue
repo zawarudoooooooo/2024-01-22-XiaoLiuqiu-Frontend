@@ -48,7 +48,7 @@ export default{
             <hr>
             <div class="cardArea">
                 <div class="card">
-                    <img src="../../../public/tourist/t04/t4.jpg" class="card-img-top" alt="...">
+                    <img src="../../../..//tourist/t04/t4.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT04" class="routerItemCard">龍蝦洞</RouterLink>
                         <p class="card-text">
@@ -58,7 +58,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t05/t5.JPG" class="card-img-top" alt="...">
+                    <img src="../../../../public/tourist/t05/t5.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT05" class="routerItemCard">白燈塔</RouterLink>
                         <p class="card-text">
@@ -68,7 +68,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t06/t6-1.JPG" class="card-img-top" alt="...">
+                    <img src="../../../..//public/tourist/t06/t6-1.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT06" class="routerItemCard">花瓶岩</RouterLink>
                         <p class="card-text">
@@ -78,7 +78,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t07/t7.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../public/tourist/t07/t7.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT07" class="routerItemCard">落日亭</RouterLink>
                         <p class="card-text">
@@ -88,7 +88,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t08/t8.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../public/tourist/t08/t8.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT08" class="routerItemCard">鹿粼梅花鹿園區</RouterLink>
                         <p class="card-text">
@@ -98,7 +98,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t10/t10.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../public/tourist/t10/t10.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT10" class="routerItemCard">中澳沙灘</RouterLink>
                         <p class="card-text">
@@ -108,7 +108,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t11/t11.JPG" class="card-img-top" alt="...">
+                    <img src="../../../../public/tourist/t11/t11.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT11" class="routerItemCard">美人沙灘</RouterLink>
                         <p class="card-text">
@@ -117,7 +117,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t12/t12.JPG" class="card-img-top" alt="...">
+                    <img src="../../../..//public/tourist/t12/t12.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT12" class="routerItemCard">蛤板灣</RouterLink>
                         <p class="card-text">
@@ -126,7 +126,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t14/t14.JPG" class="card-img-top" alt="...">
+                    <img src="../../../../public/tourist/t14/t14.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT14" class="routerItemCard">厚石澳神秘沙灘</RouterLink>
                         <p class="card-text">
@@ -135,7 +135,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t15/t15.JPG" class="card-img-top" alt="...">
+                    <img src="../../../..//public/tourist/t15/t15.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT15" class="routerItemCard">厚石裙礁</RouterLink>
                         <p class="card-text">
@@ -144,7 +144,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../public/tourist/t17/t17.JPG" class="card-img-top" alt="...">
+                    <img src="../../../../public/tourist/t17/t17.JPG" class="card-img-top" alt="...">
                     <div class="card-body">
                         <RouterLink to="/FrontT17" class="routerItemCard">肚仔坪潮間帶</RouterLink>
                         <p class="card-text">
@@ -161,7 +161,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 100vw;
-        height: 295vh;
+        height: 293vh;
         text-align: center;
         margin-top: 4vmin;
         .title{
@@ -293,7 +293,11 @@ export default{
     }
     @media(max-width:992px){
         .content{
-            height: 260vh;
+            height: 258vh;
+            .flip{
+                width: 370px;
+                margin-bottom: 2rem;
+            }
             .allSpot{
                 width: 85vw;
                 height: 207vh;
@@ -308,11 +312,14 @@ export default{
     }
     @media(max-width:576px){
         .content{
-            height: 249vh;
+            height: 238vh;
             .title{
                 p{
                     font-size: 24pt;
                 }
+            }
+            .flip{
+                margin-bottom: 1rem;
             }
             .allSpot{
                 height: 153vh;
@@ -334,7 +341,7 @@ export default{
     }
     @media(max-width:414px){
         .content{
-            height: 248vh;
+            height: 242vh;
             .title{
                 p{
                     font-size: 20pt;
@@ -343,6 +350,7 @@ export default{
             .flip{
                 width: 80vw;
                 height: 23vh;
+                margin-bottom: 2rem;
             }
             .allSpot{
                 .cardArea{

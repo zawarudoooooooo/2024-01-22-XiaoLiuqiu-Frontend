@@ -123,7 +123,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 220vh;
+        height: 216vh;
         margin: auto;
         margin-top: 4vmin;
         .title{
@@ -225,6 +225,179 @@ export default{
                         p{
                             color: #797A7E;
                             font-size: 14pt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 119vh;
+            .list{
+                ul{
+                    li{
+                        img{
+                            height: 14vh;
+                        }
+                        .text{
+                            .topic{
+                                margin-bottom: 0;
+                            }
+                            hr{
+                                margin-top: 0;
+                            }
+                        }
+                        .third{
+                            p{
+                                font-size: 12pt;
+                            }
+                        }
+                    }
+                    .second{
+                        .nowater{
+                            .type{
+                                margin-right: 1vmin;
+                            }
+                            p{
+                                font-size: 12.5pt;
+                            }
+                        }
+                        .water{
+                            .type{
+                                margin-right: 1vmin;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 134vh;
+            .list{
+                ul{
+                    li{
+                        .third{
+                            p{
+                                font-size: 10pt;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 121vh;
+            .title{
+                p{
+                    font-size: 22pt;
+                }
+            }
+            .list{
+                ul{
+                    li{
+                        img{
+                            height: 9vh;
+                        }
+                        .text{
+                            .topic{
+                                font-size: 24pt;
+                            }
+                            p{
+                                font-size: 8pt;
+                                margin: 0;
+                            }
+                            small{
+                                font-size: 5pt;
+                            }
+                            .third{
+                                p{
+                                    font-size: 7.5pt;
+                                }
+                            }
+                        }
+                    }
+                    .second{
+                        .secondtopic{
+                            font-size: 22pt;
+                            margin: 0;
+                        }
+                        hr{
+                            margin-top: 0;
+                        }
+                        .nowater{
+                            .type{
+                                margin-right: 2vmin;
+                            }
+                            p{
+                                font-size: 7.5pt;
+                            }
+                        }
+                        .water{
+                            .type{
+                                margin-right: 2vmin;
+                            }
+                            p{
+                                font-size: 7.5pt;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            height: 114vh;
+            .title{
+                p{
+                    font-size: 20pt;
+                }
+            }
+            .list{
+                ul{
+                    li{
+                        .text{
+                            .topic{
+                                font-size: 16pt;
+                            }
+                            p{
+                                font-size: 5pt;
+                            }
+                            .third{
+                                p{
+                                    font-size: 6.5pt;
+                                }
+                            }
+                        }
+                    }
+                    .second{
+                        small{
+                            font-size: 9pt;
+                        }
+                        .secondtopic{
+                            font-size: 16pt;
+                        }
+                        .nowater{
+                            p{
+                                font-size: 6.5pt;
+                            }
+                            .type{
+                                font-size: 9pt;
+                            }
+                        }
+                        .water{
+                            p{
+                                font-size: 6.5pt;
+                            }
+                            .type{
+                                font-size: 9pt;
+                            }
                         }
                     }
                 }
