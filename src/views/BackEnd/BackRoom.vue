@@ -135,13 +135,27 @@ export default{
                 room_introduce:JSON.stringify(this.upDateIntroduce),
                 room_name:this.upRoomName,
                 room_price: this.upDateRoomPrice,
-                room_img:"",
+                room_img:JSON.stringify(this.upDateImgArr),
                 is_open:this.editstatus
             },
             }).then(res=>{
             console.log(res.data);
             if(res.data.rtnCode==200){
-                swal("成功", "編輯房間成功", "success");
+                swal({
+                        title: '成功',
+                        text: '編輯房間成功',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
+                // swal("成功", "編輯房間成功", "success");
             }
             })
         },
@@ -598,7 +612,7 @@ export default{
                         </div>
                        <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange">
+                            <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange"  multiple>
                         </div>
                     </form>
                 </div>

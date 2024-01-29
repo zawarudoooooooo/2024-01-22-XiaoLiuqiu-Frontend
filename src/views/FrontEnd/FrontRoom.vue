@@ -237,6 +237,7 @@ export default{
             </div>
             <div class="text" v-if="item.open">
                 <div class="name" >
+                    <span>{{ item.roomId }}</span>
                     <p>{{ item.roomName }}</p>
                     <p>$ {{ item.roomPrice }}</p>
                 </div>
