@@ -596,7 +596,7 @@ export default{
                             <input type="checkbox" value="false" v-model="this.editstatus">
                             <label for="">已開放</label>
                         </div>
-                        <!-- <div class="mb-3">
+                       <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
                             <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange">
                         </div>
