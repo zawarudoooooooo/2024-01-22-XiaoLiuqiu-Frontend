@@ -141,7 +141,7 @@ export default{
             }).then(res=>{
             console.log(res.data);
             if(res.data.rtnCode==200){
-                swal("成功", "已新增房間", "success");
+                swal("成功", "編輯房間成功", "success");
             }
             })
         },
@@ -596,7 +596,7 @@ export default{
                             <input type="checkbox" value="false" v-model="this.editstatus">
                             <label for="">已開放</label>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
                             <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange">
                         </div>
@@ -622,6 +622,9 @@ export default{
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
+            i{
+                margin-left: 2vmin;
+            }
         }
         .list{
             display: flex;
@@ -673,39 +676,7 @@ export default{
                     box-shadow: 1px 1px 1px gray;
                     padding: 3vmin 2vmin 0vmin;
                     position: relative;
-                    // .carouselExample{
-                    //     width: 20vw;
-                    //     height: 28vh;
-                    //     margin-top: 0.5vmin;
-                    //     border-radius: 5px;
-                    //     box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                    //     .carousel-inner{
-                    //         width: 20vw;
-                    //         border-radius: 5px;
-                    //         .carousel-item{
-                    //             width: 20vw;
-                    //             border-radius: 5px;
-                    //             img{
-                    //                 width: 21vw;
-                    //                 height: 28vh;
-                    //                 border-radius: 5px;
-                    //                 transition: all linear 0.3s;
-                    //                 &:hover{
-                    //                     opacity: 0.7;
-                    //                 }
-                    //                 &:active{
-                    //                     opacity: 1.0;
-                    //                 }
-                    //             }
-
-                    //     }
-                    //     .carousel-control-prev-icon{
-                    //         width: 1.5rem;
-                    //     }
-                    //     .carousel-control-next-icon{
-                    //         width: 1.5rem;
-                    //     }
-                    // }
+                    background-color: white;
                     .text{
                         height: 23vh;
                         hr{

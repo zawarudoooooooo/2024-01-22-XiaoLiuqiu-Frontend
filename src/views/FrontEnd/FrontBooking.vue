@@ -418,10 +418,11 @@ export default{
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #e3f6f5;
+            background-color: white;
             padding-left: 2vmin;
             padding-right: 2vmin;
             color: #797A7E;
+            font-size: 15pt;
             box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         p{

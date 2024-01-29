@@ -91,7 +91,7 @@ export default {
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #D9D9D9;
+            background-color: white;
             padding-left: 2vmin;
             margin-bottom: 5vmin;
         }

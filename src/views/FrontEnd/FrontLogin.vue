@@ -76,6 +76,7 @@ export default {
             .then(res => console.log(res))
             .catch(error => console.error(error))
             this.account=""
+            swal("已寄出通知","請至信箱查看","success")
         },
     },
     components: {
@@ -147,7 +148,7 @@ export default {
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #e3f6f5;
+            background-color: white;
             padding-left: 2vmin;
             margin-bottom: 4vmin;
             box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
