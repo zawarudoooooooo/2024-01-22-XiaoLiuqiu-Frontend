@@ -421,14 +421,14 @@ export default{
             background-color: white;
             padding-left: 2vmin;
             padding-right: 2vmin;
-            color: #797A7E;
+            color: #4d4327;
             font-size: 15pt;
             box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         p{
             margin: 0;
             font-size: 16pt;
-            color: #797A7E;
+            color: #4d4327;
             text-align: center;
             margin-right: 2vmin;
         }
@@ -500,7 +500,7 @@ export default{
                     align-content: center;
                     justify-content: space-between;
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 24pt;
                         margin: 0;
                     }
@@ -508,13 +508,13 @@ export default{
                 .extra{
                     width: 36vw;
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 16pt;
                         font-weight: bold;
                         margin-top: 1vmin;
                     }
                     label{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 15.5pt;
                         margin-right: 1.1vmin;
                         margin-bottom: 1vmin;
@@ -528,7 +528,7 @@ export default{
         .cart{
             width: 20vw;
             height: 63vh;
-            color: #797A7E;
+            color: #4d4327;
             font-size: 13pt;
             position: relative;
             top: -20%;
@@ -574,7 +574,7 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover {
                         background-color: #797A7E;

@@ -165,21 +165,27 @@ export default{
                         opacity: 1.0;
                     }
                 }
+                .card-title{
+                    color: #4d4327;
+                }
+                .card-text{
+                    color: #4d4327;
+                }
             }
             button{
                 width: 4vw;
                 height: 4.5vh;
                 border: none;
                 border-radius: 5px;
-                color: #797A7E;
+                color: #4d4327;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
-                    background-color: #797A7E;
+                    background-color: #4d4327;
                     color: white;
                 }
                 &:active{
                     background-color: #F7F2E7;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
             }
         }

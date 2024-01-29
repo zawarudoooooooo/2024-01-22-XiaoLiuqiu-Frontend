@@ -244,12 +244,12 @@ export default{
             .text{
                 width: 40vw;
                 p{
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 18pt;
                 }
                 ul{
                     li{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 18pt;
                     }
                 }
@@ -298,7 +298,7 @@ export default{
             }
             ul{
                 li{
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 17pt;
                     cursor: pointer;
                     &:hover{
@@ -309,14 +309,14 @@ export default{
                     width: 7vw;
                     height: 5vh;
                     border: none;
-                    color: #797A7E;
+                    color: #4d4327;
                     border-radius: 5px;
                     position: absolute;
                     right: 4%;
                     bottom: 1%;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover {
-                        background-color: #797A7E;
+                        background-color: #4d4327;
                         color: white;
                     }
                     &:active {

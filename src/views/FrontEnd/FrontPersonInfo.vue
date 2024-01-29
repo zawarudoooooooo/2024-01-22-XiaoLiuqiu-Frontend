@@ -530,7 +530,7 @@ export default{
                 height: 7vh;
                 border: none;
                 border-radius: 5px;
-                color: #797A7E;
+                color: #4d4327;
                 font-size: 16pt;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
@@ -562,7 +562,7 @@ export default{
                     position: absolute;
                     right: 6%;
                     top: -2%;
-                    border: 1px solid#797A7E;
+                    border: 1px solid#4d4327;
                     background-image: url('../../../public/demo/userimg.png');
                     background-size: contain;
                 }
@@ -572,7 +572,7 @@ export default{
             }
             p{
                 font-size: 16pt;
-                color: #797A7E;
+                color: #4d4327;
                 margin-bottom: 3vmin;
             }
             .personInfoBtn{
@@ -588,7 +588,7 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 13pt;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{
@@ -626,7 +626,7 @@ export default{
                 }
                 a{
                     text-decoration: none;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 15pt;
                 }
                 button{
@@ -660,7 +660,7 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 input{
                     width: 30vw;
@@ -678,7 +678,7 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 textarea{
                     width: 30vw;
@@ -694,11 +694,11 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 #addicon{
                     font-size: 22pt;
-                    color: #797A7E;
+                    color: #4d4327;
                     margin-left: 1vmin;
                 }
                 .addimg{
@@ -718,7 +718,7 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 13pt;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{

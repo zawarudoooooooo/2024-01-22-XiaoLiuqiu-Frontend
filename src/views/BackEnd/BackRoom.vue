@@ -627,7 +627,7 @@ export default{
                         height: 5vh;
                         border: none;
                         border-radius: 5px;
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 14pt;
                         box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                         &:hover {
@@ -642,7 +642,7 @@ export default{
                 }
                 .info{
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 24pt;
                     }
                     i{
@@ -674,14 +674,14 @@ export default{
                             align-content: center;
                             justify-content: space-between;
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 24pt;
                                 margin: 0;
                             }
                         }
                         .description{
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 14pt;
                                 width: 35vw;
                             }
@@ -692,7 +692,7 @@ export default{
                         }
                         .price{
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 16pt;
                                 width: 35vw;
                             }
@@ -701,12 +701,12 @@ export default{
                             width: 30vw;
                             display: flex;
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 16pt;
                                 width: 35vw;
                             }
                             i{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 25pt;
                             }
                         }
@@ -719,11 +719,11 @@ export default{
                             bottom: 8%;
                             i{
                                 font-size: 14pt;
-                                color: #797A7E;
+                                color: #4d4327;
                             }
                             p{
                                 font-size: 15pt;
-                                color: #797A7E;
+                                color: #4d4327;
                                 margin: 0;
                             }
                         }

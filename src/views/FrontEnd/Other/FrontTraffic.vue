@@ -174,7 +174,7 @@ export default{
                 padding: 1.5vmin;
                 ul{
                     li{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 15pt;
                     }
                 }
@@ -193,7 +193,7 @@ export default{
                 padding-top: 1.5vmin;
                 background-color: white;
                 #ferrytime{
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 18pt;
                     font-weight: bold;
                     text-align: center;
@@ -203,7 +203,7 @@ export default{
                     display: flex;
                     justify-content: space-around;
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 15pt;
                         text-align: center;
                     }

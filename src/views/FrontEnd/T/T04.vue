@@ -80,7 +80,7 @@ export default{
             width: 35vw;
             span{
                 font-size: 27pt;
-                color: #797A7E;
+                color: #4d4327;
                 font-weight: bold;
             }
             hr{
@@ -88,7 +88,7 @@ export default{
             }        
             p{
                 width: 35vw;
-                color: #797A7E;
+                color: #4d4327;
                 font-size: 16pt;
             }
         }
