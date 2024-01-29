@@ -14,6 +14,7 @@ export default{
             useravatar:"",
             img:"",
             ImgPhoto:"",
+            memberImg:"",
 
             //更改密碼
             oldPwd:"",
@@ -185,6 +186,9 @@ export default{
             this.personInfoPage=false,
             this.orderPage=false
         },
+        test10(){
+            console.log(this.ImgPhoto);
+        },
 //留言板
         messageCreate(){
             axios({
@@ -199,7 +203,7 @@ export default{
                 roomId:this.topic,
                 roomMessageBoardDescription:this.text,
                 messageImg:this.messageImg,
-                account:this.memberInfo.account
+                memberImg:this.ImgPhoto
             },
         }).then(res => {
             console.log(res.data)
@@ -332,12 +336,14 @@ export default{
         }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
+                
                 console.log(this.memberInfo);
                 this.memberName=this.memberInfo.memberName
                 // this.ImgPhoto="public\" +JSON.parse(this.memberInfo.memberImgPhoto)
                 // console.log(   );
             });
             this.memberInfo.memberImgPhoto=JSON.parse(this.memberInfo.memberImgPhoto)
+            // console.log(this.memberInfo.memberImgPhoto.memberImg);
             this.ImgPhoto=this.memberInfo.memberImgPhoto.memberImg
             // this.memberInfo=
             console.log(this.ImgPhoto);
@@ -417,6 +423,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
+                
                 <button type="button" @click="upDateMemberImg()">儲存</button>
             </div>
         </div>
@@ -593,6 +600,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalmsg">預覽
                 </button>
+                <button type="button" @click="test10()">測試</button>
             </div>
         </div>
 <!-- 貼文預覽視窗 -->

@@ -25,6 +25,9 @@ export default{
             upDateIntroduce:"",
             upRoomId:"",
             upRoomName:"",
+            upDateImg:"",
+            upImg:"",
+            upDateImgArr:[],
             isChecked: false,
             introduce:[],
             access: 0,
@@ -95,6 +98,7 @@ export default{
                 this.upRoomName=""
                 this.upDateRoomPrice=""
                 this.upDateIntroduce="" 
+                this.upImg=""
                 this.editstatus=false
             this.roomSearch.forEach((item,roomIndex)=>{
                 if(index!=roomIndex){
@@ -106,6 +110,7 @@ export default{
                 this.upDateRoomPrice=item.roomPrice
                 this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
                 this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
+                this.upImg=item.roomImg
                 this.editstatus=item.open
             })
             // console.log(this.upRoomId);
@@ -129,6 +134,7 @@ export default{
                 room_introduce:JSON.stringify(this.upDateIntroduce),
                 room_name:this.upRoomName,
                 room_price: this.upDateRoomPrice,
+                room_img:"",
                 is_open:this.editstatus
             },
             }).then(res=>{
@@ -137,6 +143,15 @@ export default{
                 swal("成功", "已新增房間", "success");
             }
             })
+        },
+        upDateFileChange(event){
+            console.log(event);
+            const file = event.target.files;
+            this.upDateImg = [...file];
+            this.upDateImg.forEach(item=>{
+                this.upDateImgArr.push(item.name)
+            })
+            console.log(this.upDateImgArr);
         },
 //頁面切換
         simpleOpen(){
@@ -553,22 +568,16 @@ export default{
                             <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
                             <label for="uno">獨立衛浴</label>
                             <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
                             <label for="uno">空調 </label>
                             <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
                             <label for="uno">平面電視 </label>
-                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                             <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                             <label for="uno">Wifi</label>
                             <br>
                             <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
                             <label for="uno">浴缸</label>
                             <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
                             <label for="uno">遊戲機</label>
-                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                             <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                             <label for="uno">床頭插座</label>
                             <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
@@ -582,7 +591,7 @@ export default{
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name">
+                            <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange">
                         </div>
                     </form>
                 </div>
