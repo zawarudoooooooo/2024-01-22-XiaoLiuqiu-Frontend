@@ -76,6 +76,7 @@ export default {
             .then(res => console.log(res))
             .catch(error => console.error(error))
             this.account=""
+            swal("已寄出通知","請至信箱查看","success")
         },
     },
     components: {

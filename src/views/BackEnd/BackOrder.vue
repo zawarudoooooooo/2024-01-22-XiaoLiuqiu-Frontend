@@ -226,6 +226,9 @@ export default {
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
+            i{
+                margin-left: 2vmin;
+            }
         }
         .list{
             display: flex;
