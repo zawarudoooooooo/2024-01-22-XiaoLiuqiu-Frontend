@@ -691,6 +691,7 @@ export default{
                     padding: 3vmin 2vmin 0vmin;
                     position: relative;
                     background-color: white;
+                    margin-bottom: 5vmin;
                     .text{
                         height: 23vh;
                         hr{
@@ -749,6 +750,7 @@ export default{
                             i{
                                 font-size: 14pt;
                                 color: #4d4327;
+                                margin-right: 1vmin;
                             }
                             p{
                                 font-size: 15pt;

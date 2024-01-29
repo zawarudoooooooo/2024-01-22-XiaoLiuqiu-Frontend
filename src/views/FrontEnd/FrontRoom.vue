@@ -269,7 +269,7 @@ export default{
 <style lang="scss" scoped> 
     .content{
         width: 90vw;
-        height: 66vh;
+        height: 65vh;
         margin: auto;
         margin-top: 6vmin;
         position: relative;
@@ -339,6 +339,7 @@ export default{
             padding: 3vmin;
             position: relative;
             background-color: white;
+            margin-bottom: 5vmin;
             #carouselExample{
                 width: 20vw;
                 height: 27vh;
