@@ -135,6 +135,7 @@ export default{
             this.newEmail=""
         },
         upDateMemberImg(){
+            
             axios({
             url:'http://localhost:8080/member/imgUpDate',
             method:'POST',
@@ -149,6 +150,21 @@ export default{
             },
         }).then(res => {     
             console.log(res.data)
+            swal({
+                        title: '成功',
+                        text: '以更新圖片',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                          // 在这里可以执行页面刷新的操作
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
             
             })
         
@@ -475,7 +491,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalmsg">預覽
                 </button>
-                <button type="button" @click="test10()">測試</button>
+                <!-- <button type="button" @click="test10()">測試</button> -->
             </div>
         </div>
 <!-- 貼文預覽視窗 -->
