@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../components/Footer.vue';
+import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -18,39 +18,39 @@ export default{
         </div>
         <hr>
         <div class="location">
-            <img src="../../../public/map.jpg" alt="">
+            <img src="../../../../public/map.jpg" alt="">
             <div class="traffic">
                 <ul>
                     <li>
-                        火車 : 搭乘火車至高雄火車站，轉搭客運至東港後搭交通船到小琉球。
+                        火車 : 搭乘至高雄火車站，再轉搭客運至東港搭船
                     </li>
                     <br>
                     <li>
-                        客運 : 搭乘客運至高雄火車站＆屏東火車站
+                        客運 : 搭乘至高雄火車站或屏東火車站
                     </li>
                     <ul>
                         <li>
-                            高雄出發：於舊高雄火車站高市願景館對面搭乘國光客運、高雄客運、屏東客運
-                        【9117 高雄>墾丁(台17線)、】路線，東港下車，再步行至東港碼頭搭乘交通船。
+                            高雄出發：搭乘國光客運、高雄客運、屏東客運
+                        【9117 高雄>墾丁(台17線)、】路線，東港下車，再步行至東港碼頭
                         </li>
                         <li>
-                            屏東出發：於屏東火車站旁屏東客運總站搭乘屏東客運
+                            屏東出發：於屏東客運總站搭乘屏東客運
                             【8202 屏東>東港、8203 屏東>東港】路線，
-                            東港下車，再步行至東港碼頭搭乘交通船。
+                            東港下車，再步行至東港碼頭
                         </li>
                     </ul>
                     <br>
                     <li>
-                        自行開車 : 機車及自行車可隨人運至小琉球，汽車則須停靠於東港。
+                        自行開車 : 機車及自行車可隨人運至小琉球，汽車則須停靠於東港
                     </li>
                     <ul>
                         <li>
-                            南下：可經由國道一號高速公路南下，由小港機場出口沿省道十七號公路，
-                            往東港行駛即可抵達東港碼頭，再搭交通船到小琉球。
+                            南下：經由國道一號高速公路南下，由小港機場出口沿省道十七號公路，
+                            往東港行駛即可抵達東港碼頭
                         </li>
                         <li>
                             北上：自墾丁沿26號省道至枋寮、水底寮，再沿17號省道至林邊、東港，
-                            抵達東港後再至東港碼頭，搭交通船到小琉球。
+                            抵達東港後再至東港碼頭
                         </li>
                     </ul>
                 </ul>
@@ -119,10 +119,10 @@ export default{
                 </div>
             </div>
             <div class="imgArea">
-                <img src="../../../public/ferry/IMG_1430.JPG" alt="">
-                <img src="../../../public/ferry/IMG_1413.JPG" alt="">
-                <img src="../../../public/ferry/IMG_1150.JPG" alt="">
-                <img src="../../../public/ferry/IMG_1143.JPG" alt="">
+                <img src="../../../../public/ferry/IMG_1430.JPG" alt="">
+                <img src="../../../../public/ferry/IMG_1413.JPG" alt="">
+                <img src="../../../../public/ferry/IMG_1150.JPG" alt="">
+                <img src="../../../../public/ferry/IMG_1143.JPG" alt="">
             </div>
         </div>
     </div>
@@ -132,7 +132,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 90vw;
-        height: 165vh;
+        height: 160vh;
         margin: auto;
         margin-top: 4vmin;
         hr{
@@ -157,6 +157,7 @@ export default{
                 border-radius: 10px;
                 transition: all ease 0.5s;
                 box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
+                margin-top: 3vmin;
                 &:hover{
                     opacity: 0.6;
                 }
@@ -214,7 +215,7 @@ export default{
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1vmin;
-                margin-top: 3vmin;
+                margin-top: 4vmin;
                 img{
                     width: 22vw;
                     height: 27vh;
@@ -233,14 +234,14 @@ export default{
     }
     @media(max-width:1200px){
         .content{
-            height: 87vh;
+            height: 85vh;
             margin-top: 2vmin;
             hr{
                 margin-bottom: 2vmin;
                 margin-top: 0;
             }
             .location{
-                height: 39vh;
+                height: 37vh;
                 margin-bottom: 1vmin;
                 img{
                     width: 40vw;
@@ -248,7 +249,10 @@ export default{
                     margin-top: 8vmin;
                 }
                 .traffic{
+                    height: 36vh;
+                    padding: 2.5vmin;
                     ul{
+                        padding-left: 2vmin;
                         li{
                             font-size: 13pt;
                         }
@@ -257,6 +261,11 @@ export default{
             }
             .ferry{
                 height: 32vh;
+                .time{
+                    #ferrytime{
+                        font-size: 16pt;
+                    }
+                }
                 .imgArea{
                     height: 25vh;
                     margin-top: 3vmin;
@@ -269,18 +278,20 @@ export default{
     }
     @media(max-width:992px){
         .content{
-            height: 90vh;
+            height: 86vh;
             margin-top: 2vmin;
             .location{
+                height: 35vh;
                 margin-bottom: 3vmin;
                 img{
                     margin-top: 10vmin;
                 }
                 .traffic{
+                    height: 34vh;
                     ul{
                         li{
-                            font-size: 10pt;
-                            padding-top: 0.5vmin;
+                            font-size: 10.5pt;
+                            
                         }
                     }
                 }
@@ -293,12 +304,12 @@ export default{
                     }
                     .schedule{
                         p{
-                            font-size: 13pt;
+                            font-size: 12.5pt;
                         }
                     }
                 }
                 .imgArea{
-                    margin-top: 6vmin;
+                    margin-top: 6.5vmin;
                     img{
                         height: 12vh;
                     }
@@ -308,7 +319,7 @@ export default{
     }
     @media(max-width:576px){
         .content{
-            height: 91vh;
+            height: 90vh;
             .title{
                 p{
                     font-size: 20pt;
@@ -318,6 +329,7 @@ export default{
             .location{
                 display: block;
                 height: 55vh;
+                margin-bottom: 0;
                 img{
                     width: 70vw;
                     height: 20vh;
@@ -326,8 +338,9 @@ export default{
                     margin-bottom: 3vmin;
                 }
                 .traffic{
+                    height: 32vh;
+                    padding: 4.5vmin;
                     ul{
-                        padding-left: 1vmin;
                         li{
                             font-size: 9pt;
                         }

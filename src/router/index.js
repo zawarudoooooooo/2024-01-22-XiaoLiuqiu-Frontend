@@ -10,47 +10,27 @@ const router = createRouter({
       name: 'FrontEntry',
       component: FrontEntry
     },
-//前台booking
+//前台房型相關
     {
       path: '/FrontSearch',
       name: 'FrontSearch',
-      component: () => import('../views/FrontEnd/FrontBooking/FrontSearch.vue')
+      component: () => import('../views/FrontEnd/FrontSearch.vue')
     },
     {
-      path: '/FrontSimpleDouble',
-      name: 'FrontSimpleDouble',
-      component: () => import('../views/FrontEnd/FrontBooking/FrontSimpleDouble.vue')
+      path: '/FrontRoom',
+      name: 'FrontRoom',
+      component: () => import('../views/FrontEnd/FrontRoom.vue')
     },
     {
-      path: '/FrontDouble',
-      name: 'FrontDouble',
-      component: () => import('../views/FrontEnd/FrontBooking/FrontDouble.vue')
-    },
-    {
-      path: '/FrontFamily',
-      name: 'FrontFamily',
-      component: () => import('../views/FrontEnd/FrontBooking/FrontFamily.vue')
-    },
-    {
-      path: '/SimpleDoubleBooking',
-      name: 'SimpleDoubleBooking',
-      component: () => import('../views/FrontEnd/FrontBooking/SimpleDoubleBooking.vue')
-    },
-    {
-      path: '/DoubleBooking',
-      name: 'DoubleBooking',
-      component: () => import('../views/FrontEnd/FrontBooking/DoubleBooking.vue')
-    },
-    {
-      path: '/FamilyBooking',
-      name: 'FamilyBooking',
-      component: () => import('../views/FrontEnd/FrontBooking/FamilyBooking.vue')
+      path: '/FrontBooking',
+      name: 'FrontBooking',
+      component: () => import('../views/FrontEnd/FrontBooking.vue')
     },
 //前台景點
     {
       path: '/FrontTourist',
       name: 'FrontTourist',
-      component: () => import('../views/FrontEnd/FrontTourist.vue')
+      component: () => import('../views/FrontEnd/Other/FrontTourist.vue')
     },
     {
       path: '/FrontT01',
@@ -126,43 +106,43 @@ const router = createRouter({
     {
       path: '/FrontTraffic',
       name: 'FrontTraffic',
-      component: () => import('../views/FrontEnd/FrontTraffic.vue')
+      component: () => import('../views/FrontEnd/Other/FrontTraffic.vue')
     },
 //前台美食
     {
       path: '/FrontMeal',
       name: 'FrontMeal',
-      component: () => import('../views/FrontEnd/FrontMeal.vue')
+      component: () => import('../views/FrontEnd/Other/FrontMeal.vue')
     },
 //前台加購套票
     {
       path: '/FrontTicket',
       name: 'FrontTicket',
-      component: () => import('../views/FrontEnd/FrontTicket.vue')
+      component: () => import('../views/FrontEnd/Other/FrontTicket.vue')
     },
 //前台關於
     {
       path: '/FrontAbout',
       name: 'FrontAbout',
-      component: () => import('../views/FrontEnd/FrontAbout.vue')
+      component: () => import('../views/FrontEnd/Other/FrontAbout.vue')
     },
 //前台體驗活動
     {
       path: '/FrontActivity',
       name: 'FrontActivity',
-      component: () => import('../views/FrontEnd/FrontActivity.vue')
+      component: () => import('../views/FrontEnd/Other/FrontActivity.vue')
+    },
+//前台推薦行程
+    {
+      path: '/FrontRecommand',
+      name: 'FrontRecommand',
+      component: () => import('../views/FrontEnd/Other/FrontRecommand.vue')
     },
 //前台留言板
     {
       path: '/FrontMessage',
       name: 'FrontMessage',
       component: () => import('../views/FrontEnd/FrontMessage.vue')
-    },
-//前台推薦行程
-    {
-      path: '/FrontRecommand',
-      name: 'FrontRecommand',
-      component: () => import('../views/FrontEnd/FrontRecommand.vue')
     },
 //前台登錄
     {
@@ -224,6 +204,11 @@ const router = createRouter({
         memberEmail: route.query.memberEmail,
         verificationCode: route.query.verificationCode,
       })
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('../views/FrontEnd/test.vue')
     },
   ]
 })

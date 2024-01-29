@@ -208,7 +208,8 @@ export default {
     @media(max-width:1200px){
         .content{
             width: 50vw;
-            margin-top: 5vmin;
+            height: 80vh;
+            margin-top: 3vmin;
             input{
                 width: 50vw;
                 height: 4vh;
@@ -260,7 +261,8 @@ export default {
     }
     @media(max-width:992px){
         .content{
-            height: 79vh;
+            height: 78vh;
+            margin-top: 6vmin;
             input{
                 margin-bottom: 3vmin;
             }
@@ -292,7 +294,6 @@ export default {
                     font-size: 15pt;
                 }
             }
-            
             .password{
                 p{
                     font-size: 15pt;
@@ -363,6 +364,7 @@ export default {
             }
             .buttonArea{
                 width: 65vw;
+                margin-top: 7vmin;
             }
         }
     }

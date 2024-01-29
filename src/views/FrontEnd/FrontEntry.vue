@@ -420,6 +420,7 @@ export default{
                     padding: 4vmin;
                     box-shadow: 1px 1px 1px gray;
                     transition: all linear 0.3s;
+                    cursor: pointer;
                     &:hover{
                         opacity: 0.8;
                         box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
@@ -461,6 +462,7 @@ export default{
                         border-radius: 10px;
                         box-shadow: 1px 1px 1px gray;
                         transition: all linear 0.3s;
+                        cursor: pointer;
                         &:hover{
                             opacity: 0.6;
                             box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
@@ -554,7 +556,7 @@ export default{
 
     @media(max-width:1200px){
         .content{
-            height: 85vh;
+            height: 89vh;
             .slideShow{
                 height: 30vh;
                 .carousel-inner{
@@ -600,7 +602,7 @@ export default{
                 }
             }
             .activity{
-                height: 26vh;
+                height: 27vh;
                 margin-top: 3vmin;
                 .title{
                     p{
@@ -608,19 +610,31 @@ export default{
                     }
                 }
                 .scenery{
-                    .card{
+                    .carousel-inner{
                         height: 20vh;
+                        .carousel-item{
+                            height: 20vh;
+                            img{
+                                height: 20vh;
+                            }
+                            p{
+                                font-size: 9pt;
+                            }
+                        }
                     }
-                    img{
-                        height: 20vh;
-                    }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 12vw;
+                    height: 3vh;
                 }
             }
         }
     }
     @media(max-width:992px){
         .content{
-            height: 83vh;
+            height: 87vh;
             .about{
                 height: 22vh;
                 .iconArea{
@@ -655,6 +669,7 @@ export default{
                 }
             }
             .activity{
+                height: 26.5vh;
                 margin-top: 3vmin;
                 .title{
                     p{
@@ -662,15 +677,19 @@ export default{
                     }
                 }
                 .scenery{
-                    .card{
-                        height: 15vh;
-                        img{
-                            height: 18vh;
-                        }
-                        .card-img-overlay{
-                            font-size: 10pt;
+                    .carousel-inner{
+                        .carousel-item{
+                            p{
+                                font-size: 7pt;
+                            }
                         }
                     }
+
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 14vw;
                 }
             }
         }
@@ -735,31 +754,39 @@ export default{
                 }
             }
             .activity{
-                height: 21vh;
+                height: 17.5vh;
                 .title{
                     p{
                         font-size: 18pt;
                     }
                 }
                 .scenery{
-                    .card{
-                        height: 15vh;
-                        img{
-                            height: 15vh;
-                        }
-                        .card-img-overlay{
-                            font-size: 6pt;
-                            h5{
-                                font-size: 11pt;
+                    .carousel-indicators [data-bs-target] {
+                        width: 20px;
+                        border-bottom: 0;
+                    }
+                    .carousel-inner{
+                        height: 11vh;
+                        .carousel-item{
+                            height: 11vh;
+                            img{
+                                height: 11vh;
                             }
                         }
                     }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 26vw;
+                    height: 3vh;
                 }
             }
         }
     }
     @media(max-width:414px){
         .content{
+            height: 80vh;
             .about{
                 .news{
                     height: 20vh;
@@ -791,6 +818,13 @@ export default{
                             font-size: 5.5pt;
                         }
                     }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 18vw;
+                    height: 2.5vh;
+                    font-size: 7pt;
                 }
             }
         }
