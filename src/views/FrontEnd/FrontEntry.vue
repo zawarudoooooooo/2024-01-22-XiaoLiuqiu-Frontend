@@ -306,14 +306,14 @@ export default{
                                 </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="../../../public/tourist/t10/t10-2.JPG" class="d-block w-100" alt="...">
+                            <img src="../../../public/tourist/t10/t10-4.JPG" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h4>中澳沙灘</h4>
                                     <p>擁有潔白的沙灘、蔚藍的海水。少有遊客前往，是一座鬧中取靜的小小秘境。</p>
                                 </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="../../../public/tourist/t06/t6-1.JPG" class="d-block w-100" alt="...">
+                            <img src="../../../public/tourist/t06/t6.JPG" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h4>花瓶岩</h4>
                                     <p>花瓶石是一塊珊瑚礁，隨著時間發生抬升，加上頸部長時間受海水侵蝕，逐漸形成現在的樣子。</p>
