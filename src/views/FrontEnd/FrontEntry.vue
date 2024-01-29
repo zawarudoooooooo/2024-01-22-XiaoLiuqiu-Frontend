@@ -420,6 +420,7 @@ export default{
                     padding: 4vmin;
                     box-shadow: 1px 1px 1px gray;
                     transition: all linear 0.3s;
+                    cursor: pointer;
                     &:hover{
                         opacity: 0.8;
                         box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
@@ -461,6 +462,7 @@ export default{
                         border-radius: 10px;
                         box-shadow: 1px 1px 1px gray;
                         transition: all linear 0.3s;
+                        cursor: pointer;
                         &:hover{
                             opacity: 0.6;
                             box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
@@ -554,7 +556,7 @@ export default{
 
     @media(max-width:1200px){
         .content{
-            height: 93vh;
+            height: 89vh;
             .slideShow{
                 height: 30vh;
                 .carousel-inner{
@@ -616,7 +618,7 @@ export default{
                                 height: 20vh;
                             }
                             p{
-                                font-size: 10pt;
+                                font-size: 9pt;
                             }
                         }
                     }
@@ -632,7 +634,7 @@ export default{
     }
     @media(max-width:992px){
         .content{
-            height: 90vh;
+            height: 87vh;
             .about{
                 height: 22vh;
                 .iconArea{
@@ -667,7 +669,7 @@ export default{
                 }
             }
             .activity{
-                height: 26vh;
+                height: 26.5vh;
                 margin-top: 3vmin;
                 .title{
                     p{
@@ -678,7 +680,7 @@ export default{
                     .carousel-inner{
                         .carousel-item{
                             p{
-                                font-size: 8pt;
+                                font-size: 7pt;
                             }
                         }
                     }
@@ -694,7 +696,7 @@ export default{
     }
     @media(max-width:576px){
         .content{
-            height: 82vh;
+            height: 80vh;
             .slideShow{
                 height: 20vh;
                 .carousel-inner{
@@ -759,6 +761,10 @@ export default{
                     }
                 }
                 .scenery{
+                    .carousel-indicators [data-bs-target] {
+                        width: 20px;
+                        border-bottom: 0;
+                    }
                     .carousel-inner{
                         height: 11vh;
                         .carousel-item{
@@ -816,7 +822,9 @@ export default{
             }
             .buttonArea{
                 button{
-                    width: 29vw;
+                    width: 18vw;
+                    height: 2.5vh;
+                    font-size: 7pt;
                 }
             }
         }

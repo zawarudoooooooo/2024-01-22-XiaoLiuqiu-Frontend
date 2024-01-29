@@ -100,7 +100,7 @@ export default {
         <div class="buttonArea">
             <button type="button" @click="goSignUp()">註冊</button>
             <button type="button" @click="login()">登入</button>
-            <button type="button"  data-bs-toggle="modal" id="forget"
+            <button type="button"  data-bs-toggle="modal"
                     data-bs-target="#exampleModal">忘記密碼
             </button>
         </div>
@@ -116,8 +116,8 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">請輸入帳號名稱 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="account">
+                                <label for="recipient-name" class="col-form-label">帳號名稱 :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="account" placeholder="請輸入您的帳號">
                             </div>
                         </form>
                     </div>
@@ -219,7 +219,8 @@ export default {
     @media(max-width:1200px){
         .content{
             width: 60vw;
-            height: 76vh;
+            height: 70vh;
+            margin-top: 16vmin;
             input{
                 width: 60vw;
                 height: 5vh;
@@ -250,17 +251,12 @@ export default {
                     height: 4vh;
                     font-size: 20pt;
                 }
-                #forget{
-                    width: 15vw;
-                    height: 4vh;
-                    font-size: 20pt;
-                }
             }
         }
     }
     @media(max-width:992px){
         .content{
-            height: 77vh;
+            height: 71vh;
             input{
                 margin-bottom: 10vmin;
             }
@@ -279,18 +275,14 @@ export default {
                     width: 17vw;
                     height: 5vh;
                 }
-                #forget{
-                    width: 17vw;
-                    height: 5vh;
-                }
             }
         }
     }
     @media(max-width:576px){
         .content{
             width: 70vw;
-            height: 76vh;
-            margin-top: 13vmin;
+            height: 74.5vh;
+            margin-top: 17vmin;
             input{
                 width: 70vw;
                 margin-bottom: 16vmin;
@@ -313,14 +305,9 @@ export default {
             .buttonArea{
                 width: 65vw;
                 button{
-                    width: 21vw;
+                    width: 28vw;
                     height: 5vh;
                     font-size: 17pt;
-                }
-                #forget{
-                    width: 25vw;
-                    height: 5vh;
-                    font-size: 16pt;
                 }
             }
         }
@@ -346,9 +333,6 @@ export default {
             .buttonArea{
                 button{
                     font-size: 15pt;
-                }
-                #forget{
-                    font-size: 14pt;
                 }
             }
         }

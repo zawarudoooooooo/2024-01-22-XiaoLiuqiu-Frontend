@@ -232,6 +232,7 @@ export default {
             justify-content: space-between;
             table{
                 width: 70vw;
+                height: 13vh;
                 font-size: 14pt;
                 color: #797A7E;
                 text-align: center;

@@ -28,6 +28,7 @@ export default{
         }
     },
     mounted() {
+        console.log(this.list)
 
     // 設定開始時間和結束時間
         var startTime = new Date('2024-01-22T00:00:00');
@@ -99,31 +100,6 @@ export default{
                     });
                     this.roomList = availableRooms;
                     console.log(this.roomList);
-
-
-                    // this.roomList1=res.data.roomList
-                    // // console.log(this.roomList1);
-                    // this.roomList=res.data.roomList
-                    // // console.log(this.roomList);
-                    
-                    // const availableRooms = [];
-                    // this.roomList.forEach(room => {
-                    //     console.log(room.roomIntroduce );
-                    //     room.roomIntroduce= JSON.parse(room.roomIntroduce)
-                    //     console.log(room);
-                    //     // 檢查房間是否已經被訂購
-                    //     const isBooked = this.orderRoomId.some(order => {
-                    //         const nStartDate = new Date(order.startDate);
-                    //         const nEndDate = new Date(order.endDate);
-                    //         return order.roomId === room.roomId && nStartDate <= this.today && nEndDate >= this.today;
-                    //     });
-                    //     // 如果沒有被訂購，加入可用房間列表
-                    //     if (!isBooked) {
-                    //         availableRooms.push(room);
-                    //     }
-                    // });
-                    // this.roomList = availableRooms;
-                    // console.log(this.roomList);
                 })
             })
         console.log(this.List);
@@ -214,9 +190,28 @@ export default{
             </div>
             <button type="button" @click="search()" id="searchbtn">搜尋</button>
         </div>
-        <!-- <button type="button">回上頁</button> -->
         <div class="show" v-for="(item,index) in this.roomList" >
-            <img src="../../../../room/D/double1.jpg" alt="">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../../../public/room/D/d1.jpg" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../../public/room/D/d1-1.jpg" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../../public/room/D/1-2.jpg" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
             <div class="text" >
                 <div class="name" >
                     <p>{{ item.roomName }}</p>
@@ -308,6 +303,7 @@ export default{
             width: 60vw;
             height: 34vh;
             margin: auto;
+            justify-content: space-between;
             display: flex;
             border: 1px solid lightgray;
             border-radius: 10px;
@@ -315,33 +311,50 @@ export default{
             box-shadow: 1px 1px 1px gray;
             padding: 3vmin;
             position: relative;
-            //background-color: white;
-            //box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
-            img{
-                width: 23vw;
-                height: 28vh;
+            #carouselExample{
+                width: 20vw;
+                height: 27vh;
                 border-radius: 5px;
-                margin-right: 5vmin;
-                transition: all linear 0.3s;
-                &:hover{
-                    opacity: 0.7;
-                    box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
+                .carousel-inner{
+                    width: 20vw;
+                    border-radius: 5px;
+                    .carousel-item{
+                        width: 20vw;
+                        border-radius: 5px;
+                        img{
+                            width: 20vw;
+                            height: 27vh;
+                            border-radius: 5px;
+                            transition: all linear 0.3s;
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                            &:active{
+                                opacity: 1.0;
+                            }
+                        }
+                    }
                 }
-                &:active{
-                    opacity: 1.0;
+                .carousel-control-prev-icon{
+                    width: 1.5rem;
+                }
+                .carousel-control-next-icon{
+                    width: 1.5rem;
                 }
             }
             .text{
+                width: 33.5vw;
                 height: 23vh;
                 hr{
-                    margin: 0;
+                    margin-top: 1vmin;
+                    margin-bottom: 1vmin;
                 }
                 .name{
-                    width: 30vw;
+                    width: 33vw;
                     margin: auto;
                     display: flex;
                     align-content: center;
-                    justify-content: space-between;
+                    justify-content: space-around;
                     p{
                         color: #797A7E;
                         font-size: 24pt;
@@ -351,8 +364,12 @@ export default{
                 .description{
                     span{
                         color: #797A7E;
-                        font-size: 16pt;
+                        font-size: 15pt;
                         width: 35vw;
+                        i{
+                            margin-right: 1vmin;
+                            margin-left: 1.5vmin;
+                        }
                     }
                 }
                 button{
@@ -363,7 +380,7 @@ export default{
                     color: #797A7E;
                     position: absolute;
                     right: 5%;
-                    bottom: 11%;
+                    bottom: 12%;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{
                         background-color: #797A7E;
@@ -394,5 +411,174 @@ export default{
             }
         }
         
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 78vh;
+            .search{
+                width: 85vw;
+                input{
+                    width: 25vw;
+                    height: 3vh;
+                }
+                #searchbtn{
+                    width: 6vw;
+                    height: 3vh;
+                }
+            }
+            .show{
+                width: 75vw;
+                height: 18vh;
+                #carouselExample{
+                    width: 26vw;
+                    height: 13vh;
+                    .carousel-inner{
+                        width: 26vw;
+                        .carousel-item{
+                            width: 26vw;
+                            img{
+                                width: 26vw;
+                                height: 13vh;
+                            }
+                        }
+                    }
+                }
+                .text{
+                    width: 40.5vw;
+                    height: 10vh;
+                    .description{
+                        span{
+                            font-size: 14pt;
+                        }
+                    }
+                    button{
+                        width: 6vw;
+                        height: 3vh;
+                        font-size: 14pt;
+                    }
+                }
+            }
+            #backbtn{
+                width: 7vw;
+                height: 3vh;
+                bottom: 11%;
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            .show{
+                .text{
+                    .name{
+                        p{
+                            font-size: 20pt;
+                        }
+                        
+                    }
+                    .description{
+                        span{
+                            font-size: 13pt;
+                        }
+                    }
+                    button{
+                        width: 8vw;
+                    }
+                }
+            }
+            #backbtn{
+                width: 10vw;
+                bottom: 13%;
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 80vh;
+            .search{
+                flex-wrap: wrap;
+                input{
+                    width: 62vw;
+                }
+                .checkin{
+                    margin-bottom: 9vmin;
+                }
+                .checkout{
+                    margin-bottom: 7vmin;
+                }
+                #searchbtn{
+                    width: 14vw;
+                }
+            }
+            .show{
+                width: 85vw;
+                height: 14vh;
+                #carouselExample{
+                    width: 30vw;
+                    height: 11vh;
+                    .carousel-inner{
+                        width: 30vw;
+                        .carousel-item{
+                            width: 30vw;
+                            img{
+                                width: 30vw;
+                                height: 11vh;
+                            }
+                        }
+                    }
+                }
+                .text{
+                    height: 10vh;
+                    .name{
+                        width: 40vw;
+                        p{
+                            font-size: 12pt;
+                        }
+                    }
+                    .description{
+                        span{
+                            font-size: 8.5pt;
+                        }
+                    }
+                    button{
+                        width: 8vw;
+                        height: 2vh;
+                        font-size: 8pt;
+                        bottom: 7%;
+                    }
+                }
+            }
+            #backbtn{
+                width: 17vw;
+                bottom: 11%;
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            .search{
+                p{
+                    font-size: 14pt;
+                }
+            }
+            .show{
+                .text{
+                    hr{
+                        margin-bottom: 0;
+                    }
+                    .description{
+                        span{
+                            font-size: 8pt;
+                        }
+                    }
+                    button{
+                        width: 9vw;
+                        bottom: 5%;
+                    }
+                }   
+            }
+            #backbtn{
+                bottom: 10%;
+            }
+        }
     }
 </style>
