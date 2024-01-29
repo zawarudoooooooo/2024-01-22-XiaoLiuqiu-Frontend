@@ -49,7 +49,7 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="item">
                         <div class="img">
                             <img src="../../../../public/news/activity4.jpg" alt="">
@@ -79,7 +79,7 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="item">
                         <div class="img">
                             <img src="../../../../public/news/activity1.jpg" alt="">
@@ -108,7 +108,7 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="item">
                         <div class="img">
                             <img src="../../../../public/news/activity2.jpg" alt="">
@@ -137,7 +137,7 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="item">
                         <div class="img">
                             <img src="../../../../public/news/activity.jpg" alt="">
@@ -167,7 +167,6 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
                 </li>
             </ul>
         </div>
@@ -178,7 +177,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 223vh;
+        height: 238vh;
         margin: auto;
         margin-top: 4vmin;
         .title{
@@ -197,10 +196,16 @@ export default{
                 list-style: none;
                 .show{
                     .item{
+                        height: 40vh;
                         display: flex;
                         align-items: center;
                         justify-content: space-around;
-                        padding: 2.5vmin 0.5vmin 2vmin;
+                        padding: 2vmin 0.5vmin 2vmin;
+                        background-color: white;
+                        border-radius: 5px;
+                        margin-bottom: 5vmin;
+                        border: 1px solid lightgray;
+                        box-shadow: 1px 1px 1px gray;
                         .img{
                             img{
                                 width: 25vw;
