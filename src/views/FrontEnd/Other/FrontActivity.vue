@@ -230,7 +230,7 @@ export default{
                                     display: flex;
                                     align-items: center;
                                     flex-direction: column;
-                                    color: #797A7E;
+                                    color: #4d4327;
                                     position: relative;
                                     &:before{
                                         content: "";
@@ -252,7 +252,7 @@ export default{
                                     }
                                 }
                                 h3{
-                                    color: #797A7E;
+                                    color: #4d4327;
                                     margin-top: 1vmin;
                                     margin-left: 1vmin;
                                 }
@@ -275,12 +275,12 @@ export default{
                                         top: 7.5%;
                                     }
                                     span{
-                                        color: #797A7E;
+                                        color: #4d4327;
                                         font-size: 12pt;
                                     }
                                 }
                                 p{
-                                    color: #797A7E;
+                                    color: #4d4327;
                                     font-size: 14pt;
                                 }
                             }

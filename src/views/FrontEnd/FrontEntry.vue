@@ -430,13 +430,13 @@ export default{
                     }
                     i{
                         font-size: 38pt;
-                        color: #797A7E;
+                        color: #4d4327;
                         display: flex;
                         justify-content: center;
                     }
                     p{
                         text-align: center;
-                        color: #797A7E;
+                        color: #5f512c;
                         font-size: 14pt;
                         font-weight: bold;
                         margin-top: 1.5vmin;
@@ -473,6 +473,7 @@ export default{
                         .card-body{
                             p{
                                 text-align: center;
+                                color: #4d4327;
                             }
                         }
                         .card-img-top{
@@ -538,7 +539,7 @@ export default{
                 width: 8vw;
                 height: 5vh;
                 border: none;
-                color: #797A7E;
+                color: #4d4327;
                 border-radius: 5px;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover {

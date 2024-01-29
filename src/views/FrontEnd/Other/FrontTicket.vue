@@ -188,8 +188,12 @@ export default{
                 }
             }
         }
+        .card-title{
+            color: #4d4327;
+        }
         .card-text{
             font-size: 11.5pt;
+            color: #4d4327;
         }
     }
     @media(max-width:1200px){
