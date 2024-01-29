@@ -2,11 +2,12 @@
 import axios from 'axios';
 import Footer from '../../components/Footer.vue';
 import FrontBooking from './FrontBooking.vue'
+import swal from 'sweetalert';
 export default{
     data(){
         return{
-            roomList:"",
-            roomList1:"",
+            roomList:[],
+            roomList1:[],
             roomId:"",
             // roomTypeId: "",
             // roomIntroduce:"",
@@ -30,19 +31,19 @@ export default{
     mounted() {
         console.log(this.list)
 
-    // 設定開始時間和結束時間
-        var startTime = new Date('2024-01-22T00:00:00');
-        var endTime = new Date('2024-01-23T23:59:59'); // 將結束時間設置到當天的最後一秒
+    // // 設定開始時間和結束時間
+    //     var startTime = new Date('2024-01-22T00:00:00');
+    //     var endTime = new Date('2024-01-23T23:59:59'); // 將結束時間設置到當天的最後一秒
 
-    // 取得今天的日期和時間
-        var currentTime = new Date();
+    // // 取得今天的日期和時間
+    //     var currentTime = new Date();
 
-    // 判斷是否在範圍內
-        if (startTime <= currentTime && currentTime <= endTime) {
-            console.log("今天的日期在開始時間和結束時間之間。");
-        } else {
-            console.log("今天的日期不在範圍內。");
-        }
+    // // 判斷是否在範圍內
+    //     if (startTime <= currentTime && currentTime <= endTime) {
+    //         console.log("今天的日期在開始時間和結束時間之間。");
+    //     } else {
+    //         console.log("今天的日期不在範圍內。");
+    //     }
 
         // this.search();
         this.List.forEach(element => {
@@ -77,9 +78,19 @@ export default{
             },
                 }).then(res=>{
 
-                    this.roomList1=res.data.roomList
+                    res.data.roomList.forEach(item=>{
+                        if(!item.open){
+                            return
+                        }
+                        item.roomImg=JSON.parse(item.roomImg)
+                        console.log(item);
+                        this.roomList1.push(item)
+                        this.roomList.push(item)
+                        // console.log(item);
+                    })
+
                     // console.log(this.roomList1);
-                    this.roomList=res.data.roomList
+                    
                     // console.log(this.roomList);
 
                     const availableRooms = [];
@@ -112,6 +123,21 @@ export default{
             this.$router.push('/FrontSearch')
         },
         booking(roomId){
+            if(document.cookie==""){
+                swal({
+                        title: '錯誤',
+                        text: '請先登入',
+                        icon: 'error',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            this.$router.push('/FrontLogin')
+                        } 
+                    });
+                return
+            }
             this.bookingData=true
             this.roomList.forEach(item=>{
                 if(roomId!=item.roomId){
@@ -190,29 +216,26 @@ export default{
             </div>
             <button type="button" @click="search()" id="searchbtn">搜尋</button>
         </div>
-        <div class="show" v-for="(item,index) in this.roomList" >
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="../../../../public/room/D/d1.jpg" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/room/D/d1-1.jpg" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/room/D/1-2.jpg" alt="...">
+        <div v-for="(item,index) in this.roomList" :key="index">
+        <div class="show" >
+            <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                    <div v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
+                        <img v-if="item.roomName=='小資雙人房'" :src="'public/room/SP/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                        <img v-if="item.roomName=='舒適雙人房'" :src="'public/room/D/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                        <img v-if="item.roomName=='豪華家庭房'" :src="'public/room/F/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <div class="text" >
+            <div class="text" v-if="item.open">
                 <div class="name" >
                     <p>{{ item.roomName }}</p>
                     <p>$ {{ item.roomPrice }}</p>
@@ -234,7 +257,9 @@ export default{
                 </div>
                 <button type="button" @click="booking(item.roomId)">訂購</button>
             </div>
+            
         </div>
+    </div>
         <button type="button" id="backbtn" @click="goback()"><i class="fa-solid fa-arrow-right-to-bracket"></i>返回</button>
     </div>
     <FrontBooking v-if="bookingData" :info="this.bookingInfo" :StartDate="this.mStartDate" :EndDate="this.mEndDate"/>
