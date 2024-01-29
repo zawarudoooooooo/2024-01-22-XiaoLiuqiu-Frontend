@@ -190,7 +190,14 @@ export default{
         },
         messageFileChange(event) {
             const file = event.target.files[0];
+            let filereader = new FileReader();
+            filereader.readAsDataURL(file)
             this.messageImg=file.name
+            filereader.addEventListener("load", () => {
+                this.useravatar = filereader.result;
+                // this.user = filereader.result;
+                console.log("0")
+            })
             console.log(this.messageImg);
         },
     },
@@ -458,6 +465,7 @@ export default{
                 <label>
                     <i class="fa-solid fa-images" id="addicon"></i>
                     <input type="file" class="addimg" @change="messageFileChange">
+                    <img :src="useravatar" class="upload_cover" alt="">
                 </label>
             </div>
             <div class="msgBtnArea">
@@ -488,7 +496,7 @@ export default{
                                 <label for="message-text" class="col-form-label">照片 :</label>
                                 <br>
                                 <div class="imgArea">
-                                    <img :src="msgavatar" class="msgimg" alt="">
+                                    <img :src="useravatar" class="msgimg" alt="">
                                 </div>                
                             </div>
                         </form>
