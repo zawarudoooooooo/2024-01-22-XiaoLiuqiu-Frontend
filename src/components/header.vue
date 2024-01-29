@@ -111,7 +111,7 @@ export default{
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <RouterLink to="/FrontSearch" class="routerItem"  v-if="this.cookie!=''||this.cookieTest =='employee'"><i class="fa-solid fa-bed"></i>房型總覽</RouterLink>
+                            <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>房型總覽</RouterLink>
                         </li>
                         <li class="nav-item">
                             <RouterLink to="/FrontTicket" class="routerItem"><i class="fa-solid fa-comments-dollar"></i>超值加購</RouterLink>

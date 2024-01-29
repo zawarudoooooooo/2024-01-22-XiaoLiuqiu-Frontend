@@ -638,14 +638,14 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    background-color: #e3f6f5;
+                    background-color: white;
                     margin-bottom: 1.5vmin;
                     box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                     &:hover {
                         background-color: #F7F2E7;;
                     }
                     &:active {
-                        background-color: #e3f6f5;
+                        background-color: white;
                     }
                 }
             }
@@ -672,7 +672,7 @@ export default{
                     border-radius: 10px;
                     border-style: none;
                     outline: none;
-                    background-color: #e3f6f5;
+                    background-color: white;
                     padding-left: 2vmin;
                     margin-bottom: 2vmin;
                     box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
