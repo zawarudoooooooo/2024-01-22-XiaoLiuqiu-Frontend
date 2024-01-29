@@ -85,6 +85,7 @@ export default{
             if(res.data.rtnCode==200){
                 swal("成功", "已新增房間", "success");
             }
+            this.clearAdd()
             })
         },
         test(){
@@ -283,7 +284,13 @@ export default{
             // console.log(img);
             // this.uploadFile(file);
         },
-        
+        clearAdd(){
+            const file = document.getElementById("inputfile")
+            this.roomId="",
+            this.introduce="",
+            this.roomPrice="",
+            file.value=""
+        },
     },
     components:{
         backSideBar
@@ -318,10 +325,10 @@ export default{
                         <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
                     </div>
                     <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
-                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
-                            <div class="carousel-inner" >
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                            <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
-                                    <img :src="'public/room/SP/'+img" class="d-block w-100" alt="">
+                                    <img :src="'public/room/SP/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
@@ -368,10 +375,10 @@ export default{
                         <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
                     </div>
                     <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
-                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
-                            <div class="carousel-inner" >
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                            <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
-                                    <img :src="'public/room/D/'+img" class="d-block w-100" alt="">
+                                    <img :src="'public/room/D/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
@@ -419,10 +426,10 @@ export default{
                         <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
                     </div>
                     <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
-                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
-                            <div class="carousel-inner" >
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel"  style="width: 20vw;height: 28vh;border-radius: 5px;">
+                            <div class="carousel-inner"  style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
-                                    <img :src="'public/room/F/'+img" class="d-block w-100" alt="">
+                                    <img :src="'public/room/F/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
@@ -521,7 +528,7 @@ export default{
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name" @change="handleFileChange" multiple>
+                            <input type="file" class="form-control" id="inputfile" @change="handleFileChange" multiple>
                         </div>
                     </form>
                 </div>
@@ -553,22 +560,16 @@ export default{
                             <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
                             <label for="uno">獨立衛浴</label>
                             <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
                             <label for="uno">空調 </label>
                             <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
                             <label for="uno">平面電視 </label>
-                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                             <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                             <label for="uno">Wifi</label>
                             <br>
                             <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
                             <label for="uno">浴缸</label>
                             <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
                             <label for="uno">遊戲機</label>
-                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                             <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                             <label for="uno">床頭插座</label>
                             <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
@@ -582,7 +583,7 @@ export default{
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name">
+                            <input type="file" class="form-control" id="recipient-name" multiple>
                         </div>
                     </form>
                 </div>
@@ -657,39 +658,39 @@ export default{
                     box-shadow: 1px 1px 1px gray;
                     padding: 3vmin 2vmin 0vmin;
                     position: relative;
-                    #carouselExample{
-                        width: 20vw;
-                        height: 28vh;
-                        margin-top: 0.5vmin;
-                        border-radius: 5px;
-                        box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                        .carousel-inner{
-                            width: 20vw;
-                            border-radius: 5px;
-                            .carousel-item{
-                                width: 20vw;
-                                border-radius: 5px;
-                                img{
-                                    width: 21vw;
-                                    height: 28vh;
-                                    border-radius: 5px;
-                                    transition: all linear 0.3s;
-                                    &:hover{
-                                        opacity: 0.7;
-                                    }
-                                    &:active{
-                                        opacity: 1.0;
-                                    }
-                                }
-                            }
-                        }
-                        .carousel-control-prev-icon{
-                            width: 1.5rem;
-                        }
-                        .carousel-control-next-icon{
-                            width: 1.5rem;
-                        }
-                    }
+                    // .carouselExample{
+                    //     width: 20vw;
+                    //     height: 28vh;
+                    //     margin-top: 0.5vmin;
+                    //     border-radius: 5px;
+                    //     box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                    //     .carousel-inner{
+                    //         width: 20vw;
+                    //         border-radius: 5px;
+                    //         .carousel-item{
+                    //             width: 20vw;
+                    //             border-radius: 5px;
+                    //             img{
+                    //                 width: 21vw;
+                    //                 height: 28vh;
+                    //                 border-radius: 5px;
+                    //                 transition: all linear 0.3s;
+                    //                 &:hover{
+                    //                     opacity: 0.7;
+                    //                 }
+                    //                 &:active{
+                    //                     opacity: 1.0;
+                    //                 }
+                    //             }
+
+                    //     }
+                    //     .carousel-control-prev-icon{
+                    //         width: 1.5rem;
+                    //     }
+                    //     .carousel-control-next-icon{
+                    //         width: 1.5rem;
+                    //     }
+                    // }
                     .text{
                         height: 23vh;
                         hr{

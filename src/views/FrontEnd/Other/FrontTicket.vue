@@ -88,7 +88,6 @@ export default{
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">兩人一板 $1000</li>
                     <li class="list-group-item">一人一板 $1200</li>
                 </ul>
             </div>

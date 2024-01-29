@@ -214,10 +214,10 @@ export default{
             }
             nav{
                 position: absolute;
-                bottom: -30%;
+                bottom: -50%;
                 .routerItem{
-                    font-size: 16pt;
-                    margin-right: 2vmin;
+                    font-size: 14pt;
+                    margin-right: 1vmin;
                 }
             }
         }
