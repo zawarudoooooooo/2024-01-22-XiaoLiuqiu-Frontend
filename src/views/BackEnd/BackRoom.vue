@@ -75,7 +75,7 @@ export default{
                 room_id:this.roomId,
                 room_introduce:JSON.stringify(this.introduce),
                 room_name:this.roomName,
-                room_price:this.roomPrice
+                room_price:this.roomPrice,
             },
             }).then(res=>{
             console.log(res.data);
@@ -104,7 +104,7 @@ export default{
             console.log(this.upDateRoomPrice);
             console.log(this.upDateIntroduce);
             console.log(this.editstatus);
-            // console.log(this.roomSearch);
+            console.log(this.roomSearch);
         },
         upDate(){
             axios({
@@ -172,7 +172,7 @@ export default{
             }).then(res=>{
             this.roomSearch=""
             this.roomSearch=res.data.roomList
-            console.log(this.roomSearch);
+            // console.log(this.roomSearch);
             })
         },
         familyOpen(){
@@ -252,14 +252,10 @@ export default{
             }
             return 0
         },
-        
     },
     components:{
         backSideBar
     },
-    mounted(){
-        
-    }
 }
 </script>
 
@@ -495,7 +491,8 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間圖片 :</label>
-                                <input type="file" class="form-control" id="recipient-name">
+                                <input type="file" class="form-control" id="recipient-name" multiple="multiple" @change="handleFileChange">
+                                
                             </div>
                         </form>
                     </div>
@@ -550,7 +547,7 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">房間圖片 :</label>
-                                <input type="file" class="form-control" id="recipient-name">
+                                <input type="file" class="form-control" id="recipient-name" @change="handleFileChange">
                             </div>
                         </form>
                     </div>
