@@ -135,7 +135,7 @@ export default{
             }).then(res=>{
             console.log(res.data);
             if(res.data.rtnCode==200){
-                swal("成功", "已新增房間", "success");
+                swal("成功", "編輯房間成功", "success");
             }
             })
         },
@@ -581,10 +581,10 @@ export default{
                             <input type="checkbox" value="false" v-model="this.editstatus">
                             <label for="">已開放</label>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
                             <input type="file" class="form-control" id="recipient-name" multiple>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
                 <div class="modal-footer">

@@ -200,7 +200,7 @@ export default{
                         <img src="../../../../public/room/D/d1-1.jpg" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="../../../../public/room/D/1-2.jpg" alt="...">
+                        <img src="../../../../public/room/D/d1-2.jpg" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
