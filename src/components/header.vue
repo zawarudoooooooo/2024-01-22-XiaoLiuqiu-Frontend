@@ -179,12 +179,12 @@ export default{
             .routerItem{
                 font-size: 17pt;
                 text-decoration: none;
-                color: #797A7E;
+                color: #5f512c;
                 margin-right: 5vmin;
             }
             .dropdown-item{
                 font-size: 16pt;
-                color: #797A7E;
+                color: #5f512c;
                 text-align: center;
                 cursor: pointer;
                 &:active{

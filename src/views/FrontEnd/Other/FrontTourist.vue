@@ -271,6 +271,14 @@ export default{
                             opacity: 1.0;
                         }
                     }
+                    .card-body{
+                        .routerItemCard{
+                            color: #4d4327;
+                        }
+                        .card-text{
+                            color: #4d4327;
+                        }
+                    }
                 }
             }
         }

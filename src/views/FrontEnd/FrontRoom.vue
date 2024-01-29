@@ -264,14 +264,14 @@ export default{
                 background-color: white;
                 padding-left: 2vmin;
                 padding-right: 2vmin;
-                color: #797A7E;
+                color: #4d4327;
                 font-size: 15pt;
                 box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
             }
             p{
                 margin: 0;
                 font-size: 16pt;
-                color: #797A7E;
+                color: #4d4327;
                 text-align: center;
                 margin-right: 2vmin;
             }
@@ -288,15 +288,15 @@ export default{
                 height: 4.5vh;
                 border: none;
                 border-radius: 5px;
-                color: #797A7E;
+                color: #4d4327;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
-                    background-color: #797A7E;
+                    background-color: #4d4327;
                     color: white;
                 }
                 &:active{
                     background-color: #F7F2E7;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
             }
         }
@@ -358,14 +358,14 @@ export default{
                     align-content: center;
                     justify-content: space-around;
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 24pt;
                         margin: 0;
                     }
                 }
                 .description{
                     span{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 15pt;
                         width: 35vw;
                         i{
@@ -379,18 +379,18 @@ export default{
                     height: 4.5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     position: absolute;
                     right: 5%;
                     bottom: 12%;
-                    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
+                    box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                     &:hover{
-                        background-color: #797A7E;
+                        background-color: #4d4327;
                         color: white;
                     }
                     &:active{
                         background-color: #F7F2E7;
-                        color: #797A7E;
+                        color: #4d4327;
                     }
                 }
             }
@@ -400,7 +400,7 @@ export default{
             height: 4.5vh;
             border: none;
             border-radius: 5px;
-            color: #797A7E;
+            color: #4d4327;
             display: flex;
             align-items: center;
             justify-content: space-around;

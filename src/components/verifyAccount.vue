@@ -77,10 +77,10 @@ export default {
             color: #82AAE3;
         }
         h2{
-            color: #797A7E;
+            color: #4d4327;
         }
         h4{
-            color: #797A7E;
+            color: #4d4327;
         }
         a{
             text-decoration: none;
@@ -99,10 +99,10 @@ export default {
             }
             .loading {
                 font-size: 0pt;
-                color: #797A7E;
+                color: #4d4327;
             }
             .loading.la-dark {
-                color: #797A7E;
+                color: #4d4327;
             } 
             .loading > div {
                 display: inline-block;

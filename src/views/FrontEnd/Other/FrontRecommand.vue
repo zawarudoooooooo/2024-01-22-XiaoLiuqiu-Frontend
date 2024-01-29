@@ -167,16 +167,16 @@ export default{
                         width: 45vw;
                         padding: 0 2vmin 0;
                         .topic{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-weight: 600;
                             font-size: 26pt;
                             text-align: center;
                         }
                         small{
-                            color: #797A7E;
+                            color: #4d4327;
                         }
                         p{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-size: 14pt;
                         }
                         .third{
@@ -187,10 +187,10 @@ export default{
                 .second{
                     display: block;
                     small{
-                        color: #797A7E;
+                        color: #4d4327;
                     }
                     .secondtopic{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-weight: 600;
                         font-size: 26pt;
                         text-align: center;
@@ -201,13 +201,13 @@ export default{
                         align-items: center;
                         padding: 0 1vmin 0;
                         .type{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-weight: bold;
                             font-size: 16pt;
                             text-align: center;
                         }
                         p{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-size: 14pt;
                         }
                     }
@@ -217,13 +217,13 @@ export default{
                         align-items: center;
                         padding: 0 1.5vmin 0;
                         .type{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-weight: bold;
                             font-size: 16pt;
                             text-align: center;
                         }
                         p{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-size: 14pt;
                         }
                     }

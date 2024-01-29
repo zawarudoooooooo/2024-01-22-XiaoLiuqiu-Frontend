@@ -99,11 +99,11 @@ export default{
                 align-items: center;
                 span{
                     font-size: 27pt;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-weight: bold;
                 }
                 #time{
-                    color: #797A7E;
+                    color: #4d4327;
                     font-weight: bold;
                     font-size: 18pt;
                     margin-top: 2vmin;
@@ -114,7 +114,7 @@ export default{
             }
             p{
                 width: 40vw;
-                color: #797A7E;
+                color: #4d4327;
                 font-size: 15pt;
                 margin: auto;
             }
