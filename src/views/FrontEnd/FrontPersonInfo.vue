@@ -421,10 +421,6 @@ export default{
                                 <input type="text" class="form-control" id="recipient-name" placeholder="請輸入持卡人姓名">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">手機號碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" placeholder="請輸入手機號碼">
-                            </div>
-                            <div class="mb-3">
                                 <label for="message-text" class="col-form-label">信用卡卡號 :</label>
                                 <input type="text" class="form-control" id="recipient-name" placeholder="請輸入16碼數字">
                             </div>
@@ -434,7 +430,7 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">信用卡背面末三碼 :</label>
-                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸入背面末三碼">
+                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸安全碼">
                             </div>
                         </form>
                     </div>
@@ -638,14 +634,14 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    background-color: #e3f6f5;
+                    background-color: white;
                     margin-bottom: 1.5vmin;
                     box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                     &:hover {
                         background-color: #F7F2E7;;
                     }
                     &:active {
-                        background-color: #e3f6f5;
+                        background-color: white;
                     }
                 }
             }
@@ -672,7 +668,7 @@ export default{
                     border-radius: 10px;
                     border-style: none;
                     outline: none;
-                    background-color: #e3f6f5;
+                    background-color: white;
                     padding-left: 2vmin;
                     margin-bottom: 2vmin;
                     box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
