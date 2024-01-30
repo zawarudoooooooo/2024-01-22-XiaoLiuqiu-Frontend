@@ -808,10 +808,10 @@ export default{
                             <input type="checkbox" value="false" v-model="this.editstatus">
                             <label for="">已開放</label>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
                             <input type="file" class="form-control" id="recipient-name" multiple>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -849,13 +849,15 @@ export default{
                 top: 35%;
             }
             .roominfo{
+                margin-top: 3vmin;
                 .buttonArea{
                     width: 30vw;
                     display: flex;
                     justify-content: space-between;
                     position: absolute;
                     right: 0%;
-                    top: 8%;
+                    top: 2%;
+                    margin-bottom: 10vmin;
                     button {
                         width: 8vw;
                         height: 5vh;
@@ -891,7 +893,6 @@ export default{
                     justify-content: space-around;
                     border: 1px solid lightgray;
                     border-radius: 10px;
-                    margin-top: 5vmin;
                     box-shadow: 1px 1px 1px gray;
                     padding: 3vmin 2vmin 0vmin;
                     position: relative;
