@@ -253,7 +253,7 @@ export default {
                         驗證
                     </button>
                 </div>
-                <h1 v-if="this.active === false">該帳號為非驗證狀態，驗證後才可閱覽</h1>
+                <h1 v-if="this.active === false">⚠️該帳號為非驗證狀態，驗證後才可閱覽⛔</h1>
                 <table v-if="this.active === true">
                     <thead>
                         <td>員工編號</td>
@@ -413,6 +413,12 @@ export default {
                             color: #797A7E;
                         }
                     }
+                }
+                h1{
+                    color: #e76d87;
+                    position: absolute;
+                    right: 18%;
+                    top: 40%;
                 }
                 table{
                     width: 65vw;
