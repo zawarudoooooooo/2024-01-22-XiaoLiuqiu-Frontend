@@ -284,11 +284,11 @@ export default{
     <div class="content" v-for="(item,index) in this.order" :key="index">
         <div class="show">
             <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
-                    <div v-for="(img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }" >
-                        <img v-if="item.roomName=='小資雙人房'" :src="'public/room/SP/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
-                        <img v-if="item.roomName=='舒適雙人房'" :src="'public/room/D/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
-                        <img v-if="item.roomName=='豪華家庭房'" :src="'public/room/F/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                <div class="carousel-inner">
+                    <div v-for="(img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
+                        <img v-if="item.roomName=='小資雙人房'" :src="'public/room/SP/'+img" alt="">
+                        <img v-if="item.roomName=='舒適雙人房'" :src="'public/room/D/'+img" alt="">
+                        <img v-if="item.roomName=='豪華家庭房'" :src="'public/room/F/'+img" alt="">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
@@ -302,6 +302,7 @@ export default{
             </div>
             <div class="text">
                 <div class="name">
+                    <span>{{ item.roomId }}</span>
                     <p>{{item.roomName}}</p>
                     <p>${{item.roomPrice}}</p>
                 </div>
@@ -453,38 +454,30 @@ export default{
             justify-content: space-around;
             border-radius: 10px;
             position: relative;
-            #carouselExample{
+            margin-top: 3vmin;
+            .carousel-inner{
                 width: 23vw;
                 height: 33vh;
-                margin-top: 6vmin;
                 border-radius: 5px;
+                margin-top: 1vmin;
                 box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                .carousel-inner{
+                img{
                     width: 23vw;
+                    height: 33vh;
                     border-radius: 5px;
-                    .carousel-item{
-                        width: 23vw;
-                        border-radius: 5px;
-                        img{
-                            width: 23vw;
-                            height: 33vh;
-                            border-radius: 5px;
-                            transition: all linear 0.3s;
-                            &:hover{
-                                opacity: 0.7;
-                            }
-                            &:active{
-                                opacity: 1.0;
-                            }
-                        }
+                    transition: all linear 0.3s;
+                    &:hover{
+                        opacity: 0.7;
+                    }
+                    &:active{
+                        opacity: 1.0;
                     }
                 }
-                .carousel-control-prev-icon{
-                    width: 1.5rem;
-                }
-                .carousel-control-next-icon{
-                    width: 1.5rem;
-                }
+            }
+            .carousel-control-next, .carousel-control-prev{
+                height: 36vh;
+                width: 4vmin;
+                padding: 0.5vmin;
             }
             .text{
                 height: 23vh;
@@ -497,6 +490,10 @@ export default{
                     display: flex;
                     align-content: center;
                     justify-content: space-between;
+                    span{
+                        color: #4d4327;
+                        font-size: 24pt;
+                    }
                     p{
                         color: #4d4327;
                         font-size: 24pt;
