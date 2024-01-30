@@ -704,7 +704,7 @@ export default{
                 }
                 .room{
                     width: 70vw;
-                    height: 35vh;
+                    height: 38vh;
                     margin: auto;
                     display: flex;
                     justify-content: space-around;
@@ -716,6 +716,15 @@ export default{
                     position: relative;
                     background-color: white;
                     margin-bottom: 5vmin;
+                    .carousel-inner{
+                        margin-top: 2vmin;
+                        box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                    }
+                    .carousel-control-next, .carousel-control-prev{
+                        width: 4vmin;
+                        height: 33vh;
+                        padding: 0.5vmin;
+                    }
                     .text{
                         height: 23vh;
                         hr{
