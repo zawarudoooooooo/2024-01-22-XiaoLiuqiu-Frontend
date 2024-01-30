@@ -688,39 +688,6 @@ export default{
                     box-shadow: 1px 1px 1px gray;
                     padding: 3vmin 2vmin 0vmin;
                     position: relative;
-                    // .carouselExample{
-                    //     width: 20vw;
-                    //     height: 28vh;
-                    //     margin-top: 0.5vmin;
-                    //     border-radius: 5px;
-                    //     box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                    //     .carousel-inner{
-                    //         width: 20vw;
-                    //         border-radius: 5px;
-                    //         .carousel-item{
-                    //             width: 20vw;
-                    //             border-radius: 5px;
-                    //             img{
-                    //                 width: 21vw;
-                    //                 height: 28vh;
-                    //                 border-radius: 5px;
-                    //                 transition: all linear 0.3s;
-                    //                 &:hover{
-                    //                     opacity: 0.7;
-                    //                 }
-                    //                 &:active{
-                    //                     opacity: 1.0;
-                    //                 }
-                    //             }
-
-                    //     }
-                    //     .carousel-control-prev-icon{
-                    //         width: 1.5rem;
-                    //     }
-                    //     .carousel-control-next-icon{
-                    //         width: 1.5rem;
-                    //     }
-                    // }
                     .carousel-inner{
                         margin-top: 2vmin;
                         box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
