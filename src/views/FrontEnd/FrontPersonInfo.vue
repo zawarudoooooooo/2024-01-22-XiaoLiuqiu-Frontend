@@ -67,7 +67,7 @@ export default{
             this.orderPage=false
         },
         test10(){
-            console.log(this.ImgPhoto);
+            console.log(this.messageImg);
         },
 //留言板
         messageCreate(){
@@ -295,7 +295,8 @@ export default{
             <div class="user">
                 <label>
                     <input id="upload_input" type="file" @change="handleFileChange">
-                    <img :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
+                    <img v-if="this.memberInfo.memberImgPhoto!=null" :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
+                    <img v-if="this.memberInfo.memberImgPhoto==null" :src="'public/demo/' +this.img" class="upload_cover" alt="">
                 </label>
             </div>
             <div class="name">
@@ -512,7 +513,7 @@ export default{
                                 <label for="message-text" class="col-form-label">照片 :</label>
                                 <br>
                                 <div class="imgArea">
-                                    <img :src="msgavatar" class="msgimg" alt="">
+                                    <img :src="'public/message/'+this.messageImg" class="msgimg" alt="">
                                 </div>                
                             </div>
                         </form>

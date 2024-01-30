@@ -31,7 +31,8 @@ export default{
             name:"",
             roomId:"",
             arr:[],
-            exArr:[]
+            exArr:[],
+            imgArr:""
         }
     },
     mounted() {
@@ -61,10 +62,11 @@ export default{
             this.roomId=element.roomId
             this.total1=element.roomPrice
             this.total=element.roomPrice
+            this.imgArr=element.roomImg
         });
         this.startDate=this.StartDate
         this.endDate=this.EndDate
-
+        console.log(this.imgArr);
         if(this.StartDate==""){
             let currentYear = this.today.getFullYear();
             let currentMonth = String(this.today.getMonth() + 1).padStart(2, '0');
@@ -279,25 +281,21 @@ export default{
             <input type="date" v-model="this.endDate" v-else>
         </div>
         </div>
-    <div class="content" v-for="item in this.order">
+    <div class="content" v-for="(item,index) in this.order" :key="index">
         <div class="show">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="../../../../public/room/D/d1.jpg" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/room/D/d1-1.jpg" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/room/D/d1-2.jpg" alt="...">
+            <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                    <div v-for="(img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }" >
+                        <img v-if="item.roomName=='小資雙人房'" :src="'public/room/SP/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                        <img v-if="item.roomName=='舒適雙人房'" :src="'public/room/D/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                        <img v-if="item.roomName=='豪華家庭房'" :src="'public/room/F/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
