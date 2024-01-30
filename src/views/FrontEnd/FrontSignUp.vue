@@ -42,7 +42,7 @@ export default {
                 },
             }).then(res => {
                 console.log(res.data)
-                    swal("註冊成功", "請重新登入", "success");
+                    swal("註冊成功", "請至信箱驗證帳號", "success");
                     this.$router.push('/FrontLogin')
                 
             }).catch(error => {

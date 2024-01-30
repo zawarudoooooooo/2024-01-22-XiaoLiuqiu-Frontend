@@ -32,12 +32,25 @@ export default{
             introduce:[],
             access: 0,
             imgArr:"",
-            arr:[]
+            arr:[],
+            department: "",
+            active: false,
+            counter: 1,
+            selectedRoomType: "",
+            roomCounter: {
+                A: 1,
+                B: 1,
+                C: 1,
+            },
         }
     },
     mounted(){
         this.access = this.getAccess();
         console.log(this.access);
+        this.department = this.getCookie("department");
+        console.log(this.department);
+        this.active = this.getActive();
+        console.log(this.active);
     },
     methods:{
         createRoom() {
@@ -47,9 +60,22 @@ export default{
             const cookieValue = this.getCookie("employee");
             console.log(cookieValue);
             console.log(this.access);
-            const [account] = cookieValue.split(":");
+            const employeeCookie = document.cookie.split('; ')
+            .find(row => row.startsWith('employee='));
 
-            if(!/^[C]/.test(account) || this.access != 50){
+            if (employeeCookie) {
+                const employeeValue = employeeCookie.split('=')[1];
+                const values = employeeValue.split(":");
+                const department = values[3]
+                this.department = department;
+                console.log('Employee value:', department);
+            } else {
+                console.log('Cookie not found.');
+            }
+            console.log(this.department);
+            console.log(this.access);
+
+            if(this.department != "HOUSEKEEPING" || this.access != 50){
                 swal("錯誤", "權限不足", "error");
                 return
             }
@@ -289,7 +315,7 @@ export default{
             if (parts.length === 2) {
                 const [account, access, active] = parts.pop().split(';').shift().split(":");
                 this.access = parseInt(access);
-                this.active = active === "true";  
+                this.active = active === "true"; 
                 return account;
             }
         return "";
@@ -304,6 +330,13 @@ export default{
             }
             return 0
         },
+        getActive() {
+            const cookie = document.cookie;
+                if (cookie) {
+                    return cookie.includes(":true:");
+                }
+                    return false;
+            },
         handleFileChange(event) {
             console.log(event);
             const file = event.target.files;
@@ -328,9 +361,6 @@ export default{
     components:{
         backSideBar
     },
-    mounted(){
-        
-    }
 }
 </script>
 
@@ -343,7 +373,8 @@ export default{
             <div class="side">
                 <backSideBar />
             </div>
-            <div class="roominfo">
+            <h1 v-if="this.active === false">該帳號為非驗證狀態，驗證後才可閱覽</h1>
+            <div class="roominfo" v-if="this.active === true">
                 <div class="buttonArea">
                     <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增房間
@@ -567,7 +598,7 @@ export default{
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">編號 :</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
+                            <input type="text" class="form-control" id="recipient-name" v-model="roomId" placeholder="請從編號01依序新增">
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">說明 :</label>

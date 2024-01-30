@@ -8,10 +8,12 @@ export default {
             orders:[],
             roomId:"",
             orderItem:[],
+            isAdmin: false,
             account: "",
             access: 0,
-            isAdmin: false,
-            orderItems:""
+            orderItems:"",
+            department: "",
+            active: false,
         }
     },
     methods:{
@@ -62,6 +64,13 @@ export default {
             }
             return 0
         },
+        getActive() {
+            const cookie = document.cookie;
+                if (cookie) {
+                    return cookie.includes(":true:");
+                }
+                    return false;
+            },
         orderFinished(orderId){
 
             axios({
@@ -77,6 +86,7 @@ export default {
             }).then(res=>{
                 console.log(res);
                 if(res.data.message == "Successful!!"){
+                    this.refresh();
                     swal("成功","已完成結單", "success");
                 }else if(res.data.message == "Order already finished"){
                     swal("提示", "訂單已結案", "warning")
@@ -96,10 +106,9 @@ export default {
                     return this.orderFinished(orderId)
                 },
             })
-        }
-    },
-    mounted(){
-        axios({
+        },
+        refresh(){
+            axios({
             url:'http://localhost:8080/order/searchMemberName',
             method:'POST',
             headers:{
@@ -123,13 +132,34 @@ export default {
                     orderPayment:element.orderPayment,payOrNot:element.payOrNot,total:element.total})
                 });
                 console.log(this.orders);
-            }),
-            
+            })
+        },
+    },
+    mounted(){
+            this.refresh();
             this.access = this.getAccess();
             this.account = this.getCookie("employee")
-            this.isAdmin = /^B/.test(this.account) && this.access === 50;
+            this.active = this.getActive();
             console.log(this.account);
             console.log(this.access);
+            console.log(this.active);
+            console.log(this.getCookie("active"));
+
+            const employeeCookie = document.cookie.split('; ')
+            .find(row => row.startsWith('employee='));
+
+            if (employeeCookie) {
+                const employeeValue = employeeCookie.split('=')[1];
+                const values = employeeValue.split(":");
+                const department = values[3]
+                this.department = department;
+                console.log('Employee value:', department);
+            } else {
+                console.log('Cookie not found.');
+            }
+            console.log(this.department);
+            this.isAdmin = this.department === "OPERATIONS" && this.access === 50;
+
             console.log(this.isAdmin);
 
     },
@@ -148,7 +178,9 @@ export default {
             <div class="side">
                 <backSideBar />
             </div>
-            <table>
+            
+        <h1 v-if="this.active === false">該帳號為非驗證狀態，驗證後才可閱覽</h1>
+            <table v-if="this.active === true">
                 <thead>
                 <tr>
                     <td>訂單編號</td>
