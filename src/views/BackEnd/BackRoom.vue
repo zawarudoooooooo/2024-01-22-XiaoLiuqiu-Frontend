@@ -34,19 +34,13 @@ export default{
             upArr:[],
             department: "",
             active: false,
-            counter: 1,
-            selectedRoomType: "",
-            roomCounter: {
-                A: 1,
-                B: 1,
-                C: 1,
-            },
             list:[],
             roomTypeName:[],
             roomTypeNameId:[],
             selectedValue:"",
             radioChange:"",
             createRoomTypeName:""
+            
         }
     },
     mounted(){
@@ -57,10 +51,11 @@ export default{
         this.active = this.getActive();
         console.log(this.active);
         this.roomtype();
+        console.log(this.hasDepartment());
+        console.log(this.hasAccess());
     },
     methods:{
         createRoom() {
-            console.log(this.roomPrice);
             const roomtype=document.querySelectorAll(".roomtype")
 
             const cookieValue = this.getCookie("employee");
@@ -160,6 +155,7 @@ export default{
             console.log(this.selectedValue);
         },
         createRoomType(){
+            
             axios({
             url:'http://localhost:8080/roomtype/createroomtype',
             method:'POST',
@@ -420,6 +416,20 @@ export default{
             this.roomPrice="",
             file.value=""
         },
+        hasDepartment(){
+            const cookie = document.cookie;
+                if (cookie.includes(":HOUSEKEEPING")) {
+                    return true;
+                }
+                    return false;
+        },
+        hasAccess(){
+            const cookie = document.cookie;
+                if (cookie.includes(":50:")) {
+                    return true;
+                }
+                    return false;
+        }
     },
     components:{
         backSideBar
@@ -436,14 +446,14 @@ export default{
             <div class="side">
                 <backSideBar />
             </div>
-            <h1 v-if="this.active === false">該帳號為非驗證狀態，驗證後才可閱覽</h1>
+            <h1 v-if="this.active === false">⚠️該帳號為非驗證狀態，驗證後才可閱覽⛔</h1>
             <div class="roominfo" v-if="this.active === true">
                 <div class="buttonArea">
                     <button type="button" data-bs-toggle="modal" 
-                        data-bs-target="#exampleModal">新增房間
+                        data-bs-target="#exampleModal" v-if="hasDepartment() === true && hasAccess() === true">新增房間
                     </button>
                     <button type="button" data-bs-toggle="modal" 
-                        data-bs-target="#roomTypeModal">新增房型
+                        data-bs-target="#roomTypeModal" v-if="hasDepartment() === true && hasAccess() === true">新增房型
                     </button>
                     <button type="button" @click="simpleOpen()">小資雙人房</button>
                     <button type="button" @click="doubleOpen()">舒適雙人房</button>
@@ -803,6 +813,12 @@ export default{
             display: flex;
             justify-content: space-between;
             position: relative;
+            h1{
+                color: #e76d87;
+                position: absolute;
+                right: 15%;
+                top: 35%;
+            }
             .roominfo{
                 .buttonArea{
                     width: 35vw;
