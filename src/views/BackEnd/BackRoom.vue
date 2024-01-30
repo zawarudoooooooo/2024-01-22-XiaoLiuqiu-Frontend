@@ -669,9 +669,9 @@ export default{
                         </div>
                     </div>
                     <label for="recipient-name" class="col-form-label">編號 :</label>
-                        <div class="mb-3 roomId">
-                            <input type="text" class="form-control idType" id="recipient-name" v-model="this.selectedValue" readonly>
-                            <input type="text" class="form-control" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
+                        <div class="mb-3-roomId">
+                            <input type="text" class="form-control-idType" id="recipient-name" v-model="this.selectedValue" readonly>
+                            <input type="text" class="form-control-input" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">說明 :</label>
@@ -795,11 +795,12 @@ export default{
             }
             .roominfo{
                 .buttonArea{
-                    width: 35vw;
+                    width: 50vw;
                     display: flex;
                     justify-content: space-between;
                     position: absolute;
                     right: 0%;
+                    top: 8%;
                     button {
                         width: 8vw;
                         height: 5vh;
@@ -931,5 +932,26 @@ export default{
     label{
         margin-right: 1vmin;
         margin-left: 1vmin;
+    }
+    .mb-3-roomId{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .form-control-idType{
+            width: 2vw;
+            height: 5vh;
+            border-radius: 5px;
+            outline: none;
+            text-align: center;
+            border: 1px gainsboro solid;
+        }
+        .form-control-input{
+            width: 28vw;
+            height: 5vh;
+            border-radius: 5px;
+            border: 1px gainsboro solid;
+            outline: none;
+            padding-left: 1vmin;
+        }
     }
 </style>
