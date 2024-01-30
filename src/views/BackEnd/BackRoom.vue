@@ -173,7 +173,20 @@ export default{
                 if(res.data.rtnCode==200){
 
                     console.log(res.data);
-                    swal("成功", "新增房型成功", "success");
+                    
+                    swal({
+                        title: '成功',
+                        text: '新增房型成功',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            window.location.reload();
+                        } 
+                    });
+
                     return
                 }
             })
