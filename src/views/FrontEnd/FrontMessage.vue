@@ -10,6 +10,24 @@ export default{
     components:{
         Footer
     },
+    methods:{
+        member(){
+            axios({
+            url:'http://localhost:8080/member/member',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },  
+            params:{
+                account:""
+            },  
+            data:{
+            },
+        }).then(res=>{
+            console.log(res.data)
+        })
+        }
+    },
     mounted(){
         axios({
             url:'http://localhost:8080/message/search',
@@ -22,6 +40,14 @@ export default{
         }).then(res=>{
             //console.log(res.data.messageList)
             this.msglist=res.data.messageList
+            this.msglist.forEach(element => {
+                console.log(element);
+                let date=new Date(element.messageDateTime)
+                let messageDate=date.getUTCFullYear()+'年'+(date.getMonth()+1)+'月'+date.getDate()+'日'+date.getHours()+'時'+date.getMinutes()+'分'
+                console.log(messageDate);
+                element.messageDateTime=messageDate
+                
+            });
             console.log(this.msglist)
         })
     }
@@ -36,7 +62,7 @@ export default{
     <div class="content">
         <div class="card" v-for="item in this.msglist">
             <div class="info">
-                <img src="../../../public/demo/user1.png" class="card-img-top" alt="...">
+                <img :src="'public/demo/'+item.memberImg" class="card-img-top" alt="">
                 <p>user : {{ item.memberName }}</p>
             </div>
             <div class="card-body">
@@ -44,14 +70,14 @@ export default{
                 <p class="card-text">
                     {{ item.roomMessageBoardDescription }}
                 </p>
-                <img src="../../../public/message/IMG_1210.JPG" alt="">
+                <img :src="'public/message/'+item.messageImg" alt="">
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><small>2024/01/06 15:20</small></li>
+                <li class="list-group-item"><small>{{item.messageDateTime}}</small></li>
             </ul>
         </div>
     </div>
-    <!-- <Footer /> -->
+    <Footer />
 </template>
 
 <style lang="scss" scoped>
@@ -72,7 +98,7 @@ export default{
     }
     .content{
         width: 90vw;
-        height: 100vh;
+        height: 145vh;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
@@ -120,12 +146,14 @@ export default{
     }
     @media(max-width:1200px){
         .content{
+            width: 81vw;
             height: 71vh;
+            gap: 2vmin;
             .card{
                 width: 16rem;
-                height: 29rem;
+                height: 27rem;
                 p{
-                    font-size: 12pt;
+                    font-size: 10pt;
                 }
                 .info{
                     img{
@@ -134,6 +162,9 @@ export default{
                     }
                 }
                 .card-body{
+                    .card-title{
+                        font-size: 13pt;
+                    }
                     img{
                         width: 19vw;
                         height: 10vh;
@@ -144,8 +175,10 @@ export default{
     }
     @media(max-width:992px){
         .content{
+            height: 126vh;
             .card{
                 width: 19rem;
+                height: 29rem;
                 p{
                     font-size: 13pt;
                 }
@@ -157,7 +190,7 @@ export default{
                 }
                 .card-body{
                     .card-title{
-                        font-size: 18pt;
+                        font-size: 17pt;
                     }
                     img{
                         width: 23vw;
@@ -169,12 +202,14 @@ export default{
     }
     @media(max-width:576px){
         .content{
+            height: 260vh;
             .card{
                 width: 22rem;
                 p{
-                    font-size: 14pt;
+                    font-size: 13pt;
                 }
                 .info{
+                    justify-content: space-around;
                     img{
                         width: 20vw;
                         height: 9vh;
@@ -192,8 +227,9 @@ export default{
     }
     @media(max-width:414px){
         .content{
+            height: 254vh;
             .card{
-                height: 27rem;
+                height: 25rem;
                 p{
                     font-size: 12pt;
                 }

@@ -39,7 +39,7 @@ export default {
                     this.$router.push('/')
                 }, 2000)
             })
-            swal("重設密碼成功","請用新密碼登錄","success")
+            swal("重設密碼成功","請用新密碼登入","success")
             . catch(error => console.error(error))
         },
         goEntry(){
@@ -91,7 +91,7 @@ export default {
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #D9D9D9;
+            background-color: white;
             padding-left: 2vmin;
             margin-bottom: 5vmin;
         }
@@ -108,14 +108,14 @@ export default {
             p {
                 margin: 0;
                 font-size: 14pt;
-                color: #797A7E;
+                color: #4d4327;
             }
         }
         .password {
             p {
                 margin: 0;
                 font-size: 14pt;
-                color: #797A7E;
+                color: #4d4327;
             }
         }
         .repassword {
@@ -127,7 +127,7 @@ export default {
             p {
                 margin: 0;
                 font-size: 14pt;
-                color: #797A7E;
+                color: #4d4327;
             }
             #checkpwd{
                 font-weight: bold;
@@ -144,7 +144,7 @@ export default {
                 height: 5vh;
                 border: none;
                 border-radius: 5px;
-                color: #797A7E;
+                color: #4d4327;
                 &:hover {
                     background-color: #797A7E;
                     color: white;

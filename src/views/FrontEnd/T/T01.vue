@@ -90,11 +90,9 @@ export default{
         display: flex;
         align-items: center;
         justify-content: space-around;
-        //border: 1px black solid;
         .pictureArea{
             width: 35vw;
             border-radius: 10px;
-            //border: 1px red solid;
             .carousel-inner{
                 border-radius: 10px;
                 box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
@@ -105,18 +103,17 @@ export default{
         }
         .introduce{
             width: 45vw;
-            //border: 1px green solid;
             .info{
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
                 span{
                     font-size: 27pt;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-weight: bold;
                 }
                 #time{
-                    color: #797A7E;
+                    color: #4d4327;
                     font-weight: bold;
                     font-size: 18pt;
                     margin-top: 2vmin;
@@ -127,7 +124,7 @@ export default{
             }         
             p{
                 width: 40vw;
-                color: #797A7E;
+                color: #4d4327;
                 font-size: 14.5pt;
                 margin: auto;
             }

@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../components/Footer.vue';
+import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -24,7 +24,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/turtle.jpg" alt="...">
+                        <img src="../../../../public/meal/turtle.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -56,7 +56,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/cheese.jpg" alt="...">
+                        <img src="../../../../public/meal/cheese.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -85,7 +85,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/ice.jpg" alt="...">
+                        <img src="../../../../public/meal/ice.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -114,7 +114,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/donut.jpg" alt="...">
+                        <img src="../../../../public/meal/donut.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -143,7 +143,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/smallcheese.jpg" alt="...">
+                        <img src="../../../../public/meal/smallcheese.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -172,7 +172,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/mr.jpg" alt="...">
+                        <img src="../../../../public/meal/mr.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -201,7 +201,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/banto.jpg" alt="...">
+                        <img src="../../../../public/meal/banto.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -230,7 +230,7 @@ export default{
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../../public/meal/bula.jpg" alt="...">
+                        <img src="../../../../public/meal/bula.jpg" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -303,6 +303,12 @@ export default{
                         opacity: 1;
                     } 
                 }
+                .card-title{
+                    color: #4d4327;
+                }
+                .card-text{
+                    color: #4d4327;
+                }
             }
             li{
                 font-size: 12pt;
@@ -318,7 +324,7 @@ export default{
                 height: 70vh;
                 .card{
                     width: 41vw;
-                    height: 14.5vh;
+                    height: 14vh;
                     img{
                         width: 16vw;
                         height: 13vh;
@@ -336,6 +342,7 @@ export default{
             .meal{
                 .card{
                     width: 41.5vw;
+                    height: 14.5vh;
                 }
                 li{
                     font-size: 8pt;
@@ -362,7 +369,7 @@ export default{
                     height: 26vh;
                     img{
                         width: 30vw;
-                        margin-left: 4vmin;
+                        margin-left: 5vmin;
                     }
                     .card-title{
                         font-size: 12pt;
@@ -379,7 +386,7 @@ export default{
     }
     @media(max-width:414px){
         .content{
-            height: 118vh;
+            height: 117vh;
             .meal{
                 height: 109vh;
                 .card{

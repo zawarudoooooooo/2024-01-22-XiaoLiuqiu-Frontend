@@ -1,5 +1,5 @@
 <script>
-import Footer from '../../components/Footer.vue';
+import Footer from '../../../components/Footer.vue';
 export default{
     data(){
         return{
@@ -22,7 +22,7 @@ export default{
                 <li class="show">
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity3.jpg" alt="">
+                            <img src="../../../../public/news/activity3.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -49,10 +49,10 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity4.jpg" alt="">
+                            <img src="../../../../public/news/activity4.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -79,10 +79,10 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity1.jpg" alt="">
+                            <img src="../../../../public/news/activity1.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -108,10 +108,10 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity2.jpg" alt="">
+                            <img src="../../../../public/news/activity2.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -137,10 +137,10 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="item">
                         <div class="img">
-                            <img src="../../../public/news/activity.jpg" alt="">
+                            <img src="../../../../public/news/activity.jpg" alt="">
                         </div>
                         <div class="text">
                             <div class="info">
@@ -167,7 +167,6 @@ export default{
                             </div>
                         </div>
                     </div>
-                    <hr>
                 </li>
             </ul>
         </div>
@@ -178,7 +177,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 223vh;
+        height: 238vh;
         margin: auto;
         margin-top: 4vmin;
         .title{
@@ -197,17 +196,23 @@ export default{
                 list-style: none;
                 .show{
                     .item{
+                        height: 40vh;
                         display: flex;
                         align-items: center;
                         justify-content: space-around;
-                        padding: 2.5vmin 0.5vmin 2vmin;
+                        padding: 2vmin 0.5vmin 2vmin;
+                        background-color: white;
+                        border-radius: 5px;
+                        margin-bottom: 5vmin;
+                        border: 1px solid lightgray;
+                        box-shadow: 1px 1px 1px gray;
                         .img{
                             img{
                                 width: 25vw;
                                 height: 32vh;
                                 border-radius: 5px;
-                                box-shadow: 1px 1px 1px gray;
                                 transition: all linear 0.3s;
+                                box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                                 &:hover{
                                     opacity: 0.8;
                                     box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
@@ -230,7 +235,7 @@ export default{
                                     display: flex;
                                     align-items: center;
                                     flex-direction: column;
-                                    color: #797A7E;
+                                    color: #4d4327;
                                     position: relative;
                                     &:before{
                                         content: "";
@@ -252,7 +257,7 @@ export default{
                                     }
                                 }
                                 h3{
-                                    color: #797A7E;
+                                    color: #4d4327;
                                     margin-top: 1vmin;
                                     margin-left: 1vmin;
                                 }
@@ -275,12 +280,12 @@ export default{
                                         top: 7.5%;
                                     }
                                     span{
-                                        color: #797A7E;
+                                        color: #4d4327;
                                         font-size: 12pt;
                                     }
                                 }
                                 p{
-                                    color: #797A7E;
+                                    color: #4d4327;
                                     font-size: 14pt;
                                 }
                             }

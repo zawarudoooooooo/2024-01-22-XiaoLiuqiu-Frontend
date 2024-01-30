@@ -20,6 +20,7 @@ export default {
             department: "",
             role: "",
             giveAccess: "",
+            resignation: false,
         }
     },
     mounted(){
@@ -188,10 +189,10 @@ export default {
         getActive() {
             const cookieValue = this.getCookie("employee");
             return cookieValue ? cookieValue.split(":")[2] === "true" : false;
-    },
+        },
         getAccess(){
             const cookieValue = this.getCookie("employee")
-            console.log(cookieValue);
+            // console.log(cookieValue);
             if(cookieValue){
                 const parts = cookieValue.split(":")
                 console.log("Cookie parts:", parts);
@@ -232,15 +233,15 @@ export default {
 </script>
 
 <template>
-    <div class="title">
-        <p>員工管理<i class="fa-solid fa-users"></i></p>
-    </div>
     <div class="content">
+        <div class="title">
+            <p>員工管理<i class="fa-solid fa-users"></i></p>
+        </div>
         <div class="list">
             <div class="side">
                 <backSideBar />
             </div>
-            <div class="show">
+            <div class="employee">
                 <div class="buttonArea">
                     <button type="button" v-if="this.access == 100" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增人員
@@ -252,112 +253,116 @@ export default {
                         驗證
                     </button>
                 </div>
-                <div class="employee">
-                    <table>
-                        <thead>
-                            <td>員工編號</td>
-                            <td>員工帳號</td>
-                            <td>職位</td>
-                            <td>部門</td>
-                            <td>驗證</td>
-                            <td v-if="this.access === 100">離職</td>
-                        </thead>
-                        <tbody>
-                            <tr v-for=" item in employees">
-                                <td>{{ item.employeeId }}</td>
-                                <td>{{ item.account }}</td>
-                                <td>{{ getRole(item.role) }}</td>
-                                <td>{{ getDepartment(item.department) }}</td>
-                                <td v-if="item.active === true">已驗證</td>
-                                <td v-else>尚未驗證</td>
-                                <td v-if="this.access === 100">
-                                    <input type="button" value="確認" @click="confirmDeactive(item.account)">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <h1 v-if="this.active === false">該帳號為非驗證狀態，驗證後才可閱覽</h1>
+                <table v-if="this.active === true">
+                    <thead>
+                        <td>員工編號</td>
+                        <td>員工帳號</td>
+                        <td>職位</td>
+                        <td>部門</td>
+                        <td>驗證</td>
+                        <td>狀態</td>
+                        <td v-if="this.access === 100">離職</td>
+                    </thead>
+                    <tbody>
+                        <tr v-for=" item in employees">
+                            <td v-if="item.department === 'HR' ">A{{ item.employeeId }}</td>
+                            <td v-if="item.department === 'OPERATIONS' ">B{{ item.employeeId }}</td>
+                            <td v-if="item.department === 'HOUSEKEEPING' ">C{{ item.employeeId }}</td>
+                            <td v-if="item.department === 'COUNTER' ">D{{ item.employeeId }}</td>
+                            <td>{{ item.account }}</td>
+                            <td>{{ getRole(item.role) }}</td>
+                            <td>{{ getDepartment(item.department) }}</td>
+                            <td v-if="item.active === true">已驗證</td>
+                            <td v-else>尚未驗證</td>
+                            <td v-if="item.resignation === true">在職</td>
+                            <td v-else>離職</td>
+                            <td v-if="this.access === 100">
+                                <input type="button" value="確認" @click="confirmDeactive(item.account)" id="checkbtn">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
 <!-- 新增人員modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">新增人員</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">帳號 :</label>
-                                <input type="text" class="form-control" v-model="this.account" id="recipient-name">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">新增人員</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">帳號 :</label>
+                            <input type="text" class="form-control" v-model="this.account" id="recipient-name" >
+                            <br>
 
-                                <label for="recipient-name" class="col-form-label" style="margin-left: 20px;">部門 :</label>
-                                <select name="department" id="recipient-name" v-model="this.department" style="margin: 10px;">
-                                    <option value="">請選擇</option>
-                                    <option value="HR">人事部</option>
-                                    <option value="OPERATIONS">營運部</option>
-                                    <option value="HOUSEKEEPING">房務部</option>
-                                    <option value="COUNTER">櫃台</option>
-                                </select>
+                            <label for="recipient-name" class="col-form-label">部門 :</label>
+                            <select name="department" id="recipient-name" v-model="this.department">
+                                <option value="">請選擇</option>
+                                <option value="HR">人事部</option>
+                                <option value="OPERATIONS">營運部</option>
+                                <option value="HOUSEKEEPING">房務部</option>
+                                <option value="COUNTER">櫃台</option>
+                            </select>
                                 
-
-                                <label for="recipient-name" class="col-form-label">權限 :</label>
-                                <select name="access" id="recipient-name" v-model="this.giveAccess" style="margin: 10px;">
-                                    <option value="">請選擇</option>
-                                    <option value="100">高階</option>
-                                    <option value="50">中階</option>
-                                    <option value="0">一般</option>
-                                </select>
+                            <label for="recipient-name" class="col-form-label" style="margin-left: 1.5vmin;">權限 :</label>
+                            <select name="access" id="recipient-name" v-model="this.giveAccess">
+                                <option value="">請選擇</option>
+                                <option value="50">中階</option>
+                                <option value="0">一般</option>
+                            </select>
+                            <br>
                                 
-
-                                <label for="recipient-name" class="col-form-label">職位 :</label>
-                                <select name="role" id="recipient-name" v-model="this.role" style="margin: 10px;">
-                                    <option value="">請選擇</option>
-                                    <option value="ADMINISTRATIVE_SUPERVISOR">人事主管</option>
-                                    <option value="OPERATIONS_SUPERVISOR">營運主管</option>
-                                    <option value="HOUSEKEEPING_SUPERVISOR">房務主管</option>
-                                    <option value="EMPLOYEE">一般員工</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeAdd()">確認新增</button>
-                    </div>
+                            <label for="recipient-name" class="col-form-label">職位 :</label>
+                            <select name="role" id="recipient-name" v-model="this.role" style="margin: 10px;">
+                                <option value="">請選擇</option>
+                                <option value="ADMINISTRATIVE_SUPERVISOR">人事主管</option>
+                                <option value="OPERATIONS_SUPERVISOR">營運主管</option>
+                                <option value="HOUSEKEEPING_SUPERVISOR">房務主管</option>
+                                <option value="EMPLOYEE">一般員工</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeAdd()">確認新增</button>
                 </div>
             </div>
         </div>
+    </div>
 <!-- 人員修改密碼modal -->
-        <div class="modal fade" id="exampleModalpwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">修改密碼</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">舊密碼 :</label>
-                                <input type="password" class="form-control" id="recipient-name" v-model="this.password">
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">新密碼 :</label>
-                                <input type="password" class="form-control" id="recipient-name" v-model="this.newpassword">
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">確認新密碼 :</label>
-                                <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeChange()">確認更改</button>
-                    </div>
+    <div class="modal fade" id="exampleModalpwd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">修改密碼</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">舊密碼 :</label>
+                            <input type="password" class="form-control" id="recipient-name" v-model="this.password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">新密碼 :</label>
+                            <input type="password" class="form-control" id="recipient-name" v-model="this.newpassword">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">確認新密碼 :</label>
+                            <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="employeeChange()">確認更改</button>
                 </div>
             </div>
         </div>
@@ -365,41 +370,39 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    .title{
-        font-size: 28pt;
-        font-weight: bold;
-        color: #82AAE3;
-        //text-align: center;
-        margin-top: 4vmin;
-        margin-left: 45%;
-        //height: 8vh;
-        i{
-            margin-left: 1vmin;
-        }
-    }
     .content{
         width: 90vw;
-        height: 50vh;
         margin: auto;
-        margin-top: 5vmin;
+        margin-top: 4vmin;
+        .title{
+            font-size: 28pt;
+            font-weight: bold;
+            color: #82AAE3;
+            text-align: center;
+            i{
+                margin-left: 2vmin;
+            }
+        }
         .list{
-            width: 80vw;
-            height: 50vh;
+            width: 90vw;
             display: flex;
             justify-content: space-between;
-            margin: auto;
-            position: relative;
-            .show{
+            .employee{
+                width: 70vw;
+                position: relative;
                 .buttonArea{
-                    width: 20vw;
+                    width: 30vw;
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: space-around;
+                    position: absolute;
+                    right: 0;
                     button {
                         width: 8vw;
                         height: 5vh;
                         border: none;
                         border-radius: 5px;
-                        color: #797A7E;
+                        color: #4d4327;
+                        font-size: 14pt;
                         box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                         &:hover {
                             background-color: #797A7E;
@@ -411,29 +414,47 @@ export default {
                         }
                     }
                 }
-                .employee{
-                    font-size: 20pt;
-                    color: #797A7E;
-                    table{
-                        width: 60vw;
-                        text-align: center;
-                        position: absolute;
-                        left: 25%;
-                        top: 15%;
-                        thead{
-                            td{
-                                border: 2px solid #797A7E;
-                            }
+                table{
+                    width: 65vw;
+                    font-size: 18pt;
+                    color: #4d4327;
+                    text-align: center;
+                    position: absolute;
+                    top: 25%;
+                    left: 3%;
+                    thead{
+                        td{
+                            border: 2px solid #4d4327;
+                            font-weight: bold;
                         }
-                        tbody{
-                            tr{
-                                td{
-                                    border: 2px solid #797A7E;
-                                }
+                    }
+                    tbody{
+                        tr{
+                            td{
+                                border: 2px solid #4d4327;
+                            }
+                            #checkbtn{
+                                background-color: transparent;
+                                color: #efb2b2;
+                                outline: none;
+                                border: none;
+                                font-weight: bold;
                             }
                         }
                     }
                 }
+            }
+        }
+    }
+    .modal-body{
+        .mb-3{
+            select{
+                width: 7vw;
+                height: 3.5vh;
+                text-align: center;
+                outline: none;
+                margin-left: 1vmin;
+                border-radius: 5px;
             }
         }
     }

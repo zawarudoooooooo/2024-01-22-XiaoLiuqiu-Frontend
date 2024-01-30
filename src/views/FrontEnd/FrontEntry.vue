@@ -306,14 +306,14 @@ export default{
                                 </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="../../../public/tourist/t10/t10-2.JPG" class="d-block w-100" alt="...">
+                            <img src="../../../public/tourist/t10/t10-4.JPG" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h4>中澳沙灘</h4>
                                     <p>擁有潔白的沙灘、蔚藍的海水。少有遊客前往，是一座鬧中取靜的小小秘境。</p>
                                 </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="../../../public/tourist/t06/t6-1.JPG" class="d-block w-100" alt="...">
+                            <img src="../../../public/tourist/t06/t6.JPG" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h4>花瓶岩</h4>
                                     <p>花瓶石是一塊珊瑚礁，隨著時間發生抬升，加上頸部長時間受海水侵蝕，逐漸形成現在的樣子。</p>
@@ -420,6 +420,7 @@ export default{
                     padding: 4vmin;
                     box-shadow: 1px 1px 1px gray;
                     transition: all linear 0.3s;
+                    cursor: pointer;
                     &:hover{
                         opacity: 0.8;
                         box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
@@ -429,13 +430,13 @@ export default{
                     }
                     i{
                         font-size: 38pt;
-                        color: #797A7E;
+                        color: #4d4327;
                         display: flex;
                         justify-content: center;
                     }
                     p{
                         text-align: center;
-                        color: #797A7E;
+                        color: #5f512c;
                         font-size: 14pt;
                         font-weight: bold;
                         margin-top: 1.5vmin;
@@ -461,6 +462,7 @@ export default{
                         border-radius: 10px;
                         box-shadow: 1px 1px 1px gray;
                         transition: all linear 0.3s;
+                        cursor: pointer;
                         &:hover{
                             opacity: 0.6;
                             box-shadow: 0px 0px 10px rgba(97, 96, 96, 0.5);
@@ -471,6 +473,7 @@ export default{
                         .card-body{
                             p{
                                 text-align: center;
+                                color: #4d4327;
                             }
                         }
                         .card-img-top{
@@ -536,7 +539,7 @@ export default{
                 width: 8vw;
                 height: 5vh;
                 border: none;
-                color: #797A7E;
+                color: #4d4327;
                 border-radius: 5px;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover {
@@ -554,7 +557,7 @@ export default{
 
     @media(max-width:1200px){
         .content{
-            height: 85vh;
+            height: 89vh;
             .slideShow{
                 height: 30vh;
                 .carousel-inner{
@@ -600,7 +603,7 @@ export default{
                 }
             }
             .activity{
-                height: 26vh;
+                height: 27vh;
                 margin-top: 3vmin;
                 .title{
                     p{
@@ -608,19 +611,31 @@ export default{
                     }
                 }
                 .scenery{
-                    .card{
+                    .carousel-inner{
                         height: 20vh;
+                        .carousel-item{
+                            height: 20vh;
+                            img{
+                                height: 20vh;
+                            }
+                            p{
+                                font-size: 9pt;
+                            }
+                        }
                     }
-                    img{
-                        height: 20vh;
-                    }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 12vw;
+                    height: 3vh;
                 }
             }
         }
     }
     @media(max-width:992px){
         .content{
-            height: 83vh;
+            height: 87vh;
             .about{
                 height: 22vh;
                 .iconArea{
@@ -655,6 +670,7 @@ export default{
                 }
             }
             .activity{
+                height: 26.5vh;
                 margin-top: 3vmin;
                 .title{
                     p{
@@ -662,15 +678,19 @@ export default{
                     }
                 }
                 .scenery{
-                    .card{
-                        height: 15vh;
-                        img{
-                            height: 18vh;
-                        }
-                        .card-img-overlay{
-                            font-size: 10pt;
+                    .carousel-inner{
+                        .carousel-item{
+                            p{
+                                font-size: 7pt;
+                            }
                         }
                     }
+
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 14vw;
                 }
             }
         }
@@ -735,31 +755,39 @@ export default{
                 }
             }
             .activity{
-                height: 21vh;
+                height: 17.5vh;
                 .title{
                     p{
                         font-size: 18pt;
                     }
                 }
                 .scenery{
-                    .card{
-                        height: 15vh;
-                        img{
-                            height: 15vh;
-                        }
-                        .card-img-overlay{
-                            font-size: 6pt;
-                            h5{
-                                font-size: 11pt;
+                    .carousel-indicators [data-bs-target] {
+                        width: 20px;
+                        border-bottom: 0;
+                    }
+                    .carousel-inner{
+                        height: 11vh;
+                        .carousel-item{
+                            height: 11vh;
+                            img{
+                                height: 11vh;
                             }
                         }
                     }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 26vw;
+                    height: 3vh;
                 }
             }
         }
     }
     @media(max-width:414px){
         .content{
+            height: 80vh;
             .about{
                 .news{
                     height: 20vh;
@@ -791,6 +819,13 @@ export default{
                             font-size: 5.5pt;
                         }
                     }
+                }
+            }
+            .buttonArea{
+                button{
+                    width: 18vw;
+                    height: 2.5vh;
+                    font-size: 7pt;
                 }
             }
         }
