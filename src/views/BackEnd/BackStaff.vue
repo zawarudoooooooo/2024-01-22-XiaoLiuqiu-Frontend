@@ -131,8 +131,8 @@ export default {
             }).then(res=>{
                 console.log(res);
                 if(res.data.rtncode=="SUCCESSFUL"){
-                    swal("成功","已完成驗證", "success");
-                    this.employeeData();
+                    swal("成功","已完成驗證，請重新登入", "success");
+                    this.employeeLogout();
                 }else if(res.data.rtncode=="ACCOUNT_IS_ALREADY_ACTIVED"){
                     swal("錯誤", "帳號已完成驗證", "warning");
                 }else{
@@ -161,7 +161,38 @@ export default {
                     swal("錯誤", "刪除員工驗證未成功", "error");
                 }
             })
-            
+        },
+        employeeLogout(){
+            axios({
+            url:'http://localhost:8080/employee/logout',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            withCredentials:true,
+            params:{
+            },
+            data:{
+                
+            },
+            }).then(res=>{
+            console.log(res.data);
+            swal({
+                        title: '驗證成功',
+                        text: '請重新登入',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            this.$router.push('/BackLogin')
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
+            })
         },
         confirmDeactive(account){
             Swal.fire({
