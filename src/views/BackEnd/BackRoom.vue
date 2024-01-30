@@ -25,6 +25,7 @@ export default{
             upDateIntroduce:"",
             upRoomId:"",
             upRoomName:"",
+            editImg:"",
             isChecked: false,
             introduce:[],
             access: 0,
@@ -208,15 +209,19 @@ export default{
                 this.upDateRoomPrice=item.roomPrice
                 this.upDateIntroduce=item.roomIntroduce
                 this.editstatus=item.open
+                this.editImg=item.roomImg
             })
             // console.log(this.upRoomId);
             // console.log(this.upRoomName);
             // console.log(this.upDateRoomPrice);
-            console.log(this.upDateIntroduce);
+            console.log(this.editImg);
             // console.log(this.editstatus);
             // console.log(this.roomSearch);
         },
         upDate(){
+            if(this.upArr.length==0){
+                this.upArr=this.upImgtest
+            }
             axios({
             url:'http://localhost:8080/room/update',
             method:'POST',
@@ -782,40 +787,60 @@ export default{
                             <label for="recipient-name" class="col-form-label">更改說明 :</label>
                             <br>
                             <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
-                            <input type="checkbox" id="uno1" value="空調" v-model="this.introduce">
-                            <label for="uno1">空調</label>
-                            <input type="checkbox" id="uno2" value="平面電視" v-model="this.upDateIntroduce">
-                            <label for="uno2">平面電視</label>
-                            <input type="checkbox" id="uno3" value="Wifi" v-model="this.upDateIntroduce">
-                            <label for="uno3">Wifi</label>
-                            <input type="checkbox" id="uno4" value="浴缸" v-model="this.upDateIntroduce">
-                            <label for="uno4">浴缸</label>
-                            <input type="checkbox" id="uno5" value="床頭插座" v-model="this.upDateIntroduce">
-                            <label for="uno5">床頭插座</label>
-                            <input type="checkbox" id="uno6" value="景觀" v-model="this.upDateIntroduce">
-                            <label for="uno6">景觀</label>
+                            <!-- <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
+                            <label for="uno">獨立衛浴</label>
+                            <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
+                            <label for="uno">空調 </label>
+                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
+                            <label for="uno">平面電視 </label>
+                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
+                            <label for="uno">Wifi</label>
                             <br>
-                            <input type="checkbox" id="uno7" value="酒水" v-model="this.upDateIntroduce">
-                            <label for="uno7">酒水</label>
-                            <input type="checkbox" id="uno8" value="免治馬桶" v-model="this.upDateIntroduce">
-                            <label for="uno8">免治馬桶</label>
-                            <input type="checkbox" id="uno9" value="香氛噴物" v-model="this.upDateIntroduce">
-                            <label for="uno9">香氛噴物</label>
-                            <input type="checkbox" id="uno10" value="沙發" v-model="this.upDateIntroduce">
-                            <label for="uno10">沙發</label>
-                            <input type="checkbox" id="uno11" value="孩童專區" v-model="this.upDateIntroduce">
-                            <label for="uno11">孩童專區</label>
+                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
+                            <label for="uno">浴缸</label>
+                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
+                            <label for="uno">遊戲機</label>
+                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
+                            <label for="uno">床頭插座</label>
+                            <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
+                            <label for="uno">景觀</label> -->
+                            <label for="recipient-name" class="col-form-label">更改說明 :</label>
                             <br>
-                            <input type="checkbox" id="uno12" value="遊戲機" v-model="this.upDateIntroduce">
-                            <label for="uno12">遊戲機</label>
-                            <input type="checkbox" id="uno13" value="咖啡機" v-model="this.upDateIntroduce">
-                            <label for="uno13">咖啡機</label>
-                            <input type="checkbox" id="uno14" value="體重機" v-model="this.upDateIntroduce">
-                            <label for="uno14">體重機</label>
-                            <input type="checkbox" id="uno15" value="獨立衛浴" v-model="this.upDateIntroduce">
-                            <label for="uno15">獨立衛浴</label>
-                            <input type="checkbox" id="uno16" value="地毯" v-model="this.upDateIntroduce">
-                            <label for="uno16">地毯</label>
+                            <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
+                            <input type="checkbox" name="uno1" id="uno1" value="空調" v-model="this.upDateIntroduce">
+                            <label for="uno">空調</label>
+                            <input type="checkbox" name="uno2" id="uno2" value="平面電視" v-model="this.upDateIntroduce">
+                            <label for="uno">平面電視</label>
+                            <input type="checkbox" name="uno3" id="uno3" value="Wifi" v-model="this.upDateIntroduce">
+                            <label for="uno">Wifi</label>
+                            <input type="checkbox" name="uno4" id="uno4" value="浴缸" v-model="this.upDateIntroduce">
+                            <label for="uno">浴缸</label>
+                            <input type="checkbox" name="uno5" id="uno5" value="床頭插座" v-model="this.upDateIntroduce">
+                            <label for="uno">床頭插座</label>
+                            <input type="checkbox" name="uno6" id="uno6" value="景觀" v-model="this.upDateIntroduce">
+                            <label for="uno">景觀</label>
+                            <br>
+                            <input type="checkbox" name="uno7" id="uno7" value="酒水" v-model="this.upDateIntroduce">
+                            <label for="uno">酒水</label>
+                            <input type="checkbox" name="uno8" id="uno8" value="免治馬桶" v-model="this.upDateIntroduce">
+                            <label for="uno">免治馬桶</label>
+                            <input type="checkbox" name="uno9" id="uno9" value="香氛噴物" v-model="this.upDateIntroduce">
+                            <label for="uno">香氛噴物</label>
+                            <input type="checkbox" name="uno10" id="uno10" value="沙發" v-model="this.upDateIntroduce">
+                            <label for="uno">沙發</label>
+                            <input type="checkbox" name="uno11" id="uno11" value="孩童專區" v-model="this.upDateIntroduce">
+                            <label for="uno">孩童專區</label>
+                            <br>
+                            <input type="checkbox" name="uno12" id="uno12" value="遊戲機" v-model="this.upDateIntroduce">
+                            <label for="uno">遊戲機</label>
+                            <input type="checkbox" name="uno13" id="uno13" value="咖啡機" v-model="this.upDateIntroduce">
+                            <label for="uno">咖啡機</label>
+                            <input type="checkbox" name="uno14" id="uno14" value="體重機" v-model="this.upDateIntroduce">
+                            <label for="uno">體重機</label>
+                            <input type="checkbox" name="uno15" id="uno15" value="獨立衛浴" v-model="this.upDateIntroduce">
+                            <label for="uno">獨立衛浴</label>
+                            <input type="checkbox" name="uno16" id="uno16" value="地毯" v-model="this.upDateIntroduce">
+                            <label for="uno">地毯</label>
                             <!-- <button type="button" @click="test()">測試</button> -->
                         </div>
                         <div class="mb-3">
