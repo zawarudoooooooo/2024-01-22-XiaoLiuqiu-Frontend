@@ -13,6 +13,7 @@ export default{
             useravatar:"",
             img:"",
             ImgPhoto:"",
+            memberImg:"",
 
             //更改密碼
             oldPwd:"",
@@ -64,6 +65,9 @@ export default{
             this.personInfoPage=false,
             this.orderPage=false
         },
+        test10(){
+            console.log(this.messageImg);
+        },
 //留言板
         messageCreate(){
             axios({
@@ -78,8 +82,8 @@ export default{
                 roomId:this.topic,
                 roomMessageBoardDescription:this.text,
                 messageImg:this.messageImg,
-                account:this.memberInfo.account
-            }
+                memberImg:this.ImgPhoto
+            },
         }).then(res => {
             console.log(res.data)
             if(res.data.message=="Successful!!"){
@@ -130,6 +134,7 @@ export default{
             this.newEmail=""
         },
         upDateMemberImg(){
+            
             axios({
             url:'http://localhost:8080/member/imgUpDate',
             method:'POST',
@@ -144,6 +149,21 @@ export default{
             },
         }).then(res => {     
             console.log(res.data)
+            swal({
+                        title: '成功',
+                        text: '以更新圖片',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                          // 在这里可以执行页面刷新的操作
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
             
             })
         },
@@ -211,12 +231,14 @@ export default{
         }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
+                
                 console.log(this.memberInfo);
                 this.memberName=this.memberInfo.memberName
                 // this.ImgPhoto="public\" +JSON.parse(this.memberInfo.memberImgPhoto)
                 // console.log(   );
             });
             this.memberInfo.memberImgPhoto=JSON.parse(this.memberInfo.memberImgPhoto)
+            // console.log(this.memberInfo.memberImgPhoto.memberImg);
             this.ImgPhoto=this.memberInfo.memberImgPhoto.memberImg
             // this.memberInfo=
             console.log(this.ImgPhoto);
@@ -271,7 +293,8 @@ export default{
             <div class="user">
                 <label>
                     <input id="upload_input" type="file" @change="handleFileChange">
-                    <img :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
+                    <img v-if="this.memberInfo.memberImgPhoto!=null" :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
+                    <img v-if="this.memberInfo.memberImgPhoto==null" :src="'public/demo/' +this.img" class="upload_cover" alt="">
                 </label>
             </div>
             <div class="name">
@@ -290,6 +313,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
+                
                 <button type="button" @click="upDateMemberImg()">儲存</button>
             </div>
         </div>
@@ -462,6 +486,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalmsg">預覽
                 </button>
+                <!-- <button type="button" @click="test10()">測試</button> -->
             </div>
         </div>
 <!-- 貼文預覽視窗 -->
@@ -486,7 +511,7 @@ export default{
                                 <label for="message-text" class="col-form-label">照片 :</label>
                                 <br>
                                 <div class="imgArea">
-                                    <img :src="msgavatar" class="msgimg" alt="">
+                                    <img :src="'public/message/'+this.messageImg" class="msgimg" alt="">
                                 </div>                
                             </div>
                         </form>

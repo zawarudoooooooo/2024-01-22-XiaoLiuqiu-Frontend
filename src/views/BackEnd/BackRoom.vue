@@ -25,6 +25,9 @@ export default{
             upDateIntroduce:"",
             upRoomId:"",
             upRoomName:"",
+            upDateImg:"",
+            upImg:"",
+            upDateImgArr:[],
             isChecked: false,
             introduce:[],
             access: 0,
@@ -96,6 +99,7 @@ export default{
                 this.upRoomName=""
                 this.upDateRoomPrice=""
                 this.upDateIntroduce="" 
+                this.upImg=""
                 this.editstatus=false
             this.roomSearch.forEach((item,roomIndex)=>{
                 if(index!=roomIndex){
@@ -107,6 +111,7 @@ export default{
                 this.upDateRoomPrice=item.roomPrice
                 this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
                 this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
+                this.upImg=item.roomImg
                 this.editstatus=item.open
             })
             // console.log(this.upRoomId);
@@ -130,14 +135,38 @@ export default{
                 room_introduce:JSON.stringify(this.upDateIntroduce),
                 room_name:this.upRoomName,
                 room_price: this.upDateRoomPrice,
+                room_img:JSON.stringify(this.upDateImgArr),
                 is_open:this.editstatus
             },
             }).then(res=>{
             console.log(res.data);
             if(res.data.rtnCode==200){
-                swal("成功", "已新增房間", "success");
+                swal({
+                        title: '成功',
+                        text: '編輯房間成功',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
+                // swal("成功", "編輯房間成功", "success");
             }
             })
+        },
+        upDateFileChange(event){
+            console.log(event);
+            const file = event.target.files;
+            this.upDateImg = [...file];
+            this.upDateImg.forEach(item=>{
+                this.upDateImgArr.push(item.name)
+            })
+            console.log(this.upDateImgArr);
         },
 //頁面切換
         simpleOpen(){
@@ -605,9 +634,9 @@ export default{
                             <input type="checkbox" value="false" v-model="this.editstatus">
                             <label for="">已開放</label>
                         </div>
-                        <div class="mb-3">
+                       <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name" multiple>
+                            <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange"  multiple>
                         </div>
                     </form>
                 </div>
