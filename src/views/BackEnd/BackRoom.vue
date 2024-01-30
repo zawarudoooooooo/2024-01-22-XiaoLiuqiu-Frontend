@@ -191,6 +191,8 @@ export default{
             this.roomSearch=res.data.roomList
             this.roomSearch.forEach(item=>{
                 item.roomImg=JSON.parse(item.roomImg)
+                // console.log();
+                item.roomIntroduce=JSON.parse(item.roomIntroduce)
             })
             console.log(this.roomSearch);
             })
@@ -216,6 +218,7 @@ export default{
             this.roomSearch=res.data.roomList
             this.roomSearch.forEach(item=>{
                 item.roomImg=JSON.parse(item.roomImg)
+                item.roomIntroduce=JSON.parse(item.roomIntroduce)
             })
             console.log(this.roomSearch);
             })
@@ -241,6 +244,7 @@ export default{
             this.roomSearch=res.data.roomList
             this.roomSearch.forEach(item=>{
                 item.roomImg=JSON.parse(item.roomImg)
+                item.roomIntroduce=JSON.parse(item.roomIntroduce)
             })
             console.log(this.roomSearch);
             })
@@ -376,13 +380,26 @@ export default{
                             </div>
                             <hr>
                             <div class="description">
-                                <p>
-                                    <i class="fa-solid fa-shower"></i>獨立衛浴
-                                    <i class="fa-solid fa-snowflake"></i>空調
-                                    <i class="fa-solid fa-tv"></i>平面電視
-                                    <i class="fa-solid fa-wifi"></i>Wifi
-                                    <i class="fa-solid fa-rug"></i>地毯
-                                </p>
+                                <span v-for="introduce in item.roomIntroduce">
+                                    
+                                    <!-- <span>{{ introduce }}</span> -->
+                                    <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
+                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
+                                    <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
+                                    <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                                    <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                                    <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
+                                    <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
+                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
+                                    <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
+                                    <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
+                                    <span v-if="introduce=='咖啡機'"><i class="fa-solid fa-mug-hot"></i>咖啡機</span>
+                                    <span v-if="introduce=='體重機'"><i class="fa-solid fa-weight-scale"></i>體重機</span>
+                                    <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                                    <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
+                                </span>
                             </div>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
@@ -427,16 +444,24 @@ export default{
                             </div>
                             <hr>
                             <div class="description">
-                                <p>
-                                    <i class="fa-solid fa-snowflake"></i>空調
-                                    <i class="fa-solid fa-tv"></i>平面電視
-                                    <i class="fa-solid fa-wifi"></i>Wifi
-                                    <i class="fa-solid fa-bath"></i>浴缸
-                                    <i class="fa-solid fa-gamepad"></i>遊戲機
-                                    <i class="fa-solid fa-mug-hot"></i>咖啡機
-                                    <i class="fa-solid fa-weight-scale"></i>體重機
-                                    <i class="fa-solid fa-couch"></i>沙發
-                                </p>
+                                <span v-for="introduce in item.roomIntroduce">
+                                    <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
+                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
+                                    <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
+                                    <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                                    <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                                    <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
+                                    <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
+                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
+                                    <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
+                                    <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
+                                    <span v-if="introduce=='咖啡機'"><i class="fa-solid fa-mug-hot"></i>咖啡機</span>
+                                    <span v-if="introduce=='體重機'"><i class="fa-solid fa-weight-scale"></i>體重機</span>
+                                    <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                                    <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
+                                </span>
                             </div>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
@@ -481,19 +506,25 @@ export default{
                             </div>
                             <hr>
                             <div class="description">
-                                <p>
-                                    <i class="fa-solid fa-snowflake"></i>空調
-                                    <i class="fa-solid fa-tv"></i>平面電視
-                                    <i class="fa-solid fa-wifi"></i>Wifi
-                                    <i class="fa-solid fa-bath"></i>浴缸
-                                    <i class="fa-solid fa-plug"></i>床頭插座
-                                    <i class="fa-solid fa-mountain-sun"></i>景觀
-                                    <i class="fa-solid fa-wine-glass"></i>酒水
-                                    <i class="fa-solid fa-toilet"></i>免治馬桶
-                                    <i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物
-                                    <i class="fa-solid fa-couch"></i>沙發
-                                    <i class="fa-solid fa-children"></i>孩童專區
-                                </p>
+                                <span v-for="introduce in item.roomIntroduce">
+                                    <!-- <span>{{ introduce }}</span> -->
+                                    <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
+                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
+                                    <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
+                                    <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                                    <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                                    <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
+                                    <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
+                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
+                                    <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
+                                    <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
+                                    <span v-if="introduce=='咖啡機'"><i class="fa-solid fa-mug-hot"></i>咖啡機</span>
+                                    <span v-if="introduce=='體重機'"><i class="fa-solid fa-weight-scale"></i>體重機</span>
+                                    <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                                    <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
+                                </span>
                             </div>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
@@ -549,6 +580,8 @@ export default{
                             <label for="uno">平面電視 </label>
                             <input type="checkbox" id="uno4" value="Wifi" v-model="this.introduce">
                             <label for="uno">Wifi</label>
+                            <input type="checkbox" id="uno4" value="沙發" v-model="this.introduce">
+                            <label for="uno">沙發</label>
                             <br>
                             <input type="checkbox" id="uno5" value="浴缸" v-model="this.introduce">
                             <label for="uno">浴缸</label>
@@ -582,6 +615,11 @@ export default{
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">圖片 :</label>
                             <input type="file" class="form-control" id="inputfile" @change="handleFileChange" multiple>
+                        </div>
+                        <div class="mb-3" v-for=" item in this.arr">
+                            <img :src="'public/room/SP/'+item" alt="">
+                            <img :src="'public/room/D/'+item" alt="">
+                            <img :src="'public/room/F/'+item" alt="">
                         </div>
                     </form>
                 </div>
