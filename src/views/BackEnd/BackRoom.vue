@@ -40,8 +40,7 @@ export default{
             roomTypeNameId:[],
             selectedValue:"",
             radioChange:"",
-            createRoomTypeName:""
-            
+            createRoomTypeName:"",
         }
     },
     mounted(){
@@ -220,7 +219,7 @@ export default{
         },
         upDate(){
             if(this.upArr.length==0){
-                this.upArr=this.upImgtest
+                this.upArr=this.editImg
             }
             axios({
             url:'http://localhost:8080/room/update',
@@ -241,7 +240,7 @@ export default{
             }).then(res=>{
             console.log(res.data);
             if(res.data.rtnCode==200){
-                swal("成功", "已新增房間", "success");
+                swal("成功", "已更新房間", "success");
             }
             })
         },
@@ -499,10 +498,8 @@ export default{
                             <hr>
                             <div class="description">
                                 <span v-for="introduce in item.roomIntroduce">
-                                    
-                                    <!-- <span>{{ introduce }}</span> -->
                                     <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
-                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='平面電視'"><i class="fa-solid fa-tv"></i>平面電視</span>
                                     <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
                                     <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
                                     <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
@@ -565,7 +562,7 @@ export default{
                             <div class="description">
                                 <span v-for="introduce in item.roomIntroduce">
                                     <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
-                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='平面電視'"><i class="fa-solid fa-tv"></i>平面電視</span>
                                     <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
                                     <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
                                     <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
@@ -629,7 +626,7 @@ export default{
                                 <span v-for="introduce in item.roomIntroduce">
                                     <!-- <span>{{ introduce }}</span> -->
                                     <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
-                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='平面電視'"><i class="fa-solid fa-tv"></i>平面電視</span>
                                     <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
                                     <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
                                     <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
@@ -786,27 +783,6 @@ export default{
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">更改說明 :</label>
                             <br>
-                            <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
-                            <!-- <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
-                            <label for="uno">獨立衛浴</label>
-                            <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
-                            <label for="uno">空調 </label>
-                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
-                            <label for="uno">平面電視 </label>
-                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
-                            <label for="uno">Wifi</label>
-                            <br>
-                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
-                            <label for="uno">浴缸</label>
-                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
-                            <label for="uno">遊戲機</label>
-                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
-                            <label for="uno">床頭插座</label>
-                            <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
-                            <label for="uno">景觀</label> -->
-                            <label for="recipient-name" class="col-form-label">更改說明 :</label>
-                            <br>
-                            <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
                             <input type="checkbox" name="uno1" id="uno1" value="空調" v-model="this.upDateIntroduce">
                             <label for="uno">空調</label>
                             <input type="checkbox" name="uno2" id="uno2" value="平面電視" v-model="this.upDateIntroduce">
@@ -965,14 +941,14 @@ export default{
                             }
                         }
                         .description{
+                            width: 40vw;
                             span{
                                 color: #4d4327;
-                                font-size: 15pt;
-                                width: 35vw;
+                                font-size: 14pt;
                             }
                             i{
                                 margin-right: 1vmin;
-                                margin-left: 2vmin;
+                                margin-left: 1vmin;
                             }
                         }
                         .price{
@@ -1005,6 +981,7 @@ export default{
                             i{
                                 font-size: 14pt;
                                 color: #4d4327;
+                                margin-right: 1vmin;
                             }
                             p{
                                 font-size: 15pt;
