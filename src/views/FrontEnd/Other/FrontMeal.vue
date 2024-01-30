@@ -303,6 +303,12 @@ export default{
                         opacity: 1;
                     } 
                 }
+                .card-title{
+                    color: #4d4327;
+                }
+                .card-text{
+                    color: #4d4327;
+                }
             }
             li{
                 font-size: 12pt;

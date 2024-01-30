@@ -379,6 +379,9 @@ export default {
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
+            i{
+                margin-left: 2vmin;
+            }
         }
         .list{
             width: 90vw;
@@ -398,7 +401,7 @@ export default {
                         height: 5vh;
                         border: none;
                         border-radius: 5px;
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 14pt;
                         box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                         &:hover {
@@ -414,21 +417,21 @@ export default {
                 table{
                     width: 65vw;
                     font-size: 18pt;
-                    color: #797A7E;
+                    color: #4d4327;
                     text-align: center;
                     position: absolute;
                     top: 25%;
                     left: 3%;
                     thead{
                         td{
-                            border: 2px solid #797A7E;
+                            border: 2px solid #4d4327;
                             font-weight: bold;
                         }
                     }
                     tbody{
                         tr{
                             td{
-                                border: 2px solid #797A7E;
+                                border: 2px solid #4d4327;
                             }
                             #checkbtn{
                                 background-color: transparent;
@@ -453,7 +456,6 @@ export default {
                 margin-left: 1vmin;
                 border-radius: 5px;
             }
-
         }
     }
 </style>

@@ -2,7 +2,6 @@
 import Footer from '../../components/Footer.vue';
 import axios from 'axios';
 import swal from 'sweetalert';
-import * as imageConversion from 'image-conversion';
 export default{
     data(){
         return{
@@ -14,6 +13,7 @@ export default{
             useravatar:"",
             img:"",
             ImgPhoto:"",
+            memberImg:"",
 
             //更改密碼
             oldPwd:"",
@@ -65,6 +65,9 @@ export default{
             this.personInfoPage=false,
             this.orderPage=false
         },
+        test10(){
+            console.log(this.messageImg);
+        },
 //留言板
         messageCreate(){
             axios({
@@ -79,8 +82,8 @@ export default{
                 roomId:this.topic,
                 roomMessageBoardDescription:this.text,
                 messageImg:this.messageImg,
-                account:this.memberInfo.account
-            }
+                memberImg:this.ImgPhoto
+            },
         }).then(res => {
             console.log(res.data)
             if(res.data.message=="Successful!!"){
@@ -131,6 +134,7 @@ export default{
             this.newEmail=""
         },
         upDateMemberImg(){
+            
             axios({
             url:'http://localhost:8080/member/imgUpDate',
             method:'POST',
@@ -145,9 +149,23 @@ export default{
             },
         }).then(res => {     
             console.log(res.data)
+            swal({
+                        title: '成功',
+                        text: '以更新圖片',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                          // 在这里可以执行页面刷新的操作
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
             
             })
-        
         },
 //變更密碼
         updatePwd(){
@@ -213,12 +231,14 @@ export default{
         }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
+                
                 console.log(this.memberInfo);
                 this.memberName=this.memberInfo.memberName
                 // this.ImgPhoto="public\" +JSON.parse(this.memberInfo.memberImgPhoto)
                 // console.log(   );
             });
             this.memberInfo.memberImgPhoto=JSON.parse(this.memberInfo.memberImgPhoto)
+            // console.log(this.memberInfo.memberImgPhoto.memberImg);
             this.ImgPhoto=this.memberInfo.memberImgPhoto.memberImg
             // this.memberInfo=
             console.log(this.ImgPhoto);
@@ -273,7 +293,8 @@ export default{
             <div class="user">
                 <label>
                     <input id="upload_input" type="file" @change="handleFileChange">
-                    <img :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
+                    <img v-if="this.memberInfo.memberImgPhoto!=null" :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
+                    <img v-if="this.memberInfo.memberImgPhoto==null" :src="'public/demo/' +this.img" class="upload_cover" alt="">
                 </label>
             </div>
             <div class="name">
@@ -292,6 +313,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
+                
                 <button type="button" @click="upDateMemberImg()">儲存</button>
             </div>
         </div>
@@ -421,10 +443,6 @@ export default{
                                 <input type="text" class="form-control" id="recipient-name" placeholder="請輸入持卡人姓名">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">手機號碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" placeholder="請輸入手機號碼">
-                            </div>
-                            <div class="mb-3">
                                 <label for="message-text" class="col-form-label">信用卡卡號 :</label>
                                 <input type="text" class="form-control" id="recipient-name" placeholder="請輸入16碼數字">
                             </div>
@@ -434,7 +452,7 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">信用卡背面末三碼 :</label>
-                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸入背面末三碼">
+                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸安全碼">
                             </div>
                         </form>
                     </div>
@@ -468,6 +486,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalmsg">預覽
                 </button>
+                <!-- <button type="button" @click="test10()">測試</button> -->
             </div>
         </div>
 <!-- 貼文預覽視窗 -->
@@ -492,7 +511,7 @@ export default{
                                 <label for="message-text" class="col-form-label">照片 :</label>
                                 <br>
                                 <div class="imgArea">
-                                    <img :src="msgavatar" class="msgimg" alt="">
+                                    <img :src="'public/message/'+this.messageImg" class="msgimg" alt="">
                                 </div>                
                             </div>
                         </form>
@@ -534,7 +553,7 @@ export default{
                 height: 7vh;
                 border: none;
                 border-radius: 5px;
-                color: #797A7E;
+                color: #4d4327;
                 font-size: 16pt;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
@@ -566,7 +585,7 @@ export default{
                     position: absolute;
                     right: 6%;
                     top: -2%;
-                    border: 1px solid#797A7E;
+                    border: 1px solid#4d4327;
                     background-image: url('../../../public/demo/userimg.png');
                     background-size: contain;
                 }
@@ -576,7 +595,7 @@ export default{
             }
             p{
                 font-size: 16pt;
-                color: #797A7E;
+                color: #4d4327;
                 margin-bottom: 3vmin;
             }
             .personInfoBtn{
@@ -592,7 +611,7 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 13pt;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{
@@ -630,7 +649,7 @@ export default{
                 }
                 a{
                     text-decoration: none;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 15pt;
                 }
                 button{
@@ -638,14 +657,14 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    background-color: #e3f6f5;
+                    background-color: white;
                     margin-bottom: 1.5vmin;
                     box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                     &:hover {
                         background-color: #F7F2E7;;
                     }
                     &:active {
-                        background-color: #e3f6f5;
+                        background-color: white;
                     }
                 }
             }
@@ -664,7 +683,7 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 input{
                     width: 30vw;
@@ -672,7 +691,7 @@ export default{
                     border-radius: 10px;
                     border-style: none;
                     outline: none;
-                    background-color: #e3f6f5;
+                    background-color: white;
                     padding-left: 2vmin;
                     margin-bottom: 2vmin;
                     box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
@@ -682,7 +701,7 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 textarea{
                     width: 30vw;
@@ -698,11 +717,11 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 #addicon{
                     font-size: 22pt;
-                    color: #797A7E;
+                    color: #4d4327;
                     margin-left: 1vmin;
                 }
                 .addimg{
@@ -722,7 +741,7 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 13pt;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{

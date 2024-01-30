@@ -75,7 +75,6 @@ export default{
         display: flex;
         align-items: center;
         justify-content: space-around;
-        //border: 1px solid black;
         .pictureArea{
             width: 35vw;
             border-radius: 10px;
@@ -91,7 +90,7 @@ export default{
             width: 35vw;
             span{
                 font-size: 27pt;
-                color: #797A7E;
+                color: #4d4327;
                 font-weight: bold;
             }
             hr{
@@ -99,7 +98,7 @@ export default{
             }        
             p{
                 width: 35vw;
-                color: #797A7E;
+                color: #4d4327;
                 font-size: 15pt;
             }
         }
