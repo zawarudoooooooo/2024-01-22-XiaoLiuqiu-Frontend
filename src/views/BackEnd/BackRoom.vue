@@ -32,6 +32,19 @@ export default{
             arr:[],
             department: "",
             active: false,
+            counter: 1,
+            selectedRoomType: "",
+            roomCounter: {
+                A: 1,
+                B: 1,
+                C: 1,
+            },
+            list:[],
+            roomTypeName:[],
+            roomTypeNameId:[],
+            selectedValue:"",
+            radioChange:"",
+            createRoomTypeName:""
         }
     },
     mounted(){
@@ -41,6 +54,7 @@ export default{
         console.log(this.department);
         this.active = this.getActive();
         console.log(this.active);
+        this.roomtype();
     },
     methods:{
         createRoom() {
@@ -76,8 +90,8 @@ export default{
                 }
             })
 
-            if (this.roomId && !/^[A-Ca-c]/.test(this.roomId)||this.roomId=="") {
-                swal("錯誤", "編號請依照房間類型的A、B、C為第一字", "error");
+            if (this.roomId=="") {
+                swal("錯誤", "資料不能為空", "error");
                 return
             }
             if(this.roomPrice<=0){
@@ -93,9 +107,9 @@ export default{
             params:{
             },
             data:{
-                room_id:this.roomId,
+                room_id:this.selectedValue+this.roomId,
                 room_introduce:JSON.stringify(this.introduce),
-                room_name:this.roomName,
+                room_name:this.radioChange.split(":")[1],
                 room_price:this.roomPrice,
                 room_img:JSON.stringify(this.arr) 
             },
@@ -105,6 +119,63 @@ export default{
                 swal("成功", "已新增房間", "success");
             }
             this.clearAdd()
+            })
+        },
+        //房間類別查詢
+        roomtype(){
+            axios({
+                    url:'http://localhost:8080/roomtype/search',
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },  
+                    params:{
+                        roomTypeName:""
+                    },
+                    data:{
+                    },
+                    }).then(res=>{
+                        res.data.roomTypeList.forEach(item=>{
+                            this.list.push(item.roomTypeName)
+                        })
+                        this.list=this.list.map((roomType, index) => String.fromCharCode(65 + index)+":"+roomType);
+                        this.list.forEach(item=>{
+                            console.log(item);
+                            let [code, type] = item.split(":");
+                            // // console.log(code);
+                            this.roomTypeName.push(type)
+                            this.roomTypeNameId.push(code)
+                            // console.log(type);
+                        })
+                        console.log(this.roomTypeName);
+                        console.log(this.roomTypeNameId);
+                        console.log(this.list);
+                    })
+        },
+        //radio的切換
+        handleRadioChange(){
+            this.selectedValue=this.radioChange.split(":")[0]
+            console.log(this.selectedValue);
+        },
+        createRoomType(){
+            axios({
+            url:'http://localhost:8080/roomtype/createroomtype',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },  
+            params:{
+                roomTypeName:this.createRoomTypeName
+            },
+            data:{
+            },
+            }).then(res=>{
+                if(res.data.rtnCode==200){
+
+                    console.log(res.data);
+                    swal("成功", "新增房型成功", "success");
+                    return
+                }
             })
         },
         test(){
@@ -181,6 +252,8 @@ export default{
             this.roomSearch=res.data.roomList
             this.roomSearch.forEach(item=>{
                 item.roomImg=JSON.parse(item.roomImg)
+                // console.log();
+                item.roomIntroduce=JSON.parse(item.roomIntroduce)
             })
             console.log(this.roomSearch);
             })
@@ -206,6 +279,7 @@ export default{
             this.roomSearch=res.data.roomList
             this.roomSearch.forEach(item=>{
                 item.roomImg=JSON.parse(item.roomImg)
+                item.roomIntroduce=JSON.parse(item.roomIntroduce)
             })
             console.log(this.roomSearch);
             })
@@ -231,6 +305,7 @@ export default{
             this.roomSearch=res.data.roomList
             this.roomSearch.forEach(item=>{
                 item.roomImg=JSON.parse(item.roomImg)
+                item.roomIntroduce=JSON.parse(item.roomIntroduce)
             })
             console.log(this.roomSearch);
             })
@@ -339,6 +414,9 @@ export default{
                     <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增房間
                     </button>
+                    <button type="button" data-bs-toggle="modal" 
+                        data-bs-target="#roomTypeModal">新增房型
+                    </button>
                     <button type="button" @click="simpleOpen()">小資雙人房</button>
                     <button type="button" @click="doubleOpen()">舒適雙人房</button>
                     <button type="button" @click="familyOpen()">豪華家庭房</button>
@@ -371,12 +449,26 @@ export default{
                             </div>
                             <hr>
                             <div class="description">
-                                <p>
-                                    <i class="fa-solid fa-shower"></i>獨立衛浴
-                                    <i class="fa-solid fa-snowflake"></i>空調
-                                    <i class="fa-solid fa-tv"></i>平面電視
-                                    <i class="fa-solid fa-wifi"></i>Wifi
-                                </p>
+                                <span v-for="introduce in item.roomIntroduce">
+                                    
+                                    <!-- <span>{{ introduce }}</span> -->
+                                    <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
+                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
+                                    <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
+                                    <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                                    <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                                    <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
+                                    <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
+                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
+                                    <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
+                                    <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
+                                    <span v-if="introduce=='咖啡機'"><i class="fa-solid fa-mug-hot"></i>咖啡機</span>
+                                    <span v-if="introduce=='體重機'"><i class="fa-solid fa-weight-scale"></i>體重機</span>
+                                    <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                                    <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
+                                </span>
                             </div>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
@@ -421,13 +513,24 @@ export default{
                             </div>
                             <hr>
                             <div class="description">
-                                <p>
-                                    <i class="fa-solid fa-snowflake"></i>空調
-                                    <i class="fa-solid fa-tv"></i>平面電視
-                                    <i class="fa-solid fa-wifi"></i>Wifi
-                                    <i class="fa-solid fa-bath"></i>浴缸
-                                    <i class="fa-solid fa-gamepad"></i>遊戲機
-                                </p>
+                                <span v-for="introduce in item.roomIntroduce">
+                                    <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
+                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
+                                    <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
+                                    <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                                    <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                                    <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
+                                    <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
+                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
+                                    <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
+                                    <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
+                                    <span v-if="introduce=='咖啡機'"><i class="fa-solid fa-mug-hot"></i>咖啡機</span>
+                                    <span v-if="introduce=='體重機'"><i class="fa-solid fa-weight-scale"></i>體重機</span>
+                                    <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                                    <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
+                                </span>
                             </div>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
@@ -472,14 +575,25 @@ export default{
                             </div>
                             <hr>
                             <div class="description">
-                                <p>
-                                    <i class="fa-solid fa-snowflake"></i>空調
-                                    <i class="fa-solid fa-tv"></i>平面電視
-                                    <i class="fa-solid fa-wifi"></i>Wifi
-                                    <i class="fa-solid fa-bath"></i>浴缸
-                                    <i class="fa-solid fa-plug"></i>床頭插座
-                                    <i class="fa-solid fa-mountain-sun"></i>景觀
-                                </p>
+                                <span v-for="introduce in item.roomIntroduce">
+                                    <!-- <span>{{ introduce }}</span> -->
+                                    <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
+                                    <span v-if="introduce=='平面電視 '"><i class="fa-solid fa-tv"></i>平面電視</span>
+                                    <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
+                                    <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
+                                    <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                                    <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                                    <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
+                                    <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
+                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
+                                    <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
+                                    <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
+                                    <span v-if="introduce=='咖啡機'"><i class="fa-solid fa-mug-hot"></i>咖啡機</span>
+                                    <span v-if="introduce=='體重機'"><i class="fa-solid fa-weight-scale"></i>體重機</span>
+                                    <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                                    <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
+                                </span>
                             </div>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
@@ -500,6 +614,29 @@ export default{
             </div>
         </div>
     </div>
+<!-- 新增房型modal -->
+    <div class="modal fade" id="roomTypeModal" tabindex="-1" aria-labelledby="roomTypeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="roomTypeModalLabel">新增房型</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">房型名稱 :</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="this.createRoomTypeName" placeholder="請輸入房型名稱">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"  @click="createRoomType()">確認新增</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- 新增房間modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -510,18 +647,17 @@ export default{
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">類型 :</label>
-                            <br>
-                            <input type="radio" value="小資雙人房" class="roomtype" name="roomtype">
-                            <label for="">A : 小資雙人房</label>
-                            <input type="radio" value="舒適雙人房" class="roomtype" name="roomtype">
-                            <label for="">B : 舒適雙人房</label>
-                            <input type="radio" value="豪華家庭房" class="roomtype" name="roomtype">
-                            <label for="">C : 豪華家庭房</label>
+                        <label for="recipient-name" class="col-form-label">類型 :</label>
+                        <br>
+                        <div class="flex-container">
+                        <div class="mb-3 radios" v-for="(item,index) in this.list" @change="handleRadioChange" :key="index">
+                            <input type="radio" :value="item" v-model="this.radioChange" class="roomtype" name="roomtype">
+                            <label for="">{{ item }}</label>
                         </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">編號 :</label>
+                    </div>
+                    <label for="recipient-name" class="col-form-label">編號 :</label>
+                        <div class="mb-3 roomId">
+                            <input type="text" class="form-control idType" id="recipient-name" v-model="this.selectedValue" readonly>
                             <input type="text" class="form-control" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
                         </div>
                         <div class="mb-3">
@@ -535,6 +671,8 @@ export default{
                             <label for="uno">平面電視 </label>
                             <input type="checkbox" id="uno4" value="Wifi" v-model="this.introduce">
                             <label for="uno">Wifi</label>
+                            <input type="checkbox" id="uno4" value="沙發" v-model="this.introduce">
+                            <label for="uno">沙發</label>
                             <br>
                             <input type="checkbox" id="uno5" value="浴缸" v-model="this.introduce">
                             <label for="uno">浴缸</label>
@@ -672,7 +810,7 @@ export default{
                 }
                 .room{
                     width: 70vw;
-                    height: 35vh;
+                    height: 38vh;
                     margin: auto;
                     display: flex;
                     justify-content: space-around;
@@ -682,39 +820,17 @@ export default{
                     box-shadow: 1px 1px 1px gray;
                     padding: 3vmin 2vmin 0vmin;
                     position: relative;
-                    // .carouselExample{
-                    //     width: 20vw;
-                    //     height: 28vh;
-                    //     margin-top: 0.5vmin;
-                    //     border-radius: 5px;
-                    //     box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                    //     .carousel-inner{
-                    //         width: 20vw;
-                    //         border-radius: 5px;
-                    //         .carousel-item{
-                    //             width: 20vw;
-                    //             border-radius: 5px;
-                    //             img{
-                    //                 width: 21vw;
-                    //                 height: 28vh;
-                    //                 border-radius: 5px;
-                    //                 transition: all linear 0.3s;
-                    //                 &:hover{
-                    //                     opacity: 0.7;
-                    //                 }
-                    //                 &:active{
-                    //                     opacity: 1.0;
-                    //                 }
-                    //             }
-
-                    //     }
-                    //     .carousel-control-prev-icon{
-                    //         width: 1.5rem;
-                    //     }
-                    //     .carousel-control-next-icon{
-                    //         width: 1.5rem;
-                    //     }
-                    // }
+                    background-color: white;
+                    margin-bottom: 5vmin;
+                    .carousel-inner{
+                        margin-top: 2vmin;
+                        box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
+                    }
+                    .carousel-control-next, .carousel-control-prev{
+                        width: 4vmin;
+                        height: 33vh;
+                        padding: 0.5vmin;
+                    }
                     .text{
                         height: 23vh;
                         hr{
