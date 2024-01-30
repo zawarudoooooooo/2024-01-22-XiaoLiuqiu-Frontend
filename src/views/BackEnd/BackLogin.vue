@@ -93,7 +93,7 @@ export default{
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #e3f6f5;
+            background-color: white;
             padding-left: 2vmin;
             margin-bottom: 4vmin;
             box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
@@ -108,14 +108,14 @@ export default{
             p{
                 margin: 0;
                 font-size: 16pt;
-                color: #797A7E;
+                color: #4d4327;
             }
         }
         .password{
             p{
                 margin: 0;
                 font-size: 16pt;
-                color: #797A7E;
+                color: #4d4327;
             }
         }
         .buttonArea{
@@ -128,7 +128,7 @@ export default{
                 height: 5vh;
                 border: none;
                 border-radius: 5px;
-                color: #797A7E;
+                color: #4d4327;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
                     background-color: #797A7E;

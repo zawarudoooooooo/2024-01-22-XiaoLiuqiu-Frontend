@@ -71,7 +71,7 @@ export default{
                 <li
                     data-bs-toggle="modal" 
                     data-bs-target="#exampleModalBirthday">
-                    當日壽星我最大 ! 兩人同行，壽星免費
+                    當日壽星我最大 ! 兩人同行，壽星半價
                 </li>
                 <li
                     data-bs-toggle="modal" 
@@ -244,12 +244,12 @@ export default{
             .text{
                 width: 40vw;
                 p{
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 18pt;
                 }
                 ul{
                     li{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 18pt;
                     }
                 }
@@ -298,24 +298,25 @@ export default{
             }
             ul{
                 li{
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 17pt;
+                    cursor: pointer;
                     &:hover{
-                        color: #92a5e7;
+                        color: #82AAE3;
                     }
                 }
                 button{
                     width: 7vw;
                     height: 5vh;
                     border: none;
-                    color: #797A7E;
+                    color: #4d4327;
                     border-radius: 5px;
                     position: absolute;
                     right: 4%;
                     bottom: 1%;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover {
-                        background-color: #797A7E;
+                        background-color: #4d4327;
                         color: white;
                     }
                     &:active {
@@ -347,17 +348,8 @@ export default{
     @media(max-width:1200px){
         .content{
             height: 79vh;
-            .title{
-                p{
-                    margin: 0;
-                }
-            }
-            hr{
-                margin-top: 0;
-            }
             .introduce{
-                height: 24vh;
-                margin-top: 0;
+                height: 22vh;
                 .text{
                     p{
                         font-size: 20pt;
@@ -375,7 +367,6 @@ export default{
                 }
             }
             .event{
-                margin-top: 0;
                 .img{
                     width: 78vw;
                     height: 26vh;
@@ -397,14 +388,14 @@ export default{
                 }
             }
             .introduce{
-                height: 22vh;
+                height: 21vh;
                 .text{
                     p{
                         font-size: 16pt;
                     }
                     ul{
                         li{
-                            font-size: 13.5pt;
+                            font-size: 11.5pt;
                         }
                     }
                 }
@@ -417,13 +408,15 @@ export default{
             }
             .event{
                 .img{
-                    height: 27vh;
+                    height: 26vh;
                     margin-top: 3vmin;
                 }
             }
             ul{
                 margin-top: 3vmin;
-
+                li{
+                    font-size: 15pt;
+                }
             }
         }
     }
@@ -437,11 +430,11 @@ export default{
             }
             .introduce{
                 width: 80vw;
-                height: 29vh;
+                height: 23vh;
                 .text{
                     width: 60vw;
                     p{
-                        font-size: 15pt;
+                        font-size: 11pt;
                     }
                     ul{
                         padding: 2%;
@@ -461,7 +454,6 @@ export default{
                 .img{
                     height: 20vh;
                     margin-bottom: 5vmin;
-                    margin-top: 6vmin;
                     img{
                         width: 25vw;
                         height: 9vh;
@@ -469,7 +461,7 @@ export default{
                 }
                 ul{
                     li{
-                        font-size: 9pt;
+                        font-size: 11pt;
                     }
                 }
             }
@@ -483,10 +475,10 @@ export default{
                 }
             }
             .introduce{
-                height: 25vh;
+                height: 24vh;
                 .text{
                     p{
-                        font-size: 9pt;
+                        font-size: 10pt;
                     }
                 }
             }
@@ -494,7 +486,7 @@ export default{
                 ul{
                     padding-left: 2vmin;
                     li{
-                        font-size: 11pt;
+                        font-size: 10.5pt;
                     }
                 }
             }

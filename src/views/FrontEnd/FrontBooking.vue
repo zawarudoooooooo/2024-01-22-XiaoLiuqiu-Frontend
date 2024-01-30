@@ -31,7 +31,8 @@ export default{
             name:"",
             roomId:"",
             arr:[],
-            exArr:[]
+            exArr:[],
+            imgArr:""
         }
     },
     mounted() {
@@ -61,10 +62,11 @@ export default{
             this.roomId=element.roomId
             this.total1=element.roomPrice
             this.total=element.roomPrice
+            this.imgArr=element.roomImg
         });
         this.startDate=this.StartDate
         this.endDate=this.EndDate
-
+        console.log(this.imgArr);
         if(this.StartDate==""){
             let currentYear = this.today.getFullYear();
             let currentMonth = String(this.today.getMonth() + 1).padStart(2, '0');
@@ -279,25 +281,21 @@ export default{
             <input type="date" v-model="this.endDate" v-else>
         </div>
         </div>
-    <div class="content" v-for="item in this.order">
+    <div class="content" v-for="(item,index) in this.order" :key="index">
         <div class="show">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="../../../../public/room/D/double1.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/room/D/double1-1.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../../../../public/room/D/double1-2.jpg" class="d-block w-100" alt="...">
+            <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                    <div v-for="(img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }" >
+                        <img v-if="item.roomName=='小資雙人房'" :src="'public/room/SP/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                        <img v-if="item.roomName=='舒適雙人房'" :src="'public/room/D/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                        <img v-if="item.roomName=='豪華家庭房'" :src="'public/room/F/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -315,19 +313,10 @@ export default{
                     <input type="checkbox" id="dos" value="來回船票(+400/全票)" v-model="exxtra">
                     <label for="dos">來回船票(+400/全票)</label>
                     <br>
-                    <!-- <input type="checkbox" id="tres" value="來回船票(+200/半票)" v-model="exxtra">
-                    <label for="tres">來回船票(+200/半票)</label> -->
                     <input type="checkbox" id="cuatro" value="摩托車(+300/天)" v-model="exxtra">
                     <label for="cuatro">摩托車(+300/天)</label>
                     <input type="checkbox" id="cinco" value="三大風景區門票(+100/人)" v-model="exxtra">
                     <label for="cinco">三大風景區門票(+100/人)</label>
-                    <!-- <br>
-                    <input type="checkbox" id="seis" value="鹿粼梅花鹿園區門票(+220/全票)" v-model="exxtra">
-                    <label for="seis">鹿粼梅花鹿園區門票(+220/全票)</label>
-                    <br>
-                    <input type="checkbox" id="siete" value="鹿粼梅花鹿園區門票(+50/半票)" v-model="exxtra">
-                    <label for="siete">鹿粼梅花鹿園區門票(+50/半票)</label>
-                    <br> -->
                     <br>
                     <input type="checkbox" id="ocho" value="浮潛(+400/人)" v-model="exxtra">
                     <label for="ocho">浮潛(+400/人)</label>
@@ -337,8 +326,6 @@ export default{
                     <input type="checkbox" id="dies" value="透明獨木舟(+800/人)" v-model="exxtra">
                     <label for="dies">透明獨木舟(+800/人)</label>
                     <br>
-                    <input type="checkbox" id="once" value="SUP立槳(+1000/兩人一板)" v-model="exxtra">
-                    <label for="once">SUP立槳(+1000/兩人一板)</label>
                     <input type="checkbox" id="doce" value="SUP立槳(+1200/一人一板)" v-model="exxtra">
                     <label for="doce">SUP立槳(+1200/一人一板)</label>
                 </div>
@@ -413,7 +400,6 @@ export default{
                 </div>
             </div>
         </div>
-    <!-- <Footer /> -->
 </template>
 
 <style lang="scss" scoped> 
@@ -422,7 +408,7 @@ export default{
         display: flex;
         justify-content: space-around;
         align-content: center;
-        margin-top: 7vmin;
+        margin-top: 6vmin;
         margin-left: 5vmin;
         input{
             width: 20vw;
@@ -430,16 +416,17 @@ export default{
             border-radius: 10px;
             border-style: none;
             outline: none;
-            background-color: #e3f6f5;
+            background-color: white;
             padding-left: 2vmin;
             padding-right: 2vmin;
-            color: #797A7E;
+            color: #4d4327;
+            font-size: 15pt;
             box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
         }
         p{
             margin: 0;
             font-size: 16pt;
-            color: #797A7E;
+            color: #4d4327;
             text-align: center;
             margin-right: 2vmin;
         }
@@ -454,17 +441,17 @@ export default{
     }
     .content{
         width: 95vw;
-        height: 66vh;
+        height: 54vh;
         margin: auto;
         display: flex;
         position: relative;
+        margin-top: 6vmin;
         .show{
             width: 68vw;
             height: 50vh;
             display: flex;
             justify-content: space-around;
             border-radius: 10px;
-            margin-top: 8vmin;
             position: relative;
             #carouselExample{
                 width: 23vw;
@@ -511,7 +498,7 @@ export default{
                     align-content: center;
                     justify-content: space-between;
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 24pt;
                         margin: 0;
                     }
@@ -519,13 +506,13 @@ export default{
                 .extra{
                     width: 36vw;
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 16pt;
                         font-weight: bold;
                         margin-top: 1vmin;
                     }
                     label{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 15.5pt;
                         margin-right: 1.1vmin;
                         margin-bottom: 1vmin;
@@ -538,11 +525,11 @@ export default{
         }
         .cart{
             width: 20vw;
-            height: 70vh;
-            color: #797A7E;
+            height: 63vh;
+            color: #4d4327;
             font-size: 13pt;
             position: relative;
-            top: -8%;
+            top: -20%;
             right: -3%;
             #ul{
                 list-style: none;
@@ -578,14 +565,14 @@ export default{
                 display: flex;
                 justify-content: space-between;
                 position: absolute;
-                right: 18%;
+                right: 15%;
                 bottom: 3%;
                 button {
                     width: 5vw;
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover {
                         background-color: #797A7E;
@@ -608,6 +595,263 @@ export default{
             border-radius: 5px;
             margin-left: 1vmin;
             text-align: center;
+            outline: none;
+        }
+    }
+    @media(max-width:1200px){
+        .date{
+            width: 90vw;
+            margin-top: 6vmin;
+            justify-content: space-between;
+            input{
+                width: 32vw;
+                height: 3vh;
+            
+            }
+            p{
+                font-size: 15pt;
+            }
+        }
+        .content{
+            height: 71vh;
+            display: block;
+            margin-top: 4vmin;
+            .show{
+                width: 85vw;
+                height: 25vh;
+                margin: auto;
+                margin-top: 5vmin;
+                #carouselExample{
+                    height: 13vh;
+                    margin-top: 8vmin;
+                    .carousel-inner{
+                        .carousel-item{
+                            img{
+                                height: 13vh;
+                            }
+                        }
+                    }
+                }
+                .text{
+                    width: 51vw;
+                    height: 25vh;
+                    .extra{
+                        width: 51vw;
+                        p{
+                            font-size: 20pt;
+                        }
+                        label{
+                            font-size: 18pt;
+                        }
+                    }
+                }
+            }
+            .cart{
+                width: 80vw;
+                height: 39vh;
+                margin: auto;
+                top: 5%;
+                right: 0;
+                li{
+                    font-size: 20pt;
+                }
+                span{
+                    font-size: 24pt;
+                }
+                .total{
+                    bottom: 5%;
+                    p{
+                        font-size: 20pt;
+                    }
+                }
+                .buttonArea{
+                    width: 25vw;
+                    height: 3vh;
+                    right: 0;
+                    bottom: 1%;
+                    button{
+                        width: 10vw;
+                        height: 3vh;
+                    }
+                }
+            }
+        }
+        .modal-body{
+            span{
+                font-size: 13pt;
+            }
+            select{
+                width: 9vw;
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 71.5vh;
+            .show{
+                .text{
+                    .name{
+                        p{
+                            font-size: 22pt;
+                        }
+                    }
+                    .extra{
+                        p{
+                            font-size: 18pt;
+                        }
+                        label{
+                            font-size: 14pt;
+                        }
+                    }
+                }
+            }
+            .cart{
+                span{
+                    font-size: 22pt;
+                }
+                li{
+                    font-size: 17pt;
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .date{
+            margin-top: 8vmin;
+            p{
+                font-size: 8pt;
+            }
+            input{
+                height: 2.5vh;
+                font-size: 8pt;
+            }
+        }
+        .content{
+            height: 73vh;
+            .show{
+                height: 19vh;
+                margin-top: 7vmin;
+                #carouselExample{
+                    height: 10vh;
+                    margin-top: 9vmin;
+                    .carousel-inner{
+                        .carousel-item{
+                            img{
+                                height: 10vh;
+                            }
+                        }
+                    }
+                }
+                .text{
+                    height: 19vh;
+                    .name{
+                        width: 35vw;
+                        p{
+                            font-size: 12pt;
+                        }
+                    }
+                    .extra{
+                        p{
+                            font-size: 10pt;
+                            margin: 0;
+                        }
+                        label{
+                            font-size: 7pt;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+            .cart{
+                height: 42vh;
+                span{
+                    font-size: 18pt;
+                }
+                li{
+                    font-size: 14pt;
+                }
+                i{
+                    font-size: 18pt;               
+                }
+                .total{
+                    p{
+                        font-size: 18pt;
+                    }
+                }
+                .buttonArea{
+                    width: 35vw;
+                    height: 4vh;
+                    bottom: -11%;
+                    button{
+                        width: 15vw;
+                    }
+                }
+            }
+        }
+        .modal-body{
+            select{
+                width: 20vw;
+            }
+        }
+    }
+    @media(max-width:414px){
+        .date{
+            p{
+                font-size: 7pt;
+            }
+        }
+        .content{
+            height: 72vh;
+            .show{
+                margin-top: 9vmin;
+                #carouselExample{
+                    height: 9vh;
+                    margin-top: 10vmin;
+                    .carousel-inner{
+                        .carousel-item{
+                            img{
+                                height: 9vh;
+                            }
+                        }
+                    }
+                }
+                .text{
+                    .name{
+                        p{
+                            font-size: 11pt;
+                        }
+                    }
+                    .extra{
+                        p{
+                            font-size: 9pt;
+                            margin-bottom: 0;
+                        }
+                        label{
+                            font-size: 6pt;
+                        }
+                    }
+                }
+            }
+            .cart{
+                height: 41vh;
+                span{
+                    font-size: 16pt;
+                }
+                li{
+                    font-size: 12pt;
+                }
+                i{
+                    font-size: 16pt;
+                }
+                .total{
+                    p{
+                        font-size: 15pt;
+                    }
+                }
+                .buttonArea{
+                    bottom: -11%;
+                }
+            }
         }
     }
 </style>

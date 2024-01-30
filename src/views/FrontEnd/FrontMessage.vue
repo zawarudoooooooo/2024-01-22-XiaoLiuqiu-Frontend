@@ -62,7 +62,7 @@ export default{
     <div class="content">
         <div class="card" v-for="item in this.msglist">
             <div class="info">
-                <img src="../../../public/demo/user1.png" class="card-img-top" alt="...">
+                <img :src="'public/demo/'+item.memberImg" class="card-img-top" alt="">
                 <p>user : {{ item.memberName }}</p>
             </div>
             <div class="card-body">
@@ -77,7 +77,7 @@ export default{
             </ul>
         </div>
     </div>
-    <!-- <Footer /> -->
+    <Footer />
 </template>
 
 <style lang="scss" scoped>
@@ -98,7 +98,7 @@ export default{
     }
     .content{
         width: 90vw;
-        height: 100vh;
+        height: 145vh;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
@@ -146,12 +146,14 @@ export default{
     }
     @media(max-width:1200px){
         .content{
+            width: 81vw;
             height: 71vh;
+            gap: 2vmin;
             .card{
                 width: 16rem;
-                height: 29rem;
+                height: 27rem;
                 p{
-                    font-size: 12pt;
+                    font-size: 10pt;
                 }
                 .info{
                     img{
@@ -160,6 +162,9 @@ export default{
                     }
                 }
                 .card-body{
+                    .card-title{
+                        font-size: 13pt;
+                    }
                     img{
                         width: 19vw;
                         height: 10vh;
@@ -170,8 +175,10 @@ export default{
     }
     @media(max-width:992px){
         .content{
+            height: 126vh;
             .card{
                 width: 19rem;
+                height: 29rem;
                 p{
                     font-size: 13pt;
                 }
@@ -183,7 +190,7 @@ export default{
                 }
                 .card-body{
                     .card-title{
-                        font-size: 18pt;
+                        font-size: 17pt;
                     }
                     img{
                         width: 23vw;
@@ -195,12 +202,14 @@ export default{
     }
     @media(max-width:576px){
         .content{
+            height: 260vh;
             .card{
                 width: 22rem;
                 p{
-                    font-size: 14pt;
+                    font-size: 13pt;
                 }
                 .info{
+                    justify-content: space-around;
                     img{
                         width: 20vw;
                         height: 9vh;
@@ -218,8 +227,9 @@ export default{
     }
     @media(max-width:414px){
         .content{
+            height: 254vh;
             .card{
-                height: 27rem;
+                height: 25rem;
                 p{
                     font-size: 12pt;
                 }

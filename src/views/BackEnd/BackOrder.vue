@@ -226,26 +226,30 @@ export default {
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
+            i{
+                margin-left: 2vmin;
+            }
         }
         .list{
             display: flex;
             justify-content: space-between;
             table{
                 width: 70vw;
+                height: 13vh;
                 font-size: 14pt;
-                color: #797A7E;
+                color: #4d4327;
                 text-align: center;
                 thead{
                     tr{
                         td{
-                            border: 2px solid #797A7E;
+                            border: 2px solid #4d4327;
                             font-weight: bold;
                         }
                     }
                 }
                 tr{
                     td{
-                        border: 2px solid #797A7E;
+                        border: 2px solid #4d4327;
                         }
                         button{
                             background-color: transparent;

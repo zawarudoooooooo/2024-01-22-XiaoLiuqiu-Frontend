@@ -303,6 +303,12 @@ export default{
                         opacity: 1;
                     } 
                 }
+                .card-title{
+                    color: #4d4327;
+                }
+                .card-text{
+                    color: #4d4327;
+                }
             }
             li{
                 font-size: 12pt;
@@ -318,7 +324,7 @@ export default{
                 height: 70vh;
                 .card{
                     width: 41vw;
-                    height: 14.5vh;
+                    height: 14vh;
                     img{
                         width: 16vw;
                         height: 13vh;
@@ -336,6 +342,7 @@ export default{
             .meal{
                 .card{
                     width: 41.5vw;
+                    height: 14.5vh;
                 }
                 li{
                     font-size: 8pt;
@@ -362,7 +369,7 @@ export default{
                     height: 26vh;
                     img{
                         width: 30vw;
-                        margin-left: 4vmin;
+                        margin-left: 5vmin;
                     }
                     .card-title{
                         font-size: 12pt;
@@ -379,7 +386,7 @@ export default{
     }
     @media(max-width:414px){
         .content{
-            height: 118vh;
+            height: 117vh;
             .meal{
                 height: 109vh;
                 .card{

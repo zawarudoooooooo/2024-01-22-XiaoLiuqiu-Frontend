@@ -25,6 +25,9 @@ export default{
             upDateIntroduce:"",
             upRoomId:"",
             upRoomName:"",
+            upDateImg:"",
+            upImg:"",
+            upDateImgArr:[],
             isChecked: false,
             introduce:[],
             access: 0,
@@ -85,6 +88,7 @@ export default{
             if(res.data.rtnCode==200){
                 swal("成功", "已新增房間", "success");
             }
+            this.clearAdd()
             })
         },
         test(){
@@ -95,6 +99,7 @@ export default{
                 this.upRoomName=""
                 this.upDateRoomPrice=""
                 this.upDateIntroduce="" 
+                this.upImg=""
                 this.editstatus=false
             this.roomSearch.forEach((item,roomIndex)=>{
                 if(index!=roomIndex){
@@ -106,6 +111,7 @@ export default{
                 this.upDateRoomPrice=item.roomPrice
                 this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
                 this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
+                this.upImg=item.roomImg
                 this.editstatus=item.open
             })
             // console.log(this.upRoomId);
@@ -129,14 +135,38 @@ export default{
                 room_introduce:JSON.stringify(this.upDateIntroduce),
                 room_name:this.upRoomName,
                 room_price: this.upDateRoomPrice,
+                room_img:JSON.stringify(this.upDateImgArr),
                 is_open:this.editstatus
             },
             }).then(res=>{
             console.log(res.data);
             if(res.data.rtnCode==200){
-                swal("成功", "已新增房間", "success");
+                swal({
+                        title: '成功',
+                        text: '編輯房間成功',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
+                // swal("成功", "編輯房間成功", "success");
             }
             })
+        },
+        upDateFileChange(event){
+            console.log(event);
+            const file = event.target.files;
+            this.upDateImg = [...file];
+            this.upDateImg.forEach(item=>{
+                this.upDateImgArr.push(item.name)
+            })
+            console.log(this.upDateImgArr);
         },
 //頁面切換
         simpleOpen(){
@@ -283,7 +313,13 @@ export default{
             // console.log(img);
             // this.uploadFile(file);
         },
-        
+        clearAdd(){
+            const file = document.getElementById("inputfile")
+            this.roomId="",
+            this.introduce="",
+            this.roomPrice="",
+            file.value=""
+        },
     },
     components:{
         backSideBar
@@ -318,10 +354,10 @@ export default{
                         <p><i class="fa-solid fa-map-pin"></i>小資雙人房</p>
                     </div>
                     <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
-                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
-                            <div class="carousel-inner" >
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                            <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
-                                    <img :src="'public/room/SP/'+img" class="d-block w-100" alt="">
+                                    <img :src="'public/room/SP/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
@@ -345,6 +381,7 @@ export default{
                                     <i class="fa-solid fa-snowflake"></i>空調
                                     <i class="fa-solid fa-tv"></i>平面電視
                                     <i class="fa-solid fa-wifi"></i>Wifi
+                                    <i class="fa-solid fa-rug"></i>地毯
                                 </p>
                             </div>
                             <div class="price">
@@ -368,10 +405,10 @@ export default{
                         <p><i class="fa-solid fa-map-pin"></i>舒適雙人房</p>
                     </div>
                     <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
-                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
-                            <div class="carousel-inner" >
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                            <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
-                                    <img :src="'public/room/D/'+img" class="d-block w-100" alt="">
+                                    <img :src="'public/room/D/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
@@ -396,6 +433,9 @@ export default{
                                     <i class="fa-solid fa-wifi"></i>Wifi
                                     <i class="fa-solid fa-bath"></i>浴缸
                                     <i class="fa-solid fa-gamepad"></i>遊戲機
+                                    <i class="fa-solid fa-mug-hot"></i>咖啡機
+                                    <i class="fa-solid fa-weight-scale"></i>體重機
+                                    <i class="fa-solid fa-couch"></i>沙發
                                 </p>
                             </div>
                             <div class="price">
@@ -419,10 +459,10 @@ export default{
                         <p><i class="fa-solid fa-map-pin"></i>豪華家庭房</p>
                     </div>
                     <div class="room" v-for="(item,index) in this.roomSearch" :key="index">
-                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel" >
-                            <div class="carousel-inner" >
+                        <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel"  style="width: 20vw;height: 28vh;border-radius: 5px;">
+                            <div class="carousel-inner"  style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 <div  v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
-                                    <img :src="'public/room/F/'+img" class="d-block w-100" alt="">
+                                    <img :src="'public/room/F/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
@@ -448,6 +488,11 @@ export default{
                                     <i class="fa-solid fa-bath"></i>浴缸
                                     <i class="fa-solid fa-plug"></i>床頭插座
                                     <i class="fa-solid fa-mountain-sun"></i>景觀
+                                    <i class="fa-solid fa-wine-glass"></i>酒水
+                                    <i class="fa-solid fa-toilet"></i>免治馬桶
+                                    <i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物
+                                    <i class="fa-solid fa-couch"></i>沙發
+                                    <i class="fa-solid fa-children"></i>孩童專區
                                 </p>
                             </div>
                             <div class="price">
@@ -513,6 +558,21 @@ export default{
                             <label for="uno">床頭插座</label>
                             <input type="checkbox" id="uno8" value="景觀" v-model="this.introduce">
                             <label for="uno">景觀</label>
+                            <input type="checkbox" id="uno9" value="地毯" v-model="this.introduce">
+                            <label for="uno">地毯</label>
+                            <input type="checkbox" id="uno10" value="咖啡機" v-model="this.introduce">
+                            <label for="uno">咖啡機</label>
+                            <br>
+                            <input type="checkbox" id="uno11" value="體重機" v-model="this.introduce">
+                            <label for="uno">體重機</label>
+                            <input type="checkbox" id="uno12" value="酒水" v-model="this.introduce">
+                            <label for="uno">酒水</label>
+                            <input type="checkbox" id="uno13" value="免治馬桶" v-model="this.introduce">
+                            <label for="uno">免治馬桶</label>
+                            <input type="checkbox" id="uno14" value="香氛噴物" v-model="this.introduce">
+                            <label for="uno">香氛噴物</label>
+                            <input type="checkbox" id="uno15" value="孩童專區" v-model="this.introduce">
+                            <label for="uno">孩童專區</label>
                             <!-- <button type="button" @click="test()">測試</button> -->
                         </div>
                         <div class="mb-3">
@@ -521,7 +581,7 @@ export default{
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name" @change="handleFileChange" multiple>
+                            <input type="file" class="form-control" id="inputfile" @change="handleFileChange" multiple>
                         </div>
                     </form>
                 </div>
@@ -553,22 +613,16 @@ export default{
                             <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
                             <label for="uno">獨立衛浴</label>
                             <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
                             <label for="uno">空調 </label>
                             <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
                             <label for="uno">平面電視 </label>
-                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                             <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
                             <label for="uno">Wifi</label>
                             <br>
                             <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
                             <label for="uno">浴缸</label>
                             <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
-                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
                             <label for="uno">遊戲機</label>
-                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                             <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
                             <label for="uno">床頭插座</label>
                             <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
@@ -580,9 +634,9 @@ export default{
                             <input type="checkbox" value="false" v-model="this.editstatus">
                             <label for="">已開放</label>
                         </div>
-                        <div class="mb-3">
+                       <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name">
+                            <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange"  multiple>
                         </div>
                     </form>
                 </div>
@@ -606,6 +660,9 @@ export default{
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
+            i{
+                margin-left: 2vmin;
+            }
         }
         .list{
             display: flex;
@@ -623,7 +680,7 @@ export default{
                         height: 5vh;
                         border: none;
                         border-radius: 5px;
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 14pt;
                         box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                         &:hover {
@@ -638,7 +695,7 @@ export default{
                 }
                 .info{
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 24pt;
                     }
                     i{
@@ -657,39 +714,8 @@ export default{
                     box-shadow: 1px 1px 1px gray;
                     padding: 3vmin 2vmin 0vmin;
                     position: relative;
-                    #carouselExample{
-                        width: 20vw;
-                        height: 28vh;
-                        margin-top: 0.5vmin;
-                        border-radius: 5px;
-                        box-shadow: 8px 8px 2px 1px rgba(2, 40, 63, 0.2);
-                        .carousel-inner{
-                            width: 20vw;
-                            border-radius: 5px;
-                            .carousel-item{
-                                width: 20vw;
-                                border-radius: 5px;
-                                img{
-                                    width: 21vw;
-                                    height: 28vh;
-                                    border-radius: 5px;
-                                    transition: all linear 0.3s;
-                                    &:hover{
-                                        opacity: 0.7;
-                                    }
-                                    &:active{
-                                        opacity: 1.0;
-                                    }
-                                }
-                            }
-                        }
-                        .carousel-control-prev-icon{
-                            width: 1.5rem;
-                        }
-                        .carousel-control-next-icon{
-                            width: 1.5rem;
-                        }
-                    }
+                    background-color: white;
+                    margin-bottom: 5vmin;
                     .text{
                         height: 23vh;
                         hr{
@@ -702,14 +728,14 @@ export default{
                             align-content: center;
                             justify-content: space-between;
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 24pt;
                                 margin: 0;
                             }
                         }
                         .description{
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 14pt;
                                 width: 35vw;
                             }
@@ -720,7 +746,7 @@ export default{
                         }
                         .price{
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 16pt;
                                 width: 35vw;
                             }
@@ -729,12 +755,12 @@ export default{
                             width: 30vw;
                             display: flex;
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 16pt;
                                 width: 35vw;
                             }
                             i{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 25pt;
                             }
                         }
@@ -747,11 +773,12 @@ export default{
                             bottom: 8%;
                             i{
                                 font-size: 14pt;
-                                color: #797A7E;
+                                color: #4d4327;
+                                margin-right: 1vmin;
                             }
                             p{
                                 font-size: 15pt;
-                                color: #797A7E;
+                                color: #4d4327;
                                 margin: 0;
                             }
                         }

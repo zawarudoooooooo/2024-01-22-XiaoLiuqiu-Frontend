@@ -83,7 +83,7 @@ export default{
             </div>
             <div class="roomType">
                 <div class="card">
-                    <img src="../../../../room/SP/simpledouble2.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/SP/sp2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">小資雙人房</h5>
                         <p class="card-text">經濟實惠的最佳選擇。
@@ -93,7 +93,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../../room/D/double2.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/D/d2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">舒適雙人房</h5>
                         <p class="card-text">
@@ -104,7 +104,7 @@ export default{
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../../../../room/F/family1.jpg" class="card-img-top" alt="...">
+                    <img src="../../../../room/F/f1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">豪華家庭房</h5>
                         <p class="card-text">
@@ -165,21 +165,27 @@ export default{
                         opacity: 1.0;
                     }
                 }
+                .card-title{
+                    color: #4d4327;
+                }
+                .card-text{
+                    color: #4d4327;
+                }
             }
             button{
                 width: 4vw;
                 height: 4.5vh;
                 border: none;
                 border-radius: 5px;
-                color: #797A7E;
+                color: #4d4327;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
-                    background-color: #797A7E;
+                    background-color: #4d4327;
                     color: white;
                 }
                 &:active{
                     background-color: #F7F2E7;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
             }
         }
@@ -213,8 +219,20 @@ export default{
                         button{
                             width: 12vw;
                             height: 3vh;
+                            font-size: 18pt;
                         }
                     }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 85vh;
+            .search{
+                height: 83vh;
+                .roomType{
+                    width: 90vw;
                 }
             }
         }
@@ -232,12 +250,20 @@ export default{
                 .roomType{
                     .card{
                         width: 16rem;
+                        img{
+                            height: 10rem;
+                        }
                         .card-title{
                             font-size: 15pt;
                         }
                         .card-text{
                             font-size: 11pt;
                             margin-bottom: 3vmin;
+                        }
+                        button{
+                            width: 20vw;
+                            height: 4vh;
+                            font-size: 13pt;
                         }
                     }
                 }

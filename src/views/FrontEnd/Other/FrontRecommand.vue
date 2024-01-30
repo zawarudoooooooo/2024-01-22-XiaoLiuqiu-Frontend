@@ -123,7 +123,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         width: 80vw;
-        height: 220vh;
+        height: 216vh;
         margin: auto;
         margin-top: 4vmin;
         .title{
@@ -167,16 +167,16 @@ export default{
                         width: 45vw;
                         padding: 0 2vmin 0;
                         .topic{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-weight: 600;
                             font-size: 26pt;
                             text-align: center;
                         }
                         small{
-                            color: #797A7E;
+                            color: #4d4327;
                         }
                         p{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-size: 14pt;
                         }
                         .third{
@@ -187,10 +187,10 @@ export default{
                 .second{
                     display: block;
                     small{
-                        color: #797A7E;
+                        color: #4d4327;
                     }
                     .secondtopic{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-weight: 600;
                         font-size: 26pt;
                         text-align: center;
@@ -201,13 +201,13 @@ export default{
                         align-items: center;
                         padding: 0 1vmin 0;
                         .type{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-weight: bold;
                             font-size: 16pt;
                             text-align: center;
                         }
                         p{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-size: 14pt;
                         }
                     }
@@ -217,14 +217,187 @@ export default{
                         align-items: center;
                         padding: 0 1.5vmin 0;
                         .type{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-weight: bold;
                             font-size: 16pt;
                             text-align: center;
                         }
                         p{
-                            color: #797A7E;
+                            color: #4d4327;
                             font-size: 14pt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:1200px){
+        .content{
+            height: 119vh;
+            .list{
+                ul{
+                    li{
+                        img{
+                            height: 14vh;
+                        }
+                        .text{
+                            .topic{
+                                margin-bottom: 0;
+                            }
+                            hr{
+                                margin-top: 0;
+                            }
+                        }
+                        .third{
+                            p{
+                                font-size: 12pt;
+                            }
+                        }
+                    }
+                    .second{
+                        .nowater{
+                            .type{
+                                margin-right: 1vmin;
+                            }
+                            p{
+                                font-size: 12.5pt;
+                            }
+                        }
+                        .water{
+                            .type{
+                                margin-right: 1vmin;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 134vh;
+            .list{
+                ul{
+                    li{
+                        .third{
+                            p{
+                                font-size: 10pt;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 121vh;
+            .title{
+                p{
+                    font-size: 22pt;
+                }
+            }
+            .list{
+                ul{
+                    li{
+                        img{
+                            height: 9vh;
+                        }
+                        .text{
+                            .topic{
+                                font-size: 24pt;
+                            }
+                            p{
+                                font-size: 8pt;
+                                margin: 0;
+                            }
+                            small{
+                                font-size: 5pt;
+                            }
+                            .third{
+                                p{
+                                    font-size: 7.5pt;
+                                }
+                            }
+                        }
+                    }
+                    .second{
+                        .secondtopic{
+                            font-size: 22pt;
+                            margin: 0;
+                        }
+                        hr{
+                            margin-top: 0;
+                        }
+                        .nowater{
+                            .type{
+                                margin-right: 2vmin;
+                            }
+                            p{
+                                font-size: 7.5pt;
+                            }
+                        }
+                        .water{
+                            .type{
+                                margin-right: 2vmin;
+                            }
+                            p{
+                                font-size: 7.5pt;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            height: 114vh;
+            .title{
+                p{
+                    font-size: 20pt;
+                }
+            }
+            .list{
+                ul{
+                    li{
+                        .text{
+                            .topic{
+                                font-size: 16pt;
+                            }
+                            p{
+                                font-size: 5pt;
+                            }
+                            .third{
+                                p{
+                                    font-size: 6.5pt;
+                                }
+                            }
+                        }
+                    }
+                    .second{
+                        small{
+                            font-size: 9pt;
+                        }
+                        .secondtopic{
+                            font-size: 16pt;
+                        }
+                        .nowater{
+                            p{
+                                font-size: 6.5pt;
+                            }
+                            .type{
+                                font-size: 9pt;
+                            }
+                        }
+                        .water{
+                            p{
+                                font-size: 6.5pt;
+                            }
+                            .type{
+                                font-size: 9pt;
+                            }
                         }
                     }
                 }

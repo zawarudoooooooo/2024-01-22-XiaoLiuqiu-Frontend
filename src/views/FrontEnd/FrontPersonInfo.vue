@@ -14,6 +14,7 @@ export default{
             useravatar:"",
             img:"",
             ImgPhoto:"",
+            memberImg:"",
 
             //更改密碼
             oldPwd:"",
@@ -40,126 +41,6 @@ export default{
         }
     },
     methods:{
-        uploadImg(e) {
-        let files = e.target.files || e.dataTransfer.files
-        let id = e.target.id
-        if (!files.length) return
-        this.picavalue = files[0]
-        console.log(this.picavalue.size / 1024)
-        if (this.picavalue.size / 1024 > 10240) {
-            this.$vux.alert.show({
-            title: '溫馨提示',
-            content: '圖片過大，請重新上傳'
-            })
-        } else {
-            this.text1 = '正在獲取圖片'
-            this.imgPreview(this.picavalue, id)
-
-            this.file=event.target.files[0]
-            let filereader=new FileReader();
-            filereader.readAsDataURL(this.file)
-            filereader.addEventListener("load",()=>{
-                this.useravatar=filereader.result;
-                console.warn(this.useravatar)
-            })
-            }
-        },
-//獲取圖片
-        imgPreview(file, id) {
-        let self = this
-        //判斷支不支持FileReader
-        if (!file || !window.FileReader) return false
-        if (/^image/.test(file.type)) {
-          //創建一個reader
-            let reader = new FileReader()
-          //將圖片轉成base64格式
-            reader.readAsDataURL(file)
-          //讀取成功後的回調
-            reader.onloadend = function() {
-            let result = this.result
-            let img = new Image()
-            img.src = result
-            console.log('********未壓縮前的圖片大小********')
-            console.log(result.length / 1024)
-            img.onload = function() {
-                let data = self.compress(img, 0.3)
-                self.uploadImg(data, id)
-            } 
-            }
-        }
-        },
-// 壓縮圖片
-        compress(img, size) {
-        let canvas = document.createElement('canvas')
-        let ctx = canvas.getContext('2d')
-        let initSize = img.src.length
-        let width = img.width
-        let height = img.height
-        canvas.width = width
-        canvas.height = height
-        // 鋪底色
-        ctx.fillStyle = '#fff'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-        ctx.drawImage(img, 0, 0, width, height)
-        //進行最小壓縮
-        let ndata = canvas.toDataURL('image/jpeg', size)
-        console.log('*******壓縮後的圖片大小*******')
-        // console.log(ndata)
-        console.log(ndata.length / 1024)
-        return ndata
-        },
-        // uploadImg(base64, id) {   
-        //     console.log('得到壓縮後的base64傳入後臺') 
-        // },
-//使用者照片上傳
-        onfileuser(event){
-            this.file=event.target.files[0]
-            let filereader=new FileReader();
-            // imageConversion.compress(filereader,0.3).then(res=>{
-            //     resolve(res);
-            //     console.log("壓縮成功")
-            // })
-            filereader.readAsDataURL(this.file)
-            filereader.addEventListener("load",()=>{
-                this.useravatar=filereader.result;
-                console.warn(this.useravatar)
-            })
-        },
-//貼文照片上傳
-        onfilemsg(event){
-            this.file=event.target.files[0]
-            let filereader=new FileReader();
-            filereader.readAsDataURL(this.file)
-            filereader.addEventListener("load",()=>{
-                this.msgavatar=filereader.result;
-                console.warn(this.msgavatar)
-            })
-        },
-        test(){
-            let arr = document.querySelectorAll(".img");
-            Promise.all(Array.from(arr).map((item)=>{
-                if(item.files[0] != undefined ){
-                    this.imgConvert((item.className.split("")[0], (item.files[0])))
-                }
-                return Promise.resolve();
-            }))
-        },
-//圖片轉換
-        imgConvert(key, data){
-            return new Promise((resolve) =>{
-                imageConversion.compressAccurately(data, 80).then((res) =>{
-                    let reader = new FileReader();
-                    if(res){
-                        reader.readAsDataURL(res)
-                    }
-                    reader.onload = () =>{
-                        let base64 = reader.result;
-                        this.map.set(key, base64);
-                        resolve(base64);
-                    }
-                })
-            })
-        },
 //貼文取消清除輸入
         cancle(){
             this.topic="",
@@ -185,6 +66,9 @@ export default{
             this.personInfoPage=false,
             this.orderPage=false
         },
+        test10(){
+            console.log(this.messageImg);
+        },
 //留言板
         messageCreate(){
             axios({
@@ -199,7 +83,7 @@ export default{
                 roomId:this.topic,
                 roomMessageBoardDescription:this.text,
                 messageImg:this.messageImg,
-                account:this.memberInfo.account
+                memberImg:this.ImgPhoto
             },
         }).then(res => {
             console.log(res.data)
@@ -214,6 +98,7 @@ export default{
                 }else{
                     swal("失敗","發生未知錯誤","error");
                 }
+                this.cancle();
             })
         },
 //更新會員資訊
@@ -250,6 +135,7 @@ export default{
             this.newEmail=""
         },
         upDateMemberImg(){
+            
             axios({
             url:'http://localhost:8080/member/imgUpDate',
             method:'POST',
@@ -264,6 +150,21 @@ export default{
             },
         }).then(res => {     
             console.log(res.data)
+            swal({
+                        title: '成功',
+                        text: '以更新圖片',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                          // 在这里可以执行页面刷新的操作
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
             
             })
         
@@ -332,12 +233,14 @@ export default{
         }).then(res=>{
             res.data.memberList.forEach(element => {
                 this.memberInfo=element
+                
                 console.log(this.memberInfo);
                 this.memberName=this.memberInfo.memberName
                 // this.ImgPhoto="public\" +JSON.parse(this.memberInfo.memberImgPhoto)
                 // console.log(   );
             });
             this.memberInfo.memberImgPhoto=JSON.parse(this.memberInfo.memberImgPhoto)
+            // console.log(this.memberInfo.memberImgPhoto.memberImg);
             this.ImgPhoto=this.memberInfo.memberImgPhoto.memberImg
             // this.memberInfo=
             console.log(this.ImgPhoto);
@@ -391,14 +294,9 @@ export default{
             <hr>
             <div class="user">
                 <label>
-                    <!-- <input id="upload_input" type="file" @change="onfileuser">
-                    <img :src="useravatar" class="upload_cover" alt=""> -->
-                    <!-- <img :src="IDc1" alt="" class="upload_cover">
-                    <input class="upload_cover" id="IDc1" name="IDc1" type="file"
-                    @change="uploadIMG"> -->
                     <input id="upload_input" type="file" @change="handleFileChange">
-                    <!-- <input id="upload_input" type="file" @change="uploadImg($event)"> -->
-                    <img :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
+                    <img v-if="this.memberInfo.memberImgPhoto!=null" :src="'public/demo/' +this.ImgPhoto" class="upload_cover" alt="">
+                    <img v-if="this.memberInfo.memberImgPhoto==null" :src="'public/demo/' +this.img" class="upload_cover" alt="">
                 </label>
             </div>
             <div class="name">
@@ -417,6 +315,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalPwd">修改密碼
                 </button>
+                
                 <button type="button" @click="upDateMemberImg()">儲存</button>
             </div>
         </div>
@@ -510,10 +409,10 @@ export default{
                                                 <p>退房時間 : {{item.endDate}}</p>
                                             </li>
                                             <li>
-                                                <p>總金額 :{{item.total}}</p>
+                                                <p>總金額 : ${{item.total}} 元</p>
                                             </li>
                                             <li>
-                                                <p v-if="item.orderPayment==false">付款方式 : 現場支付</p>
+                                                <p v-if="item.orderPayment==true">付款方式 : 現場支付</p>
                                                 <p v-else>付款方式 : 線上支付
                                                     <i class="fa-regular fa-credit-card" data-bs-toggle="modal" 
                                                     data-bs-target="#exampleModalPay"></i>
@@ -546,10 +445,6 @@ export default{
                                 <input type="text" class="form-control" id="recipient-name" placeholder="請輸入持卡人姓名">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">手機號碼 :</label>
-                                <input type="text" class="form-control" id="recipient-name" placeholder="請輸入手機號碼">
-                            </div>
-                            <div class="mb-3">
                                 <label for="message-text" class="col-form-label">信用卡卡號 :</label>
                                 <input type="text" class="form-control" id="recipient-name" placeholder="請輸入16碼數字">
                             </div>
@@ -559,7 +454,7 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">信用卡背面末三碼 :</label>
-                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸入背面末三碼">
+                                <input type="number" class="form-control" id="recipient-name" placeholder="請輸安全碼">
                             </div>
                         </form>
                     </div>
@@ -593,6 +488,7 @@ export default{
                 <button type="button"  data-bs-toggle="modal" 
                         data-bs-target="#exampleModalmsg">預覽
                 </button>
+                <!-- <button type="button" @click="test10()">測試</button> -->
             </div>
         </div>
 <!-- 貼文預覽視窗 -->
@@ -611,19 +507,19 @@ export default{
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">內容 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="this.text" disabled>
+                                <textarea  class="form-control" id="recipient-name" v-model="this.text" disabled></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">照片 :</label>
                                 <br>
                                 <div class="imgArea">
-                                    <img :src="msgavatar" class="msgimg" alt="">
+                                    <img :src="'public/message/'+this.messageImg" class="msgimg" alt="">
                                 </div>                
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="cancle()">取消</button>
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="messageCreate()">發佈</button>
                     </div>
                 </div>
@@ -659,7 +555,7 @@ export default{
                 height: 7vh;
                 border: none;
                 border-radius: 5px;
-                color: #797A7E;
+                color: #4d4327;
                 font-size: 16pt;
                 box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                 &:hover{
@@ -691,7 +587,7 @@ export default{
                     position: absolute;
                     right: 6%;
                     top: -2%;
-                    border: 1px solid#797A7E;
+                    border: 1px solid#4d4327;
                     background-image: url('../../../public/demo/userimg.png');
                     background-size: contain;
                 }
@@ -701,7 +597,7 @@ export default{
             }
             p{
                 font-size: 16pt;
-                color: #797A7E;
+                color: #4d4327;
                 margin-bottom: 3vmin;
             }
             .personInfoBtn{
@@ -717,7 +613,7 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 13pt;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{
@@ -743,7 +639,7 @@ export default{
                 .card-body{
                     background-color: white;
                     border-radius: 5px;
-                    height: 28vh;
+                    height: 40vh;
                     overflow: scroll;
                     li{
                         i{
@@ -755,7 +651,7 @@ export default{
                 }
                 a{
                     text-decoration: none;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 15pt;
                 }
                 button{
@@ -763,14 +659,14 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    background-color: #e3f6f5;
+                    background-color: white;
                     margin-bottom: 1.5vmin;
                     box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
                     &:hover {
                         background-color: #F7F2E7;;
                     }
                     &:active {
-                        background-color: #e3f6f5;
+                        background-color: white;
                     }
                 }
             }
@@ -789,7 +685,7 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 input{
                     width: 30vw;
@@ -797,7 +693,7 @@ export default{
                     border-radius: 10px;
                     border-style: none;
                     outline: none;
-                    background-color: #e3f6f5;
+                    background-color: white;
                     padding-left: 2vmin;
                     margin-bottom: 2vmin;
                     box-shadow: 1px 1px 1px 1px rgba(2, 40, 63, 0.2);
@@ -807,7 +703,7 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 textarea{
                     width: 30vw;
@@ -823,11 +719,11 @@ export default{
                 p{
                     margin: 0;
                     font-size: 16pt;
-                    color: #797A7E;
+                    color: #4d4327;
                 }
                 #addicon{
                     font-size: 22pt;
-                    color: #797A7E;
+                    color: #4d4327;
                     margin-left: 1vmin;
                 }
                 .addimg{
@@ -847,7 +743,7 @@ export default{
                     height: 5vh;
                     border: none;
                     border-radius: 5px;
-                    color: #797A7E;
+                    color: #4d4327;
                     font-size: 13pt;
                     box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                     &:hover{
@@ -864,6 +760,13 @@ export default{
         .modal-content{
             .modal-body{
                 .mb-3{
+                    textarea{
+                        width: 30vw;
+                        height: 15vh;
+                        border-radius: 5px;
+                        outline: none;
+                        padding: 1vmin;
+                    }    
                     .msgimg{
                         width: 15vw;
                         height: 20vh;
@@ -875,18 +778,18 @@ export default{
     @media(max-width:1200px){
         .content{
             width: 80vw;
-            height: 78vh;
+            height: 78.5vh;
             display: block;
             .buttonArea{
                 width: 80vw;
                 height: 10vh;
                 margin-top: 0;
-                margin-bottom: 12vmin;
+                margin-bottom: 15vmin;
                 flex-direction: row;
                 button{
                     width: 20vw;
                     height: 5vh;
-                    font-size: 18pt;
+                    font-size: 20pt;
                 }
             }
             .personInfo{
@@ -897,17 +800,17 @@ export default{
                 }
                 .user{
                     .upload_cover{
-                        width: 17vmin;
-                        height: 17vmin;
+                        width: 18vmin;
+                        height: 18vmin;
                         right: 4%;
-                        top: 20%;
+                        top: 21%;
                     }
                 }
                 p{
                     font-size: 25pt;
                 }
                 .personInfoBtn{
-                    width: 60vw;
+                    width: 70vw;
                     button{
                         width: 18vw;
                         height: 5vh;
@@ -940,6 +843,7 @@ export default{
                         width: 75vw;
                         height: 4vh;
                         margin-bottom: 3vmin;
+                        font-size: 20pt;
                     }
                 }
                 .text{
@@ -950,6 +854,7 @@ export default{
                         width: 75vw;
                         height: 13vh;
                         margin-bottom: 3vmin;
+                        font-size: 20pt;
                     }
                 }
                 .img{
@@ -963,10 +868,11 @@ export default{
                 }
                 .msgBtnArea{
                     width: 40vw;
+                    right: -10%;
                     button{
                         width: 18vw;
                         height: 4vh;
-                        font-size: 20pt;
+                        font-size: 22pt;
                     }
                 }
             }
@@ -998,8 +904,9 @@ export default{
     }
     @media(max-width:576px){
         .content{
-            height: 79.5vh;
+            height: 80vh;
             .buttonArea{
+                height: 13vh;
                 margin-bottom: 17vmin;
                 button{
                     width: 24vw;
@@ -1015,7 +922,7 @@ export default{
                     .upload_cover{
                         width: 23vmin;
                         height: 23vmin;
-                        top: 20%;
+                        top: 24%;
                     }
                 }
                 p{
@@ -1024,7 +931,7 @@ export default{
                 .personInfoBtn{
                     width: 75vw;
                     right: 3%;
-                    bottom: 9%;
+                    bottom: 13%;
                     button{
                         width: 20vw;
                         font-size: 13pt;
@@ -1036,7 +943,12 @@ export default{
                     font-size: 22pt;
                 }
                 p{
-                    font-size: 17pt;
+                    font-size: 15pt;
+                }
+                .orderMemberArr{
+                    button{
+                        width: 73vw;
+                    }
                 }
             }
             .message{
@@ -1049,6 +961,7 @@ export default{
                     }
                     input{
                         margin-bottom: 5vmin;
+                        font-size: 17pt;
                     }
                 }
                 .text{
@@ -1057,6 +970,7 @@ export default{
                     }
                     textarea{
                         margin-bottom: 5vmin;
+                        font-size: 17pt;
                     }
                 }
                 .img{
@@ -1070,6 +984,7 @@ export default{
                 .msgBtnArea{
                     button{
                         bottom: -9%;
+                        font-size: 17pt;
                     }
                 }
             }
@@ -1090,7 +1005,7 @@ export default{
                     .upload_cover{
                         width: 25vmin;
                         height: 25vmin;
-                        top: 18%;
+                        top: 22%;
                     }
                 }
                 p{
@@ -1107,7 +1022,7 @@ export default{
                     font-size: 20pt;
                 }
                 p{
-                    font-size: 16pt;
+                    font-size: 13pt;
                 }
             }
             .message{
@@ -1118,10 +1033,16 @@ export default{
                     p{
                         font-size: 16pt;
                     }
+                    input{
+                        font-size: 13pt;
+                    }
                 }
                 .text{
                     p{
                         font-size: 16pt;
+                    }
+                    textarea{
+                        font-size: 13pt;
                     }
                 }
                 .img{
@@ -1134,7 +1055,8 @@ export default{
                 }
                 .msgBtnArea{
                     width: 50vw;
-                    bottom: -12%;
+                    bottom: -9%;
+                    right: -16%;
                     button{
                         width: 22vw;
                         font-size: 14pt;
@@ -1142,6 +1064,5 @@ export default{
                 }
             }
         }
-        
     }
 </style>

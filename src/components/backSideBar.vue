@@ -38,13 +38,12 @@ export default{
         width: 15vw;
         gap: 2vmin;
         display: grid;
-        //margin-left: 4vmin;
         button{
             width: 15vw;
             height: 10vh;
             border: none;
             border-radius: 5px;
-            color: #797A7E;
+            color: #4d4327;
             font-size: 16pt;
             box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
             &:hover{

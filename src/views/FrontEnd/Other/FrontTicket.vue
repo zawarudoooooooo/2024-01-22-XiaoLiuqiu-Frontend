@@ -88,7 +88,6 @@ export default{
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">兩人一板 $1000</li>
                     <li class="list-group-item">一人一板 $1200</li>
                 </ul>
             </div>
@@ -189,14 +188,18 @@ export default{
                 }
             }
         }
+        .card-title{
+            color: #4d4327;
+        }
         .card-text{
             font-size: 11.5pt;
+            color: #4d4327;
         }
     }
     @media(max-width:1200px){
         .content{
             width: 90vw;
-            height: 120vh;
+            height: 129vh;
             margin-top: 2vmin;
             hr{
                 margin-bottom: 2vmin;
@@ -206,7 +209,7 @@ export default{
                 font-size: 16pt;
             }
             .card-text{
-                font-size: 9.5pt;
+                font-size: 13.5pt;
             }
             .traffic{
                 width: 80vw;
@@ -230,6 +233,9 @@ export default{
             .card{
                 width: 18rem;
             }
+            .card-text{
+                font-size: 10.5pt;
+            }
             .activity{
                 .card{
                     width: 14rem;
@@ -240,7 +246,7 @@ export default{
     }
     @media(max-width:576px){
         .content{
-            height: 100vh;
+            height: 98vh;
             .title{
                 p{
                     font-size: 18pt;
@@ -254,7 +260,7 @@ export default{
                 font-size: 4.5pt;
             }
             li{
-                font-size: 7pt;
+                font-size: 6pt;
             }
             .traffic{
                 .card{
@@ -282,9 +288,6 @@ export default{
                 p{
                     font-size: 15pt;
                 }
-            }
-            li{
-                font-size: 5pt;
             }
             .card{
                 height: 16rem;

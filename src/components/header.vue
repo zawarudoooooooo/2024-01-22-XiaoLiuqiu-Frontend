@@ -111,7 +111,7 @@ export default{
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <RouterLink to="/FrontSearch" class="routerItem"  v-if="this.cookie!=''||this.cookieTest =='employee'"><i class="fa-solid fa-bed"></i>房型總覽</RouterLink>
+                            <RouterLink to="/FrontSearch" class="routerItem"><i class="fa-solid fa-bed"></i>房型總覽</RouterLink>
                         </li>
                         <li class="nav-item">
                             <RouterLink to="/FrontTicket" class="routerItem"><i class="fa-solid fa-comments-dollar"></i>超值加購</RouterLink>
@@ -179,12 +179,12 @@ export default{
             .routerItem{
                 font-size: 17pt;
                 text-decoration: none;
-                color: #797A7E;
+                color: #5f512c;
                 margin-right: 5vmin;
             }
             .dropdown-item{
                 font-size: 16pt;
-                color: #797A7E;
+                color: #5f512c;
                 text-align: center;
                 cursor: pointer;
                 &:active{
@@ -214,10 +214,10 @@ export default{
             }
             nav{
                 position: absolute;
-                bottom: -30%;
+                bottom: -50%;
                 .routerItem{
-                    font-size: 16pt;
-                    margin-right: 2vmin;
+                    font-size: 14pt;
+                    margin-right: 1vmin;
                 }
             }
         }
