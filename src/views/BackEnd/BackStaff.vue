@@ -20,6 +20,7 @@ export default {
             department: "",
             role: "",
             giveAccess: "",
+            resignation: false,
         }
     },
     mounted(){
@@ -188,10 +189,10 @@ export default {
         getActive() {
             const cookieValue = this.getCookie("employee");
             return cookieValue ? cookieValue.split(":")[2] === "true" : false;
-    },
+        },
         getAccess(){
             const cookieValue = this.getCookie("employee")
-            console.log(cookieValue);
+            // console.log(cookieValue);
             if(cookieValue){
                 const parts = cookieValue.split(":")
                 console.log("Cookie parts:", parts);
@@ -252,23 +253,30 @@ export default {
                         驗證
                     </button>
                 </div>
-                <table>
+                <h1 v-if="this.active === false">該帳號為非驗證狀態，驗證後才可閱覽</h1>
+                <table v-if="this.active === true">
                     <thead>
                         <td>員工編號</td>
                         <td>員工帳號</td>
                         <td>職位</td>
                         <td>部門</td>
                         <td>驗證</td>
+                        <td>狀態</td>
                         <td v-if="this.access === 100">離職</td>
                     </thead>
                     <tbody>
                         <tr v-for=" item in employees">
-                            <td>{{ item.employeeId }}</td>
+                            <td v-if="item.department === 'HR' ">A{{ item.employeeId }}</td>
+                            <td v-if="item.department === 'OPERATIONS' ">B{{ item.employeeId }}</td>
+                            <td v-if="item.department === 'HOUSEKEEPING' ">C{{ item.employeeId }}</td>
+                            <td v-if="item.department === 'COUNTER' ">D{{ item.employeeId }}</td>
                             <td>{{ item.account }}</td>
                             <td>{{ getRole(item.role) }}</td>
                             <td>{{ getDepartment(item.department) }}</td>
                             <td v-if="item.active === true">已驗證</td>
                             <td v-else>尚未驗證</td>
+                            <td v-if="item.resignation === true">在職</td>
+                            <td v-else>離職</td>
                             <td v-if="this.access === 100">
                                 <input type="button" value="確認" @click="confirmDeactive(item.account)" id="checkbtn">
                             </td>
@@ -290,7 +298,7 @@ export default {
                     <form>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">帳號 :</label>
-                            <input type="text" class="form-control" v-model="this.account" id="recipient-name">
+                            <input type="text" class="form-control" v-model="this.account" id="recipient-name" >
                             <br>
 
                             <label for="recipient-name" class="col-form-label">部門 :</label>

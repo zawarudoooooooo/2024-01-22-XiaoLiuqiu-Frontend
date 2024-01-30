@@ -29,7 +29,7 @@ export default{
                     password:this.pwd,
                 },
             }).then(res => {
-
+                console.log(res);
                 if(res.data.rtncode!= "SUCCESSFUL"){
                     swal("資料有誤", "帳號或密碼有誤，請再次確認", "error");
                     return
