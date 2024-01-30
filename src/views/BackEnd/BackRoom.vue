@@ -25,6 +25,8 @@ export default{
             upDateIntroduce:"",
             upRoomId:"",
             upRoomName:"",
+            upImgtest:"",
+            upImg:"",
             isChecked: false,
             introduce:[],
             access: 0,
@@ -194,7 +196,13 @@ export default{
             })
         },
         test(){
-            console.log(this.upDateIntroduce);
+            console.log(this.upArr);
+            if(this.upArr.length==0){
+                this.upArr=this.upImgtest
+                console.log(this.upArr);
+            }else{
+                console.log("有圖片");
+            }
         },
         upDateRoom(index){
                 this.upRoomId=""
@@ -206,21 +214,29 @@ export default{
                 if(index!=roomIndex){
                     return
                 }
-                console.log(item);
+                console.log(item.roomImg);
                 this.upRoomId=item.roomId
                 this.upRoomName=item.roomName
                 this.upDateRoomPrice=item.roomPrice
                 this.upDateIntroduce=item.roomIntroduce
                 this.editstatus=item.open
+                this.upImgtest=item.roomImg
+                // if(this.upArr.length==0){
+                //     this.upArr=item.roomImg
+                // }
             })
             // console.log(this.upRoomId);
             // console.log(this.upRoomName);
             // console.log(this.upDateRoomPrice);
-            console.log(this.upDateIntroduce);
+            // console.log(this.upDateIntroduce);
             // console.log(this.editstatus);
             // console.log(this.roomSearch);
+            // console.log(this.upArr);
         },
         upDate(){
+            if(this.upArr.length==0){
+                this.upArr=this.upImgtest
+            }
             axios({
             url:'http://localhost:8080/room/update',
             method:'POST',
@@ -780,6 +796,7 @@ export default{
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light"  @click="test()">測試</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="upDate()">更改</button>
                 </div>
             </div>
