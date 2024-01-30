@@ -30,6 +30,8 @@ export default{
             access: 0,
             imgArr:"",
             arr:[],
+            upImgArr:"",
+            upArr:[],
             department: "",
             active: false,
             list:[],
@@ -204,8 +206,7 @@ export default{
                 this.upRoomId=item.roomId
                 this.upRoomName=item.roomName
                 this.upDateRoomPrice=item.roomPrice
-                this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
-                this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
+                this.upDateIntroduce=item.roomIntroduce
                 this.editstatus=item.open
             })
             // console.log(this.upRoomId);
@@ -229,7 +230,8 @@ export default{
                 room_introduce:JSON.stringify(this.upDateIntroduce),
                 room_name:this.upRoomName,
                 room_price: this.upDateRoomPrice,
-                is_open:this.editstatus
+                is_open:this.editstatus,
+                room_img:JSON.stringify(this.upArr) 
             },
             }).then(res=>{
             console.log(res.data);
@@ -389,6 +391,19 @@ export default{
                 this.arr.push(item.name)
             })
             console.log(this.arr);
+            // console.log(this.imgArr);
+            // this.img=file
+            // console.log(img);
+            // this.uploadFile(file);
+        },
+        upDateFileChange(event) {
+            console.log(event);
+            const file = event.target.files;
+            this.upImgArr= [...file];
+            this.upImgArr.forEach(item=>{
+                this.upArr.push(item.name)
+            })
+            console.log(this.upArr);
             // console.log(this.imgArr);
             // this.img=file
             // console.log(img);
@@ -768,39 +783,39 @@ export default{
                             <br>
                             <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
                             <input type="checkbox" id="uno1" value="空調" v-model="this.introduce">
-                            <label for="uno">空調</label>
-                            <input type="checkbox" id="uno2" value="平面電視" v-model="this.introduce">
-                            <label for="uno">平面電視</label>
-                            <input type="checkbox" id="uno3" value="Wifi" v-model="this.introduce">
-                            <label for="uno">Wifi</label>
-                            <input type="checkbox" id="uno4" value="浴缸" v-model="this.introduce">
-                            <label for="uno">浴缸</label>
-                            <input type="checkbox" id="uno5" value="床頭插座" v-model="this.introduce">
-                            <label for="uno">床頭插座</label>
-                            <input type="checkbox" id="uno6" value="景觀" v-model="this.introduce">
-                            <label for="uno">景觀</label>
+                            <label for="uno1">空調</label>
+                            <input type="checkbox" id="uno2" value="平面電視" v-model="this.upDateIntroduce">
+                            <label for="uno2">平面電視</label>
+                            <input type="checkbox" id="uno3" value="Wifi" v-model="this.upDateIntroduce">
+                            <label for="uno3">Wifi</label>
+                            <input type="checkbox" id="uno4" value="浴缸" v-model="this.upDateIntroduce">
+                            <label for="uno4">浴缸</label>
+                            <input type="checkbox" id="uno5" value="床頭插座" v-model="this.upDateIntroduce">
+                            <label for="uno5">床頭插座</label>
+                            <input type="checkbox" id="uno6" value="景觀" v-model="this.upDateIntroduce">
+                            <label for="uno6">景觀</label>
                             <br>
-                            <input type="checkbox" id="uno7" value="酒水" v-model="this.introduce">
-                            <label for="uno">酒水</label>
-                            <input type="checkbox" id="uno8" value="免治馬桶" v-model="this.introduce">
-                            <label for="uno">免治馬桶</label>
-                            <input type="checkbox" id="uno9" value="香氛噴物" v-model="this.introduce">
-                            <label for="uno">香氛噴物</label>
-                            <input type="checkbox" id="uno10" value="沙發" v-model="this.introduce">
-                            <label for="uno">沙發</label>
-                            <input type="checkbox" id="uno11" value="孩童專區" v-model="this.introduce">
-                            <label for="uno">孩童專區</label>
+                            <input type="checkbox" id="uno7" value="酒水" v-model="this.upDateIntroduce">
+                            <label for="uno7">酒水</label>
+                            <input type="checkbox" id="uno8" value="免治馬桶" v-model="this.upDateIntroduce">
+                            <label for="uno8">免治馬桶</label>
+                            <input type="checkbox" id="uno9" value="香氛噴物" v-model="this.upDateIntroduce">
+                            <label for="uno9">香氛噴物</label>
+                            <input type="checkbox" id="uno10" value="沙發" v-model="this.upDateIntroduce">
+                            <label for="uno10">沙發</label>
+                            <input type="checkbox" id="uno11" value="孩童專區" v-model="this.upDateIntroduce">
+                            <label for="uno11">孩童專區</label>
                             <br>
-                            <input type="checkbox" id="uno12" value="遊戲機" v-model="this.introduce">
-                            <label for="uno">遊戲機</label>
-                            <input type="checkbox" id="uno13" value="咖啡機" v-model="this.introduce">
-                            <label for="uno">咖啡機</label>
-                            <input type="checkbox" id="uno14" value="體重機" v-model="this.introduce">
-                            <label for="uno">體重機</label>
-                            <input type="checkbox" id="uno15" value="獨立衛浴" v-model="this.introduce">
-                            <label for="uno">獨立衛浴</label>
-                            <input type="checkbox" id="uno16" value="地毯" v-model="this.introduce">
-                            <label for="uno">地毯</label>
+                            <input type="checkbox" id="uno12" value="遊戲機" v-model="this.upDateIntroduce">
+                            <label for="uno12">遊戲機</label>
+                            <input type="checkbox" id="uno13" value="咖啡機" v-model="this.upDateIntroduce">
+                            <label for="uno13">咖啡機</label>
+                            <input type="checkbox" id="uno14" value="體重機" v-model="this.upDateIntroduce">
+                            <label for="uno14">體重機</label>
+                            <input type="checkbox" id="uno15" value="獨立衛浴" v-model="this.upDateIntroduce">
+                            <label for="uno15">獨立衛浴</label>
+                            <input type="checkbox" id="uno16" value="地毯" v-model="this.upDateIntroduce">
+                            <label for="uno16">地毯</label>
                             <!-- <button type="button" @click="test()">測試</button> -->
                         </div>
                         <div class="mb-3">
@@ -808,10 +823,10 @@ export default{
                             <input type="checkbox" value="false" v-model="this.editstatus">
                             <label for="">已開放</label>
                         </div>
-                        <!-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name" multiple>
-                        </div> -->
+                            <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange" multiple>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
