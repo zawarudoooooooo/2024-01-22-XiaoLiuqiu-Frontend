@@ -30,6 +30,8 @@ export default{
             access: 0,
             imgArr:"",
             arr:[],
+            upImgArr:"",
+            upArr:[],
             department: "",
             active: false,
             counter: 1,
@@ -208,8 +210,7 @@ export default{
                 this.upRoomId=item.roomId
                 this.upRoomName=item.roomName
                 this.upDateRoomPrice=item.roomPrice
-                this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
-                this.upDateIntroduce=JSON.parse(item.roomIntroduce) 
+                this.upDateIntroduce=item.roomIntroduce
                 this.editstatus=item.open
             })
             // console.log(this.upRoomId);
@@ -233,7 +234,8 @@ export default{
                 room_introduce:JSON.stringify(this.upDateIntroduce),
                 room_name:this.upRoomName,
                 room_price: this.upDateRoomPrice,
-                is_open:this.editstatus
+                is_open:this.editstatus,
+                room_img:JSON.stringify(this.upArr) 
             },
             }).then(res=>{
             console.log(res.data);
@@ -393,6 +395,19 @@ export default{
                 this.arr.push(item.name)
             })
             console.log(this.arr);
+            // console.log(this.imgArr);
+            // this.img=file
+            // console.log(img);
+            // this.uploadFile(file);
+        },
+        upDateFileChange(event) {
+            console.log(event);
+            const file = event.target.files;
+            this.upImgArr= [...file];
+            this.upImgArr.forEach(item=>{
+                this.upArr.push(item.name)
+            })
+            console.log(this.upArr);
             // console.log(this.imgArr);
             // this.img=file
             // console.log(img);
@@ -749,6 +764,7 @@ export default{
                             <label for="uno">床頭插座</label>
                             <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
                             <label for="uno">景觀</label>
+                            
                             <!-- <button type="button" @click="test()">測試</button> -->
                         </div>
                         <div class="mb-3">
@@ -758,7 +774,7 @@ export default{
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">更改圖片 :</label>
-                            <input type="file" class="form-control" id="recipient-name" multiple>
+                            <input type="file" class="form-control" id="recipient-name" @change="upDateFileChange" multiple>
                         </div>
                     </form>
                 </div>
