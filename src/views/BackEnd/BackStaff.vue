@@ -23,6 +23,26 @@ export default {
             resignation: false,
         }
     },
+    computed:{
+        isManager(){
+            return this.giveAccess !== "50"
+        },
+        isEmployee(){
+            return this.giveAccess !== "0"
+        },
+        hr(){
+            return this.department === "HR"
+        },
+        os(){
+            return this.department === "OPERATIONS"
+        },
+        house(){
+            return this.department === "HOUSEKEEPING"
+        },
+        counter(){
+            return this.department === "COUNTER"
+        }
+    },
     mounted(){
         this.employeeData();
         this.access = this.getAccess();
@@ -55,6 +75,7 @@ export default {
             })
         },
         employeeAdd(){
+
             axios({
             url:'http://localhost:8080/employee/create',
             method:'POST',
@@ -131,8 +152,8 @@ export default {
             }).then(res=>{
                 console.log(res);
                 if(res.data.rtncode=="SUCCESSFUL"){
-                    swal("成功","已完成驗證", "success");
-                    this.employeeData();
+                    swal("成功","已完成驗證，請重新登入", "success");
+                    this.employeeLogout();
                 }else if(res.data.rtncode=="ACCOUNT_IS_ALREADY_ACTIVED"){
                     swal("錯誤", "帳號已完成驗證", "warning");
                 }else{
@@ -161,7 +182,38 @@ export default {
                     swal("錯誤", "刪除員工驗證未成功", "error");
                 }
             })
-            
+        },
+        employeeLogout(){
+            axios({
+            url:'http://localhost:8080/employee/logout',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            withCredentials:true,
+            params:{
+            },
+            data:{
+                
+            },
+            }).then(res=>{
+            console.log(res.data);
+            swal({
+                        title: '驗證成功',
+                        text: '請重新登入',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            this.$router.push('/BackLogin')
+                            setTimeout(function() {
+                                window.location.reload();
+                            },100)
+                        } 
+                    });
+            })
         },
         confirmDeactive(account){
             Swal.fire({
@@ -313,7 +365,7 @@ export default {
                             <label for="recipient-name" class="col-form-label" style="margin-left: 1.5vmin;">權限 :</label>
                             <select name="access" id="recipient-name" v-model="this.giveAccess">
                                 <option value="">請選擇</option>
-                                <option value="50">中階</option>
+                                <option value="50" :disabled="hr || counter">中階</option>
                                 <option value="0">一般</option>
                             </select>
                             <br>
@@ -321,10 +373,9 @@ export default {
                             <label for="recipient-name" class="col-form-label">職位 :</label>
                             <select name="role" id="recipient-name" v-model="this.role" style="margin: 10px;">
                                 <option value="">請選擇</option>
-                                <option value="ADMINISTRATIVE_SUPERVISOR">人事主管</option>
-                                <option value="OPERATIONS_SUPERVISOR">營運主管</option>
-                                <option value="HOUSEKEEPING_SUPERVISOR">房務主管</option>
-                                <option value="EMPLOYEE">一般員工</option>
+                                <option value="OPERATIONS_SUPERVISOR" :disabled="isManager || house">營運主管</option>
+                                <option value="HOUSEKEEPING_SUPERVISOR" :disabled="isManager || os" >房務主管</option>
+                                <option value="EMPLOYEE" :disabled="isEmployee">一般員工</option>
                             </select>
                         </div>
                     </form>
