@@ -169,7 +169,20 @@ export default{
                 if(res.data.rtnCode==200){
 
                     console.log(res.data);
-                    swal("成功", "新增房型成功", "success");
+                    
+                    swal({
+                        title: '成功',
+                        text: '新增房型成功',
+                        icon: 'success',
+                        buttons: '確認',
+                        dangerMode: true,
+                    })
+                    .then((willRefresh) => {
+                        if (willRefresh) {
+                            window.location.reload();
+                        } 
+                    });
+
                     return
                 }
             })
@@ -418,7 +431,7 @@ export default{
             <div class="side">
                 <backSideBar />
             </div>
-            <h1 v-if="this.active === false">該帳號為非驗證狀態，驗證後才可閱覽</h1>
+            <h1 v-if="this.active === false">⚠️該帳號為非驗證狀態，驗證後才可閱覽⛔</h1>
             <div class="roominfo" v-if="this.active === true">
                 <div class="buttonArea">
                     <button type="button" data-bs-toggle="modal" 
@@ -784,6 +797,12 @@ export default{
             display: flex;
             justify-content: space-between;
             position: relative;
+            h1{
+                color: #e76d87;
+                position: absolute;
+                right: 15%;
+                top: 35%;
+            }
             .roominfo{
                 .buttonArea{
                     width: 35vw;
