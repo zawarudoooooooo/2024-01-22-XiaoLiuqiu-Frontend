@@ -558,11 +558,11 @@ export default{
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">類型 :</label>
                             <br>
-                            <input type="radio" value="A" class="roomtype" name="roomtype" v-model="roomId" @change="onRadioChange">
+                            <input type="radio" value="小資雙人房" class="roomtype" name="roomtype">
                             <label for="">A : 小資雙人房</label>
-                            <input type="radio" value="B" class="roomtype" name="roomtype" v-model="roomId" @change="onRadioChange">
+                            <input type="radio" value="舒適雙人房" class="roomtype" name="roomtype">
                             <label for="">B : 舒適雙人房</label>
-                            <input type="radio" value="C" class="roomtype" name="roomtype" v-model="roomId" @change="onRadioChange">
+                            <input type="radio" value="豪華家庭房" class="roomtype" name="roomtype">
                             <label for="">C : 豪華家庭房</label>
                         </div>
                         <div class="mb-3">
