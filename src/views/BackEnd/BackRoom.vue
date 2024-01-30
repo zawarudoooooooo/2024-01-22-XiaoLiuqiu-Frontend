@@ -42,6 +42,12 @@ export default{
                 B: 1,
                 C: 1,
             },
+            list:[],
+            roomTypeName:[],
+            roomTypeNameId:[],
+            selectedValue:"",
+            radioChange:"",
+            createRoomTypeName:""
         }
     },
     mounted(){
@@ -51,6 +57,7 @@ export default{
         console.log(this.department);
         this.active = this.getActive();
         console.log(this.active);
+        this.roomtype();
     },
     methods:{
         createRoom() {
@@ -86,8 +93,8 @@ export default{
                 }
             })
 
-            if (this.roomId && !/^[A-Ca-c]/.test(this.roomId)||this.roomId=="") {
-                swal("錯誤", "編號請依照房間類型的A、B、C為第一字", "error");
+            if (this.roomId=="") {
+                swal("錯誤", "資料不能為空", "error");
                 return
             }
             if(this.roomPrice<=0){
@@ -103,9 +110,9 @@ export default{
             params:{
             },
             data:{
-                room_id:this.roomId,
+                room_id:this.selectedValue+this.roomId,
                 room_introduce:JSON.stringify(this.introduce),
-                room_name:this.roomName,
+                room_name:this.radioChange.split(":")[1],
                 room_price:this.roomPrice,
                 room_img:JSON.stringify(this.arr) 
             },
@@ -115,6 +122,63 @@ export default{
                 swal("成功", "已新增房間", "success");
             }
             this.clearAdd()
+            })
+        },
+        //房間類別查詢
+        roomtype(){
+            axios({
+                    url:'http://localhost:8080/roomtype/search',
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },  
+                    params:{
+                        roomTypeName:""
+                    },
+                    data:{
+                    },
+                    }).then(res=>{
+                        res.data.roomTypeList.forEach(item=>{
+                            this.list.push(item.roomTypeName)
+                        })
+                        this.list=this.list.map((roomType, index) => String.fromCharCode(65 + index)+":"+roomType);
+                        this.list.forEach(item=>{
+                            console.log(item);
+                            let [code, type] = item.split(":");
+                            // // console.log(code);
+                            this.roomTypeName.push(type)
+                            this.roomTypeNameId.push(code)
+                            // console.log(type);
+                        })
+                        console.log(this.roomTypeName);
+                        console.log(this.roomTypeNameId);
+                        console.log(this.list);
+                    })
+        },
+        //radio的切換
+        handleRadioChange(){
+            this.selectedValue=this.radioChange.split(":")[0]
+            console.log(this.selectedValue);
+        },
+        createRoomType(){
+            axios({
+            url:'http://localhost:8080/roomtype/createroomtype',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },  
+            params:{
+                roomTypeName:this.createRoomTypeName
+            },
+            data:{
+            },
+            }).then(res=>{
+                if(res.data.rtnCode==200){
+
+                    console.log(res.data);
+                    swal("成功", "新增房型成功", "success");
+                    return
+                }
             })
         },
         test(){
@@ -379,6 +443,9 @@ export default{
                     <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal">新增房間
                     </button>
+                    <button type="button" data-bs-toggle="modal" 
+                        data-bs-target="#roomTypeModal">新增房型
+                    </button>
                     <button type="button" @click="simpleOpen()">小資雙人房</button>
                     <button type="button" @click="doubleOpen()">舒適雙人房</button>
                     <button type="button" @click="familyOpen()">豪華家庭房</button>
@@ -576,6 +643,29 @@ export default{
             </div>
         </div>
     </div>
+<!-- 新增房型modal -->
+    <div class="modal fade" id="roomTypeModal" tabindex="-1" aria-labelledby="roomTypeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="roomTypeModalLabel">新增房型</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">房型名稱 :</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="this.createRoomTypeName" placeholder="請輸入房型名稱">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"  @click="createRoomType()">確認新增</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- 新增房間modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -586,19 +676,18 @@ export default{
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">類型 :</label>
-                            <br>
-                            <input type="radio" value="小資雙人房" class="roomtype" name="roomtype">
-                            <label for="">A : 小資雙人房</label>
-                            <input type="radio" value="舒適雙人房" class="roomtype" name="roomtype">
-                            <label for="">B : 舒適雙人房</label>
-                            <input type="radio" value="豪華家庭房" class="roomtype" name="roomtype">
-                            <label for="">C : 豪華家庭房</label>
+                        <label for="recipient-name" class="col-form-label">類型 :</label>
+                        <br>
+                        <div class="flex-container">
+                        <div class="mb-3 radios" v-for="(item,index) in this.list" @change="handleRadioChange" :key="index">
+                            <input type="radio" :value="item" v-model="this.radioChange" class="roomtype" name="roomtype">
+                            <label for="">{{ item }}</label>
                         </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">編號 :</label>
-                            <input type="text" class="form-control" id="recipient-name" v-model="roomId" placeholder="請從編號01依序新增">
+                    </div>
+                    <label for="recipient-name" class="col-form-label">編號 :</label>
+                        <div class="mb-3 roomId">
+                            <input type="text" class="form-control idType" id="recipient-name" v-model="this.selectedValue" readonly>
+                            <input type="text" class="form-control" id="recipient-name" v-model="this.roomId" placeholder="請從編號01依序新增">
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">說明 :</label>
@@ -646,11 +735,6 @@ export default{
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">圖片 :</label>
                             <input type="file" class="form-control" id="inputfile" @change="handleFileChange" multiple>
-                        </div>
-                        <div class="mb-3" v-for=" item in this.arr">
-                            <img :src="'public/room/SP/'+item" alt="">
-                            <img :src="'public/room/D/'+item" alt="">
-                            <img :src="'public/room/F/'+item" alt="">
                         </div>
                     </form>
                 </div>

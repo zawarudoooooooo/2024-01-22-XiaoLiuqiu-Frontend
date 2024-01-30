@@ -234,16 +234,9 @@ export default {
                 })
                 console.log(this.roomTypeName);
                 console.log(this.roomTypeId);
-                // this.roomTypeName=this.list.splice(":")
-                // console.log(this.roomTypeName);
-                // this.list.forEach(item=>{
-                //     // console.log(item);
-                //     item.map((roomType,index)=>String.fromCharCode(65+index)+":"+roomType)
                 // })
                 // this.list=res.data.roomTypeList
                 console.log(this.list);
-                // this.codeArr = this.list.map((roomType, index) => String.fromCharCode(65 + index)+":"+roomType);
-            // console.log(this.codeArr);
             })
   },
   handleRadioChange(){
