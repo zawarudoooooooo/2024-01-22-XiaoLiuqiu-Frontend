@@ -2,7 +2,6 @@
 import Footer from '../../components/Footer.vue';
 import axios from 'axios';
 import swal from 'sweetalert';
-import * as imageConversion from 'image-conversion';
 export default{
     data(){
         return{
@@ -147,7 +146,6 @@ export default{
             console.log(res.data)
             
             })
-        
         },
 //變更密碼
         updatePwd(){
