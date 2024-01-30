@@ -221,9 +221,9 @@ export default{
             <div :id="'carouselExample' + index" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner" style="width: 20vw;height: 28vh;border-radius: 5px;">
                     <div v-for=" (img,imgIndex) in item.roomImg" :key="imgIndex" :class="{ 'carousel-item': true, 'active': imgIndex === 0 }">
-                        <img v-if="item.roomName=='小資雙人房'" :src="'public/room/SP/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
-                        <img v-if="item.roomName=='舒適雙人房'" :src="'public/room/D/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
-                        <img v-if="item.roomName=='豪華家庭房'" :src="'public/room/F/'+img" alt="" style="width: 20vw;height: 28vh;border-radius: 5px;">
+                        <img v-if="item.roomName=='小資雙人房'" :src="'public/room/SP/'+img" alt="">
+                        <img v-if="item.roomName=='舒適雙人房'" :src="'public/room/D/'+img" alt="">
+                        <img v-if="item.roomName=='豪華家庭房'" :src="'public/room/F/'+img" alt="">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample' + index" data-bs-slide="prev">
@@ -340,36 +340,25 @@ export default{
             position: relative;
             background-color: white;
             margin-bottom: 5vmin;
-            #carouselExample{
+            .carousel-inner{
                 width: 20vw;
-                height: 27vh;
                 border-radius: 5px;
-                .carousel-inner{
+                img{
                     width: 20vw;
+                    height: 27vh;
                     border-radius: 5px;
-                    .carousel-item{
-                        width: 20vw;
-                        border-radius: 5px;
-                        img{
-                            width: 20vw;
-                            height: 27vh;
-                            border-radius: 5px;
-                            transition: all linear 0.3s;
-                            &:hover{
-                                opacity: 0.7;
-                            }
-                            &:active{
-                                opacity: 1.0;
-                            }
-                        }
+                    transition: all linear 0.3s;
+                    &:hover{
+                        opacity: 0.7;
+                    }
+                    &:active{
+                        opacity: 1.0;
                     }
                 }
-                .carousel-control-prev-icon{
-                    width: 1.5rem;
-                }
-                .carousel-control-next-icon{
-                    width: 1.5rem;
-                }
+            }
+            .carousel-control-next, .carousel-control-prev{
+                width: 4vmin;
+                padding: 0.5vmin;
             }
             .text{
                 width: 33.5vw;
@@ -384,6 +373,10 @@ export default{
                     display: flex;
                     align-content: center;
                     justify-content: space-around;
+                    span{
+                        color: #4d4327;
+                        font-size: 24pt;
+                    }
                     p{
                         color: #4d4327;
                         font-size: 24pt;
@@ -439,7 +432,6 @@ export default{
                 scale: -1;
             }
         }
-        
     }
     @media(max-width:1200px){
         .content{
