@@ -433,7 +433,7 @@ export default{
             </div>
             <h1 v-if="this.active === false">⚠️該帳號為非驗證狀態，驗證後才可閱覽⛔</h1>
             <div class="roominfo" v-if="this.active === true">
-                <div class="buttonArea">
+                <div class="buttonArea" v-if="hasDepartment() === true && hasAccess() === true" style="width: 50vw;">
                     <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal" v-if="hasDepartment() === true && hasAccess() === true">新增房間
                     </button>
@@ -444,6 +444,12 @@ export default{
                     <button type="button" @click="doubleOpen()">舒適雙人房</button>
                     <button type="button" @click="familyOpen()">豪華家庭房</button>
                 </div>
+                <div class="buttonArea" v-else>
+                    <button type="button" @click="simpleOpen()">小資雙人房</button>
+                    <button type="button" @click="doubleOpen()">舒適雙人房</button>
+                    <button type="button" @click="familyOpen()">豪華家庭房</button>
+                </div>
+
 <!-- 小資雙人房 -->
                 <div class="simple" v-if="simple" >
                     <div class="info">
@@ -493,6 +499,7 @@ export default{
                                     <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
                                 </span>
                             </div>
+                            <br>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
                             </div>
@@ -555,6 +562,7 @@ export default{
                                     <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
                                 </span>
                             </div>
+                            <br>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
                             </div>
@@ -618,6 +626,7 @@ export default{
                                     <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
                                 </span>
                             </div>
+                            <br>
                             <div class="price">
                                 <p>價格 : ${{ item.roomPrice}}</p>
                             </div>
@@ -675,7 +684,8 @@ export default{
                         <div class="flex-container">
                         <div class="mb-3 radios" v-for="(item,index) in this.list" @change="handleRadioChange" :key="index">
                             <input type="radio" :value="item" v-model="this.radioChange" class="roomtype" name="roomtype">
-                            <label for="">{{ item }}</label>
+                            <!-- <label for="" class="roomlabel">{{ item }}</label> -->
+                            <span style="margin-left: 1vmin;">{{ item }}</span>
                         </div>
                     </div>
                     <label for="recipient-name" class="col-form-label">編號 :</label>
@@ -686,25 +696,40 @@ export default{
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">說明 :</label>
                             <br>
-                            <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.introduce">
-                            <label for="uno">獨立衛浴</label>
-                            <input type="checkbox" id="uno2" value="空調" v-model="this.introduce">
-                            <label for="uno">空調 </label>
-                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.introduce">
-                            <label for="uno">平面電視 </label>
-                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.introduce">
+                            <input type="checkbox" id="uno1" value="空調" v-model="this.introduce">
+                            <label for="uno">空調</label>
+                            <input type="checkbox" id="uno2" value="平面電視" v-model="this.introduce">
+                            <label for="uno">平面電視</label>
+                            <input type="checkbox" id="uno3" value="Wifi" v-model="this.introduce">
                             <label for="uno">Wifi</label>
-                            <input type="checkbox" id="uno4" value="沙發" v-model="this.introduce">
-                            <label for="uno">沙發</label>
-                            <br>
-                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.introduce">
+                            <input type="checkbox" id="uno4" value="浴缸" v-model="this.introduce">
                             <label for="uno">浴缸</label>
-                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.introduce">
-                            <label for="uno">遊戲機</label>
-                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.introduce">
+                            <input type="checkbox" id="uno5" value="床頭插座" v-model="this.introduce">
                             <label for="uno">床頭插座</label>
-                            <input type="checkbox" id="uno8" value="景觀" v-model="this.introduce">
+                            <input type="checkbox" id="uno6" value="景觀" v-model="this.introduce">
                             <label for="uno">景觀</label>
+                            <br>
+                            <input type="checkbox" id="uno7" value="酒水" v-model="this.introduce">
+                            <label for="uno">酒水</label>
+                            <input type="checkbox" id="uno8" value="免治馬桶" v-model="this.introduce">
+                            <label for="uno">免治馬桶</label>
+                            <input type="checkbox" id="uno9" value="香氛噴物" v-model="this.introduce">
+                            <label for="uno">香氛噴物</label>
+                            <input type="checkbox" id="uno10" value="沙發" v-model="this.introduce">
+                            <label for="uno">沙發</label>
+                            <input type="checkbox" id="uno11" value="孩童專區" v-model="this.introduce">
+                            <label for="uno">孩童專區</label>
+                            <br>
+                            <input type="checkbox" id="uno12" value="遊戲機" v-model="this.introduce">
+                            <label for="uno">遊戲機</label>
+                            <input type="checkbox" id="uno13" value="咖啡機" v-model="this.introduce">
+                            <label for="uno">咖啡機</label>
+                            <input type="checkbox" id="uno14" value="體重機" v-model="this.introduce">
+                            <label for="uno">體重機</label>
+                            <input type="checkbox" id="uno15" value="獨立衛浴" v-model="this.introduce">
+                            <label for="uno">獨立衛浴</label>
+                            <input type="checkbox" id="uno16" value="地毯" v-model="this.introduce">
+                            <label for="uno">地毯</label>
                             <!-- <button type="button" @click="test()">測試</button> -->
                         </div>
                         <div class="mb-3">
@@ -742,23 +767,40 @@ export default{
                             <label for="recipient-name" class="col-form-label">更改說明 :</label>
                             <br>
                             <!-- <input type="text" name="" id="" v-model="this.upDateIntroduce"> -->
-                            <input type="checkbox" id="uno1" value="獨立衛浴" v-model="this.upDateIntroduce">
-                            <label for="uno">獨立衛浴</label>
-                            <input type="checkbox" id="uno2" value="空調" v-model="this.upDateIntroduce">
-                            <label for="uno">空調 </label>
-                            <input type="checkbox" id="uno3" value="平面電視 " v-model="this.upDateIntroduce">
-                            <label for="uno">平面電視 </label>
-                            <input type="checkbox" id="uno4" value="Wifi" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno1" value="空調" v-model="this.introduce">
+                            <label for="uno">空調</label>
+                            <input type="checkbox" id="uno2" value="平面電視" v-model="this.introduce">
+                            <label for="uno">平面電視</label>
+                            <input type="checkbox" id="uno3" value="Wifi" v-model="this.introduce">
                             <label for="uno">Wifi</label>
-                            <br>
-                            <input type="checkbox" id="uno5" value="浴缸" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno4" value="浴缸" v-model="this.introduce">
                             <label for="uno">浴缸</label>
-                            <input type="checkbox" id="uno6" value="遊戲機" v-model="this.upDateIntroduce">
-                            <label for="uno">遊戲機</label>
-                            <input type="checkbox" id="uno7" value="床頭插座" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno5" value="床頭插座" v-model="this.introduce">
                             <label for="uno">床頭插座</label>
-                            <input type="checkbox" id="uno8" value="景觀" v-model="this.upDateIntroduce">
+                            <input type="checkbox" id="uno6" value="景觀" v-model="this.introduce">
                             <label for="uno">景觀</label>
+                            <br>
+                            <input type="checkbox" id="uno7" value="酒水" v-model="this.introduce">
+                            <label for="uno">酒水</label>
+                            <input type="checkbox" id="uno8" value="免治馬桶" v-model="this.introduce">
+                            <label for="uno">免治馬桶</label>
+                            <input type="checkbox" id="uno9" value="香氛噴物" v-model="this.introduce">
+                            <label for="uno">香氛噴物</label>
+                            <input type="checkbox" id="uno10" value="沙發" v-model="this.introduce">
+                            <label for="uno">沙發</label>
+                            <input type="checkbox" id="uno11" value="孩童專區" v-model="this.introduce">
+                            <label for="uno">孩童專區</label>
+                            <br>
+                            <input type="checkbox" id="uno12" value="遊戲機" v-model="this.introduce">
+                            <label for="uno">遊戲機</label>
+                            <input type="checkbox" id="uno13" value="咖啡機" v-model="this.introduce">
+                            <label for="uno">咖啡機</label>
+                            <input type="checkbox" id="uno14" value="體重機" v-model="this.introduce">
+                            <label for="uno">體重機</label>
+                            <input type="checkbox" id="uno15" value="獨立衛浴" v-model="this.introduce">
+                            <label for="uno">獨立衛浴</label>
+                            <input type="checkbox" id="uno16" value="地毯" v-model="this.introduce">
+                            <label for="uno">地毯</label>
                             <!-- <button type="button" @click="test()">測試</button> -->
                         </div>
                         <div class="mb-3">
@@ -792,6 +834,9 @@ export default{
             font-weight: bold;
             color: #82AAE3;
             text-align: center;
+            i{
+                margin-left: 2vmin;
+            }
         }
         .list{
             display: flex;
@@ -805,7 +850,7 @@ export default{
             }
             .roominfo{
                 .buttonArea{
-                    width: 50vw;
+                    width: 30vw;
                     display: flex;
                     justify-content: space-between;
                     position: absolute;
@@ -816,7 +861,7 @@ export default{
                         height: 5vh;
                         border: none;
                         border-radius: 5px;
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 14pt;
                         box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(2, 40, 63, 0.2);
                         &:hover {
@@ -831,7 +876,7 @@ export default{
                 }
                 .info{
                     p{
-                        color: #797A7E;
+                        color: #4d4327;
                         font-size: 24pt;
                     }
                     i{
@@ -873,25 +918,25 @@ export default{
                             align-content: center;
                             justify-content: space-between;
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 24pt;
                                 margin: 0;
                             }
                         }
                         .description{
-                            p{
-                                color: #797A7E;
-                                font-size: 14pt;
+                            span{
+                                color: #4d4327;
+                                font-size: 15pt;
                                 width: 35vw;
                             }
                             i{
                                 margin-right: 1vmin;
-                                margin-left: 1vmin;
+                                margin-left: 2vmin;
                             }
                         }
                         .price{
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 16pt;
                                 width: 35vw;
                             }
@@ -900,12 +945,12 @@ export default{
                             width: 30vw;
                             display: flex;
                             p{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 16pt;
                                 width: 35vw;
                             }
                             i{
-                                color: #797A7E;
+                                color: #4d4327;
                                 font-size: 25pt;
                             }
                         }
@@ -918,11 +963,11 @@ export default{
                             bottom: 8%;
                             i{
                                 font-size: 14pt;
-                                color: #797A7E;
+                                color: #4d4327;
                             }
                             p{
                                 font-size: 15pt;
-                                color: #797A7E;
+                                color: #4d4327;
                                 margin: 0;
                             }
                         }
@@ -963,5 +1008,8 @@ export default{
             outline: none;
             padding-left: 1vmin;
         }
+    }
+    .roomtype{
+        margin-left: 2vmin;
     }
 </style>
