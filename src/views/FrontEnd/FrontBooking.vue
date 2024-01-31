@@ -32,7 +32,10 @@ export default{
             roomId:"",
             arr:[],
             exArr:[],
-            imgArr:""
+            imgArr:"",
+            //房間人數以及摩托車數量
+            roomNum:"請選擇人數",
+            motorcycle:"請選擇台數",
         }
     },
     mounted() {
@@ -78,9 +81,6 @@ export default{
         setInterval(() => {
             this.exxtraClick();
         }, 100); 
-        // setInterval(() => {
-        //     this.test3()
-        // }, 1000); 
 
     },
     props:[
@@ -134,20 +134,14 @@ export default{
             this.$router.push('/')
         },
         exxtraClick(){
-            // this.total=0
-            // // console.log(this.order);
-            // this.order.forEach(element => {
-            // this.total+=element.roomPrice
-            // });
+            
             let start=new Date(this.startDate)
             let end=new Date(this.endDate)
             let timeDifference=end-start;
             let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
             this.order.forEach(order=>{
                 this.Price=0
-                // console.log(order.roomName);
                 let roomName=order.roomName.slice(-3)
-                // console.log(roomName);
                 if(this.exxtra.length!==0){
                     if(roomName==="雙人房"){
                         this.exxtra.forEach(item=>{
@@ -156,29 +150,33 @@ export default{
                             let price = parseFloat(breakfast1.split("/")[0]);
                             if(breakfast==='摩托車'){
                                 if(this.endDate!=''){
+                                    if(this.motorcycle!="請選擇台數"){
+                                    this.Price+=(price*days)*this.motorcycle
+                                    return
+                                    }
                                     this.Price+=(price*days)
                                 }
-                                this.Price+=price
+                                if(this.motorcycle=="請選擇台數"){
+                                    this.Price+=price
+                                    return
+                                }
+                                this.Price+=(price*this.motorcycle)
 
                                 return
                             }
                             if(breakfast==='早餐'){
                                 if(this.endDate!=''){
-                                    // console.log(13);
-                                    // console.log(days);
-                                    this.Price+=(price*days)*2
-                                    
-                                    // console.log(this.Pric+(price*2));
-                                    
-                                    // console.log(this.Price*days+(price*2));
+                                    if(this.roomNum!="請選擇人數"){
+                                        this.Price+=(price*this.roomNum)*days
+                                    }
                                     return
                                 }
                             }
-                            this.Price+=(price*2)
-                                // console.log(price*2);
-
-                            
-                            // console.log(item);
+                            if(this.roomNum=="請選擇人數"){
+                                this.Price+=(price*2)
+                                return
+                            }
+                            this.Price+=(price*this.roomNum)
                         })
                     }
                     if(roomName==="家庭房"){
@@ -187,27 +185,101 @@ export default{
                             let breakfast1 = item.split("(+")[1];
                             let price = parseFloat(breakfast1.split("/")[0]);
                             if(breakfast==='摩托車'){
-                                this.Price+=(price*2)
+                                if(this.endDate!=''){
+                                    if(this.motorcycle!="請選擇台數"){
+                                    this.Price+=(price*days)*this.motorcycle
+                                    return
+                                    }
+                                    this.Price+=(price*days)
+                                }
+                                if(this.motorcycle=="請選擇台數"){
+                                    this.Price+=price
+                                    return
+                                }
+                                this.Price+=(price*this.motorcycle)
+
                                 return
                             }
-                                // console.log(price*2);
+                            if(breakfast==='早餐'){
+                                if(this.endDate!=''){
+                                    if(this.roomNum!="請選擇人數"){
+                                        this.Price+=(price*this.roomNum)*days
+                                    }
+                                    return
+                                }
+                            }
+                            if(this.roomNum=="請選擇人數"){
                                 this.Price+=(price*4)
-
-                            // console.log(price);
-                            // console.log(item);
+                                return
+                            }
+                                this.Price+=(price*this.roomNum)
                         })
                     }
                     return
                 }
-                // console.log(this.total);
             })
             this.total=this.total1
             if(this.endDate!=''){
                 this.total = (this.total*days) +this.Price
-                // console.log(this.Price);
                 return
             }
             this.total += this.Price
+        },
+        testExxtraClick(){
+            console.log(this.motorcycle);
+            // let start=new Date(this.startDate)
+            // let end=new Date(this.endDate)
+            // let timeDifference=end-start;
+            // let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            // this.order.forEach(order=>{
+            //     this.Price=0
+            //     let roomName=order.roomName.slice(-3)
+            //     if(this.exxtra.length!==0){
+            //         if(roomName==="雙人房"){
+            //             this.exxtra.forEach(item=>{
+            //                 let breakfast = item.split("(+")[0];
+            //                 let breakfast1 = item.split("(+")[1];
+            //                 let price = parseFloat(breakfast1.split("/")[0]);
+            //                 if(breakfast==='摩托車'){
+            //                     if(this.endDate!=''){
+            //                         this.Price+=(price*days)
+            //                     }
+            //                     this.Price+=price
+
+            //                     return
+            //                 }
+            //                 if(breakfast==='早餐'){
+            //                     if(this.endDate!=''){
+            //                         if(this.roomNum!="請選擇人數"){
+            //                             this.Price+=(price*days)*this.roomNum
+            //                         }
+            //                         return
+            //                     }
+            //                 }
+            //                 this.Price+=(price*this.roomNum)
+            //             })
+            //         }
+            //         if(roomName==="家庭房"){
+            //             this.exxtra.forEach(item=>{
+            //                 let breakfast = item.split("(+")[0];
+            //                 let breakfast1 = item.split("(+")[1];
+            //                 let price = parseFloat(breakfast1.split("/")[0]);
+            //                 if(breakfast==='摩托車'){
+            //                     this.Price+=(price*2)
+            //                     return
+            //                 }
+            //                     this.Price+=(price*4)
+            //             })
+            //         }
+            //         return
+            //     }
+            // })
+            // this.total=this.total1
+            // if(this.endDate!=''){
+            //     this.total = (this.total*days) +this.Price
+            //     return
+            // }
+            // this.total += this.Price
             // console.log(this.total);
         },
         Click(){
@@ -308,7 +380,16 @@ export default{
                 </div>
                 <hr>
                 <div class="extra">
-                    <p>加購項目</p>
+                    <div class="person">
+                        <p>加購項目</p>
+                        <select v-model="this.roomNum">
+                            <option value="請選擇人數">請選擇人數</option>
+                            <option value="1">1位</option>
+                            <option value="2">2位</option>
+                            <option value="3">3位</option>
+                            <option value="4">4位</option>
+                    </select>
+                    </div>
                     <input type="checkbox" id="uno" value="早餐(+200/人)" v-model="exxtra">
                     <label for="uno">早餐(+200/人)</label>
                     <input type="checkbox" id="dos" value="來回船票(+400/全票)" v-model="exxtra">
@@ -316,9 +397,16 @@ export default{
                     <br>
                     <input type="checkbox" id="cuatro" value="摩托車(+300/天)" v-model="exxtra">
                     <label for="cuatro">摩托車(+300/天)</label>
+                    <select v-model="this.motorcycle">
+                        <option value="請選擇台數">請選擇台數</option>
+                        <option value="1">1台</option>
+                        <option value="2">2台</option>
+                        <option value="3">3台</option>
+                        <option value="4">4台</option>
+                    </select>
+                    <br>
                     <input type="checkbox" id="cinco" value="三大風景區門票(+100/人)" v-model="exxtra">
                     <label for="cinco">三大風景區門票(+100/人)</label>
-                    <br>
                     <input type="checkbox" id="ocho" value="浮潛(+400/人)" v-model="exxtra">
                     <label for="ocho">浮潛(+400/人)</label>
                     <br>
@@ -347,6 +435,7 @@ export default{
             </div>
             <div class="buttonArea">
                 <button type="button" @click="cancle()">取消</button>
+                <!-- <button type="button" @click="testExxtraClick()">測試</button> -->
                 <button type="button" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal" @click="exxtraClick()">預覽
                 </button>
@@ -454,7 +543,7 @@ export default{
             justify-content: space-around;
             border-radius: 10px;
             position: relative;
-            margin-top: 3vmin;
+            margin-top: 2vmin;
             .carousel-inner{
                 width: 23vw;
                 height: 33vh;
@@ -502,11 +591,26 @@ export default{
                 }
                 .extra{
                     width: 36vw;
-                    p{
-                        color: #4d4327;
-                        font-size: 16pt;
-                        font-weight: bold;
-                        margin-top: 1vmin;
+                    .person{
+                        width: 35.5vw;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 2vmin;
+                        margin-bottom: 1.5vmin;
+                        p{
+                            color: #4d4327;
+                            font-size: 18pt;
+                            font-weight: bold;
+                            margin: 0;
+                        }
+                        select{
+                            border-radius: 5px;
+                            width: 8vw;
+                            height: 4vh;
+                            text-align: center;
+                            outline: none;
+                        }
                     }
                     label{
                         color: #4d4327;
@@ -516,6 +620,14 @@ export default{
                     }
                     input{
                         margin-right: 1vmin;
+                    }
+                    select{
+                        border-radius: 5px;
+                        width: 8vw;
+                        height: 4vh;
+                        text-align: center;
+                        outline: none;
+                        margin-left: 3vmin;
                     }
                 }
             }

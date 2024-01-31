@@ -76,7 +76,7 @@ export default{
                 <li
                     data-bs-toggle="modal" 
                     data-bs-target="#exampleModalCashless">
-                    非實體支付享9折優惠
+                    非實體支付享10%回饋
                 </li>
                 <li
                     data-bs-toggle="modal" 
@@ -171,7 +171,7 @@ export default{
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">9折優惠</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">超值回饋</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -179,7 +179,7 @@ export default{
                         <div class="mb-3">
                             <ul>
                                 <li>
-                                    非實體支付享9折優惠
+                                    非實體支付享10%回饋
                                 </li>
                                 <li>
                                     減少現金交易

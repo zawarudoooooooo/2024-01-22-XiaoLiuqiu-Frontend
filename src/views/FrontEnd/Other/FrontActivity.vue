@@ -295,4 +295,206 @@ export default{
             }
         }
     }
+    @media(max-width:1200px){
+        .content{
+            width: 85vw;
+            height: 133vh;
+            .wrap{
+                width: 80vw;
+                .list{
+                    .show{
+                        .item{
+                            width: 73vw;
+                            height: 23vh;
+                            margin-bottom: 3vmin;
+                            .img{
+                                img{
+                                    height: 15vh;
+                                }
+                            }
+                            .text{
+                                height: 19vh;
+                                .info{
+                                    .date{
+                                        height: 3.5vh;
+                                        &:before{
+                                            height: 3vh;
+                                            top: 10%;
+                                            right: -5px;
+                                        }
+                                        .day{
+                                            font-size: 20pt;
+                                        }
+                                        .ym{
+                                            font-size: 11pt;
+                                        }
+                                    }
+                                }
+                                .detail{
+                                    .time{
+                                        height: 3vh;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:992px){
+        .content{
+            height: 128vh;
+            .wrap{
+                .list{
+                    .show{
+                        .item{
+                            height: 22vh;
+                            .img{
+                                img{
+                                    height: 13vh;
+                                }
+                            }
+                            .text{
+                                height: 18vh;
+                                .info{
+                                    .date{
+                                        .day{
+                                            font-size: 17pt;
+                                        }
+                                        .ym{
+                                            font-size: 10pt;
+                                        }
+                                    }
+                                }
+                                hr{
+                                    margin-bottom: 1vmin;
+                                }
+                                .detail{
+                                    .time{
+                                        height: 2.5vh;
+                                    }
+                                    p{
+                                        font-size: 11pt;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:576px){
+        .content{
+            height: 96vh;
+            .title{
+                p{
+                    font-size: 24pt;
+                    margin: 0;
+                }
+            }
+            .wrap{
+                .list{
+                    padding-left: 0;
+                    .show{
+                        .item{
+                            width: 80vw;
+                            height: 16vh;
+                            .img{
+                                img{
+                                    height: 10vh;
+                                }
+                            }
+                            .text{
+                                height: 13vh;
+                                .info{
+                                    .date{
+                                        height: 2vh;
+                                        margin-bottom: 0.5vmin;
+                                        &:before{
+                                            height: 2vh;
+                                            top: 6%;
+                                            right: -3px;
+                                        }
+                                        .day{
+                                            font-size: 10pt;
+                                        }
+                                        .ym{
+                                            font-size: 5pt;
+                                        }
+                                    }
+                                    h3{
+                                        font-size: 12pt;
+                                        margin-bottom: 0.5vmin;
+                                        margin-left: 1.5vmin;
+                                    }
+                                }
+                                .detail{
+                                    .time{
+                                        height: 3vh;
+                                        &:before{
+                                            top: 14.5%;
+                                        }
+                                        span{
+                                            font-size: 7pt;
+                                        }
+                                    }
+                                    p{
+                                        font-size: 6pt;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width:414px){
+        .content{
+            height: 92vh;
+            .title{
+                p{
+                    font-size: 20pt;
+                }
+            }
+            .wrap{
+                .list{
+                    .show{
+                        .item{
+                            height: 15vh;
+                            .text{
+                                .info{
+                                    .date{
+                                        height: 1.5vh;
+                                        .day{
+                                            font-size: 7pt;
+                                        }
+                                        .ym{
+                                            font-size: 4pt;
+                                        }
+                                    }
+                                    h3{
+                                        font-size: 10pt;
+                                    }
+                                }
+                                .detail{
+                                    .time{
+                                        &:before{
+                                            top: 17.5%;
+                                        }
+                                    }
+                                    p{
+                                        font-size: 5pt;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 </style>
