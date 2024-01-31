@@ -308,7 +308,16 @@ export default{
                 </div>
                 <hr>
                 <div class="extra">
-                    <p>加購項目</p>
+                    <div class="person">
+                        <p>加購項目</p>
+                        <select>
+                            <option>請選擇人數</option>
+                            <option>1位</option>
+                            <option>2位</option>
+                            <option>3位</option>
+                            <option>4位</option>
+                    </select>
+                    </div>
                     <input type="checkbox" id="uno" value="早餐(+200/人)" v-model="exxtra">
                     <label for="uno">早餐(+200/人)</label>
                     <input type="checkbox" id="dos" value="來回船票(+400/全票)" v-model="exxtra">
@@ -316,9 +325,16 @@ export default{
                     <br>
                     <input type="checkbox" id="cuatro" value="摩托車(+300/天)" v-model="exxtra">
                     <label for="cuatro">摩托車(+300/天)</label>
+                    <select>
+                        <option>請選擇台數</option>
+                        <option>1台</option>
+                        <option>2台</option>
+                        <option>3台</option>
+                        <option>4台</option>
+                    </select>
+                    <br>
                     <input type="checkbox" id="cinco" value="三大風景區門票(+100/人)" v-model="exxtra">
                     <label for="cinco">三大風景區門票(+100/人)</label>
-                    <br>
                     <input type="checkbox" id="ocho" value="浮潛(+400/人)" v-model="exxtra">
                     <label for="ocho">浮潛(+400/人)</label>
                     <br>
@@ -454,7 +470,7 @@ export default{
             justify-content: space-around;
             border-radius: 10px;
             position: relative;
-            margin-top: 3vmin;
+            margin-top: 2vmin;
             .carousel-inner{
                 width: 23vw;
                 height: 33vh;
@@ -502,11 +518,26 @@ export default{
                 }
                 .extra{
                     width: 36vw;
-                    p{
-                        color: #4d4327;
-                        font-size: 16pt;
-                        font-weight: bold;
-                        margin-top: 1vmin;
+                    .person{
+                        width: 35.5vw;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 2vmin;
+                        margin-bottom: 1.5vmin;
+                        p{
+                            color: #4d4327;
+                            font-size: 18pt;
+                            font-weight: bold;
+                            margin: 0;
+                        }
+                        select{
+                            border-radius: 5px;
+                            width: 8vw;
+                            height: 4vh;
+                            text-align: center;
+                            outline: none;
+                        }
                     }
                     label{
                         color: #4d4327;
@@ -516,6 +547,14 @@ export default{
                     }
                     input{
                         margin-right: 1vmin;
+                    }
+                    select{
+                        border-radius: 5px;
+                        width: 8vw;
+                        height: 4vh;
+                        text-align: center;
+                        outline: none;
+                        margin-left: 3vmin;
                     }
                 }
             }
