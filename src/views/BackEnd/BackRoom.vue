@@ -543,7 +543,7 @@ export default{
                             <div class="edit">
                                 <i class="fa-solid fa-paint-roller"></i>
                                 <p data-bs-toggle="modal" 
-                                    data-bs-target="#edit" @click="upDateRoom(index)">編輯
+                                    data-bs-target="#edit" @click="upDateRoom(index)" style="cursor: pointer;">編輯
                                 </p>
                             </div>
                         </div>

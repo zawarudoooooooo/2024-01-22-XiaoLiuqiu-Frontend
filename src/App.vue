@@ -53,6 +53,7 @@ export default{
       font-size: 30pt;
       //color: #82AAE3;
       color: #c2dbfb;
+      cursor: pointer;
       text-shadow: 1.5px 1.5px 1.5px #797A7E;
       &:hover{
         color: #797A7E;
