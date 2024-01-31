@@ -42,8 +42,14 @@ export default {
                 },
             }).then(res => {
                 console.log(res.data)
-                    swal("註冊成功", "請至信箱驗證帳號", "success");
-                    this.$router.push('/FrontLogin')
+                    if(res.data.message === "Email existed"){
+                        swal("此信箱已有人使用", "請使用其他信箱", "error")
+                    }else if(res.data.message === "Account existed!!"){
+                        swal("該帳號已存在", "請輸入不同帳號名稱", "error")
+                    }else{
+                        swal("註冊成功", "請至信箱驗證帳號", "success");
+                        this.$router.push('/FrontLogin')
+                    }
                 
             }).catch(error => {
                 if (error.response) {
