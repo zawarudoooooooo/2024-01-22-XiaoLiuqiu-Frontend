@@ -190,13 +190,15 @@ export default{
             })
         },
         test(){
-            console.log(this.upArr);
-            if(this.upArr.length==0){
-                this.upArr=this.upImgtest
-                console.log(this.upArr);
-            }else{
-                console.log("有圖片");
-            }
+            // this.upRoomId
+            //  JSON.stringify(this.upDateIntroduce)
+            // this.upRoomName
+            //  this.upDateRoomPrice
+            // this.editstatus
+            // JSON.stringify(this.upArr) 
+            // console.log(this.editstatus);
+            
+            // console.log(this.roomSearch);
         },
         upDateRoom(index){
                 this.upRoomId=""
@@ -219,7 +221,7 @@ export default{
             // console.log(this.upRoomId);
             // console.log(this.upRoomName);
             // console.log(this.upDateRoomPrice);
-            console.log(this.editImg);
+            // console.log(this.editImg);
             // console.log(this.editstatus);
             // console.log(this.roomSearch);
             // console.log(this.upArr);
@@ -248,6 +250,14 @@ export default{
             console.log(res.data);
             if(res.data.rtnCode==200){
                 swal("成功", "已更新房間", "success");
+                this.roomSearch.forEach((item,index)=>{
+                    if(item.roomId==this.upRoomId){
+                        item.roomIntroduce=this.upDateIntroduce
+                        item.roomPrice=this.upDateRoomPrice
+                        item.open=this.editstatus
+                        console.log(item);
+                    }
+                })
             }
             })
         },
@@ -839,7 +849,7 @@ export default{
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-light"  @click="test()">測試</button>
+                    <!-- <button type="button" class="btn btn-light"  @click="test()">測試</button> -->
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal" @click="upDate()">更改</button>
                 </div>
             </div>
