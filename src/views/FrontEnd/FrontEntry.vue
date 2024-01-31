@@ -224,6 +224,9 @@ export default{
                                 <div class="mb-3">
                                     <ul>
                                         <li>
+                                            所有房型，均附早餐
+                                        </li>
+                                        <li>
                                             低糖飲食
                                         </li>
                                         <li>

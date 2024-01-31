@@ -390,8 +390,8 @@ export default{
                             <option value="4">4位</option>
                     </select>
                     </div>
-                    <input type="checkbox" id="uno" value="早餐(+200/人)" v-model="exxtra">
-                    <label for="uno">早餐(+200/人)</label>
+                    <!-- <input type="checkbox" id="uno" value="早餐(+200/人)" v-model="exxtra">
+                    <label for="uno">早餐(+200/人)</label> -->
                     <input type="checkbox" id="dos" value="來回船票(+400/全票)" v-model="exxtra">
                     <label for="dos">來回船票(+400/全票)</label>
                     <br>
