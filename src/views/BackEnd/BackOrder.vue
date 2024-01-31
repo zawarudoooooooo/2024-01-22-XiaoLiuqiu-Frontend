@@ -179,7 +179,7 @@ export default {
                 <backSideBar />
             </div>
             
-        <h1 v-if="this.active === false">該帳號為非驗證狀態，驗證後才可閱覽</h1>
+        <h1 v-if="this.active === false">⚠️該帳號為非驗證狀態，驗證後才可閱覽⛔</h1>
             <table v-if="this.active === true">
                 <thead>
                 <tr>
@@ -265,6 +265,7 @@ export default {
         .list{
             display: flex;
             justify-content: space-between;
+            position: relative;
             table{
                 width: 70vw;
                 height: 13vh;
@@ -293,6 +294,12 @@ export default {
                     }
                 }
             }
+        }
+        h1{
+            color: #e76d87;
+            position: absolute;
+            right: 15%;
+            top: 35%;
         }
     .modal-body{
         .mb-3{

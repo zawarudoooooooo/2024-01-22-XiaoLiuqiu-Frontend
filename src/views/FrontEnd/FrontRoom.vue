@@ -244,16 +244,22 @@ export default{
                 <hr>
                 <div class="description" >
                     <span v-for="introduce in item.roomIntroduce">
-                        <!-- {{introduce}} -->
-                            <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
-                            <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake" ></i>空調</span>
-                            <span v-if="introduce=='平面電視 '"> <i class="fa-solid fa-tv" ></i> 平面電視</span>
-                            <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi" ></i>Wifi</span>
-                            <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath" ></i>浴缸</span>
-                            <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad" ></i>遊戲機</span>
-                            <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
-                            <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
-                        <!-- {{ introduce }} , -->
+                        <span v-if="introduce=='空調'"><i class="fa-solid fa-snowflake"></i>空調</span>
+                        <span v-if="introduce=='平面電視'"><i class="fa-solid fa-tv"></i>平面電視</span>
+                        <span v-if="introduce=='Wifi'"><i class="fa-solid fa-wifi"></i>Wifi</span>
+                        <span v-if="introduce=='浴缸'"><i class="fa-solid fa-bath"></i>浴缸</span>
+                        <span v-if="introduce=='床頭插座'"><i class="fa-solid fa-plug"></i>床頭插座</span>
+                        <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
+                        <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
+                        <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
+                        <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                        <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
+                        <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
+                        <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
+                        <span v-if="introduce=='咖啡機'"><i class="fa-solid fa-mug-hot"></i>咖啡機</span>
+                        <span v-if="introduce=='體重機'"><i class="fa-solid fa-weight-scale"></i>體重機</span>
+                        <span v-if="introduce=='獨立衛浴'"><i class="fa-solid fa-shower"></i>獨立衛浴</span>
+                        <span v-if="introduce=='地毯'"><i class="fa-solid fa-rug"></i>地毯</span>
                     </span>
                 </div>
                 <button type="button" @click="booking(item.roomId)">訂購</button>
@@ -384,13 +390,14 @@ export default{
                     }
                 }
                 .description{
+                    width: 32vw;
+                    margin: auto;
                     span{
                         color: #4d4327;
-                        font-size: 15pt;
-                        width: 35vw;
+                        font-size: 13pt;
                         i{
                             margin-right: 1vmin;
-                            margin-left: 1.5vmin;
+                            margin-left: 1vmin;
                         }
                     }
                 }

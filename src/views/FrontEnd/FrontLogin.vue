@@ -117,8 +117,8 @@ export default {
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">帳號名稱 :</label>
-                                <input type="text" class="form-control" id="recipient-name" v-model="account" placeholder="請輸入您的帳號">
+                                <label for="recipient-name" class="col-form-label">帳號或E-mail :</label>
+                                <input type="text" class="form-control" id="recipient-name" v-model="account" placeholder="請輸入您的帳號或E-mail">
                             </div>
                         </form>
                     </div>
