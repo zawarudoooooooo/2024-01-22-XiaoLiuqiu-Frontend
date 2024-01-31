@@ -73,10 +73,18 @@ export default {
                     account: this.account
                 }
             })
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res.data);
+                if(res.data.message === "Successful!!"){
+                    swal("已寄出通知", "請至信箱查看", "success")
+                }else if(res.data.message === "Account not found!!"){
+                    swal("帳號或信箱錯誤","請再次確認帳號或信箱","error")
+                }
+            })
+            
             .catch(error => console.error(error))
             this.account=""
-            swal("已寄出通知","請至信箱查看","success")
+            
         },
     },
     components: {
