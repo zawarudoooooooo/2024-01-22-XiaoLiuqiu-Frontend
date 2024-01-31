@@ -122,7 +122,7 @@ export default{
                                 <li><RouterLink to="/FrontTraffic" class="dropdown-item"><i class="fa-solid fa-ferry"></i>交通</RouterLink></li>
                                 <li><RouterLink to="/FrontTourist" class="dropdown-item"><i class="fa-solid fa-camera"></i>景點</RouterLink></li>
                                 <li><RouterLink to="/FrontMeal" class="dropdown-item"><i class="fa-solid fa-utensils"></i>美食</RouterLink></li>
-                                <li><RouterLink to="/FrontOther" class="dropdown-item"><i class="fa-regular fa-lightbulb"></i>科普</RouterLink></li>
+                                <li><RouterLink to="/FrontOther" class="dropdown-item"><i class="fa-regular fa-lightbulb"></i>常見問答</RouterLink></li>
                                 <li><RouterLink to="/FrontRecommand" class="dropdown-item"><i class="fa-regular fa-thumbs-up"></i>推薦行程</RouterLink></li>
                             </ul>
                         </li>
