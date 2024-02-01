@@ -94,7 +94,6 @@ export default {
                     swal("錯誤", "尚未完成結單", "error");
                 }
             })
-            
             this.orders = []
         },
         confirmFinished(orderId){

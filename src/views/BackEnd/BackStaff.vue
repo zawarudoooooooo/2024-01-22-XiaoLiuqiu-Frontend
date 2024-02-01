@@ -276,6 +276,10 @@ export default {
             }else{
                 return "櫃台"
             }
+        },
+        updateIdentify(){
+            this.giveAccess = ''
+            this.role = ''
         }
     },
     components:{
@@ -354,7 +358,7 @@ export default {
                             <br>
 
                             <label for="recipient-name" class="col-form-label">部門 :</label>
-                            <select name="department" id="recipient-name" v-model="this.department">
+                            <select name="department" id="recipient-name" v-model="this.department" @change="updateIdentify">
                                 <option value="">請選擇</option>
                                 <option value="HR">人事部</option>
                                 <option value="OPERATIONS">營運部</option>
@@ -365,7 +369,7 @@ export default {
                             <label for="recipient-name" class="col-form-label" style="margin-left: 1.5vmin;">權限 :</label>
                             <select name="access" id="recipient-name" v-model="this.giveAccess">
                                 <option value="">請選擇</option>
-                                <option value="50" :disabled="hr || counter">中階</option>
+                                <option value="50" v-if="!hr && !counter">中階</option>
                                 <option value="0">一般</option>
                             </select>
                             <br>
@@ -373,9 +377,9 @@ export default {
                             <label for="recipient-name" class="col-form-label">職位 :</label>
                             <select name="role" id="recipient-name" v-model="this.role" style="margin: 10px;">
                                 <option value="">請選擇</option>
-                                <option value="OPERATIONS_SUPERVISOR" :disabled="isManager || house">營運主管</option>
-                                <option value="HOUSEKEEPING_SUPERVISOR" :disabled="isManager || os" >房務主管</option>
-                                <option value="EMPLOYEE" :disabled="isEmployee">一般員工</option>
+                                <option value="OPERATIONS_SUPERVISOR" v-if="!isManager && os">營運主管</option>
+                                <option value="HOUSEKEEPING_SUPERVISOR" v-if="!isManager && house" >房務主管</option>
+                                <option value="EMPLOYEE" v-if="!isEmployee">一般員工</option>
                             </select>
                         </div>
                     </form>
