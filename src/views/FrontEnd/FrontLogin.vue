@@ -51,6 +51,8 @@ export default {
                             },100)
                         } 
                     });
+            }else if(res.data.message === "Account is not verified"){
+                swal("尚未驗證", "請於註冊信箱收取驗證信並驗證", "warning")
             }else{
                 swal("錯誤", "請輸入帳號或密碼", "error");
             }
