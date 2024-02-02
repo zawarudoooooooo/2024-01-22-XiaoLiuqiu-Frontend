@@ -523,7 +523,7 @@ export default{
                                     <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
                                     <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
                                     <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
-                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='香氛噴霧'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴霧</span>
                                     <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
                                     <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
                                     <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
@@ -586,7 +586,7 @@ export default{
                                     <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
                                     <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
                                     <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
-                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='香氛噴霧'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴霧</span>
                                     <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
                                     <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
                                     <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
@@ -650,7 +650,7 @@ export default{
                                     <span v-if="introduce=='景觀'"><i class="fa-solid fa-mountain-sun"></i>景觀</span>
                                     <span v-if="introduce=='酒水'"><i class="fa-solid fa-wine-glass"></i>酒水</span>
                                     <span v-if="introduce=='免治馬桶'"><i class="fa-solid fa-toilet"></i>免治馬桶</span>
-                                    <span v-if="introduce=='香氛噴物'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴物</span>
+                                    <span v-if="introduce=='香氛噴霧'"><i class="fa-solid fa-spray-can-sparkles"></i>香氛噴霧</span>
                                     <span v-if="introduce=='沙發'"><i class="fa-solid fa-couch"></i>沙發</span>
                                     <span v-if="introduce=='孩童專區'"><i class="fa-solid fa-children"></i>孩童專區</span>
                                     <span v-if="introduce=='遊戲機'"><i class="fa-solid fa-gamepad"></i>遊戲機</span>
@@ -747,8 +747,8 @@ export default{
                             <label for="uno">酒水</label>
                             <input type="checkbox" id="uno8" value="免治馬桶" v-model="this.introduce">
                             <label for="uno">免治馬桶</label>
-                            <input type="checkbox" id="uno9" value="香氛噴物" v-model="this.introduce">
-                            <label for="uno">香氛噴物</label>
+                            <input type="checkbox" id="uno9" value="香氛噴霧" v-model="this.introduce">
+                            <label for="uno">香氛噴霧</label>
                             <input type="checkbox" id="uno10" value="沙發" v-model="this.introduce">
                             <label for="uno">沙發</label>
                             <input type="checkbox" id="uno11" value="孩童專區" v-model="this.introduce">
@@ -817,8 +817,8 @@ export default{
                             <label for="uno">酒水</label>
                             <input type="checkbox" name="uno8" id="uno8" value="免治馬桶" v-model="this.upDateIntroduce">
                             <label for="uno">免治馬桶</label>
-                            <input type="checkbox" name="uno9" id="uno9" value="香氛噴物" v-model="this.upDateIntroduce">
-                            <label for="uno">香氛噴物</label>
+                            <input type="checkbox" name="uno9" id="uno9" value="香氛噴霧" v-model="this.upDateIntroduce">
+                            <label for="uno">香氛噴霧</label>
                             <input type="checkbox" name="uno10" id="uno10" value="沙發" v-model="this.upDateIntroduce">
                             <label for="uno">沙發</label>
                             <input type="checkbox" name="uno11" id="uno11" value="孩童專區" v-model="this.upDateIntroduce">

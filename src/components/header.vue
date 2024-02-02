@@ -100,7 +100,7 @@ export default{
 <template>
     <div class="header">
         <div class="logo">
-            <img src="../../public/seaLifeLogo.png" @click="goFrontEntry()">
+            <img src="../../public/logo.png" @click="goFrontEntry()">
         </div>
         <nav class="navbar sticky-top navbar-expand-lg navbar-light">
             <div class="container-fluid">
@@ -163,10 +163,10 @@ export default{
         .logo{
             img{
                 width: 13vw;
-                height: 22vh;
+                height: 12vh;
                 position: absolute;
                 left: 1%;
-                top: -30%;
+                top: 8%;
                 cursor: pointer;
             }
         }
