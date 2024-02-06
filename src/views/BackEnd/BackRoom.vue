@@ -667,7 +667,7 @@ export default{
                             <div class="status">
                                 <p>狀態 : {{ roomIsoren(item.open,item.roomId) }}</p>
                             </div>
-                            <div class="edit">
+                            <div class="edit" v-if="hasDepartment() === true && hasAccess() === true">
                                 <i class="fa-solid fa-paint-roller"></i>
                                 <p data-bs-toggle="modal" 
                                     data-bs-target="#edit" @click="upDateRoom(index)">編輯
